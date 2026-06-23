@@ -1,0 +1,76 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isOwner() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "owner"
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.status == "active";
+    }
+
+    match /users/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /projects/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /ai_agents/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /ai_inbox/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /task_dispatches/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /daily_briefs/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /line_events/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /line_users/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /decision_reports/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /capital_allocations/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /startup_analyses/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /knowledge_sop/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /settings/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /audit_logs/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /ai_route_logs/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

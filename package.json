@@ -1,0 +1,43 @@
+{
+  "name": "mark-ai-center",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "seed": "tsx scripts/seed-firestore.ts",
+    "bootstrap-owner": "tsx scripts/bootstrap-owner.ts",
+    "test:rules": "firebase emulators:exec --only firestore \"vitest run tests/firestore.rules.test.ts\"",
+    "emulators:test:rules": "firebase emulators:exec --only firestore \"vitest run tests/firestore.rules.test.ts\"",
+    "test:integration": "firebase emulators:exec --only firestore \"vitest run tests/quick-input.integration.test.ts\"",
+    "test:line": "vitest run tests/line-webhook.test.ts",
+    "functions:build": "tsc -p functions/tsconfig.json",
+    "functions:serve": "npm --prefix functions run serve",
+    "functions:deploy": "firebase deploy --only functions",
+    "apphosting:deploy": "firebase deploy --only apphosting"
+  },
+  "dependencies": {
+    "firebase": "^11.0.2",
+    "firebase-admin": "^13.0.1",
+    "lucide-react": "^0.468.0",
+    "next": "^15.0.3",
+    "openai": "^6.44.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^4.0.1",
+    "@types/node": "^22.10.1",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "eslint": "^9.16.0",
+    "eslint-config-next": "^15.0.3",
+    "firebase-tools": "^15.22.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^4.1.9"
+  }
+}
