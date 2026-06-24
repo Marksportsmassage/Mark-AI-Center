@@ -5,7 +5,15 @@ runConfig:
   cpu: 1
   memoryMiB: 512
 env:
+  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+    value: "AIzaSyBuZTKGxaDn2B-2Dalx6fHU_nTTpLV9T7E"
+  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    value: "mark-ai-center.firebaseapp.com"
   - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
-    value: mark-ai-center
+    value: "mark-ai-center"
+  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    value: "mark-ai-center.firebasestorage.app"
   - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
     value: "514309671076"
+  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+    value: "1:514309671076:web:6dd3971c5cd9e7b6157e31"
