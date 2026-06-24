@@ -20,6 +20,9 @@ type AnyRecord = Record<string, unknown> & { id?: string };
 
 const hrefs: Record<string, (id: string) => string> = {
   task_dispatches: (id) => `/task-dispatches/${id}`,
+  advisor_threads: () => "/advisor-chat",
+  advisor_messages: () => "/advisor-chat",
+  advisor_action_drafts: () => "/advisor-chat",
   finance_decisions: (id) => `/finance-decisions/${id}`,
   finance_decision_reviews: (id) => `/finance-decisions/${id}`,
   investment_decisions: (id) => `/investment-decisions/${id}`,
@@ -31,8 +34,7 @@ const hrefs: Record<string, (id: string) => string> = {
   credit_card_obligations: () => "/review-queue",
   finance_snapshots: () => "/finance-baseline",
   account_balances: () => "/finance-baseline",
-  liabilities: () => "/finance-baseline"
-  ,
+  liabilities: () => "/finance-baseline",
   decision_scenarios: () => "/decision-lab",
   recovery_plans: () => "/recovery-plans",
   weekly_reviews: () => "/weekly-review",
@@ -50,7 +52,8 @@ export const reviewQueueGroups = [
   "信用卡 / 分期待補資料",
   "財務基準待補資料",
   "決策實驗 / 回收計畫待審核",
-  "週月結 / Followup 待審核"
+  "週月結 / Followup 待審核",
+  "Advisor Drafts 待審核"
 ] as const;
 
 export function isReviewQueueCandidate(item: AnyRecord) {
@@ -71,6 +74,7 @@ export function toReviewQueueItem(collectionName: string, item: AnyRecord): Revi
     collectionName === "finance_snapshots" || collectionName === "account_balances" || collectionName === "liabilities" ? "財務基準待補資料" :
     collectionName === "decision_scenarios" || collectionName === "recovery_plans" ? "決策實驗 / 回收計畫待審核" :
     collectionName === "weekly_reviews" || collectionName === "monthly_closes" || collectionName === "decision_followups" ? "週月結 / Followup 待審核" :
+    collectionName === "advisor_threads" || collectionName === "advisor_messages" || collectionName === "advisor_action_drafts" ? "Advisor Drafts 待審核" :
     "SOP / Codex Jobs 待審核";
   const risk = displayText(item.risk_level ?? item.liquidity_risk ?? item.threshold_status, "unknown");
   const missing = asArray<string>(item.missing_required_fields);

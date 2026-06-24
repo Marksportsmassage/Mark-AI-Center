@@ -25,6 +25,18 @@ service cloud.firestore {
       allow read, write: if isOwner();
     }
 
+    match /advisor_threads/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /advisor_messages/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /advisor_action_drafts/{docId} {
+      allow read, write: if isOwner();
+    }
+
     match /task_dispatches/{docId} {
       allow read, write: if isOwner();
     }

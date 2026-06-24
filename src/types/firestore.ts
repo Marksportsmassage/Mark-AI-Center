@@ -22,6 +22,16 @@ export type FinancialProfileStatus = "draft" | "waiting_mark_input" | "active" |
 export type CapitalAllocationStatus = "draft" | "waiting_mark_review" | "approved" | "rejected" | "needs_more_info";
 export type FinanceReviewStatus = "draft" | "waiting_mark_input" | "waiting_review" | "approved" | "archived";
 export type FinanceDecisionStatus = "draft" | "waiting_mark_input" | "waiting_review" | "reviewed" | "archived";
+export type AdvisorMode = "finance" | "investment" | "business" | "studio_ops" | "client" | "study" | "content" | "product" | "general";
+export type AdvisorActionType =
+  | "create_finance_decision"
+  | "create_investment_decision"
+  | "create_task_dispatch"
+  | "create_sop"
+  | "create_followup"
+  | "create_content_brief"
+  | "create_client_plan"
+  | "create_product_task";
 export type FinanceDecisionStage = "considering" | "planned" | "executed" | "reviewed";
 export type FinanceDecisionType =
   | "necessary_expense"
@@ -88,6 +98,44 @@ export interface UserProfile extends FirestoreBase {
   role: "owner" | "admin";
   status: "active" | "inactive";
   timezone: string;
+}
+
+export interface AdvisorThread extends FirestoreBase {
+  user_id: string;
+  title: string;
+  mode: AdvisorMode;
+  summary: string;
+  status: "active" | "archived";
+  need_mark_review: true;
+  external_action_allowed: false;
+}
+
+export interface AdvisorMessage extends FirestoreBase {
+  thread_id: string;
+  user_id: string;
+  role: "user" | "assistant" | "system";
+  content: string;
+  mode: AdvisorMode;
+  context_used: string[];
+  suggested_actions: Array<Record<string, unknown>>;
+  missing_required_fields: string[];
+  safety_flags: string[];
+  need_mark_review: true;
+  external_action_allowed: false;
+}
+
+export interface AdvisorActionDraft extends FirestoreBase {
+  user_id: string;
+  thread_id: string;
+  source_message_id: string | null;
+  action_type: AdvisorActionType;
+  title: string;
+  summary: string;
+  target_collection: string;
+  draft_payload: Record<string, unknown>;
+  status: "draft" | "waiting_review" | "archived";
+  need_mark_review: true;
+  external_action_allowed: false;
 }
 
 export interface Project extends FirestoreBase, Reviewable {
