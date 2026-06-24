@@ -90,13 +90,17 @@ textarea {
   gap: 6px;
 }
 
-.nav-list a {
+.nav-list a,
+.nav-link {
+  display: block;
   border-radius: 8px;
   color: #263341;
   padding: 10px 12px;
+  text-decoration: none;
 }
 
-.nav-list a:hover {
+.nav-list a:hover,
+.nav-link:hover {
   background: var(--panel-muted);
 }
 

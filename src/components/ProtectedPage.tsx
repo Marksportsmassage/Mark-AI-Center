@@ -37,6 +37,10 @@ function DebugPanel({ debugInfo }: { debugInfo: OwnerAuthDebugInfo }) {
       <h2>Development auth debug</h2>
       <div className="detail-grid">
         <div>
+          <strong>auth status</strong>
+          <p>{debugInfo.auth_status}</p>
+        </div>
+        <div>
           <strong>currentUser.uid</strong>
           <p className="mono">{debugInfo.uid ?? "null"}</p>
         </div>
@@ -47,6 +51,10 @@ function DebugPanel({ debugInfo }: { debugInfo: OwnerAuthDebugInfo }) {
         <div>
           <strong>auth loaded</strong>
           <p>{String(debugInfo.auth_loaded)}</p>
+        </div>
+        <div>
+          <strong>auth timeout</strong>
+          <p>{String(debugInfo.auth_timeout)}</p>
         </div>
         <div>
           <strong>owner doc path</strong>
@@ -69,12 +77,8 @@ function DebugPanel({ debugInfo }: { debugInfo: OwnerAuthDebugInfo }) {
           <p>{String(debugInfo.owner_status ?? "null")}</p>
         </div>
         <div>
-          <strong>NEXT_PUBLIC_FIREBASE_PROJECT_ID</strong>
-          <p className="mono">{debugInfo.firebase_project_id ?? "null"}</p>
-        </div>
-        <div>
-          <strong>authDomain</strong>
-          <p className="mono">{debugInfo.auth_domain ?? "null"}</p>
+          <strong>Firebase config</strong>
+          <pre className="json-block">{JSON.stringify(debugInfo.firebase_config_status, null, 2)}</pre>
         </div>
         <div>
           <strong>current hostname / port</strong>

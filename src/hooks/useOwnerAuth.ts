@@ -8,17 +8,18 @@ import { getClientAuth, getClientDb } from "@/lib/firebase/client";
 export type OwnerAuthStatus = "loading" | "unauthenticated" | "checkingOwner" | "allowed" | "restricted" | "error";
 
 export interface OwnerAuthDebugInfo {
+  auth_status: OwnerAuthStatus;
   uid: string | null;
   email: string | null;
   auth_loaded: boolean;
+  auth_timeout: boolean;
   owner_doc_path: string | null;
   owner_doc_read_success: boolean;
   owner_doc_exists: boolean;
   owner_role: unknown;
   owner_status: unknown;
   firestore_read_error_redacted?: string;
-  firebase_project_id?: string;
-  auth_domain?: string;
+  firebase_config_status?: Record<string, "present" | "missing">;
   hostname?: string;
   port?: string;
 }
@@ -41,20 +42,30 @@ function redactedError(error: unknown) {
     .slice(0, 300);
 }
 
-function baseDebug(user: User | null, authLoaded: boolean): OwnerAuthDebugInfo {
+function firebaseConfigStatus() {
+  return {
+    NEXT_PUBLIC_FIREBASE_API_KEY: process.env.NEXT_PUBLIC_FIREBASE_API_KEY ? "present" : "missing",
+    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN ? "present" : "missing",
+    NEXT_PUBLIC_FIREBASE_PROJECT_ID: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ? "present" : "missing",
+    NEXT_PUBLIC_FIREBASE_APP_ID: process.env.NEXT_PUBLIC_FIREBASE_APP_ID ? "present" : "missing"
+  } as const;
+}
+
+function baseDebug(user: User | null, authLoaded: boolean, status: OwnerAuthStatus, authTimeout = false): OwnerAuthDebugInfo {
   const uid = user?.uid ?? null;
 
   return {
+    auth_status: status,
     uid,
     email: user?.email ?? null,
     auth_loaded: authLoaded,
+    auth_timeout: authTimeout,
     owner_doc_path: uid ? `users/${uid}` : null,
     owner_doc_read_success: false,
     owner_doc_exists: false,
     owner_role: null,
     owner_status: null,
-    firebase_project_id: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    auth_domain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    firebase_config_status: firebaseConfigStatus(),
     hostname: typeof window === "undefined" ? undefined : window.location.hostname,
     port: typeof window === "undefined" ? undefined : window.location.port
   };
@@ -67,7 +78,7 @@ export function useOwnerAuth(): OwnerAuthState {
     status: "loading",
     user: null,
     message: "正在確認登入狀態...",
-    debugInfo: baseDebug(null, false)
+    debugInfo: baseDebug(null, false, "loading")
   });
 
   const checkOwner = useCallback(async (currentUser: User | null) => {
@@ -76,7 +87,7 @@ export function useOwnerAuth(): OwnerAuthState {
         status: "unauthenticated",
         user: null,
         message: "未登入",
-        debugInfo: baseDebug(null, true)
+        debugInfo: baseDebug(null, true, "unauthenticated")
       });
       return;
     }
@@ -85,7 +96,7 @@ export function useOwnerAuth(): OwnerAuthState {
       status: "checkingOwner",
       user: currentUser,
       message: "正在確認 owner 權限...",
-      debugInfo: baseDebug(currentUser, true)
+      debugInfo: baseDebug(currentUser, true, "checkingOwner")
     });
 
     try {
@@ -94,7 +105,7 @@ export function useOwnerAuth(): OwnerAuthState {
       const ownerSnap = await getDoc(ownerRef);
       const ownerData = ownerSnap.data();
       const debugInfo: OwnerAuthDebugInfo = {
-        ...baseDebug(currentUser, true),
+        ...baseDebug(currentUser, true, "checkingOwner"),
         owner_doc_read_success: true,
         owner_doc_exists: ownerSnap.exists(),
         owner_role: ownerData?.role ?? null,
@@ -106,7 +117,7 @@ export function useOwnerAuth(): OwnerAuthState {
           status: "allowed",
           user: currentUser,
           message: "Owner access allowed.",
-          debugInfo
+          debugInfo: { ...debugInfo, auth_status: "allowed" }
         });
         return;
       }
@@ -115,7 +126,7 @@ export function useOwnerAuth(): OwnerAuthState {
         status: "restricted",
         user: currentUser,
         message: "Access restricted",
-        debugInfo
+        debugInfo: { ...debugInfo, auth_status: "restricted" }
       });
     } catch (error) {
       setState({
@@ -123,7 +134,7 @@ export function useOwnerAuth(): OwnerAuthState {
         user: currentUser,
         message: "Owner check failed",
         debugInfo: {
-          ...baseDebug(currentUser, true),
+          ...baseDebug(currentUser, true, "error"),
           firestore_read_error_redacted: redactedError(error)
         }
       });
@@ -142,9 +153,9 @@ export function useOwnerAuth(): OwnerAuthState {
       setState({
         status: "error",
         user: null,
-        message: "Auth check timed out after 5 seconds.",
+        message: "Firebase Auth state did not resolve. Please verify Firebase web config and authorized domain.",
         debugInfo: {
-          ...baseDebug(null, false),
+          ...baseDebug(null, false, "error", true),
           firestore_read_error_redacted: "Auth state did not resolve within 5 seconds."
         }
       });
@@ -170,7 +181,7 @@ export function useOwnerAuth(): OwnerAuthState {
         user: null,
         message: "Firebase Auth initialization failed.",
         debugInfo: {
-          ...baseDebug(null, true),
+          ...baseDebug(null, true, "error"),
           firestore_read_error_redacted: redactedError(error)
         }
       });
@@ -195,7 +206,7 @@ export function useOwnerAuth(): OwnerAuthState {
       status: "unauthenticated",
       user: null,
       message: "未登入",
-      debugInfo: baseDebug(null, true)
+      debugInfo: baseDebug(null, true, "unauthenticated")
     });
   }, []);
 
