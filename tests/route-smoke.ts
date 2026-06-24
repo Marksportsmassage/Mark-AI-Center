@@ -4,6 +4,7 @@ const port = Number(process.env.SMOKE_PORT ?? 3210);
 const baseUrl = `http://127.0.0.1:${port}`;
 const routes = [
   { path: "/login", text: "Sign in" },
+  { path: "/start-here", text: "Start Here" },
   { path: "/advisor-chat" },
   { path: "/command-brain" },
   { path: "/client-ops" },
@@ -27,6 +28,7 @@ const routes = [
   { path: "/followups" },
   { path: "/release-notes", text: "版本紀錄" },
   { path: "/data-quality" },
+  { path: "/safety-center", text: "Safety Center" },
   { path: "/finance-decisions", text: "Finance Decisions" },
   { path: "/expense-signals" },
   { path: "/investment-decisions", text: "Investments" },

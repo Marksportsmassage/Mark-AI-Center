@@ -10,13 +10,19 @@ export const RELEASE_NOTES = [
   "Phase 9：Finance Baseline Engine",
   "Phase 10：Decision Simulator / Capital Plan / Recovery Plans",
   "Phase 11：Weekly Review / Monthly Close / Decision Followups",
-  "Phase 12：Production Governance / Data Quality / Release Notes"
+  "Phase 12：Production Governance / Data Quality / Release Notes",
+  "Phase 13：AI Advisor Chat / 對話顧問層",
+  "Phase 14：Non-Finance Operating Branches / 客戶、內容、商業、產品",
+  "Phase 15：Cross-Branch Command Brain / 跨分支總管能力",
+  "Phase 16：Start Here / Safety Center / Final Operating Guide"
 ];
 
 export const SAFETY_NOTES = [
   "functions 未部署，除非 Mark 另行批准。",
   "LINE reply / push disabled。",
   "投資只建立 review-gated 草稿，不自動交易、不自動下單。",
+  "客戶 / 課表紀錄不是醫療診斷，不自動傳訊息給客戶。",
+  "內容草稿不自動發布。",
   "不自動付款、不自動轉帳、不聯絡供應商。",
   "不假裝有即時股價，不保證投資獲利。",
   "所有新決策輸出預設 need_mark_review=true 且 external_action_allowed=false。"

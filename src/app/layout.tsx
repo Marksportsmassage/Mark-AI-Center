@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 };
 
 const navItems = [
+  { href: "/start-here", label: "Start Here" },
   { href: "/today", label: "Today" },
   { href: "/advisor-chat", label: "Advisor Chat" },
   { href: "/command-brain", label: "Command Brain" },
@@ -24,6 +25,7 @@ const navItems = [
   { href: "/weekly-review", label: "Weekly" },
   { href: "/data-quality", label: "Data Quality" },
   { href: "/system-status", label: "System Status" },
+  { href: "/safety-center", label: "Safety Center" },
   { href: "/investment-decisions", label: "Investments" },
   { href: "/projects", label: "Projects" },
   { href: "/agents", label: "Agents" },
