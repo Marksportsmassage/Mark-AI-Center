@@ -6,6 +6,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { getClientDb } from "@/lib/firebase/client";
 import { reviewDecisionReport, type DecisionReportAction } from "@/lib/review/reviewDecisionReport";
+import { createSopDraftFromDecisionReport } from "@/lib/sop";
 import { formatDateTime, safeJson } from "@/lib/ui/format";
 import type { DecisionReport } from "@/types/firestore";
 
@@ -22,6 +23,7 @@ function ReportData({ reportId, uid }: { reportId: string; uid: string }) {
   const [report, setReport] = useState<DecisionReport | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
+  const [sopId, setSopId] = useState<string | null>(null);
 
   async function load() {
     setError(null);
@@ -47,6 +49,16 @@ function ReportData({ reportId, uid }: { reportId: string; uid: string }) {
     try {
       await reviewDecisionReport(getClientDb(), reportId, action, uid);
       await load();
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  async function createSop() {
+    setBusy("sop");
+    try {
+      const result = await createSopDraftFromDecisionReport(getClientDb(), reportId, uid);
+      setSopId(result.sopId);
     } finally {
       setBusy(null);
     }
@@ -88,6 +100,9 @@ function ReportData({ reportId, uid }: { reportId: string; uid: string }) {
           <Field label="decision_type" value={report.decision_type} />
           <Field label="status" value={report.status} />
           <Field label="recommendation" value={report.recommendation} />
+          <Field label="linked_finance_review_id" value={report.linked_finance_review_id} />
+          <Field label="finance_review_status" value={report.finance_review_status} />
+          {report.linked_finance_review_id ? <Link className="button secondary compact" href={`/finance-reviews/${report.linked_finance_review_id}`}>查看 Finance Review</Link> : <p className="muted">尚未完成 CFO / Finance Review，不建議直接進入執行階段。</p>}
           <Field label="need_mark_review" value={report.need_mark_review} />
           <Field label="created_at" value={formatDateTime(report.created_at)} />
           <Field label="updated_at" value={formatDateTime(report.updated_at)} />
@@ -129,7 +144,9 @@ function ReportData({ reportId, uid }: { reportId: string; uid: string }) {
           <button className="button compact" disabled={Boolean(busy)} onClick={() => runAction("approve")}>Approve Report</button>
           <button className="button secondary compact" disabled={Boolean(busy)} onClick={() => runAction("archive")}>Archive Report</button>
           <button className="button secondary compact" disabled={Boolean(busy)} onClick={() => runAction("more_info")}>Need More Info</button>
+          <button className="button compact" disabled={Boolean(busy)} onClick={createSop}>Create SOP Draft from Report</button>
         </div>
+        {sopId ? <p className="muted" style={{ marginTop: 12 }}>SOP draft created: <Link className="mono" href={`/knowledge-sop/${sopId}`}>{sopId}</Link></p> : null}
       </section>
     </div>
   );

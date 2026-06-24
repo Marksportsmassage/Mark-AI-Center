@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { classifyWithOpenAI } from "@/lib/ai/openaiRouteIntent";
-import { mockRouteIntentStructured, routeIntentInputSchema } from "@/lib/ai/routeIntentSchema";
+import { resolveRouteIntentMode } from "@/lib/ai/routeIntentMode";
+import { routeIntentInputSchema, type AiRouteMode } from "@/lib/ai/routeIntentSchema";
 import { adminAuth, adminDb } from "@/lib/firebase/admin";
 
 async function isActiveOwner(request: NextRequest) {
@@ -31,43 +32,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: false, error: "Invalid route-intent input." }, { status: 400 });
     }
 
-    const mode = process.env.NEXT_PUBLIC_AI_ROUTE_MODE ?? "mock";
-
-    if (mode === "mock") {
-      return NextResponse.json({
-        ok: true,
-        mode: "mock",
-        result: mockRouteIntentStructured(parsed.data.raw_text)
-      });
-    }
-
-    const openAiResult = await classifyWithOpenAI(parsed.data);
-
-    if (openAiResult.ok) {
-      return NextResponse.json({
-        ok: true,
-        mode: "openai",
-        result: openAiResult.result
-      });
-    }
-
-    if (mode === "fallback") {
-      return NextResponse.json({
-        ok: true,
-        mode: "fallback",
-        warning: openAiResult.error,
-        result: mockRouteIntentStructured(parsed.data.raw_text)
-      });
-    }
-
-    return NextResponse.json(
-      {
-        ok: false,
-        mode: "openai",
-        error: openAiResult.error
-      },
-      { status: openAiResult.status }
-    );
+    const mode = ((process.env.NEXT_PUBLIC_AI_ROUTE_MODE ?? "mock") as AiRouteMode);
+    const result = await resolveRouteIntentMode(parsed.data, mode, async (input) => {
+      const openAiResult = await classifyWithOpenAI(input);
+      return openAiResult.ok ? { ok: true, result: openAiResult.result } : { ok: false, error: openAiResult.error };
+    });
+    if (result.ok) return NextResponse.json({ ok: true, mode: result.mode, warning: result.error, result: result.result });
+    return NextResponse.json({ ok: false, mode: result.mode, error: result.error }, { status: 502 });
   } catch {
     return NextResponse.json({ ok: false, error: "Route-intent request failed." }, { status: 500 });
   }

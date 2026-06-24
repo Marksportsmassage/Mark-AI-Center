@@ -5,8 +5,12 @@ import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { getClientDb } from "@/lib/firebase/client";
-import { formatDateTime, safeJson } from "@/lib/ui/format";
+import { formatDateTime } from "@/lib/ui/format";
 import type { DailyBrief } from "@/types/firestore";
+
+function ListSection({ title, items }: { title: string; items?: string[] }) {
+  return <section className="panel"><h2>{title}</h2>{items?.length ? <ul>{items.map((item, index) => <li key={`${title}-${index}`}>{item}</li>)}</ul> : <p className="muted">No items.</p>}</section>;
+}
 
 function DailyBriefData({ briefId }: { briefId: string }) {
   const [brief, setBrief] = useState<DailyBrief | null>(null);
@@ -60,20 +64,15 @@ function DailyBriefData({ briefId }: { briefId: string }) {
         <p className="muted">{brief.summary}</p>
       </section>
 
-      <section className="panel">
-        <h2>Brief Detail</h2>
-        <pre className="json-block">
-          {safeJson({
-            top_priorities: brief.top_priorities,
-            waiting_review_tasks: brief.waiting_review_tasks,
-            needs_more_info_tasks: brief.needs_more_info_tasks,
-            recent_line_inputs: brief.recent_line_inputs,
-            business_decision_tasks: brief.business_decision_tasks,
-            suggested_focus: brief.suggested_focus,
-            do_not_focus: brief.do_not_focus
-          })}
-        </pre>
-      </section>
+      <ListSection title="Top priorities" items={brief.top_priorities} />
+      <ListSection title="Waiting review tasks" items={brief.waiting_review_tasks} />
+      <ListSection title="Needs more info tasks" items={brief.needs_more_info_tasks} />
+      <ListSection title="Recent LINE inputs" items={brief.recent_line_inputs} />
+      <ListSection title="Business decision tasks" items={brief.business_decision_tasks} />
+      <ListSection title="Finance reminders" items={brief.finance_reminders} />
+      <ListSection title="Suggested focus" items={brief.suggested_focus} />
+      <ListSection title="Do not focus" items={brief.do_not_focus} />
+      <ListSection title="Recommended SOP updates" items={brief.recommended_sop_updates} />
     </div>
   );
 }

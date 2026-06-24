@@ -17,6 +17,10 @@ export type TaskStage = "idea" | "research" | "small_test" | "validation" | "sca
 export type RiskLevel = "low" | "medium" | "high" | "unknown";
 export type DecisionType = "startup" | "investment" | "app" | "finance" | "operations" | "study" | "client" | "other";
 export type DecisionRecommendation = "research" | "small_test" | "pause" | "reject" | "needs_more_info";
+export type FinanceRecommendation = "research" | "small_test" | "delay" | "reject" | "needs_mark_input";
+export type FinancialProfileStatus = "draft" | "waiting_mark_input" | "active" | "archived";
+export type CapitalAllocationStatus = "draft" | "waiting_mark_review" | "approved" | "rejected" | "needs_more_info";
+export type FinanceReviewStatus = "draft" | "waiting_mark_input" | "waiting_review" | "approved" | "archived";
 export type ProjectCategory =
   | "core"
   | "investment"
@@ -156,8 +160,10 @@ export interface DailyBrief extends FirestoreBase, Reviewable {
   needs_more_info_tasks: string[];
   recent_line_inputs: string[];
   business_decision_tasks: string[];
+  finance_reminders?: string[];
   suggested_focus: string[];
   do_not_focus: string[];
+  recommended_sop_updates?: string[];
   status: "draft" | "reviewed" | "archived";
 }
 
@@ -215,6 +221,8 @@ export interface LineUser extends FirestoreBase {
 export interface DecisionReport extends FirestoreBase, Reviewable {
   source_task_dispatch_id?: string;
   project_id?: string;
+  linked_finance_review_id?: string | null;
+  finance_review_status?: FinanceReviewStatus | null;
   title: string;
   context?: string;
   options?: string[];
@@ -255,13 +263,75 @@ export interface DecisionReport extends FirestoreBase, Reviewable {
 }
 
 export interface CapitalAllocation extends FirestoreBase, Reviewable {
+  user_id?: string;
   title: string;
-  category: "cash" | "business" | "investment_watch" | "expense" | "reserve";
+  summary?: string;
+  category?: "cash" | "business" | "investment_watch" | "expense" | "reserve";
   amount_twd?: number;
+  total_available_capital?: number | null;
+  safety_cash_reserve?: number | null;
+  deployable_capital?: number | null;
+  allocation_items?: Array<Record<string, unknown>>;
+  risk_items?: Array<Record<string, unknown>>;
+  missing_required_fields?: string[];
+  decision_status?: CapitalAllocationStatus;
+  external_action_allowed?: false;
   thesis: string;
   risk_level: Priority;
   action_required: string;
   no_auto_trade: true;
+}
+
+export interface FinancialProfile extends FirestoreBase {
+  user_id: string;
+  monthly_living_expense: number | null;
+  safety_cash_reserve_target: number | null;
+  current_cash_available: number | null;
+  current_investment_value: number | null;
+  current_debt_summary: string | null;
+  monthly_income_estimate: number | null;
+  monthly_fixed_costs: number | null;
+  risk_tolerance: string | null;
+  capital_deployment_limit: number | null;
+  notes: string | null;
+  missing_required_fields: string[];
+  need_mark_review: boolean;
+  review_status: ReviewStatus;
+  status: FinancialProfileStatus;
+}
+
+export interface FinanceReview extends FirestoreBase, Reviewable {
+  source_task_dispatch_id?: string | null;
+  project_id?: string | null;
+  title: string;
+  summary: string;
+  capital_required: string | null;
+  cashflow_impact: string | null;
+  roi_assumption: string | null;
+  payback_period: string | null;
+  liquidity_risk: RiskLevel | "unknown";
+  worst_case_loss: string | null;
+  stop_loss_conditions: string[];
+  recommendation: FinanceRecommendation;
+  required_mark_inputs: string[];
+  missing_required_fields: string[];
+  need_mark_review: boolean;
+  status: FinanceReviewStatus;
+  external_action_allowed: false;
+}
+
+export interface CodexJob extends FirestoreBase {
+  source_task_dispatch_id?: string | null;
+  title: string;
+  goal: string;
+  instructions: string;
+  target_files: string[];
+  test_commands: string[];
+  forbidden_actions: string[];
+  status: "draft" | "waiting_review" | "archived";
+  needs_mark_review: boolean;
+  need_mark_review?: boolean;
+  external_action_allowed: false;
 }
 
 export interface StartupAnalysis extends FirestoreBase, Reviewable {
@@ -275,9 +345,19 @@ export interface StartupAnalysis extends FirestoreBase, Reviewable {
 
 export interface KnowledgeSop extends FirestoreBase, Reviewable {
   title: string;
-  domain: "operations" | "product" | "growth" | "finance" | "safety" | "engineering";
+  domain?: "operations" | "product" | "growth" | "finance" | "safety" | "engineering";
+  category?: string;
+  project_id?: string;
+  agent_ids?: string[];
+  summary?: string;
   content: string;
-  version: number;
+  rules?: string[];
+  examples?: string[];
+  forbidden_actions?: string[];
+  source_type?: "manual" | "task_dispatch" | "decision_report" | "codex_job" | "seed";
+  source_id?: string | null;
+  status?: "draft" | "active" | "archived";
+  version?: number;
 }
 
 export interface AuditLog extends FirestoreBase {
@@ -319,7 +399,10 @@ export interface FirestoreCollections {
   line_events: LineEvent;
   line_users: LineUser;
   decision_reports: DecisionReport;
+  financial_profile: FinancialProfile;
   capital_allocations: CapitalAllocation;
+  finance_reviews: FinanceReview;
+  codex_jobs: CodexJob;
   startup_analyses: StartupAnalysis;
   knowledge_sop: KnowledgeSop;
   settings: Record<string, unknown>;
@@ -337,7 +420,10 @@ export const collectionNames = [
   "line_events",
   "line_users",
   "decision_reports",
+  "financial_profile",
   "capital_allocations",
+  "finance_reviews",
+  "codex_jobs",
   "startup_analyses",
   "knowledge_sop",
   "settings",
