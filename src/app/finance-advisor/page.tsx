@@ -116,7 +116,7 @@ function FinanceAdvisorData({ uid }: { uid: string }) {
     <div className="grid">
       <header className="page-header">
         <div><h1>財務決策中心 / CFO</h1><p>現金流、安全現金水位、可投入資金、ROI、回本期、停損線優先。</p></div>
-        <div className="action-row"><button className="button secondary compact" onClick={load}>重新整理</button><Link className="button secondary compact" href="/command-center">回 Command Center</Link></div>
+        <div className="action-row"><button className="button secondary compact" onClick={load}>重新整理</button><Link className="button secondary compact" href="/finance-baseline">財務基準總表</Link><Link className="button secondary compact" href="/net-worth">資產負債表</Link><Link className="button secondary compact" href="/cashflow">每月現金流</Link><Link className="button secondary compact" href="/command-center">回 Command Center</Link></div>
       </header>
       {error ? <section className="panel"><p className="muted">{error}</p></section> : null}
       <section className="panel"><h2>三步驟使用流程</h2><ol><li>先補財務基本資料</li><li>再產生資本配置草稿</li><li>最後到 Audit Logs / Capital Allocation Detail 審核</li></ol></section>

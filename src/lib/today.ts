@@ -12,6 +12,9 @@ import type {
   CapitalAllocation,
   FinanceReview,
   DecisionReport,
+  FinanceSnapshot,
+  AccountBalance,
+  Liability,
   AuditLog
 } from "@/types/firestore";
 
@@ -27,6 +30,9 @@ export interface TodayDashboardInput {
   capitalAllocations?: CapitalAllocation[];
   financeReviews?: FinanceReview[];
   decisionReports?: DecisionReport[];
+  financeSnapshots?: FinanceSnapshot[];
+  accountBalances?: AccountBalance[];
+  liabilities?: Liability[];
   dailyBriefs?: DailyBrief[];
   auditLogs?: AuditLog[];
 }

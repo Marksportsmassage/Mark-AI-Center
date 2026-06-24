@@ -8,6 +8,7 @@ import {
   updateDoc
 } from "firebase/firestore";
 import { ensureFinancialProfileDraft, MARK_FINANCE_INPUTS } from "@/lib/finance";
+import { createFinanceBaselineDraft } from "@/lib/financeBaseline";
 import {
   buildCreditCardObligationDraft,
   buildFinanceDecisionDraft,
@@ -42,6 +43,10 @@ function parseAmount(text: string, label?: string) {
   if (source[2] === "萬") return base * 10000;
   if (source[2] === "千") return base * 1000;
   return base;
+}
+
+function parseLineAmount(text: string) {
+  return parseAmount(text);
 }
 
 function parseCurrency(text: string) {
@@ -290,7 +295,22 @@ export const INTAKE_MISSING_FINANCIAL_FIELDS = MARK_FINANCE_INPUTS;
 export async function createDraftsFromBatchIntake(db: Firestore, userId: string, rawText: string, options: IntakeOptions = { autoReview: true }) {
   const parsed = parseBatchIntakeText(rawText);
   const results: IntakeResult[] = [];
-  if (parsed.financial_snapshot) results.push(await createFinancialProfileDraftFromIntake(db, userId, parsed.financial_snapshot, options.monthKey, options.notes));
+  if (parsed.financial_snapshot) {
+    results.push(await createFinancialProfileDraftFromIntake(db, userId, parsed.financial_snapshot, options.monthKey, options.notes));
+    const accounts = parsed.financial_snapshot.split(/\r?\n/).map((line) => line.trim()).filter(Boolean).map((line) => ({
+      account_name: line.replace(/\d.*/, "").trim() || "財務帳戶",
+      account_type: line.includes("現金") ? "cash" as const : "bank" as const,
+      balance: parseLineAmount(line),
+      notes: options.notes ?? null
+    })).filter((account) => account.balance !== null);
+    const baseline = await createFinanceBaselineDraft(db, {
+      userId,
+      snapshotDate: new Date().toISOString().slice(0, 10),
+      monthKey: options.monthKey || new Date().toISOString().slice(0, 7),
+      accountBalances: accounts
+    });
+    results.push({ kind: "Finance Baseline Snapshot Draft", collection: "finance_snapshots", id: baseline.snapshotId, href: "/finance-baseline", next_actions: ["補安全現金水位", "檢查資產負債表", "到 Review Queue 審核"] });
+  }
   for (const item of parsed.spending_items) results.push(...await createSpendingDraftFromIntake(db, userId, item, {}, options));
   for (const item of parsed.credit_card_items) results.push(...await createSpendingDraftFromIntake(db, userId, item, {}, options));
   for (const item of parsed.investment_items) results.push(await createInvestmentDraftFromIntake(db, userId, item, {}, options));

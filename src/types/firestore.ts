@@ -438,6 +438,63 @@ export interface CreditCardObligation extends FirestoreBase {
   status: FinanceDecisionStatus;
 }
 
+export interface FinanceSnapshot extends FirestoreBase {
+  user_id: string;
+  snapshot_date: string;
+  month_key: string;
+  total_cash: number | null;
+  total_bank_balance: number | null;
+  total_investment_value: number | null;
+  total_assets: number | null;
+  total_liabilities: number | null;
+  net_worth: number | null;
+  monthly_income_estimate: number | null;
+  monthly_fixed_expenses: number | null;
+  monthly_variable_expenses_estimate: number | null;
+  monthly_debt_payments: number | null;
+  safety_cash_reserve_target: number | null;
+  safety_cash_reserve_months: number | null;
+  available_cash_after_reserve: number | null;
+  investment_allocation_summary: string | null;
+  liability_summary: string | null;
+  missing_required_fields: string[];
+  risk_level: RiskLevel;
+  need_mark_review: true;
+  external_action_allowed: false;
+  status: "draft" | "waiting_mark_input" | "active" | "archived";
+}
+
+export interface AccountBalance extends FirestoreBase {
+  user_id: string;
+  account_name: string;
+  account_type: "cash" | "bank" | "brokerage" | "crypto" | "gold" | "other";
+  currency: string;
+  balance: number | null;
+  as_of_date: string;
+  notes: string | null;
+  need_mark_review: true;
+  external_action_allowed: false;
+  status: "draft" | "waiting_mark_input" | "active" | "archived";
+}
+
+export interface Liability extends FirestoreBase {
+  user_id: string;
+  liability_type: "credit_card" | "installment" | "car_loan" | "student_loan" | "personal_loan" | "other";
+  lender_name: string;
+  original_amount: number | null;
+  current_balance: number | null;
+  monthly_payment: number | null;
+  remaining_terms: number | null;
+  interest_rate: number | null;
+  due_date: string | null;
+  notes: string | null;
+  monthly_cashflow_impact: number | null;
+  risk_level: RiskLevel;
+  need_mark_review: true;
+  external_action_allowed: false;
+  status: "draft" | "waiting_mark_input" | "active" | "archived";
+}
+
 export interface InvestmentDecision extends FirestoreBase {
   user_id: string;
   asset_type: "stock" | "etf" | "gold" | "crypto" | "fund" | "other";

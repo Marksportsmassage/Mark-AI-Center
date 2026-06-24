@@ -28,7 +28,10 @@ const hrefs: Record<string, (id: string) => string> = {
   decision_reports: (id) => `/decision-reports/${id}`,
   codex_jobs: (id) => `/codex-jobs/${id}`,
   knowledge_sop: (id) => `/knowledge-sop/${id}`,
-  credit_card_obligations: () => "/review-queue"
+  credit_card_obligations: () => "/review-queue",
+  finance_snapshots: () => "/finance-baseline",
+  account_balances: () => "/finance-baseline",
+  liabilities: () => "/finance-baseline"
 };
 
 export const reviewQueueGroups = [
@@ -38,7 +41,8 @@ export const reviewQueueGroups = [
   "CFO / Finance Review 待審核",
   "任務派工待審核",
   "SOP / Codex Jobs 待審核",
-  "信用卡 / 分期待補資料"
+  "信用卡 / 分期待補資料",
+  "財務基準待補資料"
 ] as const;
 
 export function isReviewQueueCandidate(item: AnyRecord) {
@@ -56,6 +60,7 @@ export function toReviewQueueItem(collectionName: string, item: AnyRecord): Revi
     collectionName === "finance_reviews" ? "CFO / Finance Review 待審核" :
     collectionName === "task_dispatches" ? "任務派工待審核" :
     collectionName === "credit_card_obligations" ? "信用卡 / 分期待補資料" :
+    collectionName === "finance_snapshots" || collectionName === "account_balances" || collectionName === "liabilities" ? "財務基準待補資料" :
     "SOP / Codex Jobs 待審核";
   const risk = displayText(item.risk_level ?? item.liquidity_risk ?? item.threshold_status, "unknown");
   const missing = asArray<string>(item.missing_required_fields);

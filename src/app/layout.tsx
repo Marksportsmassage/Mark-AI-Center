@@ -13,6 +13,7 @@ const navItems = [
   { href: "/intake", label: "Intake" },
   { href: "/review-queue", label: "Review Queue" },
   { href: "/finance-decisions", label: "Finance Decisions" },
+  { href: "/finance-baseline", label: "Baseline" },
   { href: "/investment-decisions", label: "Investments" },
   { href: "/projects", label: "Projects" },
   { href: "/agents", label: "Agents" },

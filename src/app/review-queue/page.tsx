@@ -15,11 +15,14 @@ import type {
   DailyBrief,
   DecisionReport,
   ExpenseSignal,
+  AccountBalance,
   FinanceDecision,
   FinanceDecisionReview,
   FinanceReview,
+  FinanceSnapshot,
   FinancialProfile,
   InvestmentDecision,
+  Liability,
   KnowledgeSop,
   TaskDispatch
 } from "@/types/firestore";
@@ -47,7 +50,10 @@ function ReviewQueueData({ uid }: { uid: string }) {
   const profiles = useFirestoreCollection<FinancialProfile>("financial_profile", recent20, true);
   const expenseSignals = useFirestoreCollection<ExpenseSignal>("expense_signals", recent20, true);
   const briefs = useFirestoreCollection<DailyBrief>("daily_briefs", recent20, true);
-  const sources = [tasks, financeDecisions, financeDecisionReviews, investments, allocations, financeReviews, reports, jobs, sops, creditCards, profiles, expenseSignals, briefs];
+  const financeSnapshots = useFirestoreCollection<FinanceSnapshot>("finance_snapshots", recent20, true);
+  const accountBalances = useFirestoreCollection<AccountBalance>("account_balances", recent20, true);
+  const liabilities = useFirestoreCollection<Liability>("liabilities", recent20, true);
+  const sources = [tasks, financeDecisions, financeDecisionReviews, investments, allocations, financeReviews, reports, jobs, sops, creditCards, profiles, expenseSignals, briefs, financeSnapshots, accountBalances, liabilities];
   const error = sources.map((source) => source.error).find(Boolean);
   const isLoading = sources.some((source) => source.isLoading);
   const queue = useMemo(() => {
@@ -62,9 +68,12 @@ function ReviewQueueData({ uid }: { uid: string }) {
       decision_reports: reports.items as never[],
       codex_jobs: jobs.items as never[],
       knowledge_sop: sops.items as never[],
-      credit_card_obligations: creditCards.items as never[]
+      credit_card_obligations: creditCards.items as never[],
+      finance_snapshots: financeSnapshots.items as never[],
+      account_balances: accountBalances.items as never[],
+      liabilities: liabilities.items as never[]
     }, { filter, sort });
-  }, [allocations.items, creditCards.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, filter, investments.items, jobs.items, reports.items, sops.items, sort, tasks.items]);
+  }, [accountBalances.items, allocations.items, creditCards.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, filter, investments.items, jobs.items, liabilities.items, reports.items, sops.items, sort, tasks.items]);
   const filterOptions: Array<{ value: ReviewQueueFilter; label: string }> = [
     { value: "all", label: "全部" },
     { value: "high_risk", label: "高風險" },

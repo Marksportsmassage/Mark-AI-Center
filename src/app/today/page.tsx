@@ -12,6 +12,7 @@ import { formatDateTime } from "@/lib/ui/format";
 import { displayText, safeJoin } from "@/lib/ui/safe";
 import type {
   AuditLog,
+  AccountBalance,
   CapitalAllocation,
   CreditCardObligation,
   DailyBrief,
@@ -20,8 +21,10 @@ import type {
   FinanceDecision,
   FinanceDecisionReview,
   FinanceReview,
+  FinanceSnapshot,
   FinancialProfile,
   InvestmentDecision,
+  Liability,
   TaskDispatch
 } from "@/types/firestore";
 
@@ -50,7 +53,10 @@ function TodayData({ uid }: { uid: string }) {
   const reports = useFirestoreCollection<DecisionReport>("decision_reports", recent20, true);
   const briefs = useFirestoreCollection<DailyBrief>("daily_briefs", recent20, true);
   const audits = useFirestoreCollection<AuditLog>("audit_logs", recent20, true);
-  const sources = [profiles, financeDecisions, financeDecisionReviews, investments, expenseSignals, creditCards, tasks, allocations, financeReviews, reports, briefs, audits];
+  const financeSnapshots = useFirestoreCollection<FinanceSnapshot>("finance_snapshots", recent20, true);
+  const accountBalances = useFirestoreCollection<AccountBalance>("account_balances", recent20, true);
+  const liabilities = useFirestoreCollection<Liability>("liabilities", recent20, true);
+  const sources = [profiles, financeDecisions, financeDecisionReviews, investments, expenseSignals, creditCards, tasks, allocations, financeReviews, reports, briefs, audits, financeSnapshots, accountBalances, liabilities];
   const isLoading = sources.some((source) => source.isLoading);
   const error = todayErrorMessage(sources.map((source) => source.error));
   const [busy, setBusy] = useState(false);
@@ -84,8 +90,11 @@ function TodayData({ uid }: { uid: string }) {
     financeReviews: financeReviews.items,
     decisionReports: reports.items,
     dailyBriefs: briefs.items,
-    auditLogs: audits.items
-  }), [allocations.items, audits.items, briefs.items, creditCards.items, expenseSignals.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, investments.items, profiles.items, reports.items, reviewQueueItems, tasks.items]);
+    auditLogs: audits.items,
+    financeSnapshots: financeSnapshots.items,
+    accountBalances: accountBalances.items,
+    liabilities: liabilities.items
+  }), [accountBalances.items, allocations.items, audits.items, briefs.items, creditCards.items, expenseSignals.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, investments.items, liabilities.items, profiles.items, reports.items, reviewQueueItems, tasks.items]);
 
   async function createBrief() {
     setBusy(true);
@@ -106,7 +115,10 @@ function TodayData({ uid }: { uid: string }) {
         financeReviews: financeReviews.items,
         decisionReports: reports.items,
         dailyBriefs: briefs.items,
-        auditLogs: audits.items
+        auditLogs: audits.items,
+        financeSnapshots: financeSnapshots.items,
+        accountBalances: accountBalances.items,
+        liabilities: liabilities.items
       });
       setCreatedId(result.briefId);
     } catch (briefError) {
@@ -145,6 +157,7 @@ function TodayData({ uid }: { uid: string }) {
         <h2>今日狀態摘要</h2>
         <div className="detail-grid">
           <div><strong>本月 expense signal 狀態</strong><p>{summary.expense_signal_status}</p></div>
+          <div><strong>財務基準摘要</strong><p>net worth {money(financeSnapshots.items[0]?.net_worth ?? 0)} / account {accountBalances.items.length} / liabilities {liabilities.items.length}</p></div>
           <div><strong>最近一次 CFO brief 時間</strong><p>{formatDateTime(summary.latest_cfo_brief_at)}</p></div>
           <div><strong>最近 audit logs</strong><p>{audits.items.slice(0, 3).map((item) => item.action).join("、") || "尚無紀錄"}</p></div>
         </div>
