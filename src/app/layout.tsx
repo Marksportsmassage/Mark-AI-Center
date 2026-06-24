@@ -14,6 +14,7 @@ const navItems = [
   { href: "/review-queue", label: "Review Queue" },
   { href: "/finance-decisions", label: "Finance Decisions" },
   { href: "/finance-baseline", label: "Baseline" },
+  { href: "/decision-lab", label: "Decision Lab" },
   { href: "/investment-decisions", label: "Investments" },
   { href: "/projects", label: "Projects" },
   { href: "/agents", label: "Agents" },

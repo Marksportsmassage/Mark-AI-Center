@@ -15,6 +15,7 @@ import type {
   FinanceSnapshot,
   AccountBalance,
   Liability,
+  RecoveryPlan,
   AuditLog
 } from "@/types/firestore";
 
@@ -33,6 +34,7 @@ export interface TodayDashboardInput {
   financeSnapshots?: FinanceSnapshot[];
   accountBalances?: AccountBalance[];
   liabilities?: Liability[];
+  recoveryPlans?: RecoveryPlan[];
   dailyBriefs?: DailyBrief[];
   auditLogs?: AuditLog[];
 }
@@ -57,6 +59,7 @@ export interface TodayDashboardSummary {
     safety_cash_missing: boolean;
   };
   investment_reminders: string[];
+  recovery_plan_reminders: string[];
 }
 
 function isWaitingStatus(status: unknown) {
@@ -84,6 +87,7 @@ export function buildTodayDashboardSummary(input: TodayDashboardInput): TodayDas
   const investments = asArray<InvestmentDecision>(input.investmentDecisions);
   const signals = asArray<ExpenseSignal>(input.expenseSignals);
   const obligations = asArray<CreditCardObligation>(input.creditCardObligations);
+  const recoveryPlans = asArray<RecoveryPlan>(input.recoveryPlans);
   const latestSignal = signals[0] ?? null;
   const latestBrief = asArray<DailyBrief>(input.dailyBriefs).find((brief) => String(brief.title ?? "").includes("CFO Brief")) ?? input.dailyBriefs?.[0] ?? null;
   const financialMissing = hasMissingFinancialProfile(profile);
@@ -152,7 +156,8 @@ export function buildTodayDashboardSummary(input: TodayDashboardInput): TodayDas
     },
     investment_reminders: investmentRiskItems.slice(0, 20).map((item) =>
       `${displayText(item.symbol, "需要補標的")}：${displayText(item.current_thesis_status)} / average_down_allowed=${String(item.average_down_allowed)}`
-    )
+    ),
+    recovery_plan_reminders: recoveryPlans.filter((item) => isWaitingStatus(item.status)).slice(0, 5).map((item) => `${item.title}: ${displayText(item.cost_to_recover, "待補成本")}`)
   };
 }
 

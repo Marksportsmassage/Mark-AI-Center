@@ -89,6 +89,14 @@ service cloud.firestore {
       allow read, write: if isOwner();
     }
 
+    match /decision_scenarios/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /recovery_plans/{docId} {
+      allow read, write: if isOwner();
+    }
+
     match /codex_jobs/{docId} {
       allow read, write: if isOwner();
     }

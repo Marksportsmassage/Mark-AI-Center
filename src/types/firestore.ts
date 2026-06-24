@@ -495,6 +495,48 @@ export interface Liability extends FirestoreBase {
   status: "draft" | "waiting_mark_input" | "active" | "archived";
 }
 
+export interface DecisionScenario extends FirestoreBase {
+  user_id: string;
+  scenario_type: "spending" | "investment" | "startup_test" | "asset_purchase" | "debt_payment" | "mixed";
+  title: string;
+  raw_input: string;
+  amount: number | null;
+  currency: string;
+  time_horizon_months: number | null;
+  expected_return: number | null;
+  expected_savings: number | null;
+  expected_income_lift: number | null;
+  monthly_cashflow_impact: number | null;
+  worst_case_loss: number | null;
+  breakeven_months: number | null;
+  safety_reserve_impact: string;
+  recommendation: string;
+  stop_loss_conditions: string[];
+  next_actions: string[];
+  linked_finance_decision_id: string | null;
+  linked_investment_decision_id: string | null;
+  need_mark_review: true;
+  external_action_allowed: false;
+  status: "draft" | "waiting_review" | "waiting_mark_input" | "archived";
+}
+
+export interface RecoveryPlan extends FirestoreBase {
+  user_id: string;
+  source_decision_id: string | null;
+  source_collection: string | null;
+  title: string;
+  cost_to_recover: number | null;
+  recovery_methods: string[];
+  offset_methods: string[];
+  breakeven_plan: string[];
+  expected_recovery_deadline: string | null;
+  tracking_metrics: string[];
+  stop_loss_conditions: string[];
+  need_mark_review: true;
+  external_action_allowed: false;
+  status: "draft" | "waiting_review" | "waiting_mark_input" | "archived";
+}
+
 export interface InvestmentDecision extends FirestoreBase {
   user_id: string;
   asset_type: "stock" | "etf" | "gold" | "crypto" | "fund" | "other";
