@@ -13,7 +13,11 @@ import { displayText, safeJoin } from "@/lib/ui/safe";
 import type {
   AuditLog,
   AccountBalance,
+  BusinessExperiment,
   CapitalAllocation,
+  ClientProfile,
+  ClientSession,
+  ContentDraft,
   CreditCardObligation,
   DailyBrief,
   DecisionReport,
@@ -26,6 +30,7 @@ import type {
   FinancialProfile,
   InvestmentDecision,
   Liability,
+  ProductFeature,
   RecoveryPlan,
   TaskDispatch
 } from "@/types/firestore";
@@ -60,7 +65,12 @@ function TodayData({ uid }: { uid: string }) {
   const liabilities = useFirestoreCollection<Liability>("liabilities", recent20, true);
   const recoveryPlans = useFirestoreCollection<RecoveryPlan>("recovery_plans", recent20, true);
   const followups = useFirestoreCollection<DecisionFollowup>("decision_followups", recent20, true);
-  const sources = [profiles, financeDecisions, financeDecisionReviews, investments, expenseSignals, creditCards, tasks, allocations, financeReviews, reports, briefs, audits, financeSnapshots, accountBalances, liabilities, recoveryPlans, followups];
+  const clients = useFirestoreCollection<ClientProfile>("client_profiles", recent20, true);
+  const clientSessions = useFirestoreCollection<ClientSession>("client_sessions", recent20, true);
+  const contentDrafts = useFirestoreCollection<ContentDraft>("content_drafts", recent20, true);
+  const businessExperiments = useFirestoreCollection<BusinessExperiment>("business_experiments", recent20, true);
+  const productFeatures = useFirestoreCollection<ProductFeature>("product_features", recent20, true);
+  const sources = [profiles, financeDecisions, financeDecisionReviews, investments, expenseSignals, creditCards, tasks, allocations, financeReviews, reports, briefs, audits, financeSnapshots, accountBalances, liabilities, recoveryPlans, followups, clients, clientSessions, contentDrafts, businessExperiments, productFeatures];
   const isLoading = sources.some((source) => source.isLoading);
   const error = todayErrorMessage(sources.map((source) => source.error));
   const [busy, setBusy] = useState(false);
@@ -99,8 +109,13 @@ function TodayData({ uid }: { uid: string }) {
     accountBalances: accountBalances.items,
     liabilities: liabilities.items,
     recoveryPlans: recoveryPlans.items,
-    decisionFollowups: followups.items
-  }), [accountBalances.items, allocations.items, audits.items, briefs.items, creditCards.items, expenseSignals.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, followups.items, investments.items, liabilities.items, profiles.items, recoveryPlans.items, reports.items, reviewQueueItems, tasks.items]);
+    decisionFollowups: followups.items,
+    clientProfiles: clients.items,
+    clientSessions: clientSessions.items,
+    contentDrafts: contentDrafts.items,
+    businessExperiments: businessExperiments.items,
+    productFeatures: productFeatures.items
+  }), [accountBalances.items, allocations.items, audits.items, briefs.items, businessExperiments.items, clientSessions.items, clients.items, contentDrafts.items, creditCards.items, expenseSignals.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, followups.items, investments.items, liabilities.items, productFeatures.items, profiles.items, recoveryPlans.items, reports.items, reviewQueueItems, tasks.items]);
 
   async function createBrief() {
     setBusy(true);
@@ -215,6 +230,11 @@ function TodayData({ uid }: { uid: string }) {
       </section>
 
       <section className="panel">
+        <h2>非財務營運提醒</h2>
+        {summary.non_finance_reminders.length ? <ul>{summary.non_finance_reminders.map((item) => <li key={item}>{item}</li>)}</ul> : <p className="muted">目前沒有 client / content / business / product 草稿提醒。</p>}
+      </section>
+
+      <section className="panel">
         <h2>Review Queue Snapshot</h2>
         <div className="list">{reviewQueueItems.slice(0, 10).map((item) => <article className="item" key={`${item.collection}-${item.id}`}><div className="item-header"><h3>{item.title}</h3><span className="badge review">{displayText(item.risk_level)}</span></div><p>{item.recommendation}</p><Link className="button secondary compact" href={item.href}>前往詳情</Link></article>)}{reviewQueueItems.length === 0 ? <p className="muted">目前沒有待審核項目。可以先到 Intake 新增資料，或到 Finance Advisor 補財務基本資料。</p> : null}</div>
       </section>
@@ -228,6 +248,10 @@ function TodayData({ uid }: { uid: string }) {
           <Link className="button secondary compact" href="/finance-decisions">前往 /finance-decisions</Link>
           <Link className="button secondary compact" href="/investment-decisions">前往 /investment-decisions</Link>
           <Link className="button secondary compact" href="/expense-signals">前往 /expense-signals</Link>
+          <Link className="button secondary compact" href="/client-ops">前往 /client-ops</Link>
+          <Link className="button secondary compact" href="/content-studio">前往 /content-studio</Link>
+          <Link className="button secondary compact" href="/business-lab">前往 /business-lab</Link>
+          <Link className="button secondary compact" href="/product-roadmap">前往 /product-roadmap</Link>
           <Link className="button secondary compact" href="/audit-logs">前往 /audit-logs</Link>
         </div>
       </section>

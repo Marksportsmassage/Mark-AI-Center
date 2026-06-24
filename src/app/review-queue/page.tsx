@@ -12,7 +12,12 @@ import type {
   AdvisorActionDraft,
   AdvisorMessage,
   AdvisorThread,
+  BusinessExperiment,
   CapitalAllocation,
+  ClientProfile,
+  ClientSession,
+  ContentDraft,
+  ContentIdea,
   CodexJob,
   CreditCardObligation,
   DailyBrief,
@@ -28,8 +33,12 @@ import type {
   FinancialProfile,
   InvestmentDecision,
   Liability,
+  ProductFeature,
   MonthlyClose,
   RecoveryPlan,
+  RoadmapItem,
+  StartupTestPlan,
+  StudyNote,
   WeeklyReview,
   KnowledgeSop,
   TaskDispatch
@@ -49,6 +58,15 @@ function ReviewQueueData({ uid }: { uid: string }) {
   const advisorThreads = useFirestoreCollection<AdvisorThread>("advisor_threads", recent20, true);
   const advisorMessages = useFirestoreCollection<AdvisorMessage>("advisor_messages", recent20, true);
   const advisorActionDrafts = useFirestoreCollection<AdvisorActionDraft>("advisor_action_drafts", recent20, true);
+  const clientProfiles = useFirestoreCollection<ClientProfile>("client_profiles", recent20, true);
+  const clientSessions = useFirestoreCollection<ClientSession>("client_sessions", recent20, true);
+  const contentIdeas = useFirestoreCollection<ContentIdea>("content_ideas", recent20, true);
+  const contentDrafts = useFirestoreCollection<ContentDraft>("content_drafts", recent20, true);
+  const studyNotes = useFirestoreCollection<StudyNote>("study_notes", recent20, true);
+  const businessExperiments = useFirestoreCollection<BusinessExperiment>("business_experiments", recent20, true);
+  const startupPlans = useFirestoreCollection<StartupTestPlan>("startup_test_plans", recent20, true);
+  const productFeatures = useFirestoreCollection<ProductFeature>("product_features", recent20, true);
+  const roadmapItems = useFirestoreCollection<RoadmapItem>("roadmap_items", recent20, true);
   const financeDecisions = useFirestoreCollection<FinanceDecision>("finance_decisions", recent20, true);
   const financeDecisionReviews = useFirestoreCollection<FinanceDecisionReview>("finance_decision_reviews", recent20, true);
   const investments = useFirestoreCollection<InvestmentDecision>("investment_decisions", recent20, true);
@@ -69,7 +87,7 @@ function ReviewQueueData({ uid }: { uid: string }) {
   const weeklyReviews = useFirestoreCollection<WeeklyReview>("weekly_reviews", recent20, true);
   const monthlyCloses = useFirestoreCollection<MonthlyClose>("monthly_closes", recent20, true);
   const followups = useFirestoreCollection<DecisionFollowup>("decision_followups", recent20, true);
-  const sources = [tasks, advisorThreads, advisorMessages, advisorActionDrafts, financeDecisions, financeDecisionReviews, investments, allocations, financeReviews, reports, jobs, sops, creditCards, profiles, expenseSignals, briefs, financeSnapshots, accountBalances, liabilities, scenarios, recoveryPlans, weeklyReviews, monthlyCloses, followups];
+  const sources = [tasks, advisorThreads, advisorMessages, advisorActionDrafts, clientProfiles, clientSessions, contentIdeas, contentDrafts, studyNotes, businessExperiments, startupPlans, productFeatures, roadmapItems, financeDecisions, financeDecisionReviews, investments, allocations, financeReviews, reports, jobs, sops, creditCards, profiles, expenseSignals, briefs, financeSnapshots, accountBalances, liabilities, scenarios, recoveryPlans, weeklyReviews, monthlyCloses, followups];
   const error = sources.map((source) => source.error).find(Boolean);
   const isLoading = sources.some((source) => source.isLoading);
   const queue = useMemo(() => {
@@ -79,6 +97,15 @@ function ReviewQueueData({ uid }: { uid: string }) {
       advisor_threads: advisorThreads.items as never[],
       advisor_messages: advisorMessages.items as never[],
       advisor_action_drafts: advisorActionDrafts.items as never[],
+      client_profiles: clientProfiles.items as never[],
+      client_sessions: clientSessions.items as never[],
+      content_ideas: contentIdeas.items as never[],
+      content_drafts: contentDrafts.items as never[],
+      study_notes: studyNotes.items as never[],
+      business_experiments: businessExperiments.items as never[],
+      startup_test_plans: startupPlans.items as never[],
+      product_features: productFeatures.items as never[],
+      roadmap_items: roadmapItems.items as never[],
       finance_decisions: financeDecisions.items.map((item) => ({ ...item, review_id: reviewedDecisionIds.has(item.id) ? item.id : null })) as never[],
       finance_decision_reviews: financeDecisionReviews.items as never[],
       investment_decisions: investments.items as never[],
@@ -97,7 +124,7 @@ function ReviewQueueData({ uid }: { uid: string }) {
       monthly_closes: monthlyCloses.items as never[],
       decision_followups: followups.items as never[]
     }, { filter, sort });
-  }, [accountBalances.items, advisorActionDrafts.items, advisorMessages.items, advisorThreads.items, allocations.items, creditCards.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, filter, followups.items, investments.items, jobs.items, liabilities.items, monthlyCloses.items, recoveryPlans.items, reports.items, scenarios.items, sops.items, sort, tasks.items, weeklyReviews.items]);
+  }, [accountBalances.items, advisorActionDrafts.items, advisorMessages.items, advisorThreads.items, allocations.items, businessExperiments.items, clientProfiles.items, clientSessions.items, contentDrafts.items, contentIdeas.items, creditCards.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, filter, followups.items, investments.items, jobs.items, liabilities.items, monthlyCloses.items, productFeatures.items, recoveryPlans.items, reports.items, roadmapItems.items, scenarios.items, sops.items, sort, startupPlans.items, studyNotes.items, tasks.items, weeklyReviews.items]);
   const filterOptions: Array<{ value: ReviewQueueFilter; label: string }> = [
     { value: "all", label: "全部" },
     { value: "high_risk", label: "高風險" },

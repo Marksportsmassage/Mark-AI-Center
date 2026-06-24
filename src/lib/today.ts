@@ -17,7 +17,12 @@ import type {
   Liability,
   RecoveryPlan,
   DecisionFollowup,
-  AuditLog
+  AuditLog,
+  ClientProfile,
+  ClientSession,
+  ContentDraft,
+  BusinessExperiment,
+  ProductFeature
 } from "@/types/firestore";
 
 export interface TodayDashboardInput {
@@ -37,6 +42,11 @@ export interface TodayDashboardInput {
   liabilities?: Liability[];
   recoveryPlans?: RecoveryPlan[];
   decisionFollowups?: DecisionFollowup[];
+  clientProfiles?: ClientProfile[];
+  clientSessions?: ClientSession[];
+  contentDrafts?: ContentDraft[];
+  businessExperiments?: BusinessExperiment[];
+  productFeatures?: ProductFeature[];
   dailyBriefs?: DailyBrief[];
   auditLogs?: AuditLog[];
 }
@@ -63,6 +73,7 @@ export interface TodayDashboardSummary {
   investment_reminders: string[];
   recovery_plan_reminders: string[];
   followup_reminders: string[];
+  non_finance_reminders: string[];
 }
 
 function isWaitingStatus(status: unknown) {
@@ -92,6 +103,11 @@ export function buildTodayDashboardSummary(input: TodayDashboardInput): TodayDas
   const obligations = asArray<CreditCardObligation>(input.creditCardObligations);
   const recoveryPlans = asArray<RecoveryPlan>(input.recoveryPlans);
   const followups = asArray<DecisionFollowup>(input.decisionFollowups);
+  const clients = asArray<ClientProfile>(input.clientProfiles);
+  const sessions = asArray<ClientSession>(input.clientSessions);
+  const contentDrafts = asArray<ContentDraft>(input.contentDrafts);
+  const experiments = asArray<BusinessExperiment>(input.businessExperiments);
+  const productFeatures = asArray<ProductFeature>(input.productFeatures);
   const latestSignal = signals[0] ?? null;
   const latestBrief = asArray<DailyBrief>(input.dailyBriefs).find((brief) => String(brief.title ?? "").includes("CFO Brief")) ?? input.dailyBriefs?.[0] ?? null;
   const financialMissing = hasMissingFinancialProfile(profile);
@@ -162,7 +178,14 @@ export function buildTodayDashboardSummary(input: TodayDashboardInput): TodayDas
       `${displayText(item.symbol, "需要補標的")}：${displayText(item.current_thesis_status)} / average_down_allowed=${String(item.average_down_allowed)}`
     ),
     recovery_plan_reminders: recoveryPlans.filter((item) => isWaitingStatus(item.status)).slice(0, 5).map((item) => `${item.title}: ${displayText(item.cost_to_recover, "待補成本")}`),
-    followup_reminders: followups.filter((item) => item.status === "pending" || item.status === "missed").slice(0, 5).map((item) => `${item.status}: ${item.title} (${item.followup_date})`)
+    followup_reminders: followups.filter((item) => item.status === "pending" || item.status === "missed").slice(0, 5).map((item) => `${item.status}: ${item.title} (${item.followup_date})`),
+    non_finance_reminders: [
+      ...clients.filter((item) => isWaitingStatus(item.status)).map((item) => `客戶草稿：${item.display_name}`),
+      ...sessions.filter((item) => isWaitingStatus(item.status)).map((item) => `課表草稿：${item.session_date}`),
+      ...contentDrafts.filter((item) => isWaitingStatus(item.status)).map((item) => `內容草稿：${item.title}`),
+      ...experiments.filter((item) => isWaitingStatus(item.status)).map((item) => `商業實驗：${item.title}`),
+      ...productFeatures.filter((item) => isWaitingStatus(item.status)).map((item) => `產品功能：${item.title}`)
+    ].slice(0, 10)
   };
 }
 

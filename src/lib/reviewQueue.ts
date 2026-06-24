@@ -23,6 +23,16 @@ const hrefs: Record<string, (id: string) => string> = {
   advisor_threads: () => "/advisor-chat",
   advisor_messages: () => "/advisor-chat",
   advisor_action_drafts: () => "/advisor-chat",
+  client_profiles: () => "/client-ops",
+  client_sessions: () => "/client-ops",
+  content_ideas: () => "/content-studio",
+  content_drafts: () => "/content-studio",
+  study_notes: () => "/content-studio",
+  business_experiments: () => "/business-lab",
+  market_hypotheses: () => "/business-lab",
+  startup_test_plans: () => "/business-lab",
+  product_features: () => "/product-roadmap",
+  roadmap_items: () => "/product-roadmap",
   finance_decisions: (id) => `/finance-decisions/${id}`,
   finance_decision_reviews: (id) => `/finance-decisions/${id}`,
   investment_decisions: (id) => `/investment-decisions/${id}`,
@@ -53,7 +63,8 @@ export const reviewQueueGroups = [
   "財務基準待補資料",
   "決策實驗 / 回收計畫待審核",
   "週月結 / Followup 待審核",
-  "Advisor Drafts 待審核"
+  "Advisor Drafts 待審核",
+  "非財務營運待審核"
 ] as const;
 
 export function isReviewQueueCandidate(item: AnyRecord) {
@@ -75,6 +86,7 @@ export function toReviewQueueItem(collectionName: string, item: AnyRecord): Revi
     collectionName === "decision_scenarios" || collectionName === "recovery_plans" ? "決策實驗 / 回收計畫待審核" :
     collectionName === "weekly_reviews" || collectionName === "monthly_closes" || collectionName === "decision_followups" ? "週月結 / Followup 待審核" :
     collectionName === "advisor_threads" || collectionName === "advisor_messages" || collectionName === "advisor_action_drafts" ? "Advisor Drafts 待審核" :
+    collectionName === "client_profiles" || collectionName === "client_sessions" || collectionName === "content_ideas" || collectionName === "content_drafts" || collectionName === "study_notes" || collectionName === "business_experiments" || collectionName === "market_hypotheses" || collectionName === "startup_test_plans" || collectionName === "product_features" || collectionName === "roadmap_items" ? "非財務營運待審核" :
     "SOP / Codex Jobs 待審核";
   const risk = displayText(item.risk_level ?? item.liquidity_risk ?? item.threshold_status, "unknown");
   const missing = asArray<string>(item.missing_required_fields);

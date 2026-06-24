@@ -132,6 +132,7 @@ function CommandCenterData({ uid }: { uid: string }) {
         </div>
         <div className="action-row">
           <Link className="button compact" href="/today">今天只看這裡</Link>
+          <Link className="button secondary compact" href="/advisor-chat">Advisor Chat</Link>
           <Link className="button secondary compact" href="/finance-advisor">Finance Advisor</Link>
           <Link className="button secondary compact" href="/universe">Universe</Link>
           <Link className="button secondary compact" href="/knowledge-sop">Knowledge SOP</Link>
@@ -181,6 +182,10 @@ function CommandCenterData({ uid }: { uid: string }) {
           <Link className="button secondary compact" href="/investment-decisions">查看投資決策</Link>
           <Link className="button secondary compact" href="/expense-signals">查看警訊支出</Link>
           <Link className="button secondary compact" href="/audit-logs">查看 Audit Logs</Link>
+          <Link className="button secondary compact" href="/client-ops">客戶 / 課表</Link>
+          <Link className="button secondary compact" href="/content-studio">內容 / 國考</Link>
+          <Link className="button secondary compact" href="/business-lab">商業實驗</Link>
+          <Link className="button secondary compact" href="/product-roadmap">產品 Roadmap</Link>
         </div>
       </section>
 
@@ -193,6 +198,7 @@ function CommandCenterData({ uid }: { uid: string }) {
           <Link className="button secondary compact" href="/investment-decisions">查看投資決策</Link>
           <Link className="button secondary compact" href="/expense-signals">查看信用卡與分期</Link>
           <Link className="button secondary compact" href="/finance-advisor">查看 Finance Advisor</Link>
+          <Link className="button secondary compact" href="/advisor-chat">問 Advisor</Link>
         </div>
       </section>
 

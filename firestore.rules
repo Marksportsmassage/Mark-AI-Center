@@ -37,6 +37,46 @@ service cloud.firestore {
       allow read, write: if isOwner();
     }
 
+    match /client_profiles/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /client_sessions/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /content_ideas/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /content_drafts/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /study_notes/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /business_experiments/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /market_hypotheses/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /startup_test_plans/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /product_features/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /roadmap_items/{docId} {
+      allow read, write: if isOwner();
+    }
+
     match /task_dispatches/{docId} {
       allow read, write: if isOwner();
     }

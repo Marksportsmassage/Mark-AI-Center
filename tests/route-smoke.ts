@@ -5,6 +5,10 @@ const baseUrl = `http://127.0.0.1:${port}`;
 const routes = [
   { path: "/login", text: "Sign in" },
   { path: "/advisor-chat" },
+  { path: "/client-ops" },
+  { path: "/content-studio" },
+  { path: "/business-lab" },
+  { path: "/product-roadmap" },
   { path: "/today", text: "Today" },
   { path: "/command-center", text: "Command Center" },
   { path: "/intake", text: "Intake" },

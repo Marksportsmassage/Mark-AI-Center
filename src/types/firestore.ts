@@ -138,6 +138,134 @@ export interface AdvisorActionDraft extends FirestoreBase {
   external_action_allowed: false;
 }
 
+export interface ClientProfile extends FirestoreBase {
+  user_id: string;
+  display_name: string;
+  case_summary: string;
+  goals: string[];
+  limitations: string[];
+  training_focus: string[];
+  risk_notes: string[];
+  next_session_focus: string;
+  status: "draft" | "active" | "archived";
+  need_mark_review: true;
+  external_action_allowed: false;
+}
+
+export interface ClientSession extends FirestoreBase {
+  user_id: string;
+  client_id: string | null;
+  session_date: string;
+  session_notes: string;
+  exercises: string[];
+  response: string;
+  next_plan: string;
+  caution_notes: string[];
+  need_mark_review: true;
+  external_action_allowed: false;
+  status: "draft" | "reviewed" | "archived";
+}
+
+export interface ContentIdea extends FirestoreBase {
+  user_id: string;
+  title: string;
+  topic: "musculoskeletal" | "physical_modality" | "surgery" | "rom" | "mmt" | "marketing" | "business" | "other";
+  summary: string;
+  outline: string[];
+  status: "draft" | "waiting_review" | "archived";
+  need_mark_review: true;
+  external_action_allowed: false;
+}
+
+export interface ContentDraft extends FirestoreBase {
+  user_id: string;
+  title: string;
+  channel: "ig" | "pdf" | "article" | "study" | "other";
+  topic: string;
+  outline: string[];
+  body: string;
+  no_auto_post: true;
+  status: "draft" | "waiting_review" | "archived";
+  need_mark_review: true;
+  external_action_allowed: false;
+}
+
+export interface StudyNote extends FirestoreBase {
+  user_id: string;
+  title: string;
+  topic: string;
+  source_material: string | null;
+  key_points: string[];
+  missing_required_fields: string[];
+  status: "draft" | "waiting_review" | "archived";
+  need_mark_review: true;
+  external_action_allowed: false;
+}
+
+export interface BusinessExperiment extends FirestoreBase {
+  user_id: string;
+  title: string;
+  hypothesis: string;
+  test_budget: number | null;
+  expected_return: string | null;
+  validation_method: string;
+  stop_loss: string;
+  linked_finance_decision_id: string | null;
+  linked_decision_scenario_id: string | null;
+  linked_recovery_plan_id: string | null;
+  status: "draft" | "waiting_review" | "archived";
+  need_mark_review: true;
+  external_action_allowed: false;
+}
+
+export interface MarketHypothesis extends FirestoreBase {
+  user_id: string;
+  title: string;
+  target_customer: string;
+  problem: string;
+  proposed_offer: string;
+  validation_signal: string;
+  status: "draft" | "waiting_review" | "archived";
+  need_mark_review: true;
+  external_action_allowed: false;
+}
+
+export interface StartupTestPlan extends FirestoreBase {
+  user_id: string;
+  title: string;
+  test_budget: number | null;
+  steps: string[];
+  stop_loss: string;
+  no_supplier_contact: true;
+  no_payment: true;
+  status: "draft" | "waiting_review" | "archived";
+  need_mark_review: true;
+  external_action_allowed: false;
+}
+
+export interface ProductFeature extends FirestoreBase {
+  user_id: string;
+  title: string;
+  expected_value: string;
+  priority: Priority;
+  linked_codex_job_id: string | null;
+  risk: string;
+  status: "draft" | "waiting_review" | "archived";
+  need_mark_review: true;
+  external_action_allowed: false;
+}
+
+export interface RoadmapItem extends FirestoreBase {
+  user_id: string;
+  title: string;
+  area: string;
+  expected_value: string;
+  priority: Priority;
+  status: "draft" | "waiting_review" | "archived";
+  need_mark_review: true;
+  external_action_allowed: false;
+}
+
 export interface Project extends FirestoreBase, Reviewable {
   name: string;
   description: string;
