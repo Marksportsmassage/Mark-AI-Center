@@ -30,7 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </Link>
             <nav className="nav-list">
               {navItems.map((item) => (
-                <Link key={item.href} href={item.href}>
+                <Link className="nav-link" key={item.href} href={item.href}>
                   {item.label}
                 </Link>
               ))}

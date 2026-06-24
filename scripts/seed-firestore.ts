@@ -1,10 +1,12 @@
 import { adminDb } from "../src/lib/firebase/admin";
+import { knowledgeSopSeedTemplates } from "../src/lib/knowledgeSeeds";
 import { reviewDefaults } from "../src/lib/safety";
 import { phase2Agents, phase2Projects } from "../src/lib/phase2-seed-data";
 import type {
   CapitalAllocation,
   DailyBrief,
   DecisionReport,
+  FinancialProfile,
   TaskDispatch,
   KnowledgeSop,
   LineEvent,
@@ -171,6 +173,38 @@ const capitalAllocations: CapitalAllocation[] = [
   }
 ];
 
+const financialProfile: FinancialProfile[] = [
+  {
+    id: "mark-financial-profile-draft",
+    user_id: "mark-owner-placeholder",
+    monthly_living_expense: null,
+    safety_cash_reserve_target: null,
+    current_cash_available: null,
+    current_investment_value: null,
+    current_debt_summary: null,
+    monthly_income_estimate: null,
+    monthly_fixed_costs: null,
+    risk_tolerance: null,
+    capital_deployment_limit: null,
+    notes: null,
+    missing_required_fields: [
+      "目前可動用現金",
+      "每月生活費",
+      "每月固定支出",
+      "安全現金水位目標",
+      "股票 / 投資部位估值",
+      "可接受最大創業測試預算",
+      "可接受最大單項虧損",
+      "是否有近期大額支出"
+    ],
+    need_mark_review: true,
+    review_status: "pending",
+    status: "waiting_mark_input",
+    created_at: now,
+    updated_at: now
+  }
+];
+
 const startupAnalyses: StartupAnalysis[] = [
   {
     id: "startup-radar-template",
@@ -197,7 +231,13 @@ const knowledgeSop: KnowledgeSop[] = [
     ...reviewDefaults,
     created_at: now,
     updated_at: now
-  }
+  },
+  ...knowledgeSopSeedTemplates.map((template, index) => ({
+    id: `knowledge-sop-seed-${index + 1}`,
+    ...template,
+    created_at: now,
+    updated_at: now
+  }))
 ];
 
 const seedData = {
@@ -209,6 +249,7 @@ const seedData = {
   daily_briefs: dailyBriefs,
   line_events: lineEvents,
   decision_reports: decisionReports,
+  financial_profile: financialProfile,
   capital_allocations: capitalAllocations,
   startup_analyses: startupAnalyses,
   knowledge_sop: knowledgeSop

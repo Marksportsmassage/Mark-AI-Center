@@ -68,6 +68,13 @@ function CommandCenterData({ uid }: { uid: string }) {
           <h1>Command Center</h1>
           <p>Mark 專用 AI 總管：收件、審核、任務指派與專案狀態。</p>
         </div>
+        <div className="action-row">
+          <Link className="button secondary compact" href="/finance-advisor">Finance Advisor</Link>
+          <Link className="button secondary compact" href="/universe">Universe</Link>
+          <Link className="button secondary compact" href="/knowledge-sop">Knowledge SOP</Link>
+          <Link className="button secondary compact" href="/audit-logs">Audit Logs</Link>
+          <Link className="button secondary compact" href="/codex-jobs">Codex Jobs</Link>
+        </div>
       </header>
 
       {hasError ? (

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { limit, orderBy } from "firebase/firestore";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { useFirestoreCollection } from "@/hooks/useFirestoreCollection";
@@ -11,6 +11,12 @@ import type { AuditLog } from "@/types/firestore";
 function AuditLogsData() {
   const logs = useFirestoreCollection<AuditLog>("audit_logs", [orderBy("created_at", "desc"), limit(100)], true);
   const [selected, setSelected] = useState<AuditLog | null>(null);
+  const [actionFilter, setActionFilter] = useState("");
+  const [collectionFilter, setCollectionFilter] = useState("");
+  const filteredLogs = useMemo(() => logs.items.filter((log) =>
+    (!actionFilter || log.action.includes(actionFilter)) &&
+    (!collectionFilter || log.target_collection === collectionFilter)
+  ), [logs.items, actionFilter, collectionFilter]);
 
   return (
     <div className="grid">
@@ -30,10 +36,18 @@ function AuditLogsData() {
       ) : null}
 
       <section className="panel">
+        <h2>Filters</h2>
+        <div className="detail-grid">
+          <label>action<input value={actionFilter} onChange={(event) => setActionFilter(event.target.value)} placeholder="finance_review" /></label>
+          <label>target_collection<input value={collectionFilter} onChange={(event) => setCollectionFilter(event.target.value)} placeholder="audit_logs" /></label>
+        </div>
+      </section>
+
+      <section className="panel">
         <h2>Recent Audit Logs</h2>
         <div className="list">
-          {logs.items.length === 0 ? <p className="muted">目前沒有 audit logs。</p> : null}
-          {logs.items.map((log) => (
+          {filteredLogs.length === 0 ? <p className="muted">目前沒有符合條件的 audit logs。</p> : null}
+          {filteredLogs.map((log) => (
             <article className="item" key={log.id}>
               <div className="item-header">
                 <h3>{log.action}</h3>

@@ -5,8 +5,11 @@ import { useEffect, useMemo, useState } from "react";
 import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { getClientDb } from "@/lib/firebase/client";
+import { createCodexJobDraft } from "@/lib/codexJobs";
+import { FINANCE_REVIEW_PROJECTS, generateFinanceReview } from "@/lib/finance";
 import { generateDecisionReportDraft } from "@/lib/reports/decisionReport";
 import { reviewTaskDispatch, type TaskReviewAction } from "@/lib/review/reviewTaskDispatch";
+import { createSopDraftFromTask } from "@/lib/sop";
 import { formatDateTime, safeJson } from "@/lib/ui/format";
 import type { AiAgent, AiInboxItem, TaskDispatch } from "@/types/firestore";
 
@@ -30,6 +33,9 @@ function TaskDispatchDetailData({ taskId, uid }: { taskId: string; uid: string }
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
   const [reportId, setReportId] = useState<string | null>(null);
+  const [financeReviewId, setFinanceReviewId] = useState<string | null>(null);
+  const [codexJobId, setCodexJobId] = useState<string | null>(null);
+  const [sopId, setSopId] = useState<string | null>(null);
 
   async function load() {
     setError(null);
@@ -98,6 +104,36 @@ function TaskDispatchDetailData({ taskId, uid }: { taskId: string; uid: string }
       const db = getClientDb();
       const result = await generateDecisionReportDraft(db, taskId, uid);
       setReportId(result.reportId);
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  async function generateFinance() {
+    setBusy("finance");
+    try {
+      const result = await generateFinanceReview(getClientDb(), taskId, uid);
+      setFinanceReviewId(result.financeReviewId);
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  async function createCodexJob() {
+    setBusy("codex");
+    try {
+      const result = await createCodexJobDraft(getClientDb(), taskId, uid);
+      setCodexJobId(result.jobId);
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  async function createSop() {
+    setBusy("sop");
+    try {
+      const result = await createSopDraftFromTask(getClientDb(), taskId, uid);
+      setSopId(result.sopId);
     } finally {
       setBusy(null);
     }
@@ -237,8 +273,14 @@ function TaskDispatchDetailData({ taskId, uid }: { taskId: string; uid: string }
           <button className="button secondary compact" disabled={Boolean(busy)} onClick={() => runReview("archive")}>Archive</button>
           <button className="button secondary compact" disabled={Boolean(busy)} onClick={() => runReview("doing")}>Mark as Doing</button>
           <button className="button secondary compact" disabled={Boolean(busy)} onClick={() => runReview("done")}>Mark as Done</button>
+          <button className="button compact" disabled={Boolean(busy) || !task.project_id || !FINANCE_REVIEW_PROJECTS.includes(task.project_id)} onClick={generateFinance}>Generate Finance Review</button>
           <button className="button compact" disabled={Boolean(busy)} onClick={generateReport}>Generate Draft Decision Report</button>
+          <button className="button compact" disabled={Boolean(busy)} onClick={createCodexJob}>Create Codex Job Draft</button>
+          <button className="button compact" disabled={Boolean(busy)} onClick={createSop}>Create SOP Draft from Task</button>
         </div>
+        {financeReviewId ? <p className="muted" style={{ marginTop: 12 }}>Finance review created: <Link className="mono" href={`/finance-reviews/${financeReviewId}`}>{financeReviewId}</Link></p> : null}
+        {codexJobId ? <p className="muted" style={{ marginTop: 12 }}>Codex job draft created: <Link className="mono" href={`/codex-jobs/${codexJobId}`}>{codexJobId}</Link></p> : null}
+        {sopId ? <p className="muted" style={{ marginTop: 12 }}>SOP draft created: <Link className="mono" href={`/knowledge-sop/${sopId}`}>{sopId}</Link></p> : null}
         {reportId ? (
           <p className="muted" style={{ marginTop: 12 }}>
             Draft report created: <Link className="mono" href={`/decision-reports/${reportId}`}>{reportId}</Link>

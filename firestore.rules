@@ -45,7 +45,19 @@ service cloud.firestore {
       allow read, write: if isOwner();
     }
 
+    match /financial_profile/{docId} {
+      allow read, write: if isOwner();
+    }
+
     match /capital_allocations/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /finance_reviews/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /codex_jobs/{docId} {
       allow read, write: if isOwner();
     }
 

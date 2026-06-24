@@ -1,11 +1,5 @@
-import {
-  addDoc,
-  collection,
-  doc,
-  type Firestore,
-  getDoc,
-  serverTimestamp
-} from "firebase/firestore";
+import { addDoc, collection, doc, type Firestore, getDoc, getDocs, limit, query, serverTimestamp, where } from "firebase/firestore";
+import type { FinanceReview } from "@/types/firestore";
 import type { DecisionRecommendation, DecisionReport, DecisionType, RiskLevel, TaskDispatch } from "@/types/firestore";
 
 type CostItem = DecisionReport["cost_items"][number];
@@ -144,6 +138,8 @@ export function buildDecisionReportDraft(task: TaskDispatch): Omit<DecisionRepor
   return {
     source_task_dispatch_id: task.id,
     project_id: task.project_id,
+    linked_finance_review_id: null,
+    finance_review_status: null,
     title: `Draft Decision Report - ${task.title}`,
     decision_type: decisionTypeForTask(task),
     summary: task.background || task.instructions || "Rule-based draft decision report.",
@@ -176,8 +172,12 @@ export async function generateDecisionReportDraft(db: Firestore, taskId: string,
 
   const task = { id: taskSnap.id, ...taskSnap.data() } as TaskDispatch;
   const draft = buildDecisionReportDraft(task);
+  const financeSnap = await getDocs(query(collection(db, "finance_reviews"), where("source_task_dispatch_id", "==", taskId), limit(1)));
+  const linkedFinance = financeSnap.docs[0] ? ({ id: financeSnap.docs[0].id, ...financeSnap.docs[0].data() } as FinanceReview) : null;
   const reportDoc = await addDoc(collection(db, "decision_reports"), {
     ...draft,
+    linked_finance_review_id: linkedFinance?.id ?? null,
+    finance_review_status: linkedFinance?.status ?? null,
     created_at: serverTimestamp(),
     updated_at: serverTimestamp()
   });
