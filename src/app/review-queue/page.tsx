@@ -16,6 +16,7 @@ import type {
   CapitalAllocation,
   ClientProfile,
   ClientSession,
+  CommandBrief,
   ContentDraft,
   ContentIdea,
   CodexJob,
@@ -58,6 +59,7 @@ function ReviewQueueData({ uid }: { uid: string }) {
   const advisorThreads = useFirestoreCollection<AdvisorThread>("advisor_threads", recent20, true);
   const advisorMessages = useFirestoreCollection<AdvisorMessage>("advisor_messages", recent20, true);
   const advisorActionDrafts = useFirestoreCollection<AdvisorActionDraft>("advisor_action_drafts", recent20, true);
+  const commandBriefs = useFirestoreCollection<CommandBrief>("command_briefs", recent20, true);
   const clientProfiles = useFirestoreCollection<ClientProfile>("client_profiles", recent20, true);
   const clientSessions = useFirestoreCollection<ClientSession>("client_sessions", recent20, true);
   const contentIdeas = useFirestoreCollection<ContentIdea>("content_ideas", recent20, true);
@@ -87,7 +89,7 @@ function ReviewQueueData({ uid }: { uid: string }) {
   const weeklyReviews = useFirestoreCollection<WeeklyReview>("weekly_reviews", recent20, true);
   const monthlyCloses = useFirestoreCollection<MonthlyClose>("monthly_closes", recent20, true);
   const followups = useFirestoreCollection<DecisionFollowup>("decision_followups", recent20, true);
-  const sources = [tasks, advisorThreads, advisorMessages, advisorActionDrafts, clientProfiles, clientSessions, contentIdeas, contentDrafts, studyNotes, businessExperiments, startupPlans, productFeatures, roadmapItems, financeDecisions, financeDecisionReviews, investments, allocations, financeReviews, reports, jobs, sops, creditCards, profiles, expenseSignals, briefs, financeSnapshots, accountBalances, liabilities, scenarios, recoveryPlans, weeklyReviews, monthlyCloses, followups];
+  const sources = [tasks, advisorThreads, advisorMessages, advisorActionDrafts, commandBriefs, clientProfiles, clientSessions, contentIdeas, contentDrafts, studyNotes, businessExperiments, startupPlans, productFeatures, roadmapItems, financeDecisions, financeDecisionReviews, investments, allocations, financeReviews, reports, jobs, sops, creditCards, profiles, expenseSignals, briefs, financeSnapshots, accountBalances, liabilities, scenarios, recoveryPlans, weeklyReviews, monthlyCloses, followups];
   const error = sources.map((source) => source.error).find(Boolean);
   const isLoading = sources.some((source) => source.isLoading);
   const queue = useMemo(() => {
@@ -97,6 +99,7 @@ function ReviewQueueData({ uid }: { uid: string }) {
       advisor_threads: advisorThreads.items as never[],
       advisor_messages: advisorMessages.items as never[],
       advisor_action_drafts: advisorActionDrafts.items as never[],
+      command_briefs: commandBriefs.items as never[],
       client_profiles: clientProfiles.items as never[],
       client_sessions: clientSessions.items as never[],
       content_ideas: contentIdeas.items as never[],
@@ -124,7 +127,7 @@ function ReviewQueueData({ uid }: { uid: string }) {
       monthly_closes: monthlyCloses.items as never[],
       decision_followups: followups.items as never[]
     }, { filter, sort });
-  }, [accountBalances.items, advisorActionDrafts.items, advisorMessages.items, advisorThreads.items, allocations.items, businessExperiments.items, clientProfiles.items, clientSessions.items, contentDrafts.items, contentIdeas.items, creditCards.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, filter, followups.items, investments.items, jobs.items, liabilities.items, monthlyCloses.items, productFeatures.items, recoveryPlans.items, reports.items, roadmapItems.items, scenarios.items, sops.items, sort, startupPlans.items, studyNotes.items, tasks.items, weeklyReviews.items]);
+  }, [accountBalances.items, advisorActionDrafts.items, advisorMessages.items, advisorThreads.items, allocations.items, businessExperiments.items, clientProfiles.items, clientSessions.items, commandBriefs.items, contentDrafts.items, contentIdeas.items, creditCards.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, filter, followups.items, investments.items, jobs.items, liabilities.items, monthlyCloses.items, productFeatures.items, recoveryPlans.items, reports.items, roadmapItems.items, scenarios.items, sops.items, sort, startupPlans.items, studyNotes.items, tasks.items, weeklyReviews.items]);
   const filterOptions: Array<{ value: ReviewQueueFilter; label: string }> = [
     { value: "all", label: "全部" },
     { value: "high_risk", label: "高風險" },

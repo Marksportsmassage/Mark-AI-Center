@@ -4,6 +4,7 @@ import type {
   AccountBalance,
   AdvisorMode,
   CodexJob,
+  CommandBrief,
   DecisionReport,
   DecisionScenario,
   ExpenseSignal,
@@ -31,6 +32,7 @@ export interface AdvisorContextInput {
   taskDispatches?: TaskDispatch[];
   decisionReports?: DecisionReport[];
   knowledgeSops?: KnowledgeSop[];
+  commandBriefs?: CommandBrief[];
 }
 
 export interface AdvisorContext {
@@ -63,6 +65,7 @@ export function buildAdvisorContext(mode: AdvisorMode, input: AdvisorContextInpu
   const tasks = asArray<TaskDispatch>(input.taskDispatches);
   const reports = asArray<DecisionReport>(input.decisionReports);
   const sops = asArray<KnowledgeSop>(input.knowledgeSops);
+  const commandBriefs = asArray<CommandBrief>(input.commandBriefs);
   const reviewQueue = buildReviewQueue({
     finance_decisions: financeDecisions as never[],
     investment_decisions: investments as never[],
@@ -131,10 +134,10 @@ export function buildAdvisorContext(mode: AdvisorMode, input: AdvisorContextInpu
     return { mode, context_used: ["knowledge_sop", "content_or_study_notes"], facts: [`knowledge SOPs: ${sops.length}`, "content/study drafts: waiting for Mark input"], missing_required_fields: ["topic", "source_material"], review_queue: reviewQueue };
   }
 
-  return {
-    mode,
-    context_used: ["review_queue", "task_dispatches", "knowledge_sop"],
-    facts: [`review queue: ${reviewQueue.length}`, `tasks: ${tasks.length}`, `SOPs: ${sops.length}`],
+    return {
+      mode,
+      context_used: ["review_queue", "task_dispatches", "knowledge_sop", "command_briefs"],
+      facts: [`review queue: ${reviewQueue.length}`, `tasks: ${tasks.length}`, `SOPs: ${sops.length}`, `command briefs: ${commandBriefs.length}`],
     missing_required_fields: [],
     review_queue: reviewQueue
   };

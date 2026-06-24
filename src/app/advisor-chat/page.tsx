@@ -15,6 +15,7 @@ import type {
   AdvisorMode,
   AdvisorThread,
   CodexJob,
+  CommandBrief,
   DecisionReport,
   DecisionScenario,
   ExpenseSignal,
@@ -57,6 +58,7 @@ function AdvisorChatData({ uid }: { uid: string }) {
   const tasks = useFirestoreCollection<TaskDispatch>("task_dispatches", recent20, true);
   const reports = useFirestoreCollection<DecisionReport>("decision_reports", recent20, true);
   const sops = useFirestoreCollection<KnowledgeSop>("knowledge_sop", recent20, true);
+  const commandBriefs = useFirestoreCollection<CommandBrief>("command_briefs", recent20, true);
   const [mode, setMode] = useState<AdvisorMode>("finance");
   const [activeThreadId, setActiveThreadId] = useState<string | null>(null);
   const [lastAnswer, setLastAnswer] = useState<AdvisorMessage | null>(null);
@@ -64,7 +66,7 @@ function AdvisorChatData({ uid }: { uid: string }) {
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const activeMessages = useMemo(() => messages.items.filter((item) => !activeThreadId || item.thread_id === activeThreadId), [messages.items, activeThreadId]);
-  const loadError = threads.error ?? messages.error ?? profiles.error ?? snapshots.error ?? signals.error ?? financeDecisions.error ?? investments.error;
+  const loadError = threads.error ?? messages.error ?? profiles.error ?? snapshots.error ?? signals.error ?? financeDecisions.error ?? investments.error ?? commandBriefs.error;
 
   function contextFor(nextMode = mode) {
     return buildAdvisorContext(nextMode, {
@@ -80,7 +82,8 @@ function AdvisorChatData({ uid }: { uid: string }) {
       codexJobs: codexJobs.items,
       taskDispatches: tasks.items,
       decisionReports: reports.items,
-      knowledgeSops: sops.items
+      knowledgeSops: sops.items,
+      commandBriefs: commandBriefs.items
     });
   }
 

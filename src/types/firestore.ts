@@ -266,6 +266,22 @@ export interface RoadmapItem extends FirestoreBase {
   external_action_allowed: false;
 }
 
+export interface CommandBrief extends FirestoreBase {
+  user_id: string;
+  title: string;
+  summary: string;
+  main_focus: string[];
+  cross_branch_risks: string[];
+  no_cost_actions: string[];
+  blocked_items: string[];
+  recommended_sops: string[];
+  codex_job_candidates: string[];
+  assistant_handoff_candidates: string[];
+  need_mark_review: true;
+  external_action_allowed: false;
+  status: "draft" | "waiting_review" | "archived";
+}
+
 export interface Project extends FirestoreBase, Reviewable {
   name: string;
   description: string;

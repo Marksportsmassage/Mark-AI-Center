@@ -133,6 +133,7 @@ function CommandCenterData({ uid }: { uid: string }) {
         <div className="action-row">
           <Link className="button compact" href="/today">今天只看這裡</Link>
           <Link className="button secondary compact" href="/advisor-chat">Advisor Chat</Link>
+          <Link className="button secondary compact" href="/command-brain">Command Brain</Link>
           <Link className="button secondary compact" href="/finance-advisor">Finance Advisor</Link>
           <Link className="button secondary compact" href="/universe">Universe</Link>
           <Link className="button secondary compact" href="/knowledge-sop">Knowledge SOP</Link>

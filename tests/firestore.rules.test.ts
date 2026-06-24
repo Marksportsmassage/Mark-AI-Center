@@ -32,6 +32,7 @@ const protectedCollections = [
   "startup_test_plans",
   "product_features",
   "roadmap_items",
+  "command_briefs",
   "task_dispatches",
   "daily_briefs",
   "line_events",

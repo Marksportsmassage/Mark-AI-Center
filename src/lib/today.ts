@@ -22,7 +22,8 @@ import type {
   ClientSession,
   ContentDraft,
   BusinessExperiment,
-  ProductFeature
+  ProductFeature,
+  CommandBrief
 } from "@/types/firestore";
 
 export interface TodayDashboardInput {
@@ -47,6 +48,7 @@ export interface TodayDashboardInput {
   contentDrafts?: ContentDraft[];
   businessExperiments?: BusinessExperiment[];
   productFeatures?: ProductFeature[];
+  commandBriefs?: CommandBrief[];
   dailyBriefs?: DailyBrief[];
   auditLogs?: AuditLog[];
 }
@@ -74,6 +76,7 @@ export interface TodayDashboardSummary {
   recovery_plan_reminders: string[];
   followup_reminders: string[];
   non_finance_reminders: string[];
+  command_brain_reminders: string[];
 }
 
 function isWaitingStatus(status: unknown) {
@@ -108,6 +111,7 @@ export function buildTodayDashboardSummary(input: TodayDashboardInput): TodayDas
   const contentDrafts = asArray<ContentDraft>(input.contentDrafts);
   const experiments = asArray<BusinessExperiment>(input.businessExperiments);
   const productFeatures = asArray<ProductFeature>(input.productFeatures);
+  const commandBriefs = asArray<CommandBrief>(input.commandBriefs);
   const latestSignal = signals[0] ?? null;
   const latestBrief = asArray<DailyBrief>(input.dailyBriefs).find((brief) => String(brief.title ?? "").includes("CFO Brief")) ?? input.dailyBriefs?.[0] ?? null;
   const financialMissing = hasMissingFinancialProfile(profile);
@@ -185,7 +189,8 @@ export function buildTodayDashboardSummary(input: TodayDashboardInput): TodayDas
       ...contentDrafts.filter((item) => isWaitingStatus(item.status)).map((item) => `內容草稿：${item.title}`),
       ...experiments.filter((item) => isWaitingStatus(item.status)).map((item) => `商業實驗：${item.title}`),
       ...productFeatures.filter((item) => isWaitingStatus(item.status)).map((item) => `產品功能：${item.title}`)
-    ].slice(0, 10)
+    ].slice(0, 10),
+    command_brain_reminders: commandBriefs.filter((item) => isWaitingStatus(item.status)).slice(0, 5).map((item) => `${item.title}: ${item.summary}`)
   };
 }
 

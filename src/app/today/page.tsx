@@ -17,6 +17,7 @@ import type {
   CapitalAllocation,
   ClientProfile,
   ClientSession,
+  CommandBrief,
   ContentDraft,
   CreditCardObligation,
   DailyBrief,
@@ -70,7 +71,8 @@ function TodayData({ uid }: { uid: string }) {
   const contentDrafts = useFirestoreCollection<ContentDraft>("content_drafts", recent20, true);
   const businessExperiments = useFirestoreCollection<BusinessExperiment>("business_experiments", recent20, true);
   const productFeatures = useFirestoreCollection<ProductFeature>("product_features", recent20, true);
-  const sources = [profiles, financeDecisions, financeDecisionReviews, investments, expenseSignals, creditCards, tasks, allocations, financeReviews, reports, briefs, audits, financeSnapshots, accountBalances, liabilities, recoveryPlans, followups, clients, clientSessions, contentDrafts, businessExperiments, productFeatures];
+  const commandBriefs = useFirestoreCollection<CommandBrief>("command_briefs", recent20, true);
+  const sources = [profiles, financeDecisions, financeDecisionReviews, investments, expenseSignals, creditCards, tasks, allocations, financeReviews, reports, briefs, audits, financeSnapshots, accountBalances, liabilities, recoveryPlans, followups, clients, clientSessions, contentDrafts, businessExperiments, productFeatures, commandBriefs];
   const isLoading = sources.some((source) => source.isLoading);
   const error = todayErrorMessage(sources.map((source) => source.error));
   const [busy, setBusy] = useState(false);
@@ -114,8 +116,9 @@ function TodayData({ uid }: { uid: string }) {
     clientSessions: clientSessions.items,
     contentDrafts: contentDrafts.items,
     businessExperiments: businessExperiments.items,
-    productFeatures: productFeatures.items
-  }), [accountBalances.items, allocations.items, audits.items, briefs.items, businessExperiments.items, clientSessions.items, clients.items, contentDrafts.items, creditCards.items, expenseSignals.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, followups.items, investments.items, liabilities.items, productFeatures.items, profiles.items, recoveryPlans.items, reports.items, reviewQueueItems, tasks.items]);
+    productFeatures: productFeatures.items,
+    commandBriefs: commandBriefs.items
+  }), [accountBalances.items, allocations.items, audits.items, briefs.items, businessExperiments.items, clientSessions.items, clients.items, commandBriefs.items, contentDrafts.items, creditCards.items, expenseSignals.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, followups.items, investments.items, liabilities.items, productFeatures.items, profiles.items, recoveryPlans.items, reports.items, reviewQueueItems, tasks.items]);
 
   async function createBrief() {
     setBusy(true);
@@ -232,6 +235,12 @@ function TodayData({ uid }: { uid: string }) {
       <section className="panel">
         <h2>非財務營運提醒</h2>
         {summary.non_finance_reminders.length ? <ul>{summary.non_finance_reminders.map((item) => <li key={item}>{item}</li>)}</ul> : <p className="muted">目前沒有 client / content / business / product 草稿提醒。</p>}
+      </section>
+
+      <section className="panel">
+        <h2>Command Brain 摘要</h2>
+        {summary.command_brain_reminders.length ? <ul>{summary.command_brain_reminders.map((item) => <li key={item}>{item}</li>)}</ul> : <p className="muted">目前沒有 command brief draft。可以到 /command-brain 產生。</p>}
+        <Link className="button secondary compact" href="/command-brain">前往 Command Brain</Link>
       </section>
 
       <section className="panel">

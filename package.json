@@ -48,6 +48,7 @@
     "test:content-studio": "vitest run tests/non-finance-ops.unit.test.ts --testNamePattern \"content|study\"",
     "test:business-lab": "vitest run tests/non-finance-ops.unit.test.ts --testNamePattern \"business|startup\"",
     "test:product-roadmap": "vitest run tests/non-finance-ops.unit.test.ts --testNamePattern \"product|roadmap\"",
+    "test:command-brain": "vitest run tests/command-brain.unit.test.ts && firebase emulators:exec --only firestore \"vitest run tests/command-brain.integration.test.ts\"",
     "test:smoke": "tsx tests/route-smoke.ts",
     "functions:build": "tsc -p functions/tsconfig.json",
     "functions:serve": "npm --prefix functions run serve",

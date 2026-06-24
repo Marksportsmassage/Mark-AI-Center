@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 const navItems = [
   { href: "/today", label: "Today" },
   { href: "/advisor-chat", label: "Advisor Chat" },
+  { href: "/command-brain", label: "Command Brain" },
   { href: "/command-center", label: "Command Center" },
   { href: "/client-ops", label: "Client Ops" },
   { href: "/content-studio", label: "Content Studio" },

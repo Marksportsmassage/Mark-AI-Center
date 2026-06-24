@@ -77,6 +77,10 @@ service cloud.firestore {
       allow read, write: if isOwner();
     }
 
+    match /command_briefs/{docId} {
+      allow read, write: if isOwner();
+    }
+
     match /task_dispatches/{docId} {
       allow read, write: if isOwner();
     }
