@@ -106,20 +106,23 @@ function CommandCenterData({ uid }: { uid: string }) {
       {isLoading ? <p className="muted">Loading Firestore data...</p> : null}
 
       <section className="panel">
-        <h2>今日先做</h2>
+        <h2>現在先做</h2>
         <div className="action-row">
+          <Link className="button compact" href="/intake">前往 AI 資料輸入中心</Link>
+          <Link className="button compact" href="/review-queue">查看 Mark Review Queue</Link>
           <Link className="button compact" href="/finance-advisor">補財務基本資料</Link>
-          <Link className="button compact" href="/finance-advisor#capital-allocation">產生資本配置草稿</Link>
+          <Link className="button secondary compact" href="/finance-decisions">查看重大財務決策</Link>
+          <Link className="button secondary compact" href="/investment-decisions">查看投資決策</Link>
+          <Link className="button secondary compact" href="/expense-signals">查看警訊支出</Link>
           <Link className="button secondary compact" href="/audit-logs">查看 Audit Logs</Link>
-          <Link className="button secondary compact" href="/universe">查看 Universe Map</Link>
         </div>
       </section>
 
       <section className="panel">
-        <h2>財務決策</h2>
+        <h2>快速入口</h2>
         <p className="muted">大筆支出、警訊消費、信用卡、分期、投資與創業測試都先進 review-gated draft。</p>
         <div className="action-row">
-          <Link className="button compact" href="/finance-decisions">新增重大支出 / 投資決策</Link>
+          <Link className="button compact" href="/intake">新增資料 / 貼上財務內容</Link>
           <Link className="button secondary compact" href="/expense-signals">查看警訊支出</Link>
           <Link className="button secondary compact" href="/investment-decisions">查看投資決策</Link>
           <Link className="button secondary compact" href="/expense-signals">查看信用卡與分期</Link>

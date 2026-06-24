@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 
 const navItems = [
   { href: "/command-center", label: "Command Center" },
+  { href: "/intake", label: "Intake" },
+  { href: "/review-queue", label: "Review Queue" },
   { href: "/finance-decisions", label: "Finance Decisions" },
   { href: "/investment-decisions", label: "Investments" },
   { href: "/projects", label: "Projects" },

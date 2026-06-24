@@ -321,6 +321,7 @@ export interface FinancialProfile extends FirestoreBase {
   notes: string | null;
   missing_required_fields: string[];
   need_mark_review: boolean;
+  external_action_allowed?: false;
   review_status: ReviewStatus;
   status: FinancialProfileStatus;
 }
@@ -424,6 +425,7 @@ export interface CreditCardObligation extends FirestoreBase {
   risk_notes: string[];
   monthly_cashflow_impact: number | null;
   need_mark_review: true;
+  external_action_allowed?: false;
   status: FinanceDecisionStatus;
 }
 

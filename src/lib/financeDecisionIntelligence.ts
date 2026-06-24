@@ -38,8 +38,8 @@ export const FINANCE_DECISION_KEYWORDS = [
 ];
 
 const investmentKeywords = ["股票", "投資", "加碼", "減碼", "停損", "停利", "要不要買", "要不要賣", "ETF", "etf"];
-const assetKeywords = ["設備", "電腦", "鏡頭", "相機", "器材", "課程", "資產"];
-const startupKeywords = ["創業", "測試", "進貨", "廣告", "開店", "副業"];
+const assetKeywords = ["設備", "電腦", "鏡頭", "相機", "器材", "課程", "資產", "工作室"];
+const startupKeywords = ["創業", "測試", "進貨", "廣告", "開店", "副業", "選品", "一番賞", "飲料店", "App", "app"];
 const warningKeywords = ["警訊", "衝動", "爆買", "超支", "壓力", "不該", "太貴", "Line Pay", "line pay"];
 
 export function isFinanceDecisionInput(rawText: string) {
