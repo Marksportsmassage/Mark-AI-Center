@@ -2,7 +2,7 @@ import { spawn, type ChildProcess } from "node:child_process";
 
 const port = Number(process.env.SMOKE_PORT ?? 3210);
 const baseUrl = `http://127.0.0.1:${port}`;
-const routes = ["/login", "/command-center", "/finance-advisor", "/audit-logs", "/universe", "/knowledge-sop", "/codex-jobs"];
+const routes = ["/login", "/command-center", "/finance-advisor", "/finance-decisions", "/expense-signals", "/investment-decisions", "/audit-logs", "/universe", "/knowledge-sop", "/codex-jobs"];
 const forbiddenBodyText = [
   "Application error",
   "Internal Server Error",

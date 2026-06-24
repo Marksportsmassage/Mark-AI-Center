@@ -57,6 +57,26 @@ service cloud.firestore {
       allow read, write: if isOwner();
     }
 
+    match /finance_decisions/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /finance_decision_reviews/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /expense_signals/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /credit_card_obligations/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /investment_decisions/{docId} {
+      allow read, write: if isOwner();
+    }
+
     match /codex_jobs/{docId} {
       allow read, write: if isOwner();
     }

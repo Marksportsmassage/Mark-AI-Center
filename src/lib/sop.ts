@@ -1,5 +1,5 @@
 import { addDoc, collection, doc, type Firestore, getDoc, serverTimestamp } from "firebase/firestore";
-import type { CodexJob, DecisionReport, KnowledgeSop, TaskDispatch } from "@/types/firestore";
+import type { CodexJob, DecisionReport, FinanceDecision, KnowledgeSop, TaskDispatch } from "@/types/firestore";
 
 type SopDraftInput = {
   title: string;
@@ -77,6 +77,30 @@ export async function createSopDraftFromDecisionReport(db: Firestore, reportId: 
       risk_items: report.risk_items,
       stop_loss_conditions: report.stop_loss_conditions,
       recommendation: report.recommendation
+    }, null, 2)
+  });
+}
+
+export async function createSopDraftFromFinanceDecision(db: Firestore, decisionId: string, userId: string) {
+  const snap = await getDoc(doc(db, "finance_decisions", decisionId));
+  if (!snap.exists()) throw new Error("Finance decision not found.");
+  const decision = { id: snap.id, ...snap.data() } as FinanceDecision;
+  return createSopDraft(db, userId, {
+    title: `SOP Draft - ${decision.title}`,
+    category: "finance_decision",
+    projectId: decision.related_project_id ?? "finance_risk",
+    sourceType: "finance_decision",
+    sourceId: decision.id,
+    summary: decision.notes ?? decision.raw_input,
+    content: JSON.stringify({
+      raw_input: decision.raw_input,
+      decision_type: decision.decision_type,
+      amount: decision.amount,
+      category: decision.category,
+      warning: decision.is_warning_signal,
+      asset_purchase: decision.is_asset_purchase,
+      investment: decision.is_investment,
+      external_action_allowed: false
     }, null, 2)
   });
 }

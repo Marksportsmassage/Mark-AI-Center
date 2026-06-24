@@ -14,13 +14,38 @@ export type TaskStatus =
   | "cancelled";
 export type DecisionStatus = "pending" | "approved" | "rejected" | "needs_more_info";
 export type TaskStage = "idea" | "research" | "small_test" | "validation" | "scale" | "paused" | "execution" | "review";
-export type RiskLevel = "low" | "medium" | "high" | "unknown";
+export type RiskLevel = "low" | "medium" | "high" | "critical" | "unknown";
 export type DecisionType = "startup" | "investment" | "app" | "finance" | "operations" | "study" | "client" | "other";
 export type DecisionRecommendation = "research" | "small_test" | "pause" | "reject" | "needs_more_info";
 export type FinanceRecommendation = "research" | "small_test" | "delay" | "reject" | "needs_mark_input";
 export type FinancialProfileStatus = "draft" | "waiting_mark_input" | "active" | "archived";
 export type CapitalAllocationStatus = "draft" | "waiting_mark_review" | "approved" | "rejected" | "needs_more_info";
 export type FinanceReviewStatus = "draft" | "waiting_mark_input" | "waiting_review" | "approved" | "archived";
+export type FinanceDecisionStatus = "draft" | "waiting_mark_input" | "waiting_review" | "reviewed" | "archived";
+export type FinanceDecisionStage = "considering" | "planned" | "executed" | "reviewed";
+export type FinanceDecisionType =
+  | "necessary_expense"
+  | "general_consumption"
+  | "warning_spending"
+  | "asset_purchase"
+  | "investment"
+  | "startup_test"
+  | "credit_card_payment"
+  | "installment"
+  | "stock_trade"
+  | "cashflow_pressure"
+  | "unknown";
+export type FinanceDecisionRecommendation =
+  | "approve"
+  | "delay"
+  | "reduce_amount"
+  | "small_test"
+  | "reject"
+  | "needs_more_info"
+  | "hold"
+  | "buy_conditionally"
+  | "sell_conditionally"
+  | "do_not_average_down";
 export type ProjectCategory =
   | "core"
   | "investment"
@@ -320,6 +345,117 @@ export interface FinanceReview extends FirestoreBase, Reviewable {
   external_action_allowed: false;
 }
 
+export interface FinanceDecision extends FirestoreBase {
+  user_id: string;
+  source: "line" | "manual" | "screenshot" | "import" | "other";
+  raw_input: string;
+  title: string;
+  amount: number | null;
+  currency: string;
+  occurred_at: string | null;
+  decision_stage: FinanceDecisionStage;
+  decision_type: FinanceDecisionType;
+  category: string | null;
+  subcategory: string | null;
+  is_asset_purchase: boolean;
+  is_investment: boolean;
+  is_warning_signal: boolean;
+  is_recurring: boolean;
+  related_project_id: string | null;
+  related_stock_symbol: string | null;
+  related_account: string | null;
+  payment_method: string | null;
+  notes: string | null;
+  need_mark_review: true;
+  external_action_allowed: false;
+  status: FinanceDecisionStatus;
+}
+
+export interface FinanceDecisionReview extends FirestoreBase {
+  finance_decision_id: string;
+  user_id: string;
+  title: string;
+  summary: string;
+  classification_reason: string;
+  usability_assessment: string;
+  cashflow_impact: string;
+  risk_level: RiskLevel;
+  affects_safety_reserve: boolean;
+  affects_monthly_fixed_cost: boolean;
+  recovery_methods: string[];
+  offset_methods: string[];
+  breakeven_plan: string[];
+  stop_loss_conditions: string[];
+  next_actions: string[];
+  recommendation: FinanceDecisionRecommendation;
+  missing_required_fields: string[];
+  need_mark_review: true;
+  external_action_allowed: false;
+  status: FinanceDecisionStatus;
+}
+
+export interface ExpenseSignal extends FirestoreBase {
+  user_id: string;
+  month_key: string;
+  total_warning_spending: number;
+  total_asset_purchase: number;
+  total_investment_related: number;
+  total_startup_test: number;
+  total_credit_card_payment: number;
+  total_installments_monthly: number;
+  warning_items: string[];
+  risk_summary: string;
+  threshold_status: "normal" | "watch" | "warning" | "critical";
+  triggered_rules: string[];
+  need_mark_review: true;
+}
+
+export interface CreditCardObligation extends FirestoreBase {
+  user_id: string;
+  card_name: string;
+  billing_month: string;
+  total_statement_amount: number | null;
+  minimum_payment: number | null;
+  due_date: string | null;
+  paid_amount: number | null;
+  payment_status: string;
+  installment_items: Array<Record<string, unknown>>;
+  recurring_charges: Array<Record<string, unknown>>;
+  risk_notes: string[];
+  monthly_cashflow_impact: number | null;
+  need_mark_review: true;
+  status: FinanceDecisionStatus;
+}
+
+export interface InvestmentDecision extends FirestoreBase {
+  user_id: string;
+  asset_type: "stock" | "etf" | "gold" | "crypto" | "fund" | "other";
+  symbol: string | null;
+  market: string | null;
+  position_type: "new_buy" | "add" | "reduce" | "sell" | "hold" | "review";
+  cost_basis: number | null;
+  current_price: number | null;
+  quantity: number | null;
+  market_value: number | null;
+  unrealized_pnl: number | null;
+  original_thesis: string | null;
+  current_thesis_status: "valid" | "weakened" | "invalid" | "unknown";
+  time_horizon: "short" | "medium" | "long";
+  buy_conditions: string[];
+  add_conditions: string[];
+  reduce_conditions: string[];
+  take_profit_conditions: string[];
+  stop_loss_conditions: string[];
+  average_down_allowed: boolean;
+  average_down_conditions: string[];
+  max_position_limit: string | null;
+  cashflow_impact: string;
+  missing_required_fields: string[];
+  need_mark_review: true;
+  external_action_allowed: false;
+  status: FinanceDecisionStatus;
+}
+
 export interface CodexJob extends FirestoreBase {
   source_task_dispatch_id?: string | null;
   title: string;
@@ -354,7 +490,7 @@ export interface KnowledgeSop extends FirestoreBase, Reviewable {
   rules?: string[];
   examples?: string[];
   forbidden_actions?: string[];
-  source_type?: "manual" | "task_dispatch" | "decision_report" | "codex_job" | "seed";
+  source_type?: "manual" | "task_dispatch" | "decision_report" | "finance_decision" | "codex_job" | "seed";
   source_id?: string | null;
   status?: "draft" | "active" | "archived";
   version?: number;
@@ -402,6 +538,11 @@ export interface FirestoreCollections {
   financial_profile: FinancialProfile;
   capital_allocations: CapitalAllocation;
   finance_reviews: FinanceReview;
+  finance_decisions: FinanceDecision;
+  finance_decision_reviews: FinanceDecisionReview;
+  expense_signals: ExpenseSignal;
+  credit_card_obligations: CreditCardObligation;
+  investment_decisions: InvestmentDecision;
   codex_jobs: CodexJob;
   startup_analyses: StartupAnalysis;
   knowledge_sop: KnowledgeSop;
@@ -423,6 +564,11 @@ export const collectionNames = [
   "financial_profile",
   "capital_allocations",
   "finance_reviews",
+  "finance_decisions",
+  "finance_decision_reviews",
+  "expense_signals",
+  "credit_card_obligations",
+  "investment_decisions",
   "codex_jobs",
   "startup_analyses",
   "knowledge_sop",

@@ -115,6 +115,18 @@ function CommandCenterData({ uid }: { uid: string }) {
         </div>
       </section>
 
+      <section className="panel">
+        <h2>財務決策</h2>
+        <p className="muted">大筆支出、警訊消費、信用卡、分期、投資與創業測試都先進 review-gated draft。</p>
+        <div className="action-row">
+          <Link className="button compact" href="/finance-decisions">新增重大支出 / 投資決策</Link>
+          <Link className="button secondary compact" href="/expense-signals">查看警訊支出</Link>
+          <Link className="button secondary compact" href="/investment-decisions">查看投資決策</Link>
+          <Link className="button secondary compact" href="/expense-signals">查看信用卡與分期</Link>
+          <Link className="button secondary compact" href="/finance-advisor">查看 Finance Advisor</Link>
+        </div>
+      </section>
+
       <div className="dashboard-grid" style={{ marginTop: 16 }}>
         <div className="grid">
           <DailyBriefPanel briefs={briefs.items} userId={uid} />

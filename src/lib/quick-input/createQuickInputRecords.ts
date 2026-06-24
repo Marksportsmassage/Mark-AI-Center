@@ -7,6 +7,7 @@ import {
   updateDoc
 } from "firebase/firestore";
 import type { AiRouteMode, RouteIntentResult } from "@/lib/ai/routeIntentSchema";
+import { createFinanceDecisionDraft, createInvestmentDecisionDraft, isFinanceDecisionInput, shouldRouteOnlyToFinanceDecision } from "@/lib/financeDecisionIntelligence";
 import { reviewDefaults } from "@/lib/safety";
 
 export interface ClassificationResult {
@@ -120,9 +121,13 @@ export async function createQuickInputRecords(input: CreateQuickInputRecordsInpu
   }
 
   const route = classification.result;
+  const shouldCreateFinanceDecision = isFinanceDecisionInput(rawText);
+  const financeOnly = shouldRouteOnlyToFinanceDecision(rawText);
   const inboxStatus = route.classification.needs_clarification
     ? "waiting_clarification"
-    : route.task_dispatch.needed
+    : financeOnly
+      ? "triaged"
+      : route.task_dispatch.needed
       ? "converted_to_task"
       : "triaged";
 
@@ -149,8 +154,19 @@ export async function createQuickInputRecords(input: CreateQuickInputRecordsInpu
   });
 
   let taskId: string | null = null;
+  let financeDecisionId: string | null = null;
+  let investmentDecisionId: string | null = null;
+  if (shouldCreateFinanceDecision && !route.classification.needs_clarification) {
+    const source = input.source === "line" ? "line" : input.source === "manual" ? "manual" : "other";
+    const financeResult = await createFinanceDecisionDraft(input.db, input.userId, rawText, source);
+    financeDecisionId = financeResult.financeDecisionId;
+    if (financeResult.decision.is_investment) {
+      const investmentResult = await createInvestmentDecisionDraft(input.db, input.userId, rawText);
+      investmentDecisionId = investmentResult.investmentDecisionId;
+    }
+  }
 
-  if (route.task_dispatch.needed && !route.classification.needs_clarification) {
+  if (route.task_dispatch.needed && !route.classification.needs_clarification && !financeOnly) {
     const taskDoc = await addDoc(collection(input.db, "task_dispatches"), {
       source_inbox_id: inboxDoc.id,
       project_id: route.classification.project_id,
@@ -199,7 +215,9 @@ export async function createQuickInputRecords(input: CreateQuickInputRecordsInpu
     inboxId: inboxDoc.id,
     routeLogId,
     taskId,
+    financeDecisionId,
+    investmentDecisionId,
     mode: classification.mode,
-    status: inboxStatus
+    status: financeOnly && !route.classification.needs_clarification ? "finance_decision_draft" as const : inboxStatus
   };
 }
