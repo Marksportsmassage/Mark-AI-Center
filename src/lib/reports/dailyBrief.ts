@@ -17,12 +17,13 @@ function titleOf(task: TaskDispatch) {
 }
 
 function isBusinessTask(task: TaskDispatch) {
+  const taskType = String(task.task_type ?? "");
   return (
-    task.project_id?.includes("business") ||
+    String(task.project_id ?? "").includes("business") ||
     task.project_id === "capital_compounding" ||
-    task.task_type.includes("startup") ||
-    task.task_type.includes("investment") ||
-    task.task_type.includes("capital")
+    taskType.includes("startup") ||
+    taskType.includes("investment") ||
+    taskType.includes("capital")
   );
 }
 

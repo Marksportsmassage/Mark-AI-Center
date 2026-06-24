@@ -6,10 +6,12 @@ import { doc, getDoc } from "firebase/firestore";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { getClientDb } from "@/lib/firebase/client";
 import { formatDateTime } from "@/lib/ui/format";
+import { asArray, displayText } from "@/lib/ui/safe";
 import type { DailyBrief } from "@/types/firestore";
 
 function ListSection({ title, items }: { title: string; items?: string[] }) {
-  return <section className="panel"><h2>{title}</h2>{items?.length ? <ul>{items.map((item, index) => <li key={`${title}-${index}`}>{item}</li>)}</ul> : <p className="muted">No items.</p>}</section>;
+  const safeItems = asArray<string>(items);
+  return <section className="panel"><h2>{title}</h2>{safeItems.length ? <ul>{safeItems.map((item, index) => <li key={`${title}-${index}`}>{displayText(item, "None")}</li>)}</ul> : <p className="muted">No items.</p>}</section>;
 }
 
 function DailyBriefData({ briefId }: { briefId: string }) {
@@ -53,15 +55,15 @@ function DailyBriefData({ briefId }: { briefId: string }) {
     <div className="grid">
       <header className="page-header">
         <div>
-          <h1>{brief.title}</h1>
-          <p>{brief.date_key} · {brief.status} · {formatDateTime(brief.created_at)}</p>
+          <h1>{displayText(brief.title, "Daily Brief")}</h1>
+          <p>{displayText(brief.date_key)} · {displayText(brief.status)} · {formatDateTime(brief.created_at)}</p>
         </div>
         <Link className="button secondary compact" href="/command-center">Back to Command Center</Link>
       </header>
 
       <section className="panel">
         <h2>Summary</h2>
-        <p className="muted">{brief.summary}</p>
+        <p className="muted">{displayText(brief.summary, "尚無摘要")}</p>
       </section>
 
       <ListSection title="Top priorities" items={brief.top_priorities} />

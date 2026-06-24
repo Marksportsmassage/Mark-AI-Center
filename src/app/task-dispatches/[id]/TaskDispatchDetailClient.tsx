@@ -11,13 +11,14 @@ import { generateDecisionReportDraft } from "@/lib/reports/decisionReport";
 import { reviewTaskDispatch, type TaskReviewAction } from "@/lib/review/reviewTaskDispatch";
 import { createSopDraftFromTask } from "@/lib/sop";
 import { formatDateTime, safeJson } from "@/lib/ui/format";
+import { asArray, displayText, safeJoin } from "@/lib/ui/safe";
 import type { AiAgent, AiInboxItem, TaskDispatch } from "@/types/firestore";
 
 function Field({ label, value }: { label: string; value: unknown }) {
   return (
     <div>
       <strong>{label}</strong>
-      <p>{typeof value === "boolean" ? String(value) : value ? String(value) : "None"}</p>
+      <p>{displayText(value)}</p>
     </div>
   );
 }
@@ -60,8 +61,9 @@ function TaskDispatchDetailData({ taskId, uid }: { taskId: string; uid: string }
         setInbox(null);
       }
 
-      if (nextTask.agent_ids?.length) {
-        const chunks = nextTask.agent_ids.slice(0, 10);
+      const agentIds = asArray<string>(nextTask.agent_ids);
+      if (agentIds.length) {
+        const chunks = agentIds.slice(0, 10);
         const agentSnap = await getDocs(query(collection(db, "ai_agents"), where("__name__", "in", chunks)));
         setAgents(agentSnap.docs.map((item) => ({ id: item.id, ...item.data() }) as AiAgent));
       } else {
@@ -81,9 +83,9 @@ function TaskDispatchDetailData({ taskId, uid }: { taskId: string; uid: string }
     return Boolean(
       task.project_id?.includes("business") ||
         task.project_id === "capital_compounding" ||
-        task.task_type.includes("startup") ||
-        task.task_type.includes("investment") ||
-        task.task_type.includes("capital")
+        String(task.task_type ?? "").includes("startup") ||
+        String(task.task_type ?? "").includes("investment") ||
+        String(task.task_type ?? "").includes("capital")
     );
   }, [task]);
 
@@ -160,7 +162,7 @@ function TaskDispatchDetailData({ taskId, uid }: { taskId: string; uid: string }
     <div className="grid">
       <header className="page-header">
         <div>
-          <h1>{task.title}</h1>
+          <h1>{displayText(task.title, "Task Dispatch")}</h1>
           <p>Task Dispatch Detail</p>
         </div>
         <div className="action-row">
@@ -173,7 +175,7 @@ function TaskDispatchDetailData({ taskId, uid }: { taskId: string; uid: string }
         <h2>任務總覽</h2>
         <div className="detail-grid">
           <Field label="project_id" value={task.project_id} />
-          <Field label="agent_ids" value={task.agent_ids?.join(", ")} />
+          <Field label="agent_ids" value={safeJoin(task.agent_ids, ", ")} />
           <Field label="task_type" value={task.task_type} />
           <Field label="priority" value={task.priority} />
           <Field label="status" value={task.status} />
@@ -209,10 +211,10 @@ function TaskDispatchDetailData({ taskId, uid }: { taskId: string; uid: string }
           {agents.map((agent) => (
             <article className="item" key={agent.id}>
               <div className="item-header">
-                <h3>{agent.name}</h3>
-                <span className="badge">{agent.role}</span>
+                <h3>{displayText(agent.name, "AI agent")}</h3>
+                <span className="badge">{displayText(agent.role)}</span>
               </div>
-              <p>{agent.responsibilities?.join(" ")}</p>
+              <p>{safeJoin(agent.responsibilities, " ", "尚無職責描述")}</p>
               <JsonBlock value={agent.forbidden_actions} />
             </article>
           ))}
@@ -244,7 +246,7 @@ function TaskDispatchDetailData({ taskId, uid }: { taskId: string; uid: string }
         </div>
         <div className="detail-grid" style={{ marginTop: 12 }}>
           <Field label="risk_level" value={task.risk_level} />
-          <Field label="safety_forbidden_reasons" value={task.safety_forbidden_reasons?.join(" / ")} />
+          <Field label="safety_forbidden_reasons" value={safeJoin(task.safety_forbidden_reasons, " / ")} />
         </div>
       </section>
 

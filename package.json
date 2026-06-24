@@ -21,6 +21,7 @@
     "test:route-intent": "vitest run tests/route-intent.unit.test.ts",
     "test:codex-jobs": "vitest run tests/phase5-7.unit.test.ts --testNamePattern \"Codex\"",
     "test:audit": "vitest run tests/phase5-7.unit.test.ts --testNamePattern \"Audit\"",
+    "test:smoke": "tsx tests/route-smoke.ts",
     "functions:build": "tsc -p functions/tsconfig.json",
     "functions:serve": "npm --prefix functions run serve",
     "functions:deploy": "firebase deploy --only functions",

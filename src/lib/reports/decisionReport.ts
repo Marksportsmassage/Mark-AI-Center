@@ -14,11 +14,12 @@ function risk(riskName: string, level: RiskLevel, mitigation: string): RiskItem 
 }
 
 function decisionTypeForTask(task: TaskDispatch): DecisionType {
-  if (task.project_id?.includes("business") || task.task_type.includes("startup")) return "startup";
-  if (task.project_id === "capital_compounding" || task.task_type.includes("investment")) return "finance";
-  if (task.task_type.includes("app")) return "app";
-  if (task.task_type.includes("study")) return "study";
-  if (task.task_type.includes("client")) return "client";
+  const taskType = String(task.task_type ?? "");
+  if (String(task.project_id ?? "").includes("business") || taskType.includes("startup")) return "startup";
+  if (task.project_id === "capital_compounding" || taskType.includes("investment")) return "finance";
+  if (taskType.includes("app")) return "app";
+  if (taskType.includes("study")) return "study";
+  if (taskType.includes("client")) return "client";
   return "other";
 }
 

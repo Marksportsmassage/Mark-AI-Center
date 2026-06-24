@@ -105,6 +105,16 @@ function CommandCenterData({ uid }: { uid: string }) {
 
       {isLoading ? <p className="muted">Loading Firestore data...</p> : null}
 
+      <section className="panel">
+        <h2>今日先做</h2>
+        <div className="action-row">
+          <Link className="button compact" href="/finance-advisor">補財務基本資料</Link>
+          <Link className="button compact" href="/finance-advisor#capital-allocation">產生資本配置草稿</Link>
+          <Link className="button secondary compact" href="/audit-logs">查看 Audit Logs</Link>
+          <Link className="button secondary compact" href="/universe">查看 Universe Map</Link>
+        </div>
+      </section>
+
       <div className="dashboard-grid" style={{ marginTop: 16 }}>
         <div className="grid">
           <DailyBriefPanel briefs={briefs.items} userId={uid} />

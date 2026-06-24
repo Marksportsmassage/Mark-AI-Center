@@ -85,6 +85,8 @@ export async function createSopDraftFromCodexJob(db: Firestore, jobId: string, u
   const snap = await getDoc(doc(db, "codex_jobs", jobId));
   if (!snap.exists()) throw new Error("Codex job not found.");
   const job = { id: snap.id, ...snap.data() } as CodexJob;
+  const testCommands = Array.isArray(job.test_commands) ? job.test_commands : [];
+  const forbiddenActions = Array.isArray(job.forbidden_actions) ? job.forbidden_actions : [];
   return createSopDraft(db, userId, {
     title: `SOP Draft - ${job.title}`,
     category: "codex_job",
@@ -92,6 +94,6 @@ export async function createSopDraftFromCodexJob(db: Firestore, jobId: string, u
     sourceType: "codex_job",
     sourceId: job.id,
     summary: job.goal,
-    content: `${job.instructions}\n\nTests: ${job.test_commands.join(", ")}\nForbidden: ${job.forbidden_actions.join(", ")}`
+    content: `${job.instructions ?? ""}\n\nTests: ${testCommands.join(", ")}\nForbidden: ${forbiddenActions.join(", ")}`
   });
 }

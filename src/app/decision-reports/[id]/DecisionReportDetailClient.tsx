@@ -8,13 +8,14 @@ import { getClientDb } from "@/lib/firebase/client";
 import { reviewDecisionReport, type DecisionReportAction } from "@/lib/review/reviewDecisionReport";
 import { createSopDraftFromDecisionReport } from "@/lib/sop";
 import { formatDateTime, safeJson } from "@/lib/ui/format";
+import { asArray, displayText } from "@/lib/ui/safe";
 import type { DecisionReport } from "@/types/firestore";
 
 function Field({ label, value }: { label: string; value: unknown }) {
   return (
     <div>
       <strong>{label}</strong>
-      <p>{value ? String(value) : "None"}</p>
+      <p>{displayText(value)}</p>
     </div>
   );
 }
@@ -82,7 +83,7 @@ function ReportData({ reportId, uid }: { reportId: string; uid: string }) {
     <div className="grid">
       <header className="page-header">
         <div>
-          <h1>{report.title}</h1>
+          <h1>{displayText(report.title, "Decision Report")}</h1>
           <p>Business Decision Report</p>
         </div>
         <div className="action-row">
@@ -125,17 +126,17 @@ function ReportData({ reportId, uid }: { reportId: string; uid: string }) {
 
       <section className="panel">
         <h2>Cost / Allocation Items</h2>
-        <pre className="json-block">{safeJson(report.allocation_items?.length ? report.allocation_items : report.cost_items)}</pre>
+        <pre className="json-block">{safeJson(asArray(report.allocation_items).length ? asArray(report.allocation_items) : asArray(report.cost_items))}</pre>
       </section>
 
       <section className="panel">
         <h2>Risk Items</h2>
-        <pre className="json-block">{safeJson(report.risk_items)}</pre>
+        <pre className="json-block">{safeJson(asArray(report.risk_items))}</pre>
       </section>
 
       <section className="panel">
         <h2>Next Steps</h2>
-        <pre className="json-block">{safeJson({ assumptions: report.assumptions, next_steps: report.next_steps, stop_loss_conditions: report.stop_loss_conditions })}</pre>
+        <pre className="json-block">{safeJson({ assumptions: asArray(report.assumptions), next_steps: asArray(report.next_steps), stop_loss_conditions: asArray(report.stop_loss_conditions) })}</pre>
       </section>
 
       <section className="panel">

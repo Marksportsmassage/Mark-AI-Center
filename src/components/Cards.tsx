@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { getClientDb } from "@/lib/firebase/client";
 import { reviewTaskDispatch } from "@/lib/review/reviewTaskDispatch";
+import { asArray, displayText } from "@/lib/ui/safe";
 import type { AiAgent, AiInboxItem, Project, TaskDispatch } from "@/types/firestore";
 
 function EmptyState({ message }: { message: string }) {
@@ -101,28 +102,32 @@ function RouteDetailDrawer({
 
 export function InboxList({ items, tasks = [] }: { items: AiInboxItem[]; tasks?: TaskDispatch[] }) {
   const [selectedItem, setSelectedItem] = useState<AiInboxItem | null>(null);
-  const selectedTask = selectedItem ? tasks.find((task) => task.source_inbox_id === selectedItem.id) : undefined;
+  const safeItems = asArray<AiInboxItem>(items);
+  const safeTasks = asArray<TaskDispatch>(tasks);
+  const selectedTask = selectedItem ? safeTasks.find((task) => task.source_inbox_id === selectedItem.id) : undefined;
 
   return (
     <section className="panel">
       <h2>AI Inbox</h2>
       <div className="list">
-        {items.length === 0 ? (
+        {safeItems.length === 0 ? (
           <EmptyState message="目前尚無資料，請先執行 npm run seed 或新增第一筆想法。" />
         ) : (
-          items.map((item) => (
+          safeItems.map((item) => {
+            const relatedTask = safeTasks.find((task) => task.source_inbox_id === item.id);
+            return (
             <article className="item" key={item.id}>
               <div className="item-header">
                 <h3>{item.title || item.summary || "Untitled input"}</h3>
-                <span className={`badge ${item.priority === "urgent" ? "urgent" : ""}`}>{item.priority}</span>
+                <span className={`badge ${item.priority === "urgent" ? "urgent" : ""}`}>{displayText(item.priority)}</span>
               </div>
-              <p>{item.summary ?? item.body ?? item.raw_text}</p>
+              <p>{displayText(item.summary ?? item.body ?? item.raw_text, "尚無摘要")}</p>
               {item.needs_clarification && item.clarification_question ? (
                 <p className="muted">Clarify: {item.clarification_question}</p>
               ) : null}
               <div className="badge-row">
-                <span className="badge">{item.source}</span>
-                <span className="badge">{item.status}</span>
+                <span className="badge">{displayText(item.source)}</span>
+                <span className="badge">{displayText(item.status)}</span>
                 {item.detected_intent ? <span className="badge">{item.detected_intent}</span> : null}
                 {item.project_id ? <span className="badge">{item.project_id}</span> : null}
                 {item.need_mark_review ? <span className="badge review">Mark review</span> : null}
@@ -131,14 +136,14 @@ export function InboxList({ items, tasks = [] }: { items: AiInboxItem[]; tasks?:
                 <button className="button secondary compact" type="button" onClick={() => setSelectedItem(item)}>
                   查看 AI 判斷
                 </button>
-                {tasks.find((task) => task.source_inbox_id === item.id) ? (
-                  <Link className="button secondary compact" href={`/task-dispatches/${tasks.find((task) => task.source_inbox_id === item.id)?.id}`}>
+                {relatedTask ? (
+                  <Link className="button secondary compact" href={`/task-dispatches/${relatedTask.id}`}>
                     查看相關任務
                   </Link>
                 ) : null}
               </div>
             </article>
-          ))
+          );})
         )}
       </div>
       {selectedItem ? <RouteDetailDrawer item={selectedItem} task={selectedTask} onClose={() => setSelectedItem(null)} /> : null}
@@ -148,6 +153,7 @@ export function InboxList({ items, tasks = [] }: { items: AiInboxItem[]; tasks?:
 
 export function TaskDispatchList({ tasks, userId }: { tasks: TaskDispatch[]; userId?: string }) {
   const [busyId, setBusyId] = useState<string | null>(null);
+  const safeTasks = asArray<TaskDispatch>(tasks);
 
   async function reviewTask(taskId: string, action: "approve" | "reject" | "more_info" | "archive") {
     setBusyId(taskId);
@@ -164,22 +170,22 @@ export function TaskDispatchList({ tasks, userId }: { tasks: TaskDispatch[]; use
     <section className="panel">
       <h2>Task Dispatch</h2>
       <div className="list">
-        {tasks.length === 0 ? (
+        {safeTasks.length === 0 ? (
           <EmptyState message="目前尚無資料，請先執行 npm run seed 或新增第一筆想法。" />
         ) : (
-          tasks.map((task) => (
+          safeTasks.map((task) => (
             <article className="item" key={task.id}>
               <div className="item-header">
-                <h3>{task.title}</h3>
-                <span className={`badge ${task.priority === "urgent" ? "urgent" : ""}`}>{task.priority}</span>
+                <h3>{displayText(task.title, "Untitled task")}</h3>
+                <span className={`badge ${task.priority === "urgent" ? "urgent" : ""}`}>{displayText(task.priority)}</span>
               </div>
-              <p>{task.instructions ?? task.instruction}</p>
+              <p>{displayText(task.instructions ?? task.instruction, "尚無任務說明")}</p>
               <div className="badge-row">
-                <span className="badge">{task.status}</span>
-                <span className="badge">{task.decision_status}</span>
-                <span className="badge">{task.stage}</span>
+                <span className="badge">{displayText(task.status)}</span>
+                <span className="badge">{displayText(task.decision_status)}</span>
+                <span className="badge">{displayText(task.stage)}</span>
                 {task.project_id ? <span className="badge">{task.project_id}</span> : null}
-                {task.agent_ids?.map((agentId) => (
+                {asArray<string>(task.agent_ids).map((agentId) => (
                   <span className="badge" key={agentId}>
                     {agentId}
                   </span>
@@ -216,30 +222,32 @@ export function TaskDispatchList({ tasks, userId }: { tasks: TaskDispatch[]; use
 }
 
 export function ProjectCards({ projects }: { projects: Project[] }) {
+  const safeProjects = asArray<Project>(projects);
+
   return (
     <section className="panel">
       <h2>Projects</h2>
       <div className="cards-grid">
-        {projects.length === 0 ? (
+        {safeProjects.length === 0 ? (
           <EmptyState message="目前尚無資料，請先執行 npm run seed 或新增第一筆想法。" />
         ) : (
-          projects.map((project) => (
+          safeProjects.map((project) => (
             <article className="card" key={project.id}>
               <div className="card-header">
-                <h3>{project.name}</h3>
-                <span className={`badge ${project.priority === "urgent" ? "urgent" : ""}`}>{project.priority}</span>
+                <h3>{displayText(project.name, "Untitled project")}</h3>
+                <span className={`badge ${project.priority === "urgent" ? "urgent" : ""}`}>{displayText(project.priority)}</span>
               </div>
-              <p>{project.description}</p>
+              <p>{displayText(project.description, "尚無專案描述")}</p>
               <div className="badge-row">
-                <span className="badge">{project.category}</span>
-                <span className="badge">{project.status}</span>
-                {project.default_agent_ids?.map((agentId) => (
+                <span className="badge">{displayText(project.category)}</span>
+                <span className="badge">{displayText(project.status)}</span>
+                {asArray<string>(project.default_agent_ids).map((agentId) => (
                   <span className="badge" key={agentId}>
                     {agentId}
                   </span>
                 ))}
               </div>
-              <p className="muted">Next: {project.next_action}</p>
+              <p className="muted">Next: {displayText(project.next_action)}</p>
             </article>
           ))
         )}
@@ -249,23 +257,25 @@ export function ProjectCards({ projects }: { projects: Project[] }) {
 }
 
 export function AgentCards({ agents }: { agents: AiAgent[] }) {
+  const safeAgents = asArray<AiAgent>(agents);
+
   return (
     <section className="panel">
       <h2>AI Agents</h2>
       <div className="cards-grid">
-        {agents.length === 0 ? (
+        {safeAgents.length === 0 ? (
           <EmptyState message="目前尚無資料，請先執行 npm run seed 或新增第一筆想法。" />
         ) : (
-          agents.map((agent) => (
+          safeAgents.map((agent) => (
             <article className="card" key={agent.id}>
               <div className="card-header">
-                <h3>{agent.name}</h3>
-                <span className="badge">{agent.role}</span>
+                <h3>{displayText(agent.name, "Untitled agent")}</h3>
+                <span className="badge">{displayText(agent.role)}</span>
               </div>
-              <p>{agent.responsibilities?.[0] ?? agent.mission}</p>
+              <p>{displayText(asArray<string>(agent.responsibilities)[0] ?? agent.mission, "尚無任務描述")}</p>
               <div className="badge-row">
-                <span className="badge">{agent.status}</span>
-                {agent.default_projects?.map((projectId) => (
+                <span className="badge">{displayText(agent.status)}</span>
+                {asArray<string>(agent.default_projects).map((projectId) => (
                   <span className="badge" key={projectId}>
                     {projectId}
                   </span>
@@ -291,11 +301,15 @@ export function ReviewRequired({
   projects: Project[];
   agents: AiAgent[];
 }) {
+  const safeInbox = asArray<AiInboxItem>(inbox);
+  const safeTasks = asArray<TaskDispatch>(tasks);
+  const safeProjects = asArray<Project>(projects);
+  const safeAgents = asArray<AiAgent>(agents);
   const reviewItems = [
-    ...inbox.filter((item) => item.need_mark_review).map((item) => ({ id: item.id, title: item.title, type: "Inbox", date: item.created_at })),
-    ...tasks.filter((item) => item.need_mark_review).map((item) => ({ id: item.id, title: item.title, type: "Task", date: item.created_at, href: `/task-dispatches/${item.id}` })),
-    ...projects.filter((item) => item.need_mark_review).map((item) => ({ id: item.id, title: item.name, type: "Project", date: item.created_at })),
-    ...agents.filter((item) => item.need_mark_review).map((item) => ({ id: item.id, title: item.name, type: "Agent", date: item.created_at }))
+    ...safeInbox.filter((item) => item.need_mark_review).map((item) => ({ id: item.id, title: displayText(item.title, "Untitled input"), type: "Inbox", date: item.created_at })),
+    ...safeTasks.filter((item) => item.need_mark_review).map((item) => ({ id: item.id, title: displayText(item.title, "Untitled task"), type: "Task", date: item.created_at, href: `/task-dispatches/${item.id}` })),
+    ...safeProjects.filter((item) => item.need_mark_review).map((item) => ({ id: item.id, title: displayText(item.name, "Untitled project"), type: "Project", date: item.created_at })),
+    ...safeAgents.filter((item) => item.need_mark_review).map((item) => ({ id: item.id, title: displayText(item.name, "Untitled agent"), type: "Agent", date: item.created_at }))
   ].slice(0, 12);
 
   return (
