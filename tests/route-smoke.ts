@@ -19,6 +19,8 @@ const routes = [
   { path: "/weekly-review", text: "Weekly" },
   { path: "/monthly-close" },
   { path: "/followups" },
+  { path: "/release-notes", text: "版本紀錄" },
+  { path: "/data-quality" },
   { path: "/finance-decisions", text: "Finance Decisions" },
   { path: "/expense-signals" },
   { path: "/investment-decisions", text: "Investments" },

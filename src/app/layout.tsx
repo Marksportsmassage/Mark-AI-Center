@@ -16,10 +16,13 @@ const navItems = [
   { href: "/finance-baseline", label: "Baseline" },
   { href: "/decision-lab", label: "Decision Lab" },
   { href: "/weekly-review", label: "Weekly" },
+  { href: "/data-quality", label: "Data Quality" },
+  { href: "/system-status", label: "System Status" },
   { href: "/investment-decisions", label: "Investments" },
   { href: "/projects", label: "Projects" },
   { href: "/agents", label: "Agents" },
   { href: "/audit-logs", label: "Audit Logs" },
+  { href: "/release-notes", label: "Release Notes" },
   { href: "/settings", label: "Settings" }
 ];
 
