@@ -15,6 +15,7 @@ const navItems = [
   { href: "/finance-decisions", label: "Finance Decisions" },
   { href: "/finance-baseline", label: "Baseline" },
   { href: "/decision-lab", label: "Decision Lab" },
+  { href: "/weekly-review", label: "Weekly" },
   { href: "/investment-decisions", label: "Investments" },
   { href: "/projects", label: "Projects" },
   { href: "/agents", label: "Agents" },

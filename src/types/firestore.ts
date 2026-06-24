@@ -537,6 +537,55 @@ export interface RecoveryPlan extends FirestoreBase {
   status: "draft" | "waiting_review" | "waiting_mark_input" | "archived";
 }
 
+export interface WeeklyReview extends FirestoreBase {
+  user_id: string;
+  week_key: string;
+  summary: string;
+  top_wins: string[];
+  top_risks: string[];
+  spending_warnings: string[];
+  investment_reviews: string[];
+  unfinished_reviews: string[];
+  no_cost_next_actions: string[];
+  next_week_focus: string[];
+  need_mark_review: true;
+  external_action_allowed: false;
+  status: "draft" | "reviewed" | "archived";
+}
+
+export interface MonthlyClose extends FirestoreBase {
+  user_id: string;
+  month_key: string;
+  net_worth_snapshot_id: string | null;
+  income_summary: string;
+  expense_summary: string;
+  warning_spending_total: number;
+  asset_purchase_total: number;
+  investment_change_summary: string;
+  debt_change_summary: string;
+  cashflow_result: string;
+  decisions_to_review: string[];
+  lessons: string[];
+  next_month_plan: string[];
+  need_mark_review: true;
+  external_action_allowed: false;
+  status: "draft" | "reviewed" | "archived";
+}
+
+export interface DecisionFollowup extends FirestoreBase {
+  user_id: string;
+  source_collection: string;
+  source_id: string;
+  title: string;
+  expected_result: string | null;
+  actual_result: string | null;
+  followup_date: string;
+  status: "pending" | "done" | "missed" | "archived";
+  next_action: string;
+  need_mark_review: true;
+  external_action_allowed: false;
+}
+
 export interface InvestmentDecision extends FirestoreBase {
   user_id: string;
   asset_type: "stock" | "etf" | "gold" | "crypto" | "fund" | "other";

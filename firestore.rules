@@ -97,6 +97,18 @@ service cloud.firestore {
       allow read, write: if isOwner();
     }
 
+    match /weekly_reviews/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /monthly_closes/{docId} {
+      allow read, write: if isOwner();
+    }
+
+    match /decision_followups/{docId} {
+      allow read, write: if isOwner();
+    }
+
     match /codex_jobs/{docId} {
       allow read, write: if isOwner();
     }

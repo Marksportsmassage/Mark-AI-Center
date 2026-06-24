@@ -17,6 +17,7 @@ import type {
   CreditCardObligation,
   DailyBrief,
   DecisionReport,
+  DecisionFollowup,
   ExpenseSignal,
   FinanceDecision,
   FinanceDecisionReview,
@@ -58,7 +59,8 @@ function TodayData({ uid }: { uid: string }) {
   const accountBalances = useFirestoreCollection<AccountBalance>("account_balances", recent20, true);
   const liabilities = useFirestoreCollection<Liability>("liabilities", recent20, true);
   const recoveryPlans = useFirestoreCollection<RecoveryPlan>("recovery_plans", recent20, true);
-  const sources = [profiles, financeDecisions, financeDecisionReviews, investments, expenseSignals, creditCards, tasks, allocations, financeReviews, reports, briefs, audits, financeSnapshots, accountBalances, liabilities, recoveryPlans];
+  const followups = useFirestoreCollection<DecisionFollowup>("decision_followups", recent20, true);
+  const sources = [profiles, financeDecisions, financeDecisionReviews, investments, expenseSignals, creditCards, tasks, allocations, financeReviews, reports, briefs, audits, financeSnapshots, accountBalances, liabilities, recoveryPlans, followups];
   const isLoading = sources.some((source) => source.isLoading);
   const error = todayErrorMessage(sources.map((source) => source.error));
   const [busy, setBusy] = useState(false);
@@ -96,8 +98,9 @@ function TodayData({ uid }: { uid: string }) {
     financeSnapshots: financeSnapshots.items,
     accountBalances: accountBalances.items,
     liabilities: liabilities.items,
-    recoveryPlans: recoveryPlans.items
-  }), [accountBalances.items, allocations.items, audits.items, briefs.items, creditCards.items, expenseSignals.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, investments.items, liabilities.items, profiles.items, recoveryPlans.items, reports.items, reviewQueueItems, tasks.items]);
+    recoveryPlans: recoveryPlans.items,
+    decisionFollowups: followups.items
+  }), [accountBalances.items, allocations.items, audits.items, briefs.items, creditCards.items, expenseSignals.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, followups.items, investments.items, liabilities.items, profiles.items, recoveryPlans.items, reports.items, reviewQueueItems, tasks.items]);
 
   async function createBrief() {
     setBusy(true);
@@ -122,7 +125,8 @@ function TodayData({ uid }: { uid: string }) {
         financeSnapshots: financeSnapshots.items,
         accountBalances: accountBalances.items,
         liabilities: liabilities.items,
-        recoveryPlans: recoveryPlans.items
+        recoveryPlans: recoveryPlans.items,
+        decisionFollowups: followups.items
       });
       setCreatedId(result.briefId);
     } catch (briefError) {
@@ -203,6 +207,11 @@ function TodayData({ uid }: { uid: string }) {
       <section className="panel">
         <h2>Recovery Plans</h2>
         {summary.recovery_plan_reminders.length ? <ul>{summary.recovery_plan_reminders.map((item) => <li key={item}>{item}</li>)}</ul> : <p className="muted">目前沒有需要追蹤的 recovery plans。</p>}
+      </section>
+
+      <section className="panel">
+        <h2>Decision Followups</h2>
+        {summary.followup_reminders.length ? <ul>{summary.followup_reminders.map((item) => <li key={item}>{item}</li>)}</ul> : <p className="muted">目前沒有 missed / pending followups。</p>}
       </section>
 
       <section className="panel">

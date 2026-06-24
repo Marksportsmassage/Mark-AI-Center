@@ -15,6 +15,7 @@ import type {
   DailyBrief,
   DecisionReport,
   DecisionScenario,
+  DecisionFollowup,
   ExpenseSignal,
   AccountBalance,
   FinanceDecision,
@@ -24,7 +25,9 @@ import type {
   FinancialProfile,
   InvestmentDecision,
   Liability,
+  MonthlyClose,
   RecoveryPlan,
+  WeeklyReview,
   KnowledgeSop,
   TaskDispatch
 } from "@/types/firestore";
@@ -57,7 +60,10 @@ function ReviewQueueData({ uid }: { uid: string }) {
   const liabilities = useFirestoreCollection<Liability>("liabilities", recent20, true);
   const scenarios = useFirestoreCollection<DecisionScenario>("decision_scenarios", recent20, true);
   const recoveryPlans = useFirestoreCollection<RecoveryPlan>("recovery_plans", recent20, true);
-  const sources = [tasks, financeDecisions, financeDecisionReviews, investments, allocations, financeReviews, reports, jobs, sops, creditCards, profiles, expenseSignals, briefs, financeSnapshots, accountBalances, liabilities, scenarios, recoveryPlans];
+  const weeklyReviews = useFirestoreCollection<WeeklyReview>("weekly_reviews", recent20, true);
+  const monthlyCloses = useFirestoreCollection<MonthlyClose>("monthly_closes", recent20, true);
+  const followups = useFirestoreCollection<DecisionFollowup>("decision_followups", recent20, true);
+  const sources = [tasks, financeDecisions, financeDecisionReviews, investments, allocations, financeReviews, reports, jobs, sops, creditCards, profiles, expenseSignals, briefs, financeSnapshots, accountBalances, liabilities, scenarios, recoveryPlans, weeklyReviews, monthlyCloses, followups];
   const error = sources.map((source) => source.error).find(Boolean);
   const isLoading = sources.some((source) => source.isLoading);
   const queue = useMemo(() => {
@@ -77,9 +83,12 @@ function ReviewQueueData({ uid }: { uid: string }) {
       account_balances: accountBalances.items as never[],
       liabilities: liabilities.items as never[],
       decision_scenarios: scenarios.items as never[],
-      recovery_plans: recoveryPlans.items as never[]
+      recovery_plans: recoveryPlans.items as never[],
+      weekly_reviews: weeklyReviews.items as never[],
+      monthly_closes: monthlyCloses.items as never[],
+      decision_followups: followups.items as never[]
     }, { filter, sort });
-  }, [accountBalances.items, allocations.items, creditCards.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, filter, investments.items, jobs.items, liabilities.items, recoveryPlans.items, reports.items, scenarios.items, sops.items, sort, tasks.items]);
+  }, [accountBalances.items, allocations.items, creditCards.items, financeDecisionReviews.items, financeDecisions.items, financeReviews.items, financeSnapshots.items, filter, followups.items, investments.items, jobs.items, liabilities.items, monthlyCloses.items, recoveryPlans.items, reports.items, scenarios.items, sops.items, sort, tasks.items, weeklyReviews.items]);
   const filterOptions: Array<{ value: ReviewQueueFilter; label: string }> = [
     { value: "all", label: "全部" },
     { value: "high_risk", label: "高風險" },
