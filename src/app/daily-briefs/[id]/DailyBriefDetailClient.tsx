@@ -72,6 +72,12 @@ function DailyBriefData({ briefId }: { briefId: string }) {
       <ListSection title="Recent LINE inputs" items={brief.recent_line_inputs} />
       <ListSection title="Business decision tasks" items={brief.business_decision_tasks} />
       <ListSection title="Finance reminders" items={brief.finance_reminders} />
+      <ListSection title="Waiting review items" items={brief.waiting_review_items} />
+      <ListSection title="Missing info items" items={brief.missing_info_items} />
+      <ListSection title="High risk items" items={brief.high_risk_items} />
+      <ListSection title="Investment reminders" items={brief.investment_reminders} />
+      <ListSection title="Credit card / installment reminders" items={brief.credit_card_installment_reminders} />
+      <ListSection title="No-cost next actions" items={brief.no_cost_next_actions} />
       <ListSection title="Suggested focus" items={brief.suggested_focus} />
       <ListSection title="Do not focus" items={brief.do_not_focus} />
       <ListSection title="Recommended SOP updates" items={brief.recommended_sop_updates} />

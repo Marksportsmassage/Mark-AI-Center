@@ -231,6 +231,9 @@ textarea {
   gap: 8px;
   min-height: 40px;
   padding: 10px 14px;
+  max-width: 100%;
+  text-align: center;
+  white-space: normal;
 }
 
 .button:hover {
@@ -343,6 +346,7 @@ textarea {
   color: var(--muted);
   line-height: 1.5;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .badge-row {
@@ -428,5 +432,11 @@ textarea {
 
   .page-header {
     display: grid;
+  }
+
+  .action-row .button,
+  .action-row button,
+  .action-row a {
+    flex: 1 1 100%;
   }
 }

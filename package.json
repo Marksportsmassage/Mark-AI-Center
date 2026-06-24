@@ -26,6 +26,8 @@
     "test:expense-signals": "vitest run tests/finance-decisions.unit.test.ts --testNamePattern \"Expense Signal|Credit card|Installment\"",
     "test:intake": "vitest run tests/intake.unit.test.ts && firebase emulators:exec --only firestore \"vitest run tests/intake.integration.test.ts\"",
     "test:review-queue": "vitest run tests/review-queue.unit.test.ts",
+    "test:cfo-brief": "vitest run tests/cfo-brief.unit.test.ts && firebase emulators:exec --only firestore \"vitest run tests/cfo-brief.integration.test.ts\"",
+    "test:today": "vitest run tests/today.unit.test.ts",
     "test:smoke": "tsx tests/route-smoke.ts",
     "functions:build": "tsc -p functions/tsconfig.json",
     "functions:serve": "npm --prefix functions run serve",

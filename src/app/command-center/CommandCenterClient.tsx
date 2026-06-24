@@ -131,6 +131,7 @@ function CommandCenterData({ uid }: { uid: string }) {
           <p>Mark 專用 AI 總管：收件、審核、任務指派與專案狀態。</p>
         </div>
         <div className="action-row">
+          <Link className="button compact" href="/today">今天只看這裡</Link>
           <Link className="button secondary compact" href="/finance-advisor">Finance Advisor</Link>
           <Link className="button secondary compact" href="/universe">Universe</Link>
           <Link className="button secondary compact" href="/knowledge-sop">Knowledge SOP</Link>
@@ -172,7 +173,8 @@ function CommandCenterData({ uid }: { uid: string }) {
       <section className="panel">
         <h2>現在先做</h2>
         <div className="action-row">
-          <Link className="button compact" href="/intake">前往 AI 資料輸入中心</Link>
+          <Link className="button compact" href="/today">前往 Today Dashboard</Link>
+          <Link className="button secondary compact" href="/intake">前往 AI 資料輸入中心</Link>
           <Link className="button compact" href="/review-queue">查看 Mark Review Queue</Link>
           <Link className="button compact" href="/finance-advisor">補財務基本資料</Link>
           <Link className="button secondary compact" href="/finance-decisions">查看重大財務決策</Link>

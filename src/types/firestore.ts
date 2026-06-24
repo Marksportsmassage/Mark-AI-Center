@@ -186,9 +186,16 @@ export interface DailyBrief extends FirestoreBase, Reviewable {
   recent_line_inputs: string[];
   business_decision_tasks: string[];
   finance_reminders?: string[];
+  waiting_review_items?: string[];
+  missing_info_items?: string[];
+  high_risk_items?: string[];
+  investment_reminders?: string[];
+  credit_card_installment_reminders?: string[];
+  no_cost_next_actions?: string[];
   suggested_focus: string[];
   do_not_focus: string[];
   recommended_sop_updates?: string[];
+  external_action_allowed?: false;
   status: "draft" | "reviewed" | "archived";
 }
 

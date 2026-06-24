@@ -2,7 +2,21 @@ import { spawn, type ChildProcess } from "node:child_process";
 
 const port = Number(process.env.SMOKE_PORT ?? 3210);
 const baseUrl = `http://127.0.0.1:${port}`;
-const routes = ["/login", "/command-center", "/intake", "/review-queue", "/finance-advisor", "/finance-decisions", "/expense-signals", "/investment-decisions", "/audit-logs", "/universe", "/knowledge-sop", "/codex-jobs"];
+const routes = [
+  { path: "/login", text: "Sign in" },
+  { path: "/today", text: "Today" },
+  { path: "/command-center", text: "Command Center" },
+  { path: "/intake", text: "Intake" },
+  { path: "/review-queue", text: "Review Queue" },
+  { path: "/finance-advisor", text: "Finance" },
+  { path: "/finance-decisions", text: "Finance Decisions" },
+  { path: "/expense-signals" },
+  { path: "/investment-decisions", text: "Investments" },
+  { path: "/audit-logs", text: "Audit" },
+  { path: "/universe" },
+  { path: "/knowledge-sop" },
+  { path: "/codex-jobs" }
+];
 const forbiddenBodyText = [
   "Application error",
   "Internal Server Error",
@@ -32,15 +46,16 @@ async function waitForServer() {
   throw new Error(`Smoke server did not become ready at ${baseUrl}`);
 }
 
-async function checkRoute(route: string) {
-  const response = await fetch(`${baseUrl}${route}`, { redirect: "manual" });
+async function checkRoute(route: { path: string; text?: string }) {
+  const response = await fetch(`${baseUrl}${route.path}`, { redirect: "manual" });
   const body = await response.text();
-  if (response.status >= 500) throw new Error(`${route} returned ${response.status}`);
-  if (body.trim().length < 500) throw new Error(`${route} returned a suspiciously small body (${body.length} bytes)`);
-  if (!body.includes("__next")) throw new Error(`${route} did not include Next.js assets`);
+  if (response.status >= 500) throw new Error(`${route.path} returned ${response.status}`);
+  if (body.trim().length < 500) throw new Error(`${route.path} returned a suspiciously small body (${body.length} bytes)`);
+  if (!body.includes("__next")) throw new Error(`${route.path} did not include Next.js assets`);
+  if (route.text && !body.includes(route.text)) throw new Error(`${route.path} did not include expected text: ${route.text}`);
   const forbidden = forbiddenBodyText.find((text) => body.includes(text));
-  if (forbidden) throw new Error(`${route} included runtime error marker: ${forbidden}`);
-  console.log(`ok ${route} ${response.status} ${body.length} bytes`);
+  if (forbidden) throw new Error(`${route.path} included runtime error marker: ${forbidden}`);
+  console.log(`ok ${route.path} ${response.status} ${body.length} bytes`);
 }
 
 async function main() {

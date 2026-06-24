@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 };
 
 const navItems = [
+  { href: "/today", label: "Today" },
   { href: "/command-center", label: "Command Center" },
   { href: "/intake", label: "Intake" },
   { href: "/review-queue", label: "Review Queue" },
