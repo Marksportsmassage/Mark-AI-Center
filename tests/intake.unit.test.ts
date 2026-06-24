@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  parseBatchIntakeText,
   parseFinancialSnapshotText,
   parseInvestmentDecisionText,
   parseProjectDecisionText,
@@ -20,11 +21,40 @@ describe("Unified Intake parser", () => {
     expect(parsed.missing_required_fields).toContain("目前可動用現金");
   });
 
+  it("financial snapshot sums explicit bank section amounts without guessing", () => {
+    const parsed = parseFinancialSnapshotText("中信 120000\n玉山 80000\n現金 30000");
+    expect(parsed.current_cash_available).toBe(230000);
+  });
+
   it("intake creates finance decision draft from Line Pay spending", () => {
     const parsed = parseSpendingDecisionText("Line Pay 警訊支出 12000 買課程");
     expect(parsed.payment_method).toBe("Line Pay");
     expect(parsed.is_warning_signal).toBe(true);
     expect(parsed.external_action_allowed).toBe(false);
+  });
+
+  it("batch parser separates financial snapshot, cards, spending, investments, and projects", () => {
+    const parsed = parseBatchIntakeText(`銀行：
+中信 120000
+玉山 80000
+
+信用卡：
+本期帳單 28000
+分期 手機 1800/月 剩 10 期
+
+Line Pay：
+6/24 課程 18000
+
+股票：
+MU 成本 200 美元，想判斷續抱或加碼
+
+創業：
+按摩椅資產購買 30000`);
+    expect(parsed.financial_snapshot).toContain("中信 120000");
+    expect(parsed.credit_card_items).toContain("本期帳單 28000");
+    expect(parsed.spending_items).toContain("6/24 課程 18000");
+    expect(parsed.investment_items[0]).toContain("MU");
+    expect(parsed.project_items[0]).toContain("按摩椅");
   });
 
   it("intake creates credit card obligation intent from credit card bill text", () => {

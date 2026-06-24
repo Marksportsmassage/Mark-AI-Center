@@ -408,6 +408,8 @@ export interface ExpenseSignal extends FirestoreBase {
   risk_summary: string;
   threshold_status: "normal" | "watch" | "warning" | "critical";
   triggered_rules: string[];
+  missing_required_fields?: string[];
+  next_actions?: string[];
   need_mark_review: true;
 }
 

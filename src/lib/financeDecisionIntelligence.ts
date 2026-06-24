@@ -16,6 +16,7 @@ import type {
   FinanceDecisionStatus,
   FinanceDecisionType,
   InvestmentDecision,
+  FinancialProfile,
   RiskLevel
 } from "@/types/firestore";
 
@@ -164,6 +165,7 @@ export function buildFinanceDecisionReviewDraft(decision: FinanceDecision): Omit
 export function buildInvestmentDecisionDraft(rawInput: string, userId: string): Omit<InvestmentDecision, "id" | "created_at" | "updated_at"> {
   const symbol = guessSymbol(rawInput);
   const thesisInvalid = rawInput.includes("理由不成立") || rawInput.includes("跌破") || rawInput.includes("基本面變差");
+  const thesisValid = rawInput.includes("原始理由仍成立") || rawInput.includes("理由仍成立") || rawInput.includes("基本面仍成立");
   const missing = ["成本", "目前價格", "數量", "持有時間", "原本買進理由", "短線 / 長線定位", "可投入資金"];
   if (!symbol) missing.unshift("標的");
   return {
@@ -178,15 +180,15 @@ export function buildInvestmentDecisionDraft(rawInput: string, userId: string): 
     market_value: null,
     unrealized_pnl: null,
     original_thesis: null,
-    current_thesis_status: thesisInvalid ? "invalid" : "unknown",
+    current_thesis_status: thesisInvalid ? "invalid" : thesisValid ? "valid" : "unknown",
     time_horizon: rawInput.includes("長線") ? "long" : rawInput.includes("短線") ? "short" : "medium",
     buy_conditions: ["補齊目前價格、持倉比例、可投入資金後再判斷", "不得影響安全現金水位"],
-    add_conditions: thesisInvalid ? [] : ["原始理由仍成立", "持倉比例未超過上限", "有第二停損線", "不壓到生活費與安全現金"],
+    add_conditions: thesisValid ? ["原始理由仍成立", "持倉比例未超過上限", "有第二停損線", "不壓到生活費與安全現金"] : [],
     reduce_conditions: ["原始理由變弱", "持倉比例過高", "需要保護安全現金水位"],
     take_profit_conditions: ["達到原先目標價或風險報酬不再划算", "需要降低集中度"],
     stop_loss_conditions: ["原始理由失效", "跌破第二停損線", "影響安全現金水位"],
-    average_down_allowed: !thesisInvalid,
-    average_down_conditions: thesisInvalid ? ["原始理由失效，不可攤平"] : ["只能條件式攤平", "原始理由仍成立", "不得壓安全現金水位", "先設定第二停損線"],
+    average_down_allowed: thesisValid,
+    average_down_conditions: thesisValid ? ["只能條件式攤平", "原始理由仍成立", "不得壓安全現金水位", "先設定第二停損線"] : ["原始理由 unknown 或 invalid，不可攤平", "沒有安全現金水位前不可建議加碼", "需要補第二停損線"],
     max_position_limit: "需要 Mark 補持倉比例上限",
     cashflow_impact: "不抓即時股價；需 Mark 補目前價格、成本、數量與可投入資金。",
     missing_required_fields: Array.from(new Set(missing)),
@@ -220,6 +222,54 @@ export function buildExpenseSignalSnapshot(decisions: FinanceDecision[], userId:
     threshold_status: threshold,
     triggered_rules: triggeredRules,
     need_mark_review: true
+  };
+}
+
+export function evaluateExpenseThreshold(input: {
+  decisions: FinanceDecision[];
+  obligations?: CreditCardObligation[];
+  profile?: FinancialProfile | null;
+}) {
+  const decisions = input.decisions;
+  const obligations = input.obligations ?? [];
+  const profile = input.profile ?? null;
+  const warningSpending = decisions.filter((item) => item.decision_type === "warning_spending").reduce((total, item) => total + (item.amount ?? 0), 0);
+  const assetPurchase = decisions.filter((item) => item.decision_type === "asset_purchase").reduce((total, item) => total + (item.amount ?? 0), 0);
+  const investmentRelated = decisions.filter((item) => item.is_investment).reduce((total, item) => total + (item.amount ?? 0), 0);
+  const startupTest = decisions.filter((item) => item.decision_type === "startup_test").reduce((total, item) => total + (item.amount ?? 0), 0);
+  const creditCardPressure = obligations.reduce((total, item) => total + (item.monthly_cashflow_impact ?? item.total_statement_amount ?? 0), 0);
+  const deployable = profile?.current_cash_available !== null && profile?.current_cash_available !== undefined && profile?.safety_cash_reserve_target !== null && profile?.safety_cash_reserve_target !== undefined
+    ? Math.max(0, profile.current_cash_available - profile.safety_cash_reserve_target)
+    : null;
+  const missing = profile ? [] : ["需要補財務基本資料"];
+  const triggered: string[] = [];
+  let threshold: ExpenseSignal["threshold_status"] = profile ? "normal" : "watch";
+  if (!profile) triggered.push("尚未建立 financial_profile，先補財務基本資料");
+  if (deployable !== null && warningSpending > deployable * 0.35) {
+    threshold = "warning";
+    triggered.push("警訊支出超過可投入資金 35%");
+  }
+  if (creditCardPressure > 0 && profile?.monthly_income_estimate && creditCardPressure > profile.monthly_income_estimate * 0.35) {
+    threshold = "warning";
+    triggered.push("信用卡 / 分期月壓力偏高");
+  }
+  if (profile?.current_cash_available !== null && profile?.current_cash_available !== undefined && profile?.safety_cash_reserve_target !== null && profile?.safety_cash_reserve_target !== undefined) {
+    const majorOutflow = warningSpending + creditCardPressure + startupTest;
+    if (profile.current_cash_available - majorOutflow < profile.safety_cash_reserve_target) {
+      threshold = "critical";
+      triggered.push("支出可能影響安全現金水位");
+    }
+  }
+  if ((assetPurchase > 0 || investmentRelated > 0) && deployable !== null && assetPurchase + investmentRelated > deployable * 0.5) {
+    threshold = threshold === "critical" ? "critical" : "warning";
+    triggered.push("資產 / 投資型支出需要檢查現金流承受度");
+  }
+  return {
+    threshold_status: threshold,
+    triggered_rules: triggered,
+    missing_required_fields: missing,
+    next_actions: triggered.length ? ["先補財務基本資料", "不要今天加碼", "到 Review Queue 審核高風險項目"] : ["維持記錄，僅 review 重大項目"],
+    totals: { warningSpending, assetPurchase, investmentRelated, startupTest, creditCardPressure }
   };
 }
 

@@ -10,7 +10,7 @@ import {
   where
 } from "firebase/firestore";
 import { FINANCE_RISK_REMINDERS, missingFinancialProfileFields } from "@/lib/finance";
-import type { AiInboxItem, DailyBrief, FinanceReview, FinancialProfile, TaskDispatch } from "@/types/firestore";
+import type { AiInboxItem, DailyBrief, FinanceDecision, FinanceDecisionReview, FinanceReview, FinancialProfile, TaskDispatch } from "@/types/firestore";
 
 function titleOf(task: TaskDispatch) {
   return task.title || task.task_type || task.id;
@@ -41,6 +41,8 @@ export function buildDailyBriefDraft(input: {
   dateKey: string;
   inbox: AiInboxItem[];
   tasks: TaskDispatch[];
+  financeDecisions?: FinanceDecision[];
+  financeDecisionReviews?: FinanceDecisionReview[];
   financeReviews?: FinanceReview[];
   financialProfile?: FinancialProfile | null;
 }): Omit<DailyBrief, "id" | "created_at" | "updated_at"> {
@@ -50,6 +52,8 @@ export function buildDailyBriefDraft(input: {
   const recentLineInputs = input.inbox.filter((item) => item.source === "line");
   const businessTasks = input.tasks.filter(isBusinessTask);
   const waitingFinance = (input.financeReviews ?? []).filter((review) => review.status === "waiting_review" || review.status === "waiting_mark_input");
+  const waitingFinanceDecisions = (input.financeDecisions ?? []).filter((decision) => decision.status === "waiting_review" || decision.status === "waiting_mark_input");
+  const financeDecisionReviews = input.financeDecisionReviews ?? [];
   const financeMissing = missingFinancialProfileFields(input.financialProfile ?? null);
   const topPriorities = activeTasks
     .slice()
@@ -61,15 +65,20 @@ export function buildDailyBriefDraft(input: {
     date_key: input.dateKey,
     user_id: input.userId,
     title: `Daily Brief ${input.dateKey}`,
-    summary: `今日有 ${waitingReview.length} 件等待 review，${needsMoreInfo.length} 件需要補充資訊，${businessTasks.length} 件商業/資金相關任務，${waitingFinance.length} 件財務 review/補資料。`,
+    summary: `今日有 ${waitingReview.length} 件等待 review，${needsMoreInfo.length} 件需要補充資訊，${businessTasks.length} 件商業/資金相關任務，${waitingFinance.length + waitingFinanceDecisions.length + financeDecisionReviews.length} 件財務 review/補資料。`,
     top_priorities: topPriorities,
     waiting_review_tasks: waitingReview.map(titleOf),
     needs_more_info_tasks: needsMoreInfo.map(titleOf),
     recent_line_inputs: recentLineInputs.slice(0, 8).map((item) => item.raw_text ?? item.summary ?? item.title),
     business_decision_tasks: businessTasks.map(titleOf),
-    finance_reminders: [...FINANCE_RISK_REMINDERS, ...financeMissing.map((item) => `Mark 需補：${item}`)],
-    suggested_focus: topPriorities.length > 0 ? topPriorities : ["先清空等待 Mark review 的任務", "補齊 Finance Advisor 財務資料"],
-    do_not_focus: ["不要自動對外傳訊息", "不要未審核就付款/下單", "不要未完成 CFO review 就加碼創業支出"],
+    finance_reminders: [
+      ...FINANCE_RISK_REMINDERS,
+      ...financeMissing.map((item) => `Mark 需補：${item}`),
+      ...waitingFinanceDecisions.slice(0, 5).map((item) => `重大財務決策待審核：${item.title}`),
+      ...financeDecisionReviews.slice(0, 5).map((item) => `Finance Decision Review：${item.title}`)
+    ],
+    suggested_focus: waitingFinanceDecisions.length ? waitingFinanceDecisions.slice(0, 3).map((item) => item.title) : topPriorities.length > 0 ? topPriorities : ["先清空等待 Mark review 的任務", "補齊 Finance Advisor 財務資料"],
+    do_not_focus: ["不要自動對外傳訊息", "不要未審核就付款/下單", "不要未完成 CFO review 就加碼創業支出", "缺資料時不要攤平或加碼"],
     recommended_sop_updates: businessTasks.slice(0, 3).map((task) => `整理 SOP：${titleOf(task)}`),
     need_mark_review: true,
     review_status: "pending",
@@ -86,6 +95,12 @@ export async function generateTodayBrief(db: Firestore, userId: string, now = ne
   const financeSnap = await getDocs(
     query(collection(db, "finance_reviews"), where("status", "in", ["waiting_review", "waiting_mark_input"]), limit(30))
   );
+  const financeDecisionSnap = await getDocs(
+    query(collection(db, "finance_decisions"), where("status", "in", ["waiting_review", "waiting_mark_input"]), limit(30))
+  );
+  const financeDecisionReviewSnap = await getDocs(
+    query(collection(db, "finance_decision_reviews"), where("status", "in", ["waiting_review", "waiting_mark_input"]), limit(30))
+  );
   const profileSnap = await getDocs(query(collection(db, "financial_profile"), where("user_id", "==", userId), limit(1)));
   const cutoff = now.getTime() - 24 * 60 * 60 * 1000;
   const inbox = inboxSnap.docs
@@ -96,8 +111,10 @@ export async function generateTodayBrief(db: Firestore, userId: string, now = ne
     });
   const tasks = taskSnap.docs.map((item) => ({ id: item.id, ...item.data() }) as TaskDispatch);
   const financeReviews = financeSnap.docs.map((item) => ({ id: item.id, ...item.data() }) as FinanceReview);
+  const financeDecisions = financeDecisionSnap.docs.map((item) => ({ id: item.id, ...item.data() }) as FinanceDecision);
+  const financeDecisionReviews = financeDecisionReviewSnap.docs.map((item) => ({ id: item.id, ...item.data() }) as FinanceDecisionReview);
   const financialProfile = profileSnap.docs[0] ? ({ id: profileSnap.docs[0].id, ...profileSnap.docs[0].data() } as FinancialProfile) : null;
-  const draft = buildDailyBriefDraft({ userId, dateKey, inbox, tasks, financeReviews, financialProfile });
+  const draft = buildDailyBriefDraft({ userId, dateKey, inbox, tasks, financeReviews, financeDecisions, financeDecisionReviews, financialProfile });
   const briefDoc = await addDoc(collection(db, "daily_briefs"), {
     ...draft,
     created_at: serverTimestamp(),

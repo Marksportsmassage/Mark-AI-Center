@@ -5,6 +5,7 @@ import {
   buildFinanceDecisionDraft,
   buildFinanceDecisionReviewDraft,
   buildInvestmentDecisionDraft,
+  evaluateExpenseThreshold,
   classifyFinanceDecision,
   isFinanceDecisionInput
 } from "../src/lib/financeDecisionIntelligence";
@@ -86,10 +87,16 @@ describe("Investment Decision Intelligence", () => {
   });
 
   it("average down is allowed only conditionally", () => {
-    const draft = buildInvestmentDecisionDraft("股票 2330 想加碼，長線", userId);
+    const draft = buildInvestmentDecisionDraft("股票 2330 想加碼，長線，原始理由仍成立", userId);
     expect(draft.average_down_allowed).toBe(true);
     expect(draft.average_down_conditions.join(" ")).toContain("條件式");
     expect(draft.external_action_allowed).toBe(false);
+  });
+
+  it("average down is rejected when original thesis is unknown", () => {
+    const draft = buildInvestmentDecisionDraft("股票 2330 想加碼，長線", userId);
+    expect(draft.current_thesis_status).toBe("unknown");
+    expect(draft.average_down_allowed).toBe(false);
   });
 });
 
@@ -99,5 +106,42 @@ describe("Expense Signal", () => {
     const signal = buildExpenseSignalSnapshot([d1], userId, "2026-06");
     expect(signal.threshold_status).toBe("warning");
     expect(signal.need_mark_review).toBe(true);
+  });
+
+  it("expense threshold asks for financial profile before judging deployable capital", () => {
+    const d1 = { id: "d1", ...buildFinanceDecisionDraft("警訊支出 12000", userId), created_at: "", updated_at: "" };
+    const threshold = evaluateExpenseThreshold({ decisions: [d1], obligations: [], profile: null });
+    expect(threshold.threshold_status).toBe("watch");
+    expect(threshold.missing_required_fields).toContain("需要補財務基本資料");
+  });
+
+  it("expense threshold becomes critical if spending touches safety reserve", () => {
+    const d1 = { id: "d1", ...buildFinanceDecisionDraft("警訊支出 50000", userId), created_at: "", updated_at: "" };
+    const threshold = evaluateExpenseThreshold({
+      decisions: [d1],
+      obligations: [],
+      profile: {
+        id: "p1",
+        user_id: userId,
+        monthly_living_expense: 30000,
+        safety_cash_reserve_target: 100000,
+        current_cash_available: 120000,
+        current_investment_value: null,
+        current_debt_summary: null,
+        monthly_income_estimate: null,
+        monthly_fixed_costs: null,
+        risk_tolerance: null,
+        capital_deployment_limit: null,
+        notes: null,
+        missing_required_fields: [],
+        need_mark_review: true,
+        external_action_allowed: false,
+        review_status: "pending",
+        status: "draft",
+        created_at: "",
+        updated_at: ""
+      }
+    });
+    expect(threshold.threshold_status).toBe("critical");
   });
 });

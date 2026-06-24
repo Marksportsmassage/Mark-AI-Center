@@ -7,6 +7,10 @@ export interface ReviewQueueItem {
   group: string;
   status: string;
   risk_level: string;
+  risk_priority: number;
+  recommendation: string;
+  next_actions: string[];
+  needs_review_draft: boolean;
   created_at: unknown;
   missing_required_fields: string[];
   href: string;
@@ -53,23 +57,50 @@ export function toReviewQueueItem(collectionName: string, item: AnyRecord): Revi
     collectionName === "task_dispatches" ? "任務派工待審核" :
     collectionName === "credit_card_obligations" ? "信用卡 / 分期待補資料" :
     "SOP / Codex Jobs 待審核";
+  const risk = displayText(item.risk_level ?? item.liquidity_risk ?? item.threshold_status, "unknown");
+  const missing = asArray<string>(item.missing_required_fields);
+  const nextActions = asArray<string>(item.next_actions);
+  const needsReviewDraft = collectionName === "finance_decisions" && !item.review_id && String(item.status ?? "").includes("waiting");
   return {
     id,
     title: displayText(item.title ?? item.card_name ?? item.goal ?? item.summary, "待審核項目"),
     collection: collectionName,
     group,
     status,
-    risk_level: displayText(item.risk_level ?? item.liquidity_risk ?? item.threshold_status, "unknown"),
+    risk_level: risk,
+    risk_priority: risk === "critical" ? 4 : risk === "high" ? 3 : risk === "medium" || risk === "warning" ? 2 : risk === "watch" ? 1 : 0,
+    recommendation: displayText(item.recommendation, needsReviewDraft ? "尚未產生分析，建議先產生 Review Draft" : "待 Mark review"),
+    next_actions: nextActions.length ? nextActions : missing.length ? missing.map((field) => `補資料：${field}`) : needsReviewDraft ? ["產生 Review Draft"] : ["查看詳情並 review"],
+    needs_review_draft: needsReviewDraft,
     created_at: item.created_at,
-    missing_required_fields: asArray<string>(item.missing_required_fields),
+    missing_required_fields: missing,
     href: collectionName === "finance_decision_reviews" && item.finance_decision_id ? `/finance-decisions/${String(item.finance_decision_id)}` : (hrefs[collectionName]?.(id) ?? "/review-queue")
   };
 }
 
-export function buildReviewQueue(input: Record<string, AnyRecord[]>) {
-  return Object.entries(input)
+export type ReviewQueueFilter = "all" | "high_risk" | "missing_info" | "finance" | "investment" | "credit" | "sop_codex" | "today";
+export type ReviewQueueSort = "risk" | "newest" | "missing";
+
+export function buildReviewQueue(input: Record<string, AnyRecord[]>, options: { filter?: ReviewQueueFilter; sort?: ReviewQueueSort } = {}) {
+  const filter = options.filter ?? "all";
+  const sort = options.sort ?? "risk";
+  const queue = Object.entries(input)
     .flatMap(([collectionName, items]) => asArray<AnyRecord>(items).filter(isReviewQueueCandidate).map((item) => toReviewQueueItem(collectionName, item)))
-    .sort((a, b) => String(b.created_at ?? "").localeCompare(String(a.created_at ?? "")));
+    .filter((item) =>
+      filter === "all" ||
+      (filter === "high_risk" && item.risk_priority >= 3) ||
+      (filter === "missing_info" && item.missing_required_fields.length > 0) ||
+      (filter === "finance" && item.group === "財務決策待審核") ||
+      (filter === "investment" && item.group === "投資決策待審核") ||
+      (filter === "credit" && item.group === "信用卡 / 分期待補資料") ||
+      (filter === "sop_codex" && item.group === "SOP / Codex Jobs 待審核") ||
+      (filter === "today" && (item.risk_priority >= 3 || item.missing_required_fields.length > 0))
+    );
+  return queue.sort((a, b) => {
+    if (sort === "newest") return String(b.created_at ?? "").localeCompare(String(a.created_at ?? ""));
+    if (sort === "missing") return b.missing_required_fields.length - a.missing_required_fields.length || b.risk_priority - a.risk_priority;
+    return b.risk_priority - a.risk_priority || String(b.created_at ?? "").localeCompare(String(a.created_at ?? ""));
+  });
 }
 
 export function queueMissingText(item: ReviewQueueItem) {
