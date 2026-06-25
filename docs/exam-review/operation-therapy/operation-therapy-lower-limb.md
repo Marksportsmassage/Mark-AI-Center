@@ -1,15 +1,13 @@
 # Operation Therapy Lower Limb
 
-Sources required:
+Source file: 操作治療學(四肢)2.pdf
 
-- `操作治療學(四肢)1.pdf`
-- `操作治療學(四肢)2.pdf`
+Status: found, requires manual OCR.
 
-Status: PDFs missing.
+Important rule: extracted text below is source material, not a fully verified answer key. Do not treat generated grouping as final until Mark reviews ambiguous items.
 
-| Area | Technique / exercise | Indication | Contraindication | Precaution | Cue | Easy mistake | Source page |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Hip | 待補 | 待補 | 待補 | 待補 | 待補 | 待補 | 待補 |
-| Knee | 待補 | 待補 | 待補 | 待補 | 待補 | 待補 | 待補 |
-| Ankle / foot | 待補 | 待補 | 待補 | 待補 | 待補 | 待補 | 待補 |
+Classify lower-limb techniques after manual cleanup. Do not invent missing operation steps.
 
+## Extracted Source Text
+
+Found at `materials/exam/operation-therapy/操作治療學(四肢)2.pdf`, but text extraction was insufficient. Requires manual OCR or clearer PDF.

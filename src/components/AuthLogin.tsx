@@ -24,8 +24,8 @@ export function AuthLogin() {
       getRedirectResult(auth)
         .then((result) => {
           if (result?.user) {
-            setMessage("登入成功，可以回到 Command Center。");
-            router.push("/command-center");
+            setMessage("登入成功，可以回到 Mark AI Assistant。");
+            router.push("/assistant");
           }
         })
         .catch((error) => {
@@ -35,7 +35,7 @@ export function AuthLogin() {
       return onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
         if (currentUser) {
-          router.push("/command-center");
+          router.push("/assistant");
         }
       });
     } catch {
@@ -46,8 +46,8 @@ export function AuthLogin() {
   async function signIn() {
     try {
       await signInWithPopup(getClientAuth(), new GoogleAuthProvider());
-      setMessage("登入成功，可以回到 Command Center。");
-      router.push("/command-center");
+      setMessage("登入成功，可以回到 Mark AI Assistant。");
+      router.push("/assistant");
     } catch (error) {
       const code = typeof error === "object" && error && "code" in error ? String(error.code) : "unknown";
 

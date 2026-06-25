@@ -1,0 +1,1129 @@
+{
+  "generated_at": "2026-06-25T01:21:58.175Z",
+  "reports": [
+    {
+      "key": "rom",
+      "subject": "ROM",
+      "file": "易大師的期末ROM題庫-保母級.pdf",
+      "dir": "rom",
+      "status": "missing",
+      "found": false,
+      "copied_path": "materials/exam/rom/易大師的期末ROM題庫-保母級.pdf",
+      "requires_manual_ocr": false,
+      "extracted_pages": 0,
+      "page_count": 0,
+      "char_count": 0,
+      "pages": []
+    },
+    {
+      "key": "operation-therapy-1",
+      "subject": "Operation Therapy",
+      "file": "操作治療學(四肢)1.pdf",
+      "dir": "operation-therapy",
+      "status": "no_text_extracted",
+      "found": true,
+      "copied_path": "materials/exam/operation-therapy/操作治療學(四肢)1.pdf",
+      "requires_manual_ocr": true,
+      "page_count": 66,
+      "extracted_pages": 0,
+      "char_count": 0,
+      "error": null,
+      "pages": [
+        {
+          "page": 1,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 2,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 3,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 4,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 5,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 6,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 7,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 8,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 9,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 10,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 11,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 12,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 13,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 14,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 15,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 16,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 17,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 18,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 19,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 20,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 21,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 22,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 23,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 24,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 25,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 26,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 27,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 28,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 29,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 30,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 31,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 32,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 33,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 34,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 35,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 36,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 37,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 38,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 39,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 40,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 41,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 42,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 43,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 44,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 45,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 46,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 47,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 48,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 49,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 50,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 51,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 52,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 53,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 54,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 55,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 56,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 57,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 58,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 59,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 60,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 61,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 62,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 63,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 64,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 65,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 66,
+          "char_count": 0,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "key": "operation-therapy-2",
+      "subject": "Operation Therapy",
+      "file": "操作治療學(四肢)2.pdf",
+      "dir": "operation-therapy",
+      "status": "no_text_extracted",
+      "found": true,
+      "copied_path": "materials/exam/operation-therapy/操作治療學(四肢)2.pdf",
+      "requires_manual_ocr": true,
+      "page_count": 104,
+      "extracted_pages": 0,
+      "char_count": 0,
+      "error": null,
+      "pages": [
+        {
+          "page": 1,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 2,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 3,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 4,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 5,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 6,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 7,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 8,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 9,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 10,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 11,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 12,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 13,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 14,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 15,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 16,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 17,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 18,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 19,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 20,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 21,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 22,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 23,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 24,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 25,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 26,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 27,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 28,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 29,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 30,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 31,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 32,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 33,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 34,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 35,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 36,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 37,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 38,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 39,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 40,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 41,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 42,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 43,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 44,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 45,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 46,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 47,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 48,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 49,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 50,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 51,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 52,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 53,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 54,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 55,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 56,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 57,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 58,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 59,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 60,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 61,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 62,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 63,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 64,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 65,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 66,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 67,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 68,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 69,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 70,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 71,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 72,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 73,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 74,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 75,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 76,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 77,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 78,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 79,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 80,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 81,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 82,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 83,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 84,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 85,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 86,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 87,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 88,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 89,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 90,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 91,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 92,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 93,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 94,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 95,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 96,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 97,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 98,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 99,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 100,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 101,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 102,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 103,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 104,
+          "char_count": 0,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "key": "operation-therapy-run",
+      "subject": "Operation Therapy",
+      "file": "114學年度＿專物一甲操作治療學及實習跑台技術考考題.pdf",
+      "dir": "operation-therapy",
+      "optional": true,
+      "status": "text_extracted",
+      "found": true,
+      "copied_path": "materials/exam/operation-therapy/114學年度＿專物一甲操作治療學及實習跑台技術考考題.pdf",
+      "requires_manual_ocr": false,
+      "page_count": 1,
+      "extracted_pages": 1,
+      "char_count": 1004,
+      "error": null,
+      "pages": [
+        {
+          "page": 1,
+          "char_count": 1004,
+          "text": "114 學年度 專物一甲 操作治療學及實習 跑台技術考考題\n1. 請操作上肢肩關節屈曲被動關節活動。\n2. 請操作上肢肩關節內轉被動關節活動。\n3. 請操作下肢髖關節伸展被動關節活動。\n4. 請操作下肢踝關節背屈被動關節活動。\n5. 請示範並操作因上肢肩關節屈曲角度不足之被動伸展。\n6. 請示範並操作因上肢肩關節伸直角度不足之被動伸展。\n7. 請示範並操作因下肢髖關節伸直角度不足之被動伸展。\n8. 請示範並操作因下肢髖關節屈曲角度不足之被動伸展。\n9. 請示範並操作因頸椎後縮角度不足之被動伸展。\n10. 請示範並操作因腰椎屈曲角度不足之被動伸展。\n11. 請操作並說明胸大肌之 PNF: Hold-Relax（固定-放鬆）手法。\n12. 請操作並說明胸大肌之 PNF: Contract-Relax（收縮-放鬆）手法。\n13. 個案因下背痛被診斷椎間盤向後突出，請示範並教導患者如何操作緩解運動。\n14. 個案因黏連性關節囊炎（Adhesive capsulitis）造成右肩關節外轉角度受限，\n請依照您的專業判斷行關節鬆動術減輕肩關節周圍疼痛。\n15. 一骨科個案為左膝關節前十字韌帶重建術後（ACL reconstruction）四週，目\n前膝關節伸直-屈曲角度為 0-70 度，請依照您的專業判斷行關節鬆動術。\n16. 個案主訴為 2 週前因打羽毛球時不慎扭傷，右腳踝關節勾起來時卡卡的，請\n依您的專業判斷行關節鬆動術。\n17. 個案主訴騎車時因耍帥壓車不慎雷殘左手撐地，以致舟狀骨骨折，經術後腕\n關節屈曲角度受限，請依您的專業判斷行關節鬆動術。\n18. 一運動員賽後因背部疲勞不適，請執行瑞典式按摩（Swedish massage）\nkneading 按摩手法來回 3 次協助個案放鬆。\n19. 個案經行全膝關節置換（TKR）術後一個月，主訴為膝前方有一疤痕傷口約髕\n骨前上五公分處方不時有抽痛及緊繃感，請執行深層橫向摩擦按摩（DFM）。\n20. 請執行因顏面神經受損之個案造成之左癱瘓面部臉部按摩。\n配分佔比\n40% 40% 20%\n正確完成 正確說明 技術純熟度\nNOTE:\n1. 正確說明應包含解說操作過程、禁忌症與適應症等（內容以講義為主）。\n2. 正確完成應包含個案擺位、實際操作與執行手法等（內容以講義為主）。\n3. 每試題自抽籤閱讀完畢後計時兩分鐘需完成所有操作，鈴響即停止考試。"
+        }
+      ]
+    },
+    {
+      "key": "surgery",
+      "subject": "Surgery",
+      "file": "外科題目AI(1).pdf",
+      "dir": "surgery",
+      "status": "missing",
+      "found": false,
+      "copied_path": "materials/exam/surgery/外科題目AI(1).pdf",
+      "requires_manual_ocr": false,
+      "extracted_pages": 0,
+      "page_count": 0,
+      "char_count": 0,
+      "pages": []
+    },
+    {
+      "key": "mmt-upper",
+      "subject": "MMT",
+      "file": "MMT小考上肢(ans).pdf",
+      "dir": "rom-mmt",
+      "status": "text_extracted",
+      "found": true,
+      "copied_path": "materials/exam/rom-mmt/MMT小考上肢(ans).pdf",
+      "requires_manual_ocr": false,
+      "page_count": 4,
+      "extracted_pages": 4,
+      "char_count": 3617,
+      "error": null,
+      "pages": [
+        {
+          "page": 1,
+          "char_count": 1167,
+          "text": "scapula 一、寫出主要動作肌肉 1. Scapula ABD and upward rota3on：serratus anterior, pectoralis minor 2. Scapula eleva3on: trapezius (upper ﬁbers), levator scapulae   3. Scapula retrac3on: trapezius (middle ﬁbers), rhomboid major 4. Scapula depression and retrac3on: trapezius (middle and lower ﬁbers), la3ssimus dorsi 5. Scapula retrac3on and downward rota3on: rhomboid major, rhomboid minor 二、寫出肌肉的神經支配 (寫中文) 1. serratus anterior 長胸神經 C5-C7 2. pectoralis minor 胸內神經 C8-T1 3. trapezius  第11對腦神經 副神經、C3-C4 4. levator scapulae C3-C4、背肩胛神經C5 5. rhomboid major 背肩胛神經C5 6. rhomboid minor背肩胛神經C5 7. la3ssimus dorsi 胸背神經 C6-C8  shoulder ㄧ、寫出主要動作肌肉 1. shoulder ﬂexion: anterior deltoid, coracobrachialis, pectoralis major (clavicular ﬁbers) 2. shoulder extension: posterior deltoid, la3ssimus dorsi, teres major 3. shoulder abduc3on: middle deltoid, supraspinatus 4. shoulder horizontal abduc3on: posterior deltoid, middle deltoid 5. shoulder horizontal adduc3on: pectoralis major 6. shoulder external rota3on: infraspinatus, teres minor 7. shoulder internal rota3on: subscapularis, teres major, pectoralis major (clavicular ﬁbers), la3ssimus dorsi 二、寫出肌肉的神經支配 (寫中文) 1. deltoid 腋神經 C5-C6"
+        },
+        {
+          "page": 2,
+          "char_count": 940,
+          "text": "2. coracobrachialis 肌皮神經 C5-C7 3. pectoralis major 外側胸神經 C5-C6, 內側胸神經 C6-T1 4. supraspinatus 肩胛上神經 C5-C6 5. infraspinatus 肩胛上神經 C5-C6 6. teres major 肩胛下神經 C5-C6 7. teres minor 腋神經 C5-C6 8. subscapularis 肩胛下神經 C5-C6  elbow ㄧ、寫出主要動作肌肉 1. elbow ﬂexion: brachialis, biceps brachii, brachioradialis 2. elbow extension: triceps brachii 3. forearm supina3on: biceps brachii, supinator 4. forearm prona3on: pronator teres, pronator quadratus 三、寫出肌肉的神經支配 (寫中文) 1. brachialis 肌皮神經 C5-C6 2. biceps brachii 肌皮神經 C5-C6 3. brachioradialis 橈神經 C5-C6 4. triceps brachii 橈神經 C6-C8 5. supinator 橈神經 C6-C7 6. pronator teres 正中神經 C6-C7 7. pronator quadratus 正中神經 C7-C8  wrist and ﬁngers ㄧ、寫出主要動作肌肉 1. wrist ﬂexion: ﬂexor carpi radialis, ﬂexor carpi ulnaris 2. wrist extension: extensor carpi radialis longus, extensor carpi radialis brevis, extensor carpi ulnaris 3. ﬁnger PIP ﬂexion: ﬂexor digitorum superﬁcialis 4. ﬁnger DIP ﬂexion: ﬂexor digitorum profundus"
+        },
+        {
+          "page": 3,
+          "char_count": 1336,
+          "text": "5. ﬁnger MCP extension: extensor digitorum, extensor indicis, extensor digi3 minimi 6. ﬁnger MCP ﬂexion: interossei, lumbricales 7. ﬁnger MCP abd: dorsal interossei, abductor digi3 minimi 8. ﬁnger MCP add: palmar interossei 9. thumb MCP: ﬂexor pollicis brevis 10. thumb IP ﬂexion: ﬂexor pollicis longus 11. thumb MCP extension: extensor pollicis brevis 12. thumb IP extension: extensor pollicis longus 13. thumb abd: abductor pollicis longus, abductor pollicis brevis 14. thumb add: adductor pollicis  15. opposion: opponens pollicis, opponens digi3 minimi 二、寫出肌肉的神經支配 (寫中文) 1. ﬂexor carpi radialis 正中神經 C6-C7 2. ﬂexor carpi ulnaris 尺神經 C7-T1 3. extensor carpi radialis longus 橈神經 C6-C7 4. extensor carpi radialis brevis 橈神經 C7-C8 5. extensor carpi ulnaris 橈神經 C7-C8 6. ﬂexor digitorum superﬁcialis 正中神經 C8-T1 7. ﬂexor digitorum profundus 2nd, 3th 正中神經 C8-T1 8. ﬂexor digitorum profundus 4th, 5th 尺神經 C8-T1 9. extensor digitorum 橈神經C7-C8 10. extensor indicis 橈神經C7-C8 11. extensor digi3 minimi 橈神經C7-C8 12. lumbrical 1st, 2nd正中神經C8-T1 13. lumbrical 3th, 4th尺神經C8-T1 14. interossei 尺神經C8-T1 15. abductor digi3 minimi尺神經C8-T1 16. ﬂexor pollicis brevis (superﬁcial head) 正中神經C8-T1 17. ﬂexor pollicis brevis (deep head) 尺神經C8-T1 18. ﬂexor pollicis longus正中神經C8-T1 19. extensor pollicis brevis 橈神經 C7-C8 20. extensor pollicis longus橈神經 C7-C8"
+        },
+        {
+          "page": 4,
+          "char_count": 174,
+          "text": "21. abductor pollicis longus 橈神經 C7-C8 22. abductor pollicis brevis正中神經C8-T1 23. adductor pollicis 尺神經C8-T1 24. opponens pollicis 正中神經C8-T1 25. opponens digi3 minimi 尺神經C8-T1"
+        }
+      ]
+    },
+    {
+      "key": "mmt-lower",
+      "subject": "MMT",
+      "file": "MMT小考下肢(ans)(1).pdf",
+      "dir": "rom-mmt",
+      "status": "text_extracted",
+      "found": true,
+      "copied_path": "materials/exam/rom-mmt/MMT小考下肢(ans)(1).pdf",
+      "requires_manual_ocr": false,
+      "page_count": 3,
+      "extracted_pages": 3,
+      "char_count": 2703,
+      "error": null,
+      "pages": [
+        {
+          "page": 1,
+          "char_count": 1119,
+          "text": "hip ㄧ、寫出主要動作肌肉 1. hip ﬂexion: psoas major, iliacus 2. hip ﬂexion, abduc9on, external rota9on (with knee ﬂexion): sartorius 3. hip extension: gluteus maximus, biceps femoris, semitendinosus, semimembranosus 4. hip abduc9on: gluteus medius, gluteus minimus 5. hip abduc9on in ﬂexion posi9on: tensor fascia lata 6. hip adduc9on: adductor magnus, adductor longus, adductor brevis, pec9neus, gracilis 7. hip external rota9on: obturator externus, obturator internus, quadratus femoris, piriformis, gemellus superior, gemellus inferior, gluteus maximus 8. hip internal rota9on: gluteus minimus, tensor fascia lata, gluteus medius  二、寫出肌肉的神經支配 (寫中文) 1. psoas major L2-L4 2. iliacus 股神經 L2-L3 3. sartorius 股神經 L2-L3 4. gluteus maximus 下臀神經L5-S2 5. biceps femoris 坐骨神經 L5-S2 6. semitendinosus 坐骨神經 L5-S2 7. semimembranosus 坐骨神經 L5-S2 8. gluteus medius 上臀神經 L4-S1 9. gluteus minimus 上臀神經 L4-S1 10. tensor fascia lata 上臀神經 L4-S1 11. adductor magnus 閉孔神經 L2-L4 12. adductor longus 閉孔神經 L2-L4 13. adductor brevis 閉孔神經 L2-L4 14. pec9neus 股神經 L2-L3 15. gracilis 閉孔神經 L3-L4 16. obturator externus 閉孔神經 L3-L4 17. obturator internus L5-S1"
+        },
+        {
+          "page": 2,
+          "char_count": 1023,
+          "text": "18. quadratus femoris L5-S1 19. piriformis S1-S2 20. gemellus superior L5-S1 21. gemellus inferior L5-S1  knee ㄧ、寫出主要動作肌肉 1. knee ﬂexion: biceps femoris, semitendinosus, semimembranosus 2. knee extension: rectus femoris, vastus lateralis, vastus intermedius, vastus medialis 二、寫出肌肉的神經支配 (寫中文) 1. biceps femoris (long head) 脛神經L5-S2 2. biceps femoris (short head) 總腓神經L5-S2 3. semitendinosus 脛神經L5-S2 4. semimembranosus 脛神經L5-S2 5. rectus femoris 股神經 L2-L4 6. vastus lateralis 股神經 L2-L4 7. vastus intermedius 股神經 L2-L4 8. vastus medialis 股神經 L2-L4  ankle & foot ㄧ、寫出主要動作肌肉 1. ankle plantarﬂexion: soleus, gastrocnemius 2. foot dorsiﬂexion and inversion: 9bialis anterior 3. foot inversion: 9bialis posterior 4. foot eversion with plantarﬂexion: peroneus longus, peroneus brevis 5. hallux and toe MP ﬂexion: lumbricales, ﬂexor hallucis brevis 6. hallux and toe DIP and PIP ﬂexion: ﬂexor hallucis longus, ﬂexor digitorum longus, ﬂexor digitorum brevis 7. hallux and toe MP and IP extension: extensor digitorum longus, extensor"
+        },
+        {
+          "page": 3,
+          "char_count": 561,
+          "text": "digitorum brevis, extensor hallucis longus 二、寫出肌肉的神經支配 (寫中文) 1. soleus 脛神經 S1-S2 2. gastrocnemius 脛神經 S1-S2 3. 9bialis anterior 深腓神經 L4-S1 4. 9bialis posterior 脛神經 L4-L5 (S1) 5. peroneus longus 淺腓神經 L5-S1 6. peroneus brevis 淺腓神經 L5-S1 7. ﬂexor hallucis brevis 內側蹠神經 S1-S2 8. ﬁrst lumbrical 內側蹠神經 L5-S1 9. 2-4 lumbrical 外側蹠神經 S2-S3 10. ﬂexor hallucis longus 脛神經 L5-S2 11. ﬂexor digitorum longus 脛神經 L5-S2 12. ﬂexor digitorum brevis 內側蹠神經 S1-S2 13. extensor digitorum longus 深腓神經 L5-S1 14. extensor digitorum brevis 深腓神經 L5-S1 15. extensor hallucis longus 深腓神經 L5"
+        }
+      ]
+    },
+    {
+      "key": "hifem",
+      "subject": "Physical Modality",
+      "file": "高強度聚焦磁場治療(1).pdf",
+      "dir": "physical-modality",
+      "status": "missing",
+      "found": false,
+      "copied_path": "materials/exam/physical-modality/高強度聚焦磁場治療(1).pdf",
+      "requires_manual_ocr": false,
+      "extracted_pages": 0,
+      "page_count": 0,
+      "char_count": 0,
+      "pages": []
+    },
+    {
+      "key": "shockwave",
+      "subject": "Physical Modality",
+      "file": "06震波.pdf",
+      "dir": "physical-modality",
+      "status": "text_extracted",
+      "found": true,
+      "copied_path": "materials/exam/physical-modality/06震波.pdf",
+      "requires_manual_ocr": false,
+      "page_count": 19,
+      "extracted_pages": 19,
+      "char_count": 2475,
+      "error": null,
+      "pages": [
+        {
+          "page": 1,
+          "char_count": 31,
+          "text": "1\n吳⾄翔 講師 P .T.,M.S\n物理因⼦治療學\n1\n震波"
+        },
+        {
+          "page": 2,
+          "char_count": 149,
+          "text": "2\n๏震波定義與特性\n✓⼜稱為衝擊波，⼀種攜帶⾼能量的衝擊波(機械波mechanical wave)\n✓特性：\n-⾼能量、脈衝式、非連續性（補充：超⾳波為連續式、⾼頻）\n-上升時間極短\n-下降時間相對較長\n-最⼤壓⼒10-100MPa\n-10MPa約等於⼀百萬 kgf/m²、100atm(⼤氣壓)"
+        },
+        {
+          "page": 3,
+          "char_count": 230,
+          "text": "3\n➡⽣成震波的機制(1)：\n✓電動液壓式Electrohydraulic\n-電火花在⽔中引發爆炸性氣泡 → 產⽣⾼能量震波\n-單⼀強⼤脈衝，波形接近⾃然震波\n-優點：能量非常⾼、穿透⼒強、適合深層病灶\n缺點：探頭壽命短、精準度受限、需⽔冷卻系統\n✓壓電式Piezoelectric\n-⼤量壓電晶體同時受到電壓變形 → 產⽣聚焦震波\n-波型非常精準，聚焦點極清晰\n-優點：精度最⾼、定位準確、探頭壽命長\n-缺點：較貴、能量密度偏低（但⾜夠治療⼤部分軟組織問題）"
+        },
+        {
+          "page": 4,
+          "char_count": 208,
+          "text": "4\n➡⽣成震波的機制(2)：\n✓電磁式Electromagnetic\n-電磁場驅動⾦屬膜震動 → 產⽣震波，透過透鏡或聲學反射聚焦\n-波型乾淨且能量可控\n-優點：穩定性好、可調整能量範圍廣\n缺點：設備成本中⾼\n✓電聲式Electroacoustic\n-聲能加壓介質產⽣放射式波動\n-擴散型震波（非聚焦），但可透過聚焦探頭設定特定深度\n-優點：設備簡單、成本低、適合⼤範圍處理\n-缺點：穿透深度淺、焦點不集中、疼痛感⾼"
+        },
+        {
+          "page": 5,
+          "char_count": 124,
+          "text": "5\n➡⽣成震波的機制(3)：\n✓氣動式Pneumatic\n-壓縮空氣推動⼦彈撞擊探頭 → 產⽣放射性擴散波\n-多為放射式（Radial Shockwave）\n-優點：操作簡單、耗材便宜、適合表層與⼤範圍治療\n缺點：深度有限（~3-4cm）、能量較低"
+        },
+        {
+          "page": 6,
+          "char_count": 155,
+          "text": "6\n๏⽣理作⽤\n➡微循環與⾎管新⽣（Neovascularization）\n✓刺激內⽪細胞釋放化學物質\n-VEGF 激素（⾎管內⽪⽣長因⼦）：使⾎管新⽣\n-eNOS 酶（內⽪⼀氧化氮合酶）：使內⽪細胞增⽣\n✓臨床效益\n-增加⽑細⾎管密度與⾎流供應\n-改善慢性缺⾎組織環境，慢性缺⾎環境易發展出Taut band"
+        },
+        {
+          "page": 7,
+          "char_count": 265,
+          "text": "7\n➡機械性作⽤（⽌痛）\n✓⾨閥疼痛理論Gate Control Mechanism\n-Aβ纖維傳導，抑制C纖維傳遞疼痛訊號\n-短暫快速⽌痛\n✓減少疼痛傳導物質釋放\n-減少Substance P ,P物質、CGRP ,降鈣素基因相關胜肽\n-長期⽌痛\n➡細胞活化與再⽣（Cellular Regeneration）\n✓震波刺激軟組織造成釋放⽣長因⼦、纖維細胞增⽣(fibroblast proliferation)\n-膠原蛋⽩合成(collagen synthesis)增加\n-加速肌腱再⽣(tendon regeneration)"
+        },
+        {
+          "page": 8,
+          "char_count": 109,
+          "text": "8\n➡促進骨折癒合（Osteogenesis）\n✓刺激骨折癒合不全處(bone nonunion) 釋放骨塑形蛋⽩、\n刺激成骨作⽤\n-骨芽細胞增殖\n-BMP-2（骨形成蛋⽩）上調\n✓臨床效益\n-加速骨折癒合、減少骨壞死"
+        },
+        {
+          "page": 9,
+          "char_count": 32,
+          "text": "9\n✓⼿術後兩週 ✓⼿術後⼀個⽉ ✓⼿術後兩個⽉ ✓⼿術後四個⽉"
+        },
+        {
+          "page": 10,
+          "char_count": 145,
+          "text": "10\n➡鈣化消除(Elimination of Calcification)\n✓機械碎解作⽤（Mechanical Disruption）\n-⾼強度震波對鈣化區產⽣剪⼒與空穴效應（cavitation）\n-可將鈣化物破碎為較⼩的結晶碎片\n✓⾎管、淋巴管增⽣\n-加速結晶碎片代謝，去除鈣化組織"
+        },
+        {
+          "page": 11,
+          "char_count": 76,
+          "text": "11\n๏治療參數設定\n➡強度(Intensity)\n✓聚焦式震波：以能量密度表⽰（mJ/mm2）\n✓發散式震波：以壓⼒(pressure)表⽰（bar）"
+        },
+        {
+          "page": 12,
+          "char_count": 2,
+          "text": "12"
+        },
+        {
+          "page": 13,
+          "char_count": 164,
+          "text": "13\n➡衝擊發數(Amount of shocks)\n✓1000-2000發/⼿掌⾯積\n✓男性陰莖勃起功能障礙(Erectile Dysfunction, ED)\n-6000發分佈於海綿體的6個部位\n-能量密度為0.25mJ / mm2\n-頻率為3-8Hz\n-深度為15mm\n-每週2次、連續三週、休息兩週、再連續三週，共12次"
+        },
+        {
+          "page": 14,
+          "char_count": 88,
+          "text": "14\n➡頻率(Frequency)\n✓每秒多少衝擊發數，以Hz為單位\n✓不同頻率引發不同⽣理效益\n-⾼頻率(>8Hz)：⽌痛、放鬆效果較佳\n-低頻率(<6Hz)：組織分化、再⽣"
+        },
+        {
+          "page": 15,
+          "char_count": 2,
+          "text": "15"
+        },
+        {
+          "page": 16,
+          "char_count": 27,
+          "text": "16\n➡穿透深度(Penetration depth)"
+        },
+        {
+          "page": 17,
+          "char_count": 305,
+          "text": "17\n๏禁忌症\n✓懷孕區域（Pregnancy）\n-禁⽌在孕婦腹部、骨盆、腰部施作\n✓惡性腫瘤區域（Malignancy）\n-促進腫瘤⾎管新⽣或細胞加速分化擴散風險\n✓感染或急性化膿區域（Local infection or abscess）\n-加速⾎流與組織反應，可能加重感染或擴散發炎\n✓裝有⼼律調節器（Pacemaker）或植入式除顫器者（ICD）\n-可能⼲擾電⼦植入裝置運作（尤其電磁式震波系統）\n✓凝⾎功能異常 / 正在使⽤抗凝⾎劑者（Coagulopathy / Anticoagulation）\n-衝擊波容易引起微出⾎，凝⾎功能異常者易產⽣⽪下瘀⾎或內出⾎\n✓青少年⽣長板處\n-恐使⽣長板提早癒合"
+        },
+        {
+          "page": 18,
+          "char_count": 244,
+          "text": "18\n✓感覺異常區域（Severe neuropathy）\n-恐無法即時反應異常不適，造成異常損傷\n✓注射類固醇處\n-避免組織過度刺激、交互作⽤。應間隔兩週以上\n✓脊椎骨性結構上\n-老年⼈或嚴重骨質疏鬆者，可能破壞脊椎結構\n✓嚴重⼼肺疾病或⾎壓控制不佳者\n-施作過程可能因疼痛⽽產⽣病情不穩定\n✓⾦屬植入未穩定區域\n-若植入物未穩定，可能因震波產⽣鬆動\n✓不適合震波的特定器官（部位）\n-肺臟、腸胃道：含有氣體的器官，易造成氣腔損傷\n-神經組織：神經、眼睛\n-頸部前側：頸動脈竇、神經組織"
+        },
+        {
+          "page": 19,
+          "char_count": 119,
+          "text": "19\n๏臨床操作原則\n✓強度\n-根據病⼈回饋，個別化調整強度\n✓接受震波治療後\n-治療區域休息48⼩時，不做激烈運動（但可接受物理治療或輕度運動）\n-若局部發⽣疼痛加劇、紅腫，可冰敷10-15分鐘\n-盡量不服⽤消炎藥物（醫囑處⽅不在此限）"
+        }
+      ]
+    }
+  ]
+}

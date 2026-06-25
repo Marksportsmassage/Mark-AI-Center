@@ -11,3 +11,4 @@ ui-debug.log
 .env.*.local
 *.log
 service-account*.json
+materials/exam/**/*.pdf

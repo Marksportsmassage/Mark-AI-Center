@@ -1,14 +1,13 @@
 # Operation Therapy Upper Limb
 
-Sources required:
+Source file: 操作治療學(四肢)1.pdf
 
-- `操作治療學(四肢)1.pdf`
-- `操作治療學(四肢)2.pdf`
+Status: found, requires manual OCR.
 
-Status: PDFs missing.
+Important rule: extracted text below is source material, not a fully verified answer key. Do not treat generated grouping as final until Mark reviews ambiguous items.
 
-| Area | Technique / exercise | Indication | Contraindication | Precaution | Cue | Easy mistake | Source page |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Fingers | 待補 | 待補 | 待補 | 待補 | 待補 | 待補 | 待補 |
-| Wrist | 待補 | 待補 | 待補 | 待補 | 待補 | 待補 | 待補 |
+Classify fingers and wrist techniques after manual cleanup. Do not invent missing operation steps.
 
+## Extracted Source Text
+
+Found at `materials/exam/operation-therapy/操作治療學(四肢)1.pdf`, but text extraction was insufficient. Requires manual OCR or clearer PDF.

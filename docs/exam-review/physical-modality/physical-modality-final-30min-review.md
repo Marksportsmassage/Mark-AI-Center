@@ -1,24 +1,14 @@
 # Physical Modality Final 30-Minute Review
 
-Status: framework only until source PDFs are present.
+Status:
 
-## 0-10 Minutes: HIFEM
+- Shockwave PDF found and text extraction attempted.
+- HIFEM PDF missing.
 
-- Faraday law: 待補
-- Mechanism: 待補
-- Supramaximal contraction: 待補
-- Parameters / contraindications: 待補
+Use this after cleanup:
 
-## 10-20 Minutes: Shockwave
-
-- Definition: 待補
-- Mechanical wave / shock wave features: 待補
-- Generator types: 待補
-- Focused / radial / diffused differences: 待補
-
-## 20-30 Minutes: Comparison and Contraindications
-
-- HIFEM vs shockwave comparison: 待補
-- Must-avoid contraindications: 待補
-- Teacher-highlighted points: 待補
-
+1. Shockwave definition and mechanism.
+2. Shockwave generator types.
+3. Focused / radial / diffused differences.
+4. Contraindications and precautions.
+5. HIFEM remains 待補.

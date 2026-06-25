@@ -1,19 +1,13 @@
 # Physical Modality Comparison Table
 
-Sources required:
+Status:
 
-- `高強度聚焦磁場治療(1).pdf`
-- `06震波(1).pdf`
-
-Status: PDFs missing. Fill after lecture extraction.
+- HIFEM: source missing
+- Shockwave: found, extracted 19/19 pages
 
 | Item | HIFEM | Shockwave | Source pages | Easy mistake |
 | --- | --- | --- | --- | --- |
-| Energy / field type | 待補 | 待補 | 待補 | 待補 |
-| Mechanism | 待補 | 待補 | 待補 | 待補 |
-| Key parameter | 待補 | 待補 | 待補 | 待補 |
-| Main physiologic effect | 待補 | 待補 | 待補 | 待補 |
-| Indications | 待補 | 待補 | 待補 | 待補 |
-| Contraindications | 待補 | 待補 | 待補 | 待補 |
-| Precautions | 待補 | 待補 | 待補 | 待補 |
-
+| Energy / field type | 待補 | 待補 from extracted shockwave material | 待補 | 待補 |
+| Mechanism | 待補 | 待補 from extracted shockwave material | 待補 | 待補 |
+| Key parameter | 待補 | 待補 from extracted shockwave material | 待補 | 待補 |
+| Contraindications | 待補 | 待補 from extracted shockwave material | 待補 | 待補 |

@@ -1,10 +1,9 @@
 # Surgery Answer Key
 
-Source required: `materials/exam/surgery/外科題目AI(1).pdf`
+Source file: 外科題目AI(1).pdf
 
-Status: PDF missing. No answers have been extracted.
+Status: source missing.
 
 | Question | Answer | Source page | Confidence | Notes |
 | --- | --- | --- | --- | --- |
-| 待補 | 待補 | 待補 | 待補 | Add after PDF extraction |
-
+| 待補 | 待補 | 待補 | 待補 | Source missing |

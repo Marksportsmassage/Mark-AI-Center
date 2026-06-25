@@ -2,14 +2,9 @@
 
 Mark still needs to provide:
 
-- 外科題目AI(1).pdf
 - 易大師的期末ROM題庫-保母級.pdf
-- 操作治療學(四肢)1.pdf
-- 操作治療學(四肢)2.pdf
-- MMT小考上肢(ans).pdf
-- MMT小考下肢(ans)(1).pdf
+- 外科題目AI(1).pdf
 - 高強度聚焦磁場治療(1).pdf
-- 06震波(1).pdf
 
 Additional helpful materials:
 
@@ -21,5 +16,4 @@ Additional helpful materials:
 - 其他題庫 / 考古題
 - 上課影片或跑台流程
 
-Do not generate final question banks until the source PDFs are present.
-
+Do not generate final question banks until source material is present and readable.
