@@ -26,5 +26,12 @@ describe("assistant home", () => {
     expect(assistantSuggestions.length).toBeGreaterThanOrEqual(3);
     expect(assistantSuggestions.some((item) => item.href === "/exam-review")).toBe(true);
   });
-});
 
+  it("exam questions return auto content summaries", () => {
+    const answer = buildAssistantAnswer("我要準備期末考，TENS 怎麼讀？");
+    expect(answer.content_summary?.title).toBeTruthy();
+    expect(answer.content_summary?.topics.some((topic) => topic.id === "physical-modality")).toBe(true);
+    expect(answer.content_summary?.ready.length).toBeGreaterThan(0);
+    expect(answer.safety_flags).toContain("no_fabricated_questions");
+  });
+});

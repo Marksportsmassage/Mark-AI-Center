@@ -111,6 +111,46 @@ function AssistantData() {
         <p className="muted">Safety: {answer.safety_flags.join("、")}</p>
       </section>
 
+      {answer.content_summary ? (
+        <section className="panel assistant-content-summary" aria-label="Content summary">
+          <div className="item-header">
+            <div>
+              <h2>{answer.content_summary.title}</h2>
+              <p>{answer.content_summary.description}</p>
+            </div>
+            <span className="badge review">自動跳出</span>
+          </div>
+          <div className="assistant-summary-columns">
+            <div>
+              <h3>已製作完成</h3>
+              <div className="stack-list">
+                {answer.content_summary.ready.map((item) => <span key={item}>{item}</span>)}
+              </div>
+            </div>
+            <div>
+              <h3>需要 Mark 看或確認</h3>
+              <div className="stack-list warning-list">
+                {answer.content_summary.needs_review.map((item) => <span key={item}>{item}</span>)}
+              </div>
+            </div>
+          </div>
+          <div className="exam-topic-strip">
+            {answer.content_summary.topics.map((topic) => (
+              <article className="exam-topic-card" key={topic.id}>
+                <span className={`badge review completion-${topic.completion}`}>{topic.completion}</span>
+                <h3>{topic.title}</h3>
+                <p>{topic.status}</p>
+                <div className="action-row">
+                  {topic.artifacts.map((artifact) => (
+                    <Link className="button secondary compact" key={artifact.href + artifact.label} href={artifact.href}>{artifact.label}</Link>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <section className="assistant-card-row" aria-label="Suggestions">
         {assistantSuggestions.map((suggestion) => <AssistantSuggestionPanel key={suggestion.id} suggestion={suggestion} />)}
       </section>
@@ -160,4 +200,3 @@ function AssistantData() {
 export default function Page() {
   return <ProtectedPage>{() => <AssistantData />}</ProtectedPage>;
 }
-

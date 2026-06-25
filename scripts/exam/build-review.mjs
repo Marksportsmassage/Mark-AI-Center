@@ -18,6 +18,7 @@ function ensureDir(file) {
 
 function write(rel, content) {
   const file = path.join(root, rel);
+  if (existsSync(file)) return;
   ensureDir(file);
   writeFileSync(file, content.trimEnd() + "\n");
 }
@@ -318,4 +319,3 @@ ${completionRows.map(([subject, completion, state]) => `| ${subject} | ${complet
 `);
 
 console.log("Built exam review docs from scan reports.");
-

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">ROM MMT 圖像總整理</title>
+  <desc id="desc">根據 ROM 題庫與 MMT 答案整理的背誦地圖。</desc>
+  <rect width="1200" height="720" fill="#f8fafc"/>
+  <rect x="40" y="40" width="1120" height="640" rx="28" fill="#ffffff" stroke="#d8e2ec" stroke-width="2"/>
+  <text x="90" y="110" font-size="42" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">ROM / MMT：先背表格，再看題庫</text>
+  <text x="90" y="155" font-size="22" font-family="Arial, sans-serif" fill="#475569">來源：易大師 ROM 題庫、MMT 上下肢答案；掃描頁需 Mark 確認</text>
+  <circle cx="600" cy="350" r="110" fill="#e0f2fe" stroke="#0284c7" stroke-width="3"/>
+  <text x="535" y="337" font-size="30" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">ROM/MMT</text>
+  <text x="510" y="377" font-size="22" font-family="Arial, sans-serif" fill="#0f172a">期末跑台核心</text>
+  <g font-family="Arial, sans-serif" font-size="21" fill="#0f172a">
+    <rect x="90" y="230" width="290" height="130" rx="18" fill="#dcfce7" stroke="#22c55e"/>
+    <text x="120" y="275" font-weight="700">手指 / 拇指</text>
+    <text x="120" y="312">MCP, PIP, DIP</text>
+    <text x="120" y="342">CMC 支點與對齊</text>
+    <rect x="820" y="230" width="290" height="130" rx="18" fill="#fef3c7" stroke="#f59e0b"/>
+    <text x="850" y="275" font-weight="700">髖 / 膝 / 踝 ROM</text>
+    <text x="850" y="312">姿勢、支點、遠端臂</text>
+    <text x="850" y="342">Norkin 題庫</text>
+    <rect x="90" y="460" width="290" height="130" rx="18" fill="#fae8ff" stroke="#c084fc"/>
+    <text x="120" y="505" font-weight="700">MMT 上肢</text>
+    <text x="120" y="542">scapula, shoulder</text>
+    <text x="120" y="572">elbow, wrist, fingers</text>
+    <rect x="820" y="460" width="290" height="130" rx="18" fill="#ffe4e6" stroke="#fb7185"/>
+    <text x="850" y="505" font-weight="700">MMT 下肢</text>
+    <text x="850" y="542">hip, knee</text>
+    <text x="850" y="572">ankle, foot, toes</text>
+  </g>
+  <path d="M380 295 L500 335 M710 335 L820 295 M380 525 L500 390 M710 390 L820 525" stroke="#94a3b8" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>
+

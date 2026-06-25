@@ -1,9 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { examSubjects, readExamDoc } from "@/lib/examReview";
+import { getExamProductionSummary } from "@/lib/examSummary";
 
 export default function Page() {
   const inventory = readExamDoc("docs/exam-review/materials-inventory.md");
+  const summary = getExamProductionSummary();
   return (
     <div className="grid exam-page">
       <header className="page-header">
@@ -21,6 +24,26 @@ export default function Page() {
         </div>
       </section>
 
+      <section className="panel exam-production-summary">
+        <div className="item-header">
+          <div>
+            <h2>系統已製作與待確認</h2>
+            <p>這裡只列來源檔案已支持的內容；掃描或缺檔不補答案。</p>
+          </div>
+          <span className="badge review">{summary.readyCount} 科可讀</span>
+        </div>
+        <div className="assistant-summary-columns">
+          <div>
+            <h3>已製作完成</h3>
+            <div className="stack-list">{summary.readyItems.slice(0, 12).map((item) => <span key={item}>{item}</span>)}</div>
+          </div>
+          <div>
+            <h3>需要 Mark 確認</h3>
+            <div className="stack-list warning-list">{summary.reviewItems.slice(0, 12).map((item) => <span key={item}>{item}</span>)}</div>
+          </div>
+        </div>
+      </section>
+
       <section className="cards-grid">
         {examSubjects.map((subject) => (
           <Link className="card exam-subject-card" key={subject.id} href={subject.href}>
@@ -33,6 +56,7 @@ export default function Page() {
               <span className="badge">已找到 {subject.files.length}</span>
               <span className="badge">待補 {subject.missing.length}</span>
             </div>
+            <Image className="exam-card-visual" src={subject.visual_href} alt={`${subject.title} 圖像總整理`} width={520} height={320} />
           </Link>
         ))}
       </section>

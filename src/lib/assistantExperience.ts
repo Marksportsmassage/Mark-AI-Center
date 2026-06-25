@@ -1,4 +1,5 @@
 import type { ExpenseSignal } from "@/types/firestore";
+import { matchExamReviewTopics, type ExamReviewTopic } from "@/lib/examSummary";
 
 export type AssistantRisk = "normal" | "watch" | "warning" | "critical";
 
@@ -39,6 +40,13 @@ export interface AssistantAnswer {
     links: Array<{ label: string; href: string }>;
   };
   safety_flags: string[];
+  content_summary?: {
+    title: string;
+    description: string;
+    ready: string[];
+    needs_review: string[];
+    topics: ExamReviewTopic[];
+  };
 }
 
 export const assistantSuggestions: AssistantSuggestion[] = [
@@ -74,9 +82,9 @@ export const assistantSuggestions: AssistantSuggestion[] = [
     id: "exam-review",
     title: "整理期末考資料",
     risk: "normal",
-    why: "已找到 MMT、震波、操作治療部分素材；ROM、外科、HIFEM 仍待補。",
-    impact_if_ignored: "考前會變成臨時翻 PDF，題庫和必背表格無法快速複習。",
-    next_action: "先讀 /exam-review 的 MMT 與震波整理，再補缺的 PDF。",
+    why: "外科、ROM 題庫、MMT、TENS、肌肉電刺激、脊椎牽引、震波都已整理；HIFEM 缺檔，掃描頁需確認。",
+    impact_if_ignored: "考前會變成臨時翻 PDF，題庫、圖片總整理與簡報式複習無法快速使用。",
+    next_action: "先看 /exam-review 的圖片式與簡報式總整理，再展開題庫。",
     href: "/exam-review"
   },
   {
@@ -155,10 +163,10 @@ export const assistantBranches: AssistantBranch[] = [
     purpose: "整理期末考、國考、內容素材與草稿，不編造題目、不自動發布。",
     status: "exam workspace partial",
     risk: "normal",
-    pending: "ROM、外科、HIFEM PDF 待補",
-    missing: ["ROM 題庫", "外科題目", "HIFEM 講義"],
-    recent: "MMT、震波、操作治療部分教材已找到並整理。",
-    next_action: "先讀 MMT / 震波，再補缺檔。",
+    pending: "HIFEM 缺檔；ROM 講義與操作治療四肢掃描需人工確認",
+    missing: ["HIFEM 講義", "ROM 講義 OCR", "操作治療四肢 OCR"],
+    recent: "外科、ROM 題庫、MMT、TENS、肌肉電刺激、脊椎牽引、震波、操作治療跑台題已整理。",
+    next_action: "先看 /exam-review 圖片式總整理，再進各科題庫。",
     nodes: [
       { label: "content-studio", href: "/content-studio", status: "ready" },
       { label: "study notes", href: "/content-studio", status: "draft" },
@@ -222,7 +230,7 @@ export const assistantBranches: AssistantBranch[] = [
 ];
 
 export function inferAssistantMode(question: string) {
-  if (/考|期末|ROM|MMT|講義|題庫|讀書|國考/.test(question)) return "exam";
+  if (/考|期末|ROM|MMT|講義|題庫|讀書|國考|TENS|震波|牽引|肌肉電刺激|操作治療|外科/.test(question)) return "exam";
   if (/股票|投資|加碼|攤平|買|賣|NVDA|MU|台積電|鴻海/.test(question)) return "investment";
   if (/花錢|支出|信用卡|分期|現金|財務|風險|可以花/.test(question)) return "finance";
   if (/客戶|課表|訓練|按摩|疼|痛/.test(question)) return "client";
@@ -248,15 +256,23 @@ export function buildAssistantAnswer(question: string): AssistantAnswer {
     };
   }
   if (mode === "exam") {
+    const topics = matchExamReviewTopics(question);
     return {
       mode: "structured_rule_based",
       sections: {
-        current_judgment: "可以先讀已整理的 MMT、震波與操作治療索引；ROM、外科、HIFEM 仍缺來源 PDF。",
-        priority: "先從 /exam-review 看完成度，再補缺的題庫或講義。",
-        risk: "缺教材時我不會編題目或答案；所有待補會清楚標記。",
-        next_step: "今天先讀 MMT 表格與震波講義重點，再補 ROM / 外科 PDF。",
+        current_judgment: "可以直接跳出期末考總整理；只使用已提供 PDF 裡可抽取或可明確索引的內容。",
+        priority: "先看已完成的題庫與講義重點，再處理標成待確認的掃描檔。",
+        risk: "掃描無文字或缺檔的地方不會補不存在的答案；會標示 Mark 需要確認。",
+        next_step: "從下方內容總整理卡片選科目，先讀題庫、圖片總整理與簡報式總整理。",
         draft_available: "可建立學習整理草稿，但不自動產生假題。",
         links: [{ label: "Exam Review", href: "/exam-review" }, { label: "Content Studio", href: "/content-studio" }]
+      },
+      content_summary: {
+        title: topics.length === 1 ? `${topics[0].subject} 內容總整理` : "期末考內容總整理",
+        description: "以下是系統目前已製作完成與需要 Mark 確認的內容。",
+        ready: topics.flatMap((topic) => topic.whatIsReady.map((item) => `${topic.subject}: ${item}`)).slice(0, 10),
+        needs_review: topics.flatMap((topic) => topic.needsMarkReview.map((item) => `${topic.subject}: ${item}`)).slice(0, 10),
+        topics
       },
       safety_flags: ["external_action_allowed=false", "need_mark_review=true", "no_fabricated_questions"]
     };
@@ -306,4 +322,3 @@ export function buildAssistantAnswer(question: string): AssistantAnswer {
 export function latestFinanceStatus(signals: ExpenseSignal[]) {
   return signals[0]?.threshold_status ?? "watch";
 }
-

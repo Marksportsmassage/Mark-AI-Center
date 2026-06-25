@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">外科學題庫圖像總整理</title>
+  <desc id="desc">根據外科題目AI.pdf 建立的題庫分類圖。</desc>
+  <rect width="1200" height="720" fill="#f8fafc"/>
+  <rect x="40" y="40" width="1120" height="640" rx="28" fill="#ffffff" stroke="#d8e2ec" stroke-width="2"/>
+  <text x="90" y="110" font-size="42" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">外科學：題庫先讀路線</text>
+  <text x="90" y="155" font-size="22" font-family="Arial, sans-serif" fill="#475569">來源：外科題目AI.pdf；考點以外題目需 Mark 考前確認</text>
+  <g font-family="Arial, sans-serif" font-size="22" fill="#0f172a">
+    <rect x="92" y="210" width="260" height="130" rx="18" fill="#e0f2fe" stroke="#38bdf8"/>
+    <text x="122" y="255" font-weight="700">小兒外科</text>
+    <text x="122" y="292">保溫、舌繫帶、斜頸</text>
+    <text x="122" y="322">扭轉、膽道閉鎖</text>
+    <rect x="470" y="210" width="260" height="130" rx="18" fill="#dcfce7" stroke="#22c55e"/>
+    <text x="500" y="255" font-weight="700">內分泌外科</text>
+    <text x="500" y="292">甲狀腺低下</text>
+    <text x="500" y="322">甲狀腺切除併發症</text>
+    <rect x="848" y="210" width="260" height="130" rx="18" fill="#fef3c7" stroke="#f59e0b"/>
+    <text x="878" y="255" font-weight="700">外傷與骨科</text>
+    <text x="878" y="292">ISS、骨折、5P</text>
+    <text x="878" y="322">Gustilo-Anderson</text>
+    <rect x="250" y="430" width="300" height="130" rx="18" fill="#fae8ff" stroke="#c084fc"/>
+    <text x="280" y="475" font-weight="700">神經外科</text>
+    <text x="280" y="512">蜘蛛膜下腔出血</text>
+    <text x="280" y="542">未考筆記頁需補讀</text>
+    <rect x="650" y="430" width="300" height="130" rx="18" fill="#ffe4e6" stroke="#fb7185"/>
+    <text x="680" y="475" font-weight="700">考前策略</text>
+    <text x="680" y="512">先背答案表</text>
+    <text x="680" y="542">再核對考點以外</text>
+  </g>
+  <path d="M352 275 H470 M730 275 H848 M400 340 L400 430 M800 340 L800 430" stroke="#94a3b8" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>
+

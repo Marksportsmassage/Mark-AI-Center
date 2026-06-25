@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { examSubjects, excerptMarkdown, readExamDoc } from "@/lib/examReview";
@@ -37,6 +38,35 @@ export default async function Page({ params }: { params: Promise<{ subject: stri
         </div>
       </section>
 
+      <section id="visual-summary" className="panel">
+        <div className="item-header">
+          <div>
+            <h2>圖片式總整理</h2>
+            <p>這張圖只根據已抽出的講義或題庫狀態整理，用來先看方向。</p>
+          </div>
+          <span className="badge review">visual</span>
+        </div>
+        <Image className="exam-visual-summary" src={subject.visual_href} alt={`${subject.title} 圖片式總整理`} width={1200} height={760} />
+      </section>
+
+      <section id="slide-summary" className="panel">
+        <div className="item-header">
+          <div>
+            <h2>簡報式總整理</h2>
+            <p>用投影片順序整理：先看可讀內容，再看考前要背與待確認。</p>
+          </div>
+          <span className="badge">slides</span>
+        </div>
+        <pre className="json-block markdown-preview slide-preview">{excerptMarkdown(readExamDoc(subject.slide_doc), 2600)}</pre>
+      </section>
+
+      <section className="panel">
+        <h2>Mark 需要看或確認</h2>
+        <div className="stack-list warning-list">
+          {subject.needs_review.map((item) => <span key={item}>{item}</span>)}
+        </div>
+      </section>
+
       <section className="grid">
         {subject.docs.map((doc) => (
           <details className="panel exam-accordion" key={doc.path} open={doc.kind !== "待補"}>
@@ -53,4 +83,3 @@ export default async function Page({ params }: { params: Promise<{ subject: stri
     </div>
   );
 }
-

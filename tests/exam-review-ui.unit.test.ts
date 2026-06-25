@@ -12,6 +12,13 @@ describe("exam review UI", () => {
     expect(page).toContain("原題");
     expect(page).toContain("講義重點");
     expect(page).toContain("待補");
+    expect(page).toContain("圖片式總整理");
+    expect(page).toContain("簡報式總整理");
+  });
+
+  it("exam home shows production summary instead of only tables", () => {
+    const page = readFileSync("src/app/exam-review/page.tsx", "utf8");
+    expect(page).toContain("系統已製作與待確認");
+    expect(page).toContain("exam-card-visual");
   });
 });
-

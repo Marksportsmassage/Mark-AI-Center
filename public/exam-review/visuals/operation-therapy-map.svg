@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">操作治療學圖像總整理</title>
+  <desc id="desc">根據操作治療跑台考題與掃描講義狀態建立的操作分類圖。</desc>
+  <rect width="1200" height="720" fill="#f8fafc"/>
+  <rect x="40" y="40" width="1120" height="640" rx="28" fill="#ffffff" stroke="#d8e2ec" stroke-width="2"/>
+  <text x="90" y="110" font-size="42" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">操作治療學：跑台題目與待確認操作</text>
+  <text x="90" y="155" font-size="22" font-family="Arial, sans-serif" fill="#475569">來源：114 學年度跑台技術考題；四肢講義掃描需人工確認</text>
+  <g font-family="Arial, sans-serif" font-size="21" fill="#0f172a">
+    <rect x="90" y="220" width="300" height="130" rx="18" fill="#e0f2fe" stroke="#38bdf8"/>
+    <text x="120" y="265" font-weight="700">被動關節活動</text>
+    <text x="120" y="302">肩屈曲、肩內轉</text>
+    <text x="120" y="332">髖伸展、踝背屈</text>
+    <rect x="450" y="220" width="300" height="130" rx="18" fill="#dcfce7" stroke="#22c55e"/>
+    <text x="480" y="265" font-weight="700">被動伸展</text>
+    <text x="480" y="302">肩、髖、頸椎、腰椎</text>
+    <text x="480" y="332">角度不足操作題</text>
+    <rect x="810" y="220" width="300" height="130" rx="18" fill="#fef3c7" stroke="#f59e0b"/>
+    <text x="840" y="265" font-weight="700">PNF</text>
+    <text x="840" y="302">胸大肌 Hold-Relax</text>
+    <text x="840" y="332">Contract-Relax</text>
+    <rect x="250" y="450" width="300" height="130" rx="18" fill="#fae8ff" stroke="#c084fc"/>
+    <text x="280" y="495" font-weight="700">關節鬆動術</text>
+    <text x="280" y="532">肩、膝、踝、腕</text>
+    <text x="280" y="562">流程需講義確認</text>
+    <rect x="650" y="450" width="300" height="130" rx="18" fill="#ffe4e6" stroke="#fb7185"/>
+    <text x="680" y="495" font-weight="700">徒手技術</text>
+    <text x="680" y="532">Swedish kneading</text>
+    <text x="680" y="562">DFM、臉部按摩</text>
+  </g>
+  <path d="M390 285 H450 M750 285 H810 M400 350 V450 M800 350 V450" stroke="#94a3b8" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>
