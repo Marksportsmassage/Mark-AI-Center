@@ -648,6 +648,117 @@ textarea {
   line-height: 1.45;
 }
 
+.assistant-ops-dashboard p {
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 4px 0 0;
+}
+
+.ops-brief-grid,
+.ops-question-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 12px;
+}
+
+.ops-brief-card,
+.ops-question-card {
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 7px;
+  padding: 12px;
+}
+
+.ops-brief-card h3,
+.ops-question-card h3 {
+  margin: 0;
+}
+
+.ops-brief-card small,
+.ops-assignment-card small {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.ops-assignment-strip {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  overflow-x: auto;
+  padding: 4px 0 8px;
+  scroll-snap-type: x proximity;
+}
+
+.ops-assignment-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  display: grid;
+  flex: 0 0 min(330px, 84vw);
+  gap: 6px;
+  min-height: 150px;
+  padding: 13px;
+  scroll-snap-align: start;
+}
+
+.ops-assignment-card span {
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ops-assignment-card strong {
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.conversational-intake {
+  background:
+    linear-gradient(180deg, rgba(240, 253, 250, 0.78), rgba(255, 255, 255, 0.96)),
+    #fff;
+}
+
+.intake-prompt {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: none;
+  margin-top: 12px;
+}
+
+.intake-question-layout {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.85fr);
+  margin-top: 14px;
+}
+
+.intake-question-list,
+.intake-compiled {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+}
+
+.intake-compiled p {
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.prompt-row button.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
 .assistant-question-strip {
   display: flex;
   gap: 8px;
@@ -999,11 +1110,17 @@ textarea {
   .assistant-summary-grid,
   .assistant-answer-grid,
   .assistant-summary-columns,
-  .assistant-review-columns {
+  .assistant-review-columns,
+  .ops-brief-grid,
+  .ops-question-grid {
     grid-template-columns: 1fr;
   }
 
   .assistant-chat-box {
+    grid-template-columns: 1fr;
+  }
+
+  .intake-question-layout {
     grid-template-columns: 1fr;
   }
 

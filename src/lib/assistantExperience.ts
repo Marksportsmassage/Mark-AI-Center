@@ -1,5 +1,6 @@
 import type { ExpenseSignal } from "@/types/firestore";
 import { matchExamReviewTopics, type ExamReviewTopic } from "@/lib/examSummary";
+import { buildAssistantOpsDashboard } from "@/lib/assistantOps";
 
 export type AssistantRisk = "normal" | "watch" | "warning" | "critical";
 
@@ -56,6 +57,7 @@ export interface AssistantAnswer {
     links: Array<{ label: string; href: string }>;
   };
   safety_flags: string[];
+  ops_dashboard?: ReturnType<typeof buildAssistantOpsDashboard>;
   content_summary?: {
     title: string;
     description: string;
@@ -323,18 +325,19 @@ export function assistantBranchCompletion(branch: AssistantBranch) {
 }
 
 export function inferAssistantMode(question: string) {
-  if (/考|期末|ROM|MMT|講義|題庫|讀書|國考|TENS|震波|牽引|肌肉電刺激|操作治療|外科/.test(question)) return "exam";
-  if (/助理系統|宇宙圖|看不懂|完成|進度|缺什麼|需要確認/.test(question)) return "assistant_system";
-  if (/股票|投資|加碼|攤平|買|賣|NVDA|MU|台積電|鴻海/.test(question)) return "investment";
-  if (/花錢|支出|信用卡|分期|現金|財務|風險|可以花/.test(question)) return "finance";
-  if (/客戶|課表|訓練|按摩|疼|痛/.test(question)) return "client";
-  if (/App|產品|Codex|功能|deploy|開發/.test(question)) return "product";
+  if (/排程|行程|提醒|匯報|報告|定時|分派|員工|公司|記住|追蹤/.test(question)) return "operations";
+  if (/考|期末|ROM|MMT|講義|題庫|讀書|國考|TENS|震波|牽引|肌肉電刺激|操作治療|外科|怎麼讀|重點/.test(question)) return "exam";
+  if (/助理系統|宇宙圖|看不懂|完成|進度|缺什麼|需要確認|新世代|介面|首頁/.test(question)) return "assistant_system";
+  if (/花錢|支出|信用卡|分期|現金|財務|風險|可以花|能不能花|值得嗎|買東西/.test(question)) return "finance";
+  if (/股票|投資|加碼|攤平|NVDA|MU|台積電|鴻海|停損|目標價|買進|賣出/.test(question)) return "investment";
+  if (/客戶|課表|訓練|按摩|疼|痛|下次課|學生/.test(question)) return "client";
+  if (/App|產品|Codex|功能|deploy|開發|網站|按鈕|頁面/.test(question)) return "product";
   return "general";
 }
 
 export function buildAssistantAnswer(question: string): AssistantAnswer {
   const mode = inferAssistantMode(question);
-  const baseLinks = [{ label: "Review Queue", href: "/review-queue" }];
+  const baseLinks = [{ label: "審核佇列", href: "/review-queue" }];
   if (mode === "investment") {
     return {
       mode: "structured_rule_based",
@@ -344,7 +347,7 @@ export function buildAssistantAnswer(question: string): AssistantAnswer {
         risk: "目前現金流偏緊，投資決策仍 waiting_review，average_down_allowed=false。",
         next_step: "到 investment-decisions 檢查標的，先處理虧損或題材股。",
         draft_available: "可建立投資 review draft，但不會下單。",
-        links: [{ label: "Investment Decisions", href: "/investment-decisions" }, ...baseLinks]
+        links: [{ label: "投資決策", href: "/investment-decisions" }, ...baseLinks]
       },
       safety_flags: ["external_action_allowed=false", "need_mark_review=true", "no_unconditional_buy_sell"]
     };
@@ -359,7 +362,7 @@ export function buildAssistantAnswer(question: string): AssistantAnswer {
         risk: "掃描無文字或缺檔的地方不會補不存在的答案；會標示 Mark 需要確認。",
         next_step: "從下方內容總整理卡片選科目，先讀題庫、圖片總整理與簡報式總整理。",
         draft_available: "可建立學習整理草稿，但不自動產生假題。",
-        links: [{ label: "Exam Review", href: "/exam-review" }, { label: "Content Studio", href: "/content-studio" }]
+        links: [{ label: "期末考整理", href: "/exam-review" }, { label: "內容工作室", href: "/content-studio" }]
       },
       content_summary: {
         title: topics.length === 1 ? `${topics[0].subject} 內容總整理` : "期末考內容總整理",
@@ -381,10 +384,25 @@ export function buildAssistantAnswer(question: string): AssistantAnswer {
         risk: "如果沒有持續把完成品與待確認項目做成卡片，系統會退回後台列表，Mark 會不知道每天要先看哪裡。",
         next_step: "看下方系統完成與待確認卡片；先點需要 Mark 確認的項目。",
         draft_available: "可建立產品任務草稿，但不自動 deploy、不自動開外部流程。",
-        links: [{ label: "Assistant", href: "/assistant" }, { label: "Universe", href: "/assistant-universe" }, { label: "Today", href: "/today" }]
+        links: [{ label: "助理首頁", href: "/assistant" }, { label: "公司宇宙", href: "/assistant-universe" }, { label: "今天", href: "/today" }]
       },
       review_dashboard: buildAssistantReviewDashboard(),
       safety_flags: ["external_action_allowed=false", "need_mark_review=true", "no_external_automation"]
+    };
+  }
+  if (mode === "operations") {
+    return {
+      mode: "structured_rule_based",
+      sections: {
+        current_judgment: "公司助理第一版會先在網站內完成分工、排程、匯報與待回答問題，不急著接外部推播。",
+        priority: "讓每位助理員工都有負責案件、下一次匯報、需要 Mark 回答的問題。",
+        risk: "LINE、付款、交易、外部傳訊都不能自動啟用；定時匯報先顯示在 /assistant。",
+        next_step: "看下方公司營運卡，先處理警訊支出、投資條件、期末考內容與雲端成本。",
+        draft_available: "可建立排程 / 報告 / 任務草稿，全部需要 Mark review。",
+        links: [{ label: "助理首頁", href: "/assistant" }, { label: "公司宇宙", href: "/assistant-universe" }, { label: "輸入中心", href: "/intake" }]
+      },
+      ops_dashboard: buildAssistantOpsDashboard(),
+      safety_flags: ["external_action_allowed=false", "need_mark_review=true", "no_line_push_without_approval", "no_external_automation"]
     };
   }
   if (mode === "client") {
@@ -396,7 +414,7 @@ export function buildAssistantAnswer(question: string): AssistantAnswer {
         risk: "疼痛或受傷描述只能列 caution notes，不能診斷。",
         next_step: "到 Client Ops 或 Intake 建立 review-gated draft。",
         draft_available: "可建立 client session draft。",
-        links: [{ label: "Client Ops", href: "/client-ops" }, { label: "Intake", href: "/intake" }]
+        links: [{ label: "客戶課表", href: "/client-ops" }, { label: "輸入中心", href: "/intake" }]
       },
       safety_flags: ["external_action_allowed=false", "need_mark_review=true", "no_medical_diagnosis"]
     };
@@ -410,7 +428,7 @@ export function buildAssistantAnswer(question: string): AssistantAnswer {
         risk: "Google Cloud 已到 USD 25 budget watch，不啟用 functions 或付費 API。",
         next_step: "到 Command Brain / Product Roadmap 看產品任務。",
         draft_available: "可建立 product task draft，不自動 PR/deploy。",
-        links: [{ label: "Command Brain", href: "/command-brain" }, { label: "Product Roadmap", href: "/product-roadmap" }]
+        links: [{ label: "指揮腦", href: "/command-brain" }, { label: "產品路線圖", href: "/product-roadmap" }]
       },
       safety_flags: ["external_action_allowed=false", "need_mark_review=true", "no_functions_deploy"]
     };
@@ -423,7 +441,7 @@ export function buildAssistantAnswer(question: string): AssistantAnswer {
       risk: "財務狀態仍 watch，信用卡 / 分期與投資都不能跳過 review。",
       next_step: "看建議卡，選一張進入；有新資料就貼 Intake。",
       draft_available: "可建立財務、學習、客戶或產品 draft，全部需要 Mark review。",
-      links: [{ label: "Today", href: "/today" }, { label: "Intake", href: "/intake" }, ...baseLinks]
+      links: [{ label: "今天", href: "/today" }, { label: "輸入中心", href: "/intake" }, ...baseLinks]
     },
     safety_flags: ["external_action_allowed=false", "need_mark_review=true", "structured_assistant_mode"]
   };

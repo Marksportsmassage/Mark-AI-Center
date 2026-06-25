@@ -7,6 +7,7 @@ import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { recent20, useFirestoreCollection } from "@/hooks/useFirestoreCollection";
 import { assistantBranches, assistantBranchCompletion, assistantRiskLabel, assistantSuggestions, buildAssistantAnswer, buildAssistantReviewDashboard, latestFinanceStatus } from "@/lib/assistantExperience";
+import { buildAssistantOpsDashboard } from "@/lib/assistantOps";
 import { buildReviewQueue } from "@/lib/reviewQueue";
 import type { CreditCardObligation, DailyBrief, ExpenseSignal, FinanceDecision, FinanceDecisionReview, InvestmentDecision, TaskDispatch } from "@/types/firestore";
 
@@ -19,7 +20,9 @@ const prompts = [
   "我要準備期末考",
   "我要整理客戶課表",
   "App 下一步做什麼？",
-  "助理系統還缺什麼？"
+  "助理系統還缺什麼？",
+  "有哪些員工在處理？",
+  "今天要怎麼匯報？"
 ];
 
 function AssistantData() {
@@ -53,6 +56,7 @@ function AssistantData() {
   const missingCount = queue.filter((item) => item.missing_required_fields.length > 0).length;
   const branch = assistantBranches.find((item) => item.id === openBranch) ?? null;
   const reviewDashboard = useMemo(() => buildAssistantReviewDashboard(), []);
+  const opsDashboard = useMemo(() => buildAssistantOpsDashboard(), []);
 
   function ask(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -100,6 +104,45 @@ function AssistantData() {
           <li>處理信用卡、自動分期與投資 review。</li>
           <li>讀已整理的期末考 MMT / 震波資料，補缺 PDF。</li>
         </ol>
+      </section>
+
+      <section className="panel assistant-ops-dashboard" aria-label="Company assistant operations">
+        <div className="item-header">
+          <div>
+            <h2>公司助理分工與匯報</h2>
+            <p>{opsDashboard.headline}</p>
+          </div>
+          <span className="badge review">網站內匯報</span>
+        </div>
+        <div className="ops-brief-grid">
+          {opsDashboard.next_reports.map((report) => (
+            <article className="ops-brief-card" key={report.id}>
+              <span className="badge">{report.owner_label}</span>
+              <h3>{report.title}</h3>
+              <p>{report.cadence}</p>
+              <small>{report.delivery}</small>
+            </article>
+          ))}
+        </div>
+        <div className="ops-assignment-strip" aria-label="Assigned assistant work">
+          {opsDashboard.assignments.map((assignment) => (
+            <Link className={`ops-assignment-card risk-${assignment.risk}`} href={assignment.href} key={assignment.id}>
+              <span>{assignment.owner_label}</span>
+              <strong>{assignment.title}</strong>
+              <small>{assignment.status} / {assignment.next_report}</small>
+              <p>{assignment.next_step}</p>
+            </Link>
+          ))}
+        </div>
+        <div className="ops-question-grid">
+          {opsDashboard.intake_flows.slice(0, 3).map((flow) => (
+            <article className="ops-question-card" key={flow.id}>
+              <h3>{flow.title}</h3>
+              <p>{flow.owner_label} 會先問：{flow.questions.slice(0, 2).join("、")}</p>
+              <Link className="button secondary compact" href={`/intake?flow=${flow.id}`}>用問答輸入</Link>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="panel assistant-review-dashboard" aria-label="Assistant review dashboard">
@@ -233,6 +276,28 @@ function AssistantData() {
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+      ) : null}
+
+      {answer.ops_dashboard ? (
+        <section className="panel assistant-ops-dashboard" aria-label="Assistant operations answer">
+          <div className="item-header">
+            <div>
+              <h2>助理員工正在處理什麼</h2>
+              <p>{answer.ops_dashboard.headline}</p>
+            </div>
+            <span className="badge review">分工回報</span>
+          </div>
+          <div className="ops-assignment-strip">
+            {answer.ops_dashboard.assignments.map((assignment) => (
+              <Link className={`ops-assignment-card risk-${assignment.risk}`} href={assignment.href} key={assignment.id}>
+                <span>{assignment.owner_label}</span>
+                <strong>{assignment.title}</strong>
+                <small>{assignment.report_cadence}</small>
+                <p>{assignment.next_step}</p>
+              </Link>
+            ))}
           </div>
         </section>
       ) : null}
