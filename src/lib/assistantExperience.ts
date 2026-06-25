@@ -3,6 +3,17 @@ import { matchExamReviewTopics, type ExamReviewTopic } from "@/lib/examSummary";
 
 export type AssistantRisk = "normal" | "watch" | "warning" | "critical";
 
+export const assistantRiskLabels: Record<AssistantRisk, string> = {
+  normal: "正常",
+  watch: "觀察",
+  warning: "警訊",
+  critical: "緊急"
+};
+
+export function assistantRiskLabel(risk: AssistantRisk) {
+  return assistantRiskLabels[risk] ?? risk;
+}
+
 export interface AssistantSuggestion {
   id: string;
   title: string;
@@ -29,6 +40,8 @@ export interface AssistantBranch {
   completed: string[];
   review_items: string[];
   ask_examples: string[];
+  memory_items: string[];
+  reminder_rules: string[];
   nodes: Array<{ label: string; href: string; status: string }>;
 }
 
@@ -112,76 +125,82 @@ export const assistantSuggestions: AssistantSuggestion[] = [
 export const assistantBranches: AssistantBranch[] = [
   {
     id: "cfo",
-    title: "CFO 財務助理",
+    title: "財務長助理",
     short_title: "CFO",
     href: "/today",
-    purpose: "整理現金流、信用卡、分期、支出警訊與 CFO Brief。",
-    status: "baseline active; expense signal watch",
+    purpose: "公司裡負責現金流、信用卡、分期、支出警訊與 CFO Brief 的財務長助理。",
+    status: "財務基準已啟用；支出警訊觀察中",
     risk: "watch",
     pending: "信用卡 / 分期 / 警訊支出仍需 review",
     missing: ["生活費需用實際支出校正", "學貸開始還款時間", "保險獨立時程"],
     recent: "Line Pay / 一番賞支出已列入 warning spending。",
     next_action: "先看 Today，再到 Review Queue 審核。",
-    completed: ["Finance baseline active", "CFO Brief draft", "Line Pay / 一番賞警訊已列入追蹤"],
+    completed: ["財務基準已確認啟用", "CFO Brief 草稿已建立", "Line Pay / 一番賞警訊已列入追蹤"],
     review_items: ["核對 940 差額", "確認自動分期卡每月最低壓力", "補學貸開始還款時間"],
     ask_examples: ["我現在可以花錢嗎？", "今天財務最危險的是什麼？", "這筆支出值得嗎？"],
+    memory_items: ["基本月現金需求約 51,319–56,319", "目前收入偏弱", "信用卡與分期維持觀察", "一番賞 / 玩具支出是本月警訊"],
+    reminder_rules: ["新增高額分期前提醒", "非必要大額消費前提醒", "投資加碼前提醒現金流壓力"],
     nodes: [
-      { label: "finance-baseline", href: "/finance-baseline", status: "active" },
-      { label: "expense-signals", href: "/expense-signals", status: "watch" },
-      { label: "credit card / installment", href: "/review-queue", status: "review" },
-      { label: "CFO brief", href: "/today", status: "draft" }
+      { label: "財務基準", href: "/finance-baseline", status: "已啟用" },
+      { label: "支出警訊", href: "/expense-signals", status: "觀察中" },
+      { label: "信用卡 / 分期審核", href: "/review-queue", status: "待審核" },
+      { label: "CFO 今日簡報", href: "/today", status: "草稿" }
     ]
   },
   {
     id: "investment",
-    title: "投資決策助理",
+    title: "投資風控助理",
     short_title: "投資",
     href: "/investment-decisions",
-    purpose: "把股票從衝動判斷改成條件式 review。",
-    status: "15 筆 waiting_review",
+    purpose: "公司裡負責把股票判斷改成條件式審核、不讓 Mark 衝動加碼的投資風控助理。",
+    status: "15 筆投資決策待審核",
     risk: "watch",
     pending: "核心 / 題材分類已補，目標價與停損仍缺",
     missing: ["目標價", "停損點", "加碼條件", "減碼條件"],
     recent: "ETF、台積電、鴻海、美股為長期核心；其他多為短期 / 題材。",
     next_action: "補 2201、2317、4749、MU、NVDA 條件。",
-    completed: ["核心 / 題材分類已建立", "15 筆 investment_decisions 保持 waiting_review", "average_down_allowed=false"],
+    completed: ["核心 / 題材分類已建立", "15 筆投資決策保持待審核", "攤平預設禁止"],
     review_items: ["補目標價", "補停損點", "補加碼與減碼條件"],
     ask_examples: ["股票可以加碼嗎？", "NVDA 要怎麼 review？", "哪些股票缺停損？"],
+    memory_items: ["ETF、台積電、鴻海、美股屬長期核心", "2201、2303、2409、4749、TSLA 屬短期 / 題材", "所有投資都不可自動下單"],
+    reminder_rules: ["問加碼時先提醒缺目標價與停損", "問買賣時只給條件式判斷", "現金流弱時提醒暫停大額加碼"],
     nodes: [
-      { label: "investment-decisions", href: "/investment-decisions", status: "waiting_review" },
-      { label: "core assets", href: "/investment-decisions", status: "needs conditions" },
-      { label: "review needed", href: "/review-queue", status: "open" },
-      { label: "no average down warning", href: "/safety-center", status: "active" }
+      { label: "投資決策", href: "/investment-decisions", status: "待審核" },
+      { label: "核心資產", href: "/investment-decisions", status: "需補條件" },
+      { label: "審核佇列", href: "/review-queue", status: "開放" },
+      { label: "禁止無條件攤平", href: "/safety-center", status: "已啟用" }
     ]
   },
   {
     id: "client",
-    title: "客戶與課表助理",
+    title: "客戶課表助理",
     short_title: "客戶",
     href: "/client-ops",
-    purpose: "整理客戶紀錄、課表、下次訓練計畫與注意事項，不做醫療診斷。",
-    status: "ready",
+    purpose: "公司裡負責整理客戶紀錄、課表、下次訓練計畫與注意事項的客戶助理；不做醫療診斷。",
+    status: "可接收客戶資料",
     risk: "normal",
     pending: "待 Mark 貼客戶或課表資料",
     missing: ["客戶目標", "訓練日期", "禁忌或注意事項"],
     recent: "可建立 session note / next training plan draft。",
     next_action: "貼客戶課表到 Intake 或 Client Ops。",
-    completed: ["Client Ops 入口可用", "可建立 session note draft", "醫療診斷安全限制已啟用"],
+    completed: ["客戶營運入口可用", "可建立課程紀錄草稿", "醫療診斷安全限制已啟用"],
     review_items: ["補客戶目標", "補訓練日期", "補禁忌或注意事項"],
     ask_examples: ["我要整理客戶課表", "幫我建立下次課表草稿", "這個客戶注意事項怎麼整理？"],
+    memory_items: ["客戶資料只能建立草稿", "疼痛描述只能列注意事項", "不自動傳訊息給客戶"],
+    reminder_rules: ["缺日期時提醒補課程時間", "出現疼痛字眼時提醒不可診斷", "課表輸出前提醒 Mark 審核"],
     nodes: [
-      { label: "client-ops", href: "/client-ops", status: "ready" },
-      { label: "session notes", href: "/client-ops", status: "draft only" },
-      { label: "next plan", href: "/client-ops", status: "review" }
+      { label: "客戶營運", href: "/client-ops", status: "可用" },
+      { label: "課程紀錄", href: "/client-ops", status: "只建草稿" },
+      { label: "下次課表", href: "/client-ops", status: "需審核" }
     ]
   },
   {
     id: "content",
-    title: "內容與國考助理",
+    title: "學習內容助理",
     short_title: "內容 / 考試",
     href: "/exam-review",
-    purpose: "整理期末考、國考、內容素材與草稿，不編造題目、不自動發布。",
-    status: "exam workspace partial",
+    purpose: "公司裡負責期末考、國考、內容素材與草稿的學習內容助理；不編造題目、不自動發布。",
+    status: "期末考工作區部分完成",
     risk: "normal",
     pending: "HIFEM 缺檔；ROM 講義與操作治療四肢掃描需人工確認",
     missing: ["HIFEM 講義", "ROM 講義 OCR", "操作治療四肢 OCR"],
@@ -190,73 +209,81 @@ export const assistantBranches: AssistantBranch[] = [
     completed: ["外科題庫與答案", "ROM / MMT 題庫與跑台索引", "物理因子 TENS / 肌肉電刺激 / 牽引 / 震波", "操作治療跑台題"],
     review_items: ["補 HIFEM", "確認 ROM 掃描頁", "確認操作治療四肢掃描細節"],
     ask_examples: ["我要準備期末考", "TENS 怎麼讀？", "ROM / MMT 今天先背什麼？"],
+    memory_items: ["外科、ROM/MMT、物理因子、操作治療已有整理", "HIFEM 缺檔", "掃描頁需要人工確認"],
+    reminder_rules: ["問考試時先跳已整理內容", "缺教材時提醒待補，不編造", "考前優先顯示 30 分鐘複習"],
     nodes: [
-      { label: "content-studio", href: "/content-studio", status: "ready" },
-      { label: "study notes", href: "/content-studio", status: "draft" },
-      { label: "final exam review", href: "/exam-review", status: "partial" }
+      { label: "內容工作室", href: "/content-studio", status: "可用" },
+      { label: "學習筆記", href: "/content-studio", status: "草稿" },
+      { label: "期末考整理", href: "/exam-review", status: "部分完成" }
     ]
   },
   {
     id: "business",
-    title: "商業模式助理",
+    title: "商業實驗助理",
     short_title: "商業",
     href: "/business-lab",
-    purpose: "把想法轉成小額測試、回收計畫與停損線。",
-    status: "ready",
+    purpose: "公司裡負責把想法轉成小額測試、回收計畫與停損線的商業實驗助理。",
+    status: "可建立商業測試草稿",
     risk: "normal",
     pending: "待 Mark 選下一個測試",
     missing: ["預算上限", "回收期限", "停損條件"],
     recent: "一番賞若要繼續，只能改成事業測試並補成本表。",
     next_action: "建立 business experiment draft。",
-    completed: ["Decision Lab 可用", "Recovery Plans 可用", "警訊支出可轉成事業測試 review"],
+    completed: ["決策實驗室可用", "回收計畫可用", "警訊支出可轉成事業測試審核"],
     review_items: ["若要做事業測試，補預算上限", "補成本表", "補停損線"],
     ask_examples: ["這筆支出是娛樂還是事業測試？", "我要規劃一個小測試", "怎麼補回 11840？"],
+    memory_items: ["一番賞若要繼續必須是事業測試", "事業測試需要預算上限、成本表、回收價、停損線"],
+    reminder_rules: ["沒有回收計畫時提醒列為娛樂支出", "測試超過預算時提醒停止", "不能聯絡供應商或自動下單"],
     nodes: [
-      { label: "business-lab", href: "/business-lab", status: "ready" },
-      { label: "decision-lab", href: "/decision-lab", status: "ready" },
-      { label: "recovery-plans", href: "/recovery-plans", status: "ready" }
+      { label: "商業實驗室", href: "/business-lab", status: "可用" },
+      { label: "決策實驗室", href: "/decision-lab", status: "可用" },
+      { label: "回收計畫", href: "/recovery-plans", status: "可用" }
     ]
   },
   {
     id: "product",
-    title: "App / Codex 產品助理",
+    title: "產品開發助理",
     short_title: "產品",
     href: "/product-roadmap",
-    purpose: "整理產品功能、Codex 工作與 roadmap，不自動 deploy。",
-    status: "ready",
+    purpose: "公司裡負責產品功能、Codex 任務與 roadmap 的產品開發助理；不自動部署。",
+    status: "產品任務可整理",
     risk: "watch",
     pending: "雲端成本已達 USD 25 budget watch",
     missing: ["成本 breakdown", "下次 deploy 批次"],
     recent: "今天前端完成後只部署 App Hosting 一次。",
     next_action: "看 Product Roadmap 或 Command Brain。",
-    completed: ["Assistant 首頁", "Assistant Universe", "Exam Review Center", "App Hosting 單次部署"],
+    completed: ["助理首頁", "3D 助理宇宙", "期末考整理中心", "App Hosting 單次部署"],
     review_items: ["查 Billing service breakdown", "下次開發批次規劃", "確認哪些頁面 Mark 看不懂"],
     ask_examples: ["App 下一步做什麼？", "助理系統還缺什麼？", "今天開發要先收斂哪裡？"],
+    memory_items: ["Google Cloud 成本已到 USD 25 watch line", "不要頻繁部署", "不部署 functions 除非 Mark 批准"],
+    reminder_rules: ["每次 deploy 前提醒成本", "新增付費 API 前提醒審核", "功能太分散時提醒回到助理首頁"],
     nodes: [
-      { label: "product-roadmap", href: "/product-roadmap", status: "ready" },
-      { label: "codex-jobs", href: "/codex-jobs", status: "review" },
-      { label: "command-brain", href: "/command-brain", status: "active" }
+      { label: "產品路線圖", href: "/product-roadmap", status: "可用" },
+      { label: "Codex 任務", href: "/codex-jobs", status: "待審核" },
+      { label: "指揮腦", href: "/command-brain", status: "已啟用" }
     ]
   },
   {
     id: "safety",
-    title: "安全與系統助理",
+    title: "安全稽核助理",
     short_title: "安全",
     href: "/safety-center",
-    purpose: "確認禁止事項、audit logs、系統狀態與成本守門。",
-    status: "active",
+    purpose: "公司裡負責禁止事項、audit logs、系統狀態與成本守門的安全稽核助理。",
+    status: "安全規則已啟用",
     risk: "watch",
     pending: "Cloud cost guard watch",
     missing: ["Billing Console service breakdown"],
     recent: "不啟用 functions / LINE reply / paid OCR / market data。",
     next_action: "查看 Safety Center 和 System Status。",
-    completed: ["Safety Center", "Cloud cost guard", "LINE / functions / external action 禁止規則"],
+    completed: ["安全中心", "雲端成本守門", "LINE / functions / 外部行動禁止規則"],
     review_items: ["確認雲端成本 breakdown", "確認是否需要 LINE reply 批准", "確認是否要開付費 OCR"],
     ask_examples: ["現在系統安全嗎？", "哪些外部動作被禁止？", "雲端成本要怎麼控？"],
+    memory_items: ["不啟用 LINE reply / push", "不自動交易付款下單", "不讀取或輸出 secret", "所有重要建議都需 Mark review"],
+    reminder_rules: ["提到外部行動時提醒禁止", "提到 secret 時提醒不可輸出", "提到付費服務時提醒成本審核"],
     nodes: [
-      { label: "safety-center", href: "/safety-center", status: "active" },
-      { label: "system-status", href: "/system-status", status: "ready" },
-      { label: "audit-logs", href: "/audit-logs", status: "reviewable" }
+      { label: "安全中心", href: "/safety-center", status: "已啟用" },
+      { label: "系統狀態", href: "/system-status", status: "可用" },
+      { label: "稽核紀錄", href: "/audit-logs", status: "可檢查" }
     ]
   }
 ];

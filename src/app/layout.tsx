@@ -3,26 +3,26 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Mark AI Center",
-  description: "Personal AI Command Center for Mark"
+  title: "Mark AI 公司助理",
+  description: "Mark 的公司型 AI 助理系統"
 };
 
 const navItems = [
-  { href: "/assistant", label: "Assistant" },
-  { href: "/today", label: "Today" },
-  { href: "/intake", label: "Intake" },
-  { href: "/review-queue", label: "Review" },
-  { href: "/assistant-universe", label: "Universe" }
+  { href: "/assistant", label: "助理" },
+  { href: "/today", label: "今天" },
+  { href: "/intake", label: "輸入" },
+  { href: "/review-queue", label: "審核" },
+  { href: "/assistant-universe", label: "宇宙" }
 ];
 
 const secondaryItems = [
-  { href: "/finance-baseline", label: "Finance" },
-  { href: "/investment-decisions", label: "Investment" },
-  { href: "/client-ops", label: "Client" },
-  { href: "/exam-review", label: "Content / Exams" },
-  { href: "/business-lab", label: "Business" },
-  { href: "/product-roadmap", label: "Product" },
-  { href: "/safety-center", label: "System" }
+  { href: "/finance-baseline", label: "財務長助理" },
+  { href: "/investment-decisions", label: "投資風控" },
+  { href: "/client-ops", label: "客戶課表" },
+  { href: "/exam-review", label: "學習內容" },
+  { href: "/business-lab", label: "商業實驗" },
+  { href: "/product-roadmap", label: "產品開發" },
+  { href: "/safety-center", label: "安全稽核" }
 ];
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -35,7 +35,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <span className="brand-mark">M</span>
               <span>
                 <strong>Mark AI Center</strong>
-                <small>Personal Command</small>
+                <small>公司助理系統</small>
               </span>
             </Link>
             <nav className="nav-list">
@@ -46,7 +46,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               ))}
             </nav>
             <details className="secondary-nav">
-              <summary>More branches</summary>
+              <summary>公司員工</summary>
               <nav className="nav-list secondary">
                 {secondaryItems.map((item) => (
                   <Link className="nav-link" key={item.href} href={item.href}>

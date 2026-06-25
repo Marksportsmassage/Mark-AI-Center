@@ -21,7 +21,7 @@ const routes = [
   { path: "/product-roadmap" },
   { path: "/today" },
   { path: "/command-center" },
-  { path: "/intake", text: "Intake" },
+  { path: "/intake" },
   { path: "/review-queue" },
   { path: "/finance-advisor" },
   { path: "/finance-baseline" },

@@ -28,6 +28,31 @@ No GPT answer was fabricated. The implementation continued from Mark's stated re
 
 ## Implemented In This Block
 
+### Company Assistant Direction
+
+The assistant is now being reframed as a company member system:
+
+- Mark AI Assistant is the central company assistant.
+- Finance, investment, client, content, business, product, and safety are treated as assistant employees.
+- Each assistant employee has remembered facts and reminder rules.
+- The system should feel closer to a living operating teammate than an old backend dashboard.
+
+### 3D Assistant Universe
+
+`/assistant-universe` is being upgraded from a card map into a Three.js-powered 3D planet universe.
+
+Each planet represents one assistant employee:
+
+- Finance lead assistant.
+- Investment risk assistant.
+- Client schedule assistant.
+- Learning content assistant.
+- Business experiment assistant.
+- Product development assistant.
+- Safety audit assistant.
+
+Clicking a planet changes the selected employee and shows its responsibility, memory, reminders, completed work, and review items.
+
 ### Assistant Home
 
 `/assistant` now includes a Mark-facing review deck:
@@ -38,6 +63,12 @@ No GPT answer was fabricated. The implementation continued from Mark's stated re
 - Clickable cards for next actions.
 
 When a prompt is passed from the universe map, `/assistant?prompt=...` automatically builds the relevant structured answer.
+
+The first interaction is now moving toward a GPT-like main prompt instead of a traditional dashboard:
+
+- Mark asks one question.
+- The assistant decides which employee branch is relevant.
+- Related summaries and review items appear below.
 
 Exam questions now include:
 

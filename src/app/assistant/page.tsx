@@ -6,7 +6,7 @@ import { AssistantSuggestionPanel } from "@/components/AssistantSuggestionPanel"
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { recent20, useFirestoreCollection } from "@/hooks/useFirestoreCollection";
-import { assistantBranches, assistantBranchCompletion, assistantSuggestions, buildAssistantAnswer, buildAssistantReviewDashboard, latestFinanceStatus } from "@/lib/assistantExperience";
+import { assistantBranches, assistantBranchCompletion, assistantRiskLabel, assistantSuggestions, buildAssistantAnswer, buildAssistantReviewDashboard, latestFinanceStatus } from "@/lib/assistantExperience";
 import { buildReviewQueue } from "@/lib/reviewQueue";
 import type { CreditCardObligation, DailyBrief, ExpenseSignal, FinanceDecision, FinanceDecisionReview, InvestmentDecision, TaskDispatch } from "@/types/firestore";
 
@@ -66,21 +66,31 @@ function AssistantData() {
     <div className="assistant-page">
       <header className="assistant-hero">
         <div>
-          <p className="eyebrow">Mark AI Assistant</p>
-          <h1>Mark，目前最需要你處理的是什麼？</h1>
-          <p>結構化助理模式：不需要 OpenAI API，不新增 secret，所有建議都需要 Mark review。</p>
+          <p className="eyebrow">Mark AI Company Assistant</p>
+          <h1>你想交代什麼給公司助理？</h1>
+          <p>像 GPT 一樣直接問。它會把財務長、投資風控、學習內容、客戶課表、產品開發等員工叫出來協作。</p>
         </div>
         <div className="assistant-status">
-          <span className={`status-dot risk-${financeStatus}`}>{financeStatus}</span>
-          <strong>今日財務狀態</strong>
-          <small>CFO Brief: {latestBrief?.status ?? "待建立"}</small>
+          <span className={`status-dot risk-${financeStatus}`}>{assistantRiskLabel(financeStatus)}</span>
+          <strong>今日提醒狀態</strong>
+          <small>CFO 今日簡報：{latestBrief?.status ?? "待建立"}</small>
         </div>
       </header>
+
+      <section className="assistant-command-surface">
+        <form className="assistant-main-prompt" onSubmit={ask}>
+          <input value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="問我任何事，例如：我今天先做什麼？我要準備期末考？現在可以花錢嗎？" />
+          <button className="button compact" type="submit">送出</button>
+        </form>
+        <div className="prompt-row">
+          {prompts.map((prompt) => <button key={prompt} type="button" onClick={() => setAnswer(buildAssistantAnswer(prompt))}>{prompt}</button>)}
+        </div>
+      </section>
 
       <section className="assistant-summary-grid" aria-label="Today summary">
         <div><strong>{queue.length}</strong><span>待審核</span></div>
         <div><strong>{missingCount}</strong><span>缺資料</span></div>
-        <div><strong>{financeStatus}</strong><span>財務 / 系統風險</span></div>
+        <div><strong>{assistantRiskLabel(financeStatus)}</strong><span>財務 / 系統風險</span></div>
       </section>
 
       <section className="panel assistant-priorities">
@@ -128,17 +138,6 @@ function AssistantData() {
           {reviewDashboard.suggestedQuestions.map((prompt) => (
             <button key={prompt} type="button" onClick={() => setAnswer(buildAssistantAnswer(prompt))}>{prompt}</button>
           ))}
-        </div>
-      </section>
-
-      <section className="panel">
-        <h2>快速對話</h2>
-        <form className="assistant-chat-box" onSubmit={ask}>
-          <input value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="例如：我今天先做什麼？" />
-          <button className="button compact" type="submit">問助理</button>
-        </form>
-        <div className="prompt-row">
-          {prompts.map((prompt) => <button key={prompt} type="button" onClick={() => setAnswer(buildAssistantAnswer(prompt))}>{prompt}</button>)}
         </div>
       </section>
 
@@ -247,7 +246,7 @@ function AssistantData() {
         <div className="branch-grid">
           {assistantBranches.map((item) => (
             <button className="branch-card" key={item.id} type="button" onClick={() => setOpenBranch(item.id)}>
-              <span className={`badge review risk-${item.risk}`}>{item.risk}</span>
+              <span className={`badge review risk-${item.risk}`}>{assistantRiskLabel(item.risk)}</span>
               <strong>{item.title}</strong>
               <small>{item.status}</small>
               <span className="assistant-progress" aria-label={`${item.title} completion ${assistantBranchCompletion(item)} percent`}><span style={{ width: `${assistantBranchCompletion(item)}%` }} /></span>
@@ -268,11 +267,13 @@ function AssistantData() {
               <div><strong>目前狀態</strong><p>{branch.status}</p></div>
               <div><strong>待處理</strong><p>{branch.pending}</p></div>
               <div><strong>缺資料</strong><p>{branch.missing.join("、") || "目前無"}</p></div>
-              <div><strong>風險</strong><p>{branch.risk}</p></div>
+              <div><strong>風險</strong><p>{assistantRiskLabel(branch.risk)}</p></div>
               <div><strong>最近摘要</strong><p>{branch.recent}</p></div>
               <div><strong>建議下一步</strong><p>{branch.next_action}</p></div>
               <div><strong>已完成</strong><p>{branch.completed.join("、")}</p></div>
               <div><strong>Mark 需確認</strong><p>{branch.review_items.join("、")}</p></div>
+              <div><strong>這位員工記住</strong><p>{branch.memory_items.join("、")}</p></div>
+              <div><strong>會主動提醒</strong><p>{branch.reminder_rules.join("、")}</p></div>
             </div>
             <div className="assistant-question-strip">
               {branch.ask_examples.map((prompt) => <button key={prompt} type="button" onClick={() => setAnswer(buildAssistantAnswer(prompt))}>{prompt}</button>)}

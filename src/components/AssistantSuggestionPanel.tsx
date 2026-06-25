@@ -1,19 +1,12 @@
 import Link from "next/link";
-import type { AssistantSuggestion } from "@/lib/assistantExperience";
-
-const riskLabel: Record<AssistantSuggestion["risk"], string> = {
-  normal: "normal",
-  watch: "watch",
-  warning: "warning",
-  critical: "critical"
-};
+import { assistantRiskLabel, type AssistantSuggestion } from "@/lib/assistantExperience";
 
 export function AssistantSuggestionPanel({ suggestion }: { suggestion: AssistantSuggestion }) {
   return (
     <article className={`assistant-suggestion risk-${suggestion.risk}`}>
       <div className="item-header">
         <h3>{suggestion.title}</h3>
-        <span className="badge review">{riskLabel[suggestion.risk]}</span>
+        <span className="badge review">{assistantRiskLabel(suggestion.risk)}</span>
       </div>
       <p><strong>為什麼重要：</strong>{suggestion.why}</p>
       <p><strong>不做的影響：</strong>{suggestion.impact_if_ignored}</p>
@@ -26,4 +19,3 @@ export function AssistantSuggestionPanel({ suggestion }: { suggestion: Assistant
     </article>
   );
 }
-
