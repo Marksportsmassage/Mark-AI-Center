@@ -24,7 +24,7 @@ export default async function Page({ params }: { params: Promise<{ subject: stri
         </div>
         <div className="action-row">
           <Link className="button secondary compact" href="/exam-review">回期末考中心</Link>
-          <Link className="button secondary compact" href="/assistant">問助理</Link>
+          <Link className="button secondary compact" href={`/assistant?prompt=${encodeURIComponent(subject.ask_prompt)}`}>問助理讀這科</Link>
         </div>
       </header>
 

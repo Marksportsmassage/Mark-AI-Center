@@ -5,6 +5,7 @@ const baseUrl = `http://127.0.0.1:${port}`;
 const routes = [
   { path: "/login", text: "Sign in" },
   { path: "/assistant" },
+  { path: "/assistant?prompt=%E6%88%91%E8%A6%81%E6%BA%96%E5%82%99%E6%9C%9F%E6%9C%AB%E8%80%83" },
   { path: "/assistant-universe" },
   { path: "/exam-review", text: "期末考整理中心" },
   { path: "/exam-review/surgery", text: "外科學" },

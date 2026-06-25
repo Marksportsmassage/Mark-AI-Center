@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { buildTodayDashboardSummary, todayErrorMessage } from "../src/lib/today";
 
@@ -64,5 +65,12 @@ describe("Today Operating Dashboard helper", () => {
     });
     expect(summary.investment_reminders.join(" ")).toContain("average_down_allowed=false");
     expect(summary.do_not_do_today.join(" ")).toContain("不建議攤平");
+  });
+
+  it("shows assistant delivery and Mark review cards", () => {
+    const source = readFileSync("src/app/today/page.tsx", "utf8");
+    expect(source).toContain("助理今日交付與 Mark 需確認");
+    expect(source).toContain("assistant-review-card");
+    expect(source).toContain("buildAssistantReviewDashboard");
   });
 });

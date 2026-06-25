@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { buildAdvisorContext } from "../src/lib/advisorContext";
 import { buildAdvisorAnswer } from "../src/lib/advisorResponse";
@@ -14,6 +15,16 @@ describe("advisor context", () => {
     const answer = buildAdvisorAnswer("general", "今天要做什麼？", context);
     expect(answer.content).toContain("目前我能判斷什麼");
     expect(answer.content).toContain("下一步");
+  });
+});
+
+describe("advisor chat UX", () => {
+  it("renders quick questions and card-style latest answers", () => {
+    const source = readFileSync("src/app/advisor-chat/page.tsx", "utf8");
+    expect(source).toContain("quickQuestions");
+    expect(source).toContain("latest-advisor-answer");
+    expect(source).toContain("assistant-answer-grid");
+    expect(source).not.toContain("<pre className=\"json-block\">{lastAnswer.content}</pre>");
   });
 });
 

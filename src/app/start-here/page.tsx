@@ -9,6 +9,7 @@ const primary = [
 const secondary = [
   { href: "/review-queue", title: "我要審核" },
   { href: "/assistant-universe", title: "我要看宇宙圖" },
+  { href: "/exam-review", title: "我要準備期末考" },
   { href: "/safety-center", title: "我要看系統安全" }
 ];
 

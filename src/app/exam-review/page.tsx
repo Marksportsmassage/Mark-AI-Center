@@ -46,7 +46,7 @@ export default function Page() {
 
       <section className="cards-grid">
         {examSubjects.map((subject) => (
-          <Link className="card exam-subject-card" key={subject.id} href={subject.href}>
+          <article className="card exam-subject-card" key={subject.id}>
             <div className="item-header">
               <h2>{subject.title}</h2>
               <span className="badge review">{subject.completion}</span>
@@ -57,7 +57,11 @@ export default function Page() {
               <span className="badge">待補 {subject.missing.length}</span>
             </div>
             <Image className="exam-card-visual" src={subject.visual_href} alt={`${subject.title} 圖像總整理`} width={520} height={320} />
-          </Link>
+            <div className="action-row exam-card-actions">
+              <Link className="button compact" href={subject.href}>進入科目</Link>
+              <Link className="button secondary compact" href={`/assistant?prompt=${encodeURIComponent(subject.ask_prompt)}`}>問助理讀這科</Link>
+            </div>
+          </article>
         ))}
       </section>
 

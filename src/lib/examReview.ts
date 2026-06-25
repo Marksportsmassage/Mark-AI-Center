@@ -11,6 +11,7 @@ export interface ExamSubject {
   missing: string[];
   visual_href: string;
   slide_doc: string;
+  ask_prompt: string;
   needs_review: string[];
   docs: Array<{ label: string; path: string; kind: "原題" | "講義重點，非原題" | "索引" | "圖片總整理" | "簡報式總整理" | "待補" }>;
 }
@@ -26,6 +27,7 @@ export const examSubjects: ExamSubject[] = [
     missing: ["外科完整講義或老師畫重點，如有"],
     visual_href: "/exam-review/visuals/surgery-map.svg",
     slide_doc: "docs/exam-review/slides/surgery-slide-summary.md",
+    ask_prompt: "外科題庫今天先讀什麼？",
     needs_review: ["PDF 內標示考點以外的題目與解析需 Mark 考前確認"],
     docs: [
       { label: "外科題庫", path: "docs/exam-review/surgery/surgery-question-bank.md", kind: "原題" },
@@ -45,6 +47,7 @@ export const examSubjects: ExamSubject[] = [
     missing: ["高強度聚焦磁場治療(1).pdf"],
     visual_href: "/exam-review/visuals/physical-modality-map.svg",
     slide_doc: "docs/exam-review/slides/physical-modality-slide-summary.md",
+    ask_prompt: "物理因子治療學今天先讀什麼？TENS、肌肉電刺激、牽引、震波怎麼排？",
     needs_review: ["HIFEM 尚未提供；其他物理因子若有老師畫重點需補"],
     docs: [
       { label: "震波重點", path: "docs/exam-review/physical-modality/shockwave-high-yield-review.md", kind: "講義重點，非原題" },
@@ -66,6 +69,7 @@ export const examSubjects: ExamSubject[] = [
     missing: ["清晰文字版或可 OCR 版本，如 Mark 有"],
     visual_href: "/exam-review/visuals/operation-therapy-map.svg",
     slide_doc: "docs/exam-review/slides/operation-therapy-slide-summary.md",
+    ask_prompt: "操作治療學今天先讀什麼？跑台題和掃描講義要怎麼處理？",
     needs_review: ["四肢 1/2 為掃描圖，需 Mark 或人工 OCR 確認操作細節"],
     docs: [
       { label: "來源索引", path: "docs/exam-review/operation-therapy/operation-therapy-source-index.md", kind: "索引" },
@@ -85,6 +89,7 @@ export const examSubjects: ExamSubject[] = [
     missing: ["ROM講義.pdf 文字 OCR 或人工確認"],
     visual_href: "/exam-review/visuals/rom-mmt-map.svg",
     slide_doc: "docs/exam-review/slides/rom-mmt-slide-summary.md",
+    ask_prompt: "ROM / MMT 今天先背什麼？請列題庫、跑台與待確認內容。",
     needs_review: ["ROM 講義與跑台圖是圖像來源，需 Mark 對照確認"],
     docs: [
       { label: "MMT 上肢", path: "docs/exam-review/mmt/mmt-upper-limb-muscle-actions.md", kind: "講義重點，非原題" },

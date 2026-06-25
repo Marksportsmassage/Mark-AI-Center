@@ -26,6 +26,9 @@ export interface AssistantBranch {
   missing: string[];
   recent: string;
   next_action: string;
+  completed: string[];
+  review_items: string[];
+  ask_examples: string[];
   nodes: Array<{ label: string; href: string; status: string }>;
 }
 
@@ -43,10 +46,18 @@ export interface AssistantAnswer {
   content_summary?: {
     title: string;
     description: string;
+    recommended_start: string;
     ready: string[];
     needs_review: string[];
     topics: ExamReviewTopic[];
   };
+  review_dashboard?: AssistantReviewDashboard;
+}
+
+export interface AssistantReviewDashboard {
+  completed: Array<{ title: string; detail: string; href: string }>;
+  needsMarkReview: Array<{ title: string; detail: string; href: string; risk: AssistantRisk }>;
+  suggestedQuestions: string[];
 }
 
 export const assistantSuggestions: AssistantSuggestion[] = [
@@ -111,6 +122,9 @@ export const assistantBranches: AssistantBranch[] = [
     missing: ["生活費需用實際支出校正", "學貸開始還款時間", "保險獨立時程"],
     recent: "Line Pay / 一番賞支出已列入 warning spending。",
     next_action: "先看 Today，再到 Review Queue 審核。",
+    completed: ["Finance baseline active", "CFO Brief draft", "Line Pay / 一番賞警訊已列入追蹤"],
+    review_items: ["核對 940 差額", "確認自動分期卡每月最低壓力", "補學貸開始還款時間"],
+    ask_examples: ["我現在可以花錢嗎？", "今天財務最危險的是什麼？", "這筆支出值得嗎？"],
     nodes: [
       { label: "finance-baseline", href: "/finance-baseline", status: "active" },
       { label: "expense-signals", href: "/expense-signals", status: "watch" },
@@ -130,6 +144,9 @@ export const assistantBranches: AssistantBranch[] = [
     missing: ["目標價", "停損點", "加碼條件", "減碼條件"],
     recent: "ETF、台積電、鴻海、美股為長期核心；其他多為短期 / 題材。",
     next_action: "補 2201、2317、4749、MU、NVDA 條件。",
+    completed: ["核心 / 題材分類已建立", "15 筆 investment_decisions 保持 waiting_review", "average_down_allowed=false"],
+    review_items: ["補目標價", "補停損點", "補加碼與減碼條件"],
+    ask_examples: ["股票可以加碼嗎？", "NVDA 要怎麼 review？", "哪些股票缺停損？"],
     nodes: [
       { label: "investment-decisions", href: "/investment-decisions", status: "waiting_review" },
       { label: "core assets", href: "/investment-decisions", status: "needs conditions" },
@@ -149,6 +166,9 @@ export const assistantBranches: AssistantBranch[] = [
     missing: ["客戶目標", "訓練日期", "禁忌或注意事項"],
     recent: "可建立 session note / next training plan draft。",
     next_action: "貼客戶課表到 Intake 或 Client Ops。",
+    completed: ["Client Ops 入口可用", "可建立 session note draft", "醫療診斷安全限制已啟用"],
+    review_items: ["補客戶目標", "補訓練日期", "補禁忌或注意事項"],
+    ask_examples: ["我要整理客戶課表", "幫我建立下次課表草稿", "這個客戶注意事項怎麼整理？"],
     nodes: [
       { label: "client-ops", href: "/client-ops", status: "ready" },
       { label: "session notes", href: "/client-ops", status: "draft only" },
@@ -167,6 +187,9 @@ export const assistantBranches: AssistantBranch[] = [
     missing: ["HIFEM 講義", "ROM 講義 OCR", "操作治療四肢 OCR"],
     recent: "外科、ROM 題庫、MMT、TENS、肌肉電刺激、脊椎牽引、震波、操作治療跑台題已整理。",
     next_action: "先看 /exam-review 圖片式總整理，再進各科題庫。",
+    completed: ["外科題庫與答案", "ROM / MMT 題庫與跑台索引", "物理因子 TENS / 肌肉電刺激 / 牽引 / 震波", "操作治療跑台題"],
+    review_items: ["補 HIFEM", "確認 ROM 掃描頁", "確認操作治療四肢掃描細節"],
+    ask_examples: ["我要準備期末考", "TENS 怎麼讀？", "ROM / MMT 今天先背什麼？"],
     nodes: [
       { label: "content-studio", href: "/content-studio", status: "ready" },
       { label: "study notes", href: "/content-studio", status: "draft" },
@@ -185,6 +208,9 @@ export const assistantBranches: AssistantBranch[] = [
     missing: ["預算上限", "回收期限", "停損條件"],
     recent: "一番賞若要繼續，只能改成事業測試並補成本表。",
     next_action: "建立 business experiment draft。",
+    completed: ["Decision Lab 可用", "Recovery Plans 可用", "警訊支出可轉成事業測試 review"],
+    review_items: ["若要做事業測試，補預算上限", "補成本表", "補停損線"],
+    ask_examples: ["這筆支出是娛樂還是事業測試？", "我要規劃一個小測試", "怎麼補回 11840？"],
     nodes: [
       { label: "business-lab", href: "/business-lab", status: "ready" },
       { label: "decision-lab", href: "/decision-lab", status: "ready" },
@@ -203,6 +229,9 @@ export const assistantBranches: AssistantBranch[] = [
     missing: ["成本 breakdown", "下次 deploy 批次"],
     recent: "今天前端完成後只部署 App Hosting 一次。",
     next_action: "看 Product Roadmap 或 Command Brain。",
+    completed: ["Assistant 首頁", "Assistant Universe", "Exam Review Center", "App Hosting 單次部署"],
+    review_items: ["查 Billing service breakdown", "下次開發批次規劃", "確認哪些頁面 Mark 看不懂"],
+    ask_examples: ["App 下一步做什麼？", "助理系統還缺什麼？", "今天開發要先收斂哪裡？"],
     nodes: [
       { label: "product-roadmap", href: "/product-roadmap", status: "ready" },
       { label: "codex-jobs", href: "/codex-jobs", status: "review" },
@@ -221,6 +250,9 @@ export const assistantBranches: AssistantBranch[] = [
     missing: ["Billing Console service breakdown"],
     recent: "不啟用 functions / LINE reply / paid OCR / market data。",
     next_action: "查看 Safety Center 和 System Status。",
+    completed: ["Safety Center", "Cloud cost guard", "LINE / functions / external action 禁止規則"],
+    review_items: ["確認雲端成本 breakdown", "確認是否需要 LINE reply 批准", "確認是否要開付費 OCR"],
+    ask_examples: ["現在系統安全嗎？", "哪些外部動作被禁止？", "雲端成本要怎麼控？"],
     nodes: [
       { label: "safety-center", href: "/safety-center", status: "active" },
       { label: "system-status", href: "/system-status", status: "ready" },
@@ -229,8 +261,43 @@ export const assistantBranches: AssistantBranch[] = [
   }
 ];
 
+export function buildAssistantReviewDashboard(): AssistantReviewDashboard {
+  const examTopics = matchExamReviewTopics("期末考");
+  return {
+    completed: [
+      { title: "助理首頁", detail: "可直接輸入問題，回答會附下一步與入口。", href: "/assistant" },
+      { title: "助理宇宙圖", detail: "七個助理分支可點擊，顯示狀態、風險與節點。", href: "/assistant-universe" },
+      { title: "期末考整理中心", detail: `已整理 ${examTopics.length} 個科目群，包含題庫、圖片與簡報式總整理。`, href: "/exam-review" },
+      { title: "財務警訊追蹤", detail: "Finance baseline active，expense signal 維持 watch。", href: "/today" }
+    ],
+    needsMarkReview: [
+      { title: "期末考掃描頁", detail: "ROM 講義、操作治療四肢掃描內容需人工確認。", href: "/exam-review", risk: "watch" },
+      { title: "HIFEM 缺檔", detail: "物理因子尚缺高強度聚焦磁場治療講義。", href: "/exam-review/physical-modality", risk: "watch" },
+      { title: "支出警訊", detail: "Line Pay / 一番賞支出 11,840 與 940 差額仍需確認。", href: "/finance-decisions", risk: "warning" },
+      { title: "投資條件", detail: "投資決策仍 waiting_review，需補目標價、停損與加碼條件。", href: "/investment-decisions", risk: "watch" }
+    ],
+    suggestedQuestions: [
+      "我今天先做什麼？",
+      "我要準備期末考",
+      "TENS 怎麼讀？",
+      "ROM / MMT 今天先背什麼？",
+      "我現在可以花錢嗎？",
+      "股票可以加碼嗎？",
+      "助理系統還缺什麼？"
+    ]
+  };
+}
+
+export function assistantBranchCompletion(branch: AssistantBranch) {
+  const done = branch.completed.length;
+  const review = branch.review_items.length;
+  const total = Math.max(done + review, 1);
+  return Math.round((done / total) * 100);
+}
+
 export function inferAssistantMode(question: string) {
   if (/考|期末|ROM|MMT|講義|題庫|讀書|國考|TENS|震波|牽引|肌肉電刺激|操作治療|外科/.test(question)) return "exam";
+  if (/助理系統|宇宙圖|看不懂|完成|進度|缺什麼|需要確認/.test(question)) return "assistant_system";
   if (/股票|投資|加碼|攤平|買|賣|NVDA|MU|台積電|鴻海/.test(question)) return "investment";
   if (/花錢|支出|信用卡|分期|現金|財務|風險|可以花/.test(question)) return "finance";
   if (/客戶|課表|訓練|按摩|疼|痛/.test(question)) return "client";
@@ -270,11 +337,27 @@ export function buildAssistantAnswer(question: string): AssistantAnswer {
       content_summary: {
         title: topics.length === 1 ? `${topics[0].subject} 內容總整理` : "期末考內容總整理",
         description: "以下是系統目前已製作完成與需要 Mark 確認的內容。",
+        recommended_start: topics.length === 1 ? `先看 ${topics[0].subject} 的圖片式總整理，再讀題庫或講義重點。` : "先從圖片式總整理掃過四科，再讀 ROM / MMT 與物理因子的考前 30 分鐘整理。",
         ready: topics.flatMap((topic) => topic.whatIsReady.map((item) => `${topic.subject}: ${item}`)).slice(0, 10),
         needs_review: topics.flatMap((topic) => topic.needsMarkReview.map((item) => `${topic.subject}: ${item}`)).slice(0, 10),
         topics
       },
       safety_flags: ["external_action_allowed=false", "need_mark_review=true", "no_fabricated_questions"]
+    };
+  }
+  if (mode === "assistant_system") {
+    return {
+      mode: "structured_rule_based",
+      sections: {
+        current_judgment: "助理系統已從後台清單往每日操作介面收斂；現在重點是讓 Mark 看懂、能問、能點、能看到待確認。",
+        priority: "先驗收 /assistant、/assistant-universe、/today、/exam-review 四個入口。",
+        risk: "如果沒有持續把完成品與待確認項目做成卡片，系統會退回後台列表，Mark 會不知道每天要先看哪裡。",
+        next_step: "看下方系統完成與待確認卡片；先點需要 Mark 確認的項目。",
+        draft_available: "可建立產品任務草稿，但不自動 deploy、不自動開外部流程。",
+        links: [{ label: "Assistant", href: "/assistant" }, { label: "Universe", href: "/assistant-universe" }, { label: "Today", href: "/today" }]
+      },
+      review_dashboard: buildAssistantReviewDashboard(),
+      safety_flags: ["external_action_allowed=false", "need_mark_review=true", "no_external_automation"]
     };
   }
   if (mode === "client") {

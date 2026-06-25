@@ -20,5 +20,7 @@ describe("exam review UI", () => {
     const page = readFileSync("src/app/exam-review/page.tsx", "utf8");
     expect(page).toContain("系統已製作與待確認");
     expect(page).toContain("exam-card-visual");
+    expect(page).toContain("問助理讀這科");
+    expect(page).toContain("ask_prompt");
   });
 });

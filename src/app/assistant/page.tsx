@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { type FormEvent, useMemo, useState } from "react";
+import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { AssistantSuggestionPanel } from "@/components/AssistantSuggestionPanel";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { recent20, useFirestoreCollection } from "@/hooks/useFirestoreCollection";
-import { assistantBranches, assistantSuggestions, buildAssistantAnswer, latestFinanceStatus } from "@/lib/assistantExperience";
+import { assistantBranches, assistantBranchCompletion, assistantSuggestions, buildAssistantAnswer, buildAssistantReviewDashboard, latestFinanceStatus } from "@/lib/assistantExperience";
 import { buildReviewQueue } from "@/lib/reviewQueue";
 import type { CreditCardObligation, DailyBrief, ExpenseSignal, FinanceDecision, FinanceDecisionReview, InvestmentDecision, TaskDispatch } from "@/types/firestore";
 
@@ -18,7 +18,8 @@ const prompts = [
   "股票能不能加碼？",
   "我要準備期末考",
   "我要整理客戶課表",
-  "App 下一步做什麼？"
+  "App 下一步做什麼？",
+  "助理系統還缺什麼？"
 ];
 
 function AssistantData() {
@@ -33,6 +34,12 @@ function AssistantData() {
   const [answer, setAnswer] = useState(() => buildAssistantAnswer("我今天先做什麼？"));
   const [openBranch, setOpenBranch] = useState<string | null>(null);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const prompt = params.get("prompt")?.trim();
+    if (prompt) setAnswer(buildAssistantAnswer(prompt));
+  }, []);
+
   const queue = useMemo(() => buildReviewQueue({
     finance_decisions: financeDecisions.items as never[],
     finance_decision_reviews: financeDecisionReviews.items as never[],
@@ -45,6 +52,7 @@ function AssistantData() {
   const financeStatus = latestFinanceStatus(expenseSignals.items);
   const missingCount = queue.filter((item) => item.missing_required_fields.length > 0).length;
   const branch = assistantBranches.find((item) => item.id === openBranch) ?? null;
+  const reviewDashboard = useMemo(() => buildAssistantReviewDashboard(), []);
 
   function ask(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -84,6 +92,45 @@ function AssistantData() {
         </ol>
       </section>
 
+      <section className="panel assistant-review-dashboard" aria-label="Assistant review dashboard">
+        <div className="item-header">
+          <div>
+            <h2>系統已完成與需要你確認</h2>
+            <p>這裡是助理主動整理給 Mark 的驗收清單，不用再從後台頁面猜。</p>
+          </div>
+          <span className="badge review">review deck</span>
+        </div>
+        <div className="assistant-review-columns">
+          <div>
+            <h3>已製作完成</h3>
+            <div className="assistant-review-card-list">
+              {reviewDashboard.completed.map((item) => (
+                <Link className="assistant-review-card done" key={item.title} href={item.href}>
+                  <strong>{item.title}</strong>
+                  <span>{item.detail}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3>Mark 需要看 / 確認</h3>
+            <div className="assistant-review-card-list">
+              {reviewDashboard.needsMarkReview.map((item) => (
+                <Link className={`assistant-review-card risk-${item.risk}`} key={item.title} href={item.href}>
+                  <strong>{item.title}</strong>
+                  <span>{item.detail}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="assistant-question-strip" aria-label="Suggested assistant questions">
+          {reviewDashboard.suggestedQuestions.map((prompt) => (
+            <button key={prompt} type="button" onClick={() => setAnswer(buildAssistantAnswer(prompt))}>{prompt}</button>
+          ))}
+        </div>
+      </section>
+
       <section className="panel">
         <h2>快速對話</h2>
         <form className="assistant-chat-box" onSubmit={ask}>
@@ -121,6 +168,10 @@ function AssistantData() {
             <span className="badge review">自動跳出</span>
           </div>
           <div className="assistant-summary-columns">
+            <div className="assistant-recommended-start">
+              <h3>建議先看</h3>
+              <p>{answer.content_summary.recommended_start}</p>
+            </div>
             <div>
               <h3>已製作完成</h3>
               <div className="stack-list">
@@ -151,6 +202,42 @@ function AssistantData() {
         </section>
       ) : null}
 
+      {answer.review_dashboard ? (
+        <section className="panel assistant-review-dashboard" aria-label="Assistant system answer review deck">
+          <div className="item-header">
+            <div>
+              <h2>助理系統完成度</h2>
+              <p>這是根據你剛剛的問題自動跳出的系統狀態卡。</p>
+            </div>
+            <span className="badge review">answer deck</span>
+          </div>
+          <div className="assistant-review-columns">
+            <div>
+              <h3>已完成</h3>
+              <div className="assistant-review-card-list">
+                {answer.review_dashboard.completed.map((item) => (
+                  <Link className="assistant-review-card done" key={item.title} href={item.href}>
+                    <strong>{item.title}</strong>
+                    <span>{item.detail}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3>需要 Mark 確認</h3>
+              <div className="assistant-review-card-list">
+                {answer.review_dashboard.needsMarkReview.map((item) => (
+                  <Link className={`assistant-review-card risk-${item.risk}`} key={item.title} href={item.href}>
+                    <strong>{item.title}</strong>
+                    <span>{item.detail}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section className="assistant-card-row" aria-label="Suggestions">
         {assistantSuggestions.map((suggestion) => <AssistantSuggestionPanel key={suggestion.id} suggestion={suggestion} />)}
       </section>
@@ -163,6 +250,7 @@ function AssistantData() {
               <span className={`badge review risk-${item.risk}`}>{item.risk}</span>
               <strong>{item.title}</strong>
               <small>{item.status}</small>
+              <span className="assistant-progress" aria-label={`${item.title} completion ${assistantBranchCompletion(item)} percent`}><span style={{ width: `${assistantBranchCompletion(item)}%` }} /></span>
             </button>
           ))}
         </div>
@@ -183,6 +271,11 @@ function AssistantData() {
               <div><strong>風險</strong><p>{branch.risk}</p></div>
               <div><strong>最近摘要</strong><p>{branch.recent}</p></div>
               <div><strong>建議下一步</strong><p>{branch.next_action}</p></div>
+              <div><strong>已完成</strong><p>{branch.completed.join("、")}</p></div>
+              <div><strong>Mark 需確認</strong><p>{branch.review_items.join("、")}</p></div>
+            </div>
+            <div className="assistant-question-strip">
+              {branch.ask_examples.map((prompt) => <button key={prompt} type="button" onClick={() => setAnswer(buildAssistantAnswer(prompt))}>{prompt}</button>)}
             </div>
             <div className="action-row">
               <Link className="button compact" href={branch.href}>前往主要入口</Link>

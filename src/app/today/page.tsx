@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { recent20, useFirestoreCollection } from "@/hooks/useFirestoreCollection";
+import { buildAssistantReviewDashboard } from "@/lib/assistantExperience";
 import { createCfoBriefDraft } from "@/lib/cfoBrief";
 import { getClientDb } from "@/lib/firebase/client";
 import { buildReviewQueue } from "@/lib/reviewQueue";
@@ -78,6 +79,7 @@ function TodayData({ uid }: { uid: string }) {
   const [busy, setBusy] = useState(false);
   const [createdId, setCreatedId] = useState<string | null>(null);
   const [createError, setCreateError] = useState<string | null>(null);
+  const assistantReview = useMemo(() => buildAssistantReviewDashboard(), []);
 
   const reviewQueueItems = useMemo(() => {
     const reviewedDecisionIds = new Set(financeDecisionReviews.items.map((item) => item.finance_decision_id).filter(Boolean));
@@ -171,6 +173,40 @@ function TodayData({ uid }: { uid: string }) {
       {error ? <section className="panel"><h2>Today dashboard 讀取失敗</h2><p className="muted">{error}</p></section> : null}
       {createError ? <section className="panel"><h2>CFO Brief 建立失敗</h2><p className="muted">{createError}</p></section> : null}
       {createdId ? <section className="panel"><h2>CFO Brief Draft 已建立</h2><p>created id: <Link className="mono" href={`/daily-briefs/${createdId}`}>{createdId}</Link></p><p className="muted">下一步：到 Review Queue 審核。此動作沒有 LINE、push、email、OpenAI 或任何外部行動。</p></section> : null}
+
+      <section className="panel assistant-review-dashboard">
+        <div className="item-header">
+          <div>
+            <h2>助理今日交付與 Mark 需確認</h2>
+            <p>這裡把助理系統、期末考整理與財務警訊濃縮成可點擊卡片。</p>
+          </div>
+          <Link className="button secondary compact" href="/assistant">問助理</Link>
+        </div>
+        <div className="assistant-review-columns">
+          <div>
+            <h3>已完成</h3>
+            <div className="assistant-review-card-list">
+              {assistantReview.completed.map((item) => (
+                <Link className="assistant-review-card done" key={item.title} href={item.href}>
+                  <strong>{item.title}</strong>
+                  <span>{item.detail}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3>需要 Mark 看 / 確認</h3>
+            <div className="assistant-review-card-list">
+              {assistantReview.needsMarkReview.map((item) => (
+                <Link className={`assistant-review-card risk-${item.risk}`} key={item.title} href={item.href}>
+                  <strong>{item.title}</strong>
+                  <span>{item.detail}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="stats-grid">
         <div className="stat"><strong>{summary.total_waiting_review}</strong><span className="muted">待審核總數</span></div>

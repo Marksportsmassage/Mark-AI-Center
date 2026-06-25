@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { assistantSuggestions, buildAssistantAnswer } from "../src/lib/assistantExperience";
+import { assistantSuggestions, buildAssistantAnswer, buildAssistantReviewDashboard } from "../src/lib/assistantExperience";
 
 describe("assistant home", () => {
   it("route exists", () => {
@@ -30,8 +30,23 @@ describe("assistant home", () => {
   it("exam questions return auto content summaries", () => {
     const answer = buildAssistantAnswer("我要準備期末考，TENS 怎麼讀？");
     expect(answer.content_summary?.title).toBeTruthy();
+    expect(answer.content_summary?.recommended_start).toContain("先看");
     expect(answer.content_summary?.topics.some((topic) => topic.id === "physical-modality")).toBe(true);
     expect(answer.content_summary?.ready.length).toBeGreaterThan(0);
     expect(answer.safety_flags).toContain("no_fabricated_questions");
+  });
+
+  it("builds a Mark-facing review dashboard", () => {
+    const dashboard = buildAssistantReviewDashboard();
+    expect(dashboard.completed.some((item) => item.href === "/assistant-universe")).toBe(true);
+    expect(dashboard.needsMarkReview.some((item) => item.title.includes("HIFEM"))).toBe(true);
+    expect(dashboard.suggestedQuestions).toContain("我要準備期末考");
+  });
+
+  it("answers assistant system progress questions with a review dashboard", () => {
+    const answer = buildAssistantAnswer("助理系統還缺什麼？");
+    expect(answer.review_dashboard?.completed.length).toBeGreaterThan(0);
+    expect(answer.review_dashboard?.needsMarkReview.length).toBeGreaterThan(0);
+    expect(answer.sections.links.some((link) => link.href === "/assistant-universe")).toBe(true);
   });
 });

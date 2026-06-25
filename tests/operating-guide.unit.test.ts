@@ -5,9 +5,11 @@ import { RELEASE_NOTES, SAFETY_NOTES, publicEnvPresence, safetyChecklist } from 
 describe("start here", () => {
   it("start here route content is covered by smoke routes", () => {
     const smoke = readFileSync("tests/route-smoke.ts", "utf8");
+    const startHere = readFileSync("src/app/start-here/page.tsx", "utf8");
     expect(smoke).toContain("/start-here");
     expect(smoke).toContain("/advisor-chat");
     expect(smoke).toContain("/command-brain");
+    expect(startHere).toContain("我要準備期末考");
   });
 });
 

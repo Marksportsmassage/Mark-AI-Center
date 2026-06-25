@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { ProtectedPage } from "@/components/ProtectedPage";
-import { assistantBranches } from "@/lib/assistantExperience";
+import { assistantBranches, assistantBranchCompletion } from "@/lib/assistantExperience";
 
 function AssistantUniverse() {
   const [activeId, setActiveId] = useState(assistantBranches[0]?.id ?? "");
@@ -30,6 +30,7 @@ function AssistantUniverse() {
               <span className={`badge review risk-${branch.risk}`}>{branch.risk}</span>
               <strong>{branch.title}</strong>
               <small>{branch.status}</small>
+              <span className="assistant-progress" aria-label={`${branch.title} completion ${assistantBranchCompletion(branch)} percent`}><span style={{ width: `${assistantBranchCompletion(branch)}%` }} /></span>
             </button>
           ))}
         </div>
@@ -49,6 +50,23 @@ function AssistantUniverse() {
           <div><strong>最近摘要</strong><p>{active.recent}</p></div>
           <div><strong>建議下一步</strong><p>{active.next_action}</p></div>
         </div>
+        <div className="assistant-summary-columns universe-work-summary">
+          <div>
+            <h3>已完成</h3>
+            <div className="stack-list">
+              {active.completed.map((item) => <span key={item}>{item}</span>)}
+            </div>
+          </div>
+          <div>
+            <h3>需要 Mark 確認</h3>
+            <div className="stack-list warning-list">
+              {active.review_items.map((item) => <span key={item}>{item}</span>)}
+            </div>
+          </div>
+        </div>
+        <div className="assistant-question-strip universe-question-strip" aria-label="Questions for this assistant">
+          {active.ask_examples.map((prompt) => <Link className="question-pill" key={prompt} href={`/assistant?prompt=${encodeURIComponent(prompt)}`}>{prompt}</Link>)}
+        </div>
         <div className="node-strip">
           {active.nodes.map((node) => (
             <Link className="node-pill" key={node.href + node.label} href={node.href}>
@@ -67,4 +85,3 @@ function AssistantUniverse() {
 export default function Page() {
   return <ProtectedPage>{() => <AssistantUniverse />}</ProtectedPage>;
 }
-
