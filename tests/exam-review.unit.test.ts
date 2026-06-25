@@ -15,14 +15,15 @@ describe("exam review docs", () => {
 
   it("lists missing materials", () => {
     const missing = readExamDoc("docs/exam-review/missing-materials.md");
-    expect(missing).toContain("外科題目AI");
-    expect(missing).toContain("易大師");
+    expect(missing).toContain("高強度聚焦磁場治療");
+    expect(missing).not.toContain("外科題目AI.pdf");
+    expect(missing).not.toContain("易大師的期末ROM題庫-保母級.pdf");
   });
 
-  it("does not claim missing source content is original question", () => {
+  it("uses source-extracted surgery questions without fabricated answer format", () => {
     const surgery = readExamDoc("docs/exam-review/surgery/surgery-question-bank.md");
-    expect(surgery).toContain("source missing");
+    expect(surgery).toContain("Source file: 外科題目AI.pdf");
+    expect(surgery).toContain("原題抽取");
     expect(surgery).not.toContain("Correct answer: A");
   });
 });
-

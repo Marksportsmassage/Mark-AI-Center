@@ -2,8 +2,6 @@
 
 Mark still needs to provide:
 
-- 易大師的期末ROM題庫-保母級.pdf
-- 外科題目AI(1).pdf
 - 高強度聚焦磁場治療(1).pdf
 
 Additional helpful materials:

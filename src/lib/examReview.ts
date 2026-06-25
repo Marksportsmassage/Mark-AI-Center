@@ -17,14 +17,15 @@ export const examSubjects: ExamSubject[] = [
     id: "surgery",
     title: "外科學",
     href: "/exam-review/surgery",
-    completion: "0%",
-    status: "外科題目 PDF 尚未找到，保留題庫框架。",
-    files: [],
-    missing: ["外科題目AI(1).pdf"],
+    completion: "partial",
+    status: "外科題目已找到並抽出 29 題選擇題；考點以外題需 Mark 考前確認。",
+    files: ["外科題目AI.pdf"],
+    missing: ["外科完整講義或老師畫重點，如有"],
     docs: [
-      { label: "外科題庫", path: "docs/exam-review/surgery/surgery-question-bank.md", kind: "待補" },
-      { label: "外科答案", path: "docs/exam-review/surgery/surgery-answer-key.md", kind: "待補" },
-      { label: "考前 30 分鐘", path: "docs/exam-review/surgery/surgery-final-30min-review.md", kind: "待補" }
+      { label: "外科題庫", path: "docs/exam-review/surgery/surgery-question-bank.md", kind: "原題" },
+      { label: "外科答案", path: "docs/exam-review/surgery/surgery-answer-key.md", kind: "原題" },
+      { label: "外科高頻重點", path: "docs/exam-review/surgery/surgery-high-yield-review.md", kind: "講義重點，非原題" },
+      { label: "考前 30 分鐘", path: "docs/exam-review/surgery/surgery-final-30min-review.md", kind: "索引" }
     ]
   },
   {
@@ -32,11 +33,14 @@ export const examSubjects: ExamSubject[] = [
     title: "物理因子治療學",
     href: "/exam-review/physical-modality",
     completion: "partial",
-    status: "震波 PDF 已抽文字；HIFEM 尚未找到。",
-    files: ["06震波.pdf"],
+    status: "TENS、肌肉電刺激、脊椎牽引、震波已抽文字；HIFEM 尚未找到。",
+    files: ["04TENS 2.pdf", "05肌肉電刺激 2.pdf", "05脊椎牽引概論與臨床運用 2.pdf", "06震波.pdf"],
     missing: ["高強度聚焦磁場治療(1).pdf"],
     docs: [
       { label: "震波重點", path: "docs/exam-review/physical-modality/shockwave-high-yield-review.md", kind: "講義重點，非原題" },
+      { label: "TENS 重點", path: "docs/exam-review/physical-modality/tens-high-yield-review.md", kind: "講義重點，非原題" },
+      { label: "肌肉電刺激重點", path: "docs/exam-review/physical-modality/muscle-stimulation-high-yield-review.md", kind: "講義重點，非原題" },
+      { label: "脊椎牽引重點", path: "docs/exam-review/physical-modality/traction-high-yield-review.md", kind: "講義重點，非原題" },
       { label: "HIFEM 重點", path: "docs/exam-review/physical-modality/hifem-high-yield-review.md", kind: "待補" },
       { label: "比較表", path: "docs/exam-review/physical-modality/physical-modality-comparison-table.md", kind: "索引" }
     ]
@@ -60,13 +64,14 @@ export const examSubjects: ExamSubject[] = [
     title: "ROM / MMT",
     href: "/exam-review/rom-mmt",
     completion: "partial",
-    status: "MMT 上肢 / 下肢已抽文字；ROM 題庫尚未找到。",
-    files: ["MMT小考上肢(ans).pdf", "MMT小考下肢(ans)(1).pdf"],
-    missing: ["易大師的期末ROM題庫-保母級.pdf"],
+    status: "MMT 上肢 / 下肢與 ROM 題庫已抽文字；ROM 講義是掃描型需人工 OCR。",
+    files: ["MMT小考上肢(ans).pdf", "MMT小考下肢(ans)(1).pdf", "易大師的期末ROM題庫-保母級.pdf"],
+    missing: ["ROM講義.pdf 清晰文字版或人工 OCR"],
     docs: [
       { label: "MMT 上肢", path: "docs/exam-review/mmt/mmt-upper-limb-muscle-actions.md", kind: "講義重點，非原題" },
       { label: "MMT 下肢", path: "docs/exam-review/mmt/mmt-lower-limb-muscle-actions.md", kind: "講義重點，非原題" },
-      { label: "ROM 題庫", path: "docs/exam-review/rom/rom-question-bank.md", kind: "待補" }
+      { label: "ROM 題庫", path: "docs/exam-review/rom/rom-question-bank.md", kind: "原題" },
+      { label: "ROM Norkin 重點", path: "docs/exam-review/rom/rom-norkin-high-yield.md", kind: "講義重點，非原題" }
     ]
   }
 ];
@@ -81,4 +86,3 @@ export function excerptMarkdown(markdown: string, max = 1800) {
   const text = markdown.replace(/^# .*\n/, "").trim();
   return text.length > max ? `${text.slice(0, max)}\n\n...（已截斷，請看 repo docs 完整內容）` : text;
 }
-

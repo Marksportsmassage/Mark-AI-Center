@@ -1,19 +1,1308 @@
 {
-  "generated_at": "2026-06-25T01:21:58.175Z",
+  "generated_at": "2026-06-25T03:15:24.241Z",
   "reports": [
     {
       "key": "rom",
       "subject": "ROM",
       "file": "易大師的期末ROM題庫-保母級.pdf",
       "dir": "rom",
-      "status": "missing",
-      "found": false,
+      "status": "text_extracted",
+      "found": true,
       "copied_path": "materials/exam/rom/易大師的期末ROM題庫-保母級.pdf",
       "requires_manual_ocr": false,
+      "page_count": 151,
+      "extracted_pages": 94,
+      "char_count": 19137,
+      "error": null,
+      "pages": [
+        {
+          "page": 1,
+          "char_count": 22,
+          "text": "挪 京 氏 （ Norkin ） 的 題 目"
+        },
+        {
+          "page": 2,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 3,
+          "char_count": 17,
+          "text": "Norkin- 手 部 與 手 指"
+        },
+        {
+          "page": 4,
+          "char_count": 412,
+          "text": "【題 號 ： 第  4  題 ，  107-1-(66)  】  66. 執 行 掌 指 關 節 （ MCP ） 、 近 端 指 間 關 節 （ PIP ） 與 遠 端 指 間 關 節 （ DIP ） 屈 曲 的 活 動 度 量 測 時 ， 依\n據\n挪\n京\n氏\n（\nNorkin\n）\n建\n議\n的\n量\n測\n方\n法\n，\n下\n列\n敘\n述\n何\n者\n正\n確 ？\n(A)  量 測 掌 指 關 節 屈 曲 ， 要 避 免 近 端 與 遠 端 指 間 關 節 擺 在 伸 直 的 位 置  (B)  量 測 近 端 指 間 關 節 屈 曲 ， 要 保 持 掌 指 關 節 在 輕 微 伸 直 的 位 置  (C)  量 測 遠 端 指 間 關 節 屈 曲 ， 要 保 持 近 端 指 間 關 節 在 屈 曲 70 ～ 90 度 的 位 置  (D)  量 測 此 三 種 動 作 時 ， 均 不 需 考 量 手 腕 與 前 臂 的 位 置"
+        },
+        {
+          "page": 5,
+          "char_count": 7,
+          "text": "答 案 ： C"
+        },
+        {
+          "page": 6,
+          "char_count": 184,
+          "text": "請 記 得 當 你 要 測 試 一 段 指 間 關 節 的 角 度 時 記 得 要 去 把 比 她 上 游 近 端 一 個 關 節 給 稍 微 屈 一 下 =\n讓\n背\n側\n的\n伸\n肌\n鍵\n給\n她\n鬆\n開\n來\n那 麼 手 指 最 近 端 的 就 是 掌 指 關 節  該 怎 麼 辦 呢 ?\n那 就 是 在 找 更 近 的 手 腕 鬆 開 來\n這 是 本 題 的 答 案"
+        },
+        {
+          "page": 7,
+          "char_count": 23,
+          "text": "明 顯 的 錯 誤 選 項\n迷 惑 的 選 項"
+        },
+        {
+          "page": 8,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 9,
+          "char_count": 381,
+          "text": "【題 號 ： 第  6  題 ，  108-2-(61)  】  61. 執 行 拇 指 腕 掌 關 節 （ 1st  CMC ） 屈 曲 與 伸 直 的 活 動 度 量 測 時 ， 依 據 挪 京 氏 （ Norkin ） 建 議 的 量\n測\n方\n法\n，\n下\n列\n敘\n述\n何\n者\n正\n確 ？\n(A)  受 測 者 採 坐 姿 ， 前 臂 與 手 腕 都 放 在 正 中 位 置  (B)  只 需 固 定 橈 骨 與 尺 骨  (C)  關 節 量 角 器 的 支 點 （ center  fulcrum ） 對 齊 大 多 角 骨 （ trapezium ）\n(D)\n近\n端\n臂\n有\n2\n種\n對\n齊\n方\n法\n，\n其\n中\n平\n行\n遠\n端\n手\n腕\n橫\n紋\n的\n方\n法\n，\n較\n能\n排\n除\n因\n手\n腕\n活\n動\n而\n產\n生\n的\n角\n度\n量\n測\n誤\n差\n答 案 ： D"
+        },
+        {
+          "page": 10,
+          "char_count": 25,
+          "text": "以 下 三 個 選 項 皆 是 錯 誤 的 部 分"
+        },
+        {
+          "page": 11,
+          "char_count": 351,
+          "text": "【題 號 ： 第  7  題 ，  112-1-(32)  】  32. 依 據 Norkin 的 方 法 ， 執 行 大 拇 指 的 腕 掌 關 節 外 展 （ carpometacarpal  abduction ） 活 動 度 的 量\n測\n，\n下\n列\n敘\n述\n何\n者\n正\n確 ？\n(A)  受 測 者 擺 位 時 ， 前 臂 放 於 支 持 面 ， 並 擺 在 完 全 的 旋 後 （ supination ） 位 置  (B)  關 節 量 角 尺 的 支 點 （ fulcrum ） 對 齊 大 多 角 骨  (C)  關 節 量 角 尺 的 近 端 臂 對 齊 第 二 掌 骨 外 側 中 線  (D)  關 節 量 角 尺 的 遠 端 臂 對 齊 橈 骨 腹 側 中 線  答 案 ： C"
+        },
+        {
+          "page": 12,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 13,
+          "char_count": 255,
+          "text": "【題 號 ： 第  8  題 ，  114-1-(31)  】  31. 根 據  Norkin  等 人 提 出 的 大 拇 指 之 腕 掌 關 節 （ carpometacarpal  joint ） 外 展 之 關 節 活 動 度 測 試\n，\n下\n列\n何\n者\n錯\n誤\n？\n(A)  正 常 角 度 約 可 達  40 ～ 50  度  (B)  測 試 時 ， 須 穩 定 腕 骨 及 第 二 掌 骨  (C)  測 試 時 ， 請 受 試 者 將 大 拇 指 於 垂 直 掌 面 方 向 遠 離 手 掌"
+        },
+        {
+          "page": 14,
+          "char_count": 63,
+          "text": "(D)  量 測 關 節 角 度 時 ， 關 節 量 角 器 支 點 應 對 準 此 關 節 之 掌 面 處  答 案 ： D"
+        },
+        {
+          "page": 15,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 16,
+          "char_count": 13,
+          "text": "Norkin- 髖 關 節"
+        },
+        {
+          "page": 17,
+          "char_count": 432,
+          "text": "【題 號 ： 第  12  題 ，  106-2-(66)  】  66. 執 行 髖 關 節 內 轉 與 外 轉 的 活 動 度 量 測 時 ， 依 據 挪 京 氏 （ Norkin ） 建 議 的 量 測 方 法 ， 下 列 敘 述\n何\n者\n正\n確 ？\n(A)  內 轉 的 正 常 終 末 感 覺 （ end-feel ） 為 緊 實 的 （ firm ） ， 外 轉 則 為 硬 的 （ hard ）  (B)  兩 者 均 可 在 坐 姿 或 俯 臥 的 姿 勢 下 量 測 ， 但 俯 臥 姿 勢 不 可 在 受 測 者 股 直 肌 太 緊 的 情 況 下 使\n用\n(C)  依 據 研 究 結 果 ， 坐 姿 測 得 的 角 度 會 大 於 俯 臥 姿 勢 下 測 得 的 角 度  (D)  關 節 量 角 器 的 支 點 （ center  fulcrum ） 都 對 齊 脛 骨 平 台 （ tibial  plateau ）  答 案 ： B"
+        },
+        {
+          "page": 18,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 19,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 20,
+          "char_count": 387,
+          "text": "【題 號 ： 第  13  題 ，  107-2-(66)  】  66. 執 行 髖 關 節 屈 曲 與 伸 直 的 活 動 度 量 測 時 ， 依 據 挪 京 氏 （ Norkin ） 建 議 的 量 測 方 法 ， 下 列 敘 述\n何\n者\n錯\n誤\n？\n(A)  兩 種 測 試 動 作 ， 受 測 者 均 在 仰 臥 的 姿 勢 下 被 量 測 ， 且 都 會 利 用 對 側 肢 體 平 放 床 面 ， 來 協 助\n固\n定\n骨\n盆\n(B)  關 節 量 角 器 的 支 點 （ center  fulcrum ） 都 對 齊 大 轉 子  (C)  近 端 臂 都 對 齊 骨 盆 外 側 中 線  (D)  遠 端 臂 都 對 齊 股 骨 外 側 中 線 ， 以 股 骨 外 上 髁 （ lateral  epicondyle ） 為 參 考 點  答 案 ： A"
+        },
+        {
+          "page": 21,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 22,
+          "char_count": 317,
+          "text": "【題 號 ： 第  14  題 ，  110-1-(30)  】  30. 依 據 Norkin 的 方 法 ， 執 行 髖 外 展 活 動 度 的 量 測 ， 下 列 敘 述 何 者 正 確 ？  (A)  受 測 者 擺 位 與 執 行 測 試 動 作 時 ， 要 保 持 髖 關 節 屈 曲、 伸 直 與 內 外 轉 均 為 0 度、 膝 關 節 伸 直  (B)  關 節 量 角 尺 的 支 點 （ fulcrum ） 對 齊 股 骨 大 轉 子  (C)  關 節 量 角 尺 的 近 端 臂 對 齊 骨 盆 外 側 中 線  (D)  關 節 量 角 尺 的 遠 端 臂 對 齊 股 骨 外 側 中 線  答 案 ： A"
+        },
+        {
+          "page": 23,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 24,
+          "char_count": 297,
+          "text": "【題 號 ： 第  15  題 ，  112-2-(32)  】  32. 依 據 Norkin 建 議 的 量 測 方 法 ， 執 行 髖 關 節 屈 曲 活 動 度 的 量 測 ， 下 列 敘 述 何 者 錯 誤 ？  (A)  動 作 時 ， 髖 屈 曲 的 同 時 可 伴 隨 膝 關 節 自 然 屈 曲\n(B)\n關\n節\n量\n角\n器\n的\n支\n點\n（\nfulcrum\n）\n對\n齊\n髂\n前\n上\n棘\n（\nASIS\n）\n(C)  關 節 量 角 器 的 近 端 臂 對 齊 骨 盆 外 側 中 線  (D)  關 節 量 角 器 的 遠 端 臂 對 齊 股 骨 外 側 中 線  答 案 ： B"
+        },
+        {
+          "page": 25,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 26,
+          "char_count": 359,
+          "text": "【題 號 ： 第  16  題 ，  113-2-(31)  】  31. 根 據 Norkin 等 人 提 出 的 髖 關 節 伸 直 活 動 度 測 試 方 式 ， 下 列 何 者 錯 誤 ？  (A)  施 測 者 應 一 手 固 定 受 測 者 之 對 側 骨 盆 ， 避 免 骨 盆 前 傾 （ anterior  tilt ） 影 響 測 量 結 果  (B)  受 測 者 應 採 俯 臥 姿 或 側 躺 姿  (C)  受 測 者 應 採 膝 屈 曲 90 度 的 姿 勢  (D)  使 用 關 節 量 角 器 之 遠 端 臂 （ distal  arm ） 應 對 齊 股 骨 側 中 線 ， 並 以 股 骨 外 上 髁 （ lateral\nepicondyle\n）\n為\n參\n考\n點\n答 案 ： C"
+        },
+        {
+          "page": 27,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 28,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 29,
+          "char_count": 281,
+          "text": "【題 號 ： 第  17  題 ，  113-2-(32)  】  32. 根 據 Norkin 等 人 提 出 的 髖 關 節 內 收 活 動 度 測 試 ， 下 列 敘 述 何 者 錯 誤 ？  (A)  受 測 者 應 採 仰 躺 姿  (B)  正 常 人 髖 關 節 內 收 的 角 度 約 為 40 ～ 50 度  (C)  施 測 時 要 注 意 對 側 大 腿 應 呈 現 外 展 姿 勢 ， 讓 欲 施 測 的 肢 段 有 活 動 空 間  (D)  應 穩 定 同 側 骨 盆 ， 避 免 骨 盆 向 下 側 傾 或 旋 轉  答 案 ： B"
+        },
+        {
+          "page": 30,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 31,
+          "char_count": 308,
+          "text": "【題 號 ： 第  18  題 ，  114-1-(33)  】  33. 依 據  Norkin  的 方 法 ， 執 行 髖 內 轉 活 動 度 的 量 測 ， 下 列 敘 述 何 者 錯 誤 ？  (A)  受 測 者 擺 位 可 在 俯 臥 姿 ， 但 須 在 其 股 直 肌 長 度 正 常 的 狀 態 下 始 可 使 用  (B)  關 節 量 角 器 的 支 點 （ fulcrum ） 對 齊 髕 骨 前 面  (C)  關 節 量 角 器 的 近 端 臂 對 齊 小 腿 前 中 線\n(D)\n關\n節\n量\n角\n器\n的\n遠\n端\n臂\n以\n脛\n骨\n嵴\n與\n內\n外\n踝\n中\n點\n為\n參\n考\n點\n答 案 ： C"
+        },
+        {
+          "page": 32,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 33,
+          "char_count": 194,
+          "text": "31. 根 據 Norkin 等 人 提 出 的 髖 關 節 外 展 之 關 節 活 動 度 測 試 方 法 ， 下 列 何 者 錯 誤 ？  (A)  起 始 姿 勢 應 於 骨 盆 正 中 位 置  (B)  給 予 受 測 者 之 口 令 為 ： 請 將 大 腿 向 外 打 開  (C)  髖 外 展 角 度 因 人 而 異 ， 但 正 常 範 圍 大 約 為 40 ～ 55 度"
+        },
+        {
+          "page": 34,
+          "char_count": 91,
+          "text": "(D)  使 用 關 節 量 角 器 量 測 之 遠 端 臂 （ distal  arm ） 應 對 齊 股 骨 中 線 ， 且 以 脛 骨 粗 隆 為 參 考 點  答 案 ： D"
+        },
+        {
+          "page": 35,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 36,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 37,
+          "char_count": 15,
+          "text": "Norkin-\n膝\n與\n腳\n踝"
+        },
+        {
+          "page": 38,
+          "char_count": 476,
+          "text": "【題 號 ： 第  25  題 ，  109-2-(33)  】  33. 執 行 膝 關 節 屈 曲 與 伸 直 的 活 動 度 量 測 時 ， 依 據 Norkin 建 議 的 量 測 方 法 ， 下 列 敘 述 何 者 錯\n誤\n？\n(A)  受 測 者 採 取 仰 臥 姿 勢 會 優 於 俯 臥 姿 勢 ， 主 要 因 為 俯 臥 姿 勢 會 因 為 股 直 肌 的 長 度 而 限 制 膝\n關\n節\n的\n活\n動\n度\n(B)\n在\n仰\n臥\n姿\n勢\n下\n，\n髖\n關\n節\n擺\n在\n正\n中\n位\n置\n，\n膝\n關\n節\n伸\n直\n，\n在\n腳\n踝\n下\n方\n墊\n毛\n巾\n，\n主\n要\n是\n要\n使\n膝\n關\n節\n出\n現\n最\n大\n伸\n直\n角\n度\n(C)  執 行 測 試 動 作 時 ， 髖 關 節 要 移 動 到 最 大 屈 曲 位 置 ， 並 執 行 膝 屈 曲 動 作  (D)  遠 端 臂 對 齊 腓 骨 外 側 中 線 ， 以 外 踝 (lateral  malleolus)  與 腓 骨 頭 (fibular  head)  為 參 考 點  答 案 ： C"
+        },
+        {
+          "page": 39,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 40,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 41,
+          "char_count": 430,
+          "text": "【題 號 ： 第  26  題 ，  107-1-(67)  】  67. 執 行 踝 關 節 背 屈 （ talocrural  dorsiflexion ） 與 蹠 屈 （ plantarflexion ） 的 活 動 度 量 測 時 ， 依 據 挪 京\n氏\n（\nNorkin\n）\n建\n議\n的\n量\n測\n方\n法\n，\n下\n列\n敘\n述\n何\n者\n正\n確 ？\n(A)  正 常 蹠 屈 的 角 度 會 比 背 屈 小\n(B)\n背\n屈\n可\n能\n產\n生\n的\n正\n常\n終\n末\n感\n覺\n（\nend-feel\n）\n為\n緊\n實\n的\n（\nfirm\n）\n，\n而\n蹠\n屈\n則\n為\n緊\n實\n的\n或\n硬\n的\n（\nhard\n）\n(C)  關 節 量 角 器 的 支 點 （ center  fulcrum ） 都 放 於 內 外 踝 （ malleolus ） 連 線 之 中 點  (D)  遠 端 臂 都 對 齊 第 二 蹠 骨 （ 2nd  metatarsal ）  答 案 ： B"
+        },
+        {
+          "page": 42,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 43,
+          "char_count": 430,
+          "text": "【題 號 ： 第  27  題 ，  108-2-(62)  】  62. 執 行 跗 骨 關 節 內 翻 （ tarsal  inversion ） 與 外 翻 （ eversion ） 的 活 動 度 量 測 時 ， 依 據 挪 京 氏 （\nNorkin\n）\n建\n議\n的\n量\n測\n方\n法\n，\n下\n列\n敘\n述\n何\n者\n錯\n誤\n？\n(A)  正 常 內 翻 的 角 度 會 比 外 翻 大\n(B)\n內\n翻\n可\n能\n產\n生\n的\n正\n常\n終\n末\n感\n覺\n（\nend-feel\n）\n為\n緊\n實\n的\n（\nfirm\n）\n，\n而\n外\n翻\n則\n為\n緊\n實\n的\n或\n硬\n的\n（\nhard\n）\n(C)  內 翻 的 測 試 動 作 是 內 收、 背 屈 （ dorsiflexion ）、 旋 後 （ supination ）  (D)  外 翻 的 測 試 動 作 是 外 展、 背 屈 （ dorsiflexion ）、 旋 前 （ pronation ）  答 案 ： C"
+        },
+        {
+          "page": 44,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 45,
+          "char_count": 326,
+          "text": "【 題 號 ： 第  28  題 ，  110-1-(31)  】  31. 依 據 Norkin 的 方 法 ， 執 行 距 腿 關 節 背 屈 （ talocrural  dorsiflexion ） 活 動 度 的 量 測 ， 下 列\n敘\n述\n何\n者\n錯\n誤\n？\n(A)  受 測 者 擺 位 可 採 坐 姿 、 俯 臥 姿 或 是 站 姿  (B)  坐 姿 下 與 站 姿 下 量 測 到 的 角 度 應 該 一 樣  (C)  關 節 量 角 尺 的 支 點 對 齊 外 踝 外 側  (D)  關 節 量 角 尺 的 近 端 臂 對 齊 腓 骨 外 側 中 線 ， 遠 端 臂 平 行 第 五 蹠 骨 （ metatarsal ） 外 側"
+        },
+        {
+          "page": 46,
+          "char_count": 7,
+          "text": "答 案 ： B"
+        },
+        {
+          "page": 47,
+          "char_count": 223,
+          "text": "【 題 號 ： 第  29  題 ，  111-1-(31)  】  31. 依 據 Norkin 的 方 法 ， 執 行 跗 骨 關 節 內 翻 （ tarsal  joint  inversion ） 活 動 度 的 量 測 ， 下 列 敘\n述\n何\n者\n正\n確 ？\n(A)  內 翻 是 一 個 旋 後 （ supination ） 、 內 收 （ adduction ） 與 蹠 屈 （ plantarflexion ） 的 複 合 動 作"
+        },
+        {
+          "page": 48,
+          "char_count": 129,
+          "text": "(B)  關 節 量 角 尺 的 支 點 （ fulcrum ） 對 齊 外 踝  (C)  關 節 量 角 尺 的 近 端 臂 對 齊 腓 骨 外 側 中 線  (D)  關 節 量 角 尺 的 遠 端 臂 平 行 第 二 趾 骨 外 側  答 案 ： A"
+        },
+        {
+          "page": 49,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 50,
+          "char_count": 454,
+          "text": "【 題 號 ： 第  30  題 ，  111-1-(33)  】  33. 執 行 踝 關 節 背 屈 （ talocrural  dorsiflexion ） 的 活 動 度 量 測 時 ， 依 據 Norkin 建 議 的 量 測 方\n法\n，\n下\n列\n敘\n述\n何\n者\n錯\n誤\n？\n(A)  受 測 者 可 以 採 取 仰 臥 、 俯 臥 、 坐 姿 與 站 姿 進 行 測 試\n(B)\n站\n姿\n測\n試\n動\n作\n為\n弓\n箭\n步\n，\n被\n量\n測\n腳\n在\n後\n，\n膝\n伸\n直\n，\n重\n量\n放\n於\n後\n側\n腳\n，\n整\n個\n腳\n掌\n平\n放\n地\n面\n，\n使\n踝\n關\n節\n產\n生\n最\n大\n背\n屈\n(C)  站 姿 下 測 得 的 角 度 會 比 仰 臥 、 俯 臥 、 坐 姿 下 所 測 得 的 角 度 大 ， 所 以 追 蹤 記 錄 同 一 病\n人\n問\n題\n時\n不\n宜\n交\n替\n使\n用\n(D)  關 節 量 角 器 的 支 點 （ fulcrum ） 對 齊 外 踝 （ lateral  malleolus ）"
+        },
+        {
+          "page": 51,
+          "char_count": 7,
+          "text": "答 案 ： B"
+        },
+        {
+          "page": 52,
+          "char_count": 33,
+          "text": "【 題 號 ： 第  31  題 ，  111-2-(32)  】"
+        },
+        {
+          "page": 53,
+          "char_count": 289,
+          "text": "32. 依 據  Norkin  的 方 法 ， 執 行 距 腿 關 節 蹠 屈 （ talocrural  plantarflexion ） 活 動 度 的 量 測 ， 下\n列\n敘\n述\n何\n者\n錯\n誤\n？\n(A)  受 測 者 擺 位 於 坐 姿 、 俯 臥 姿 或 是 站 姿 皆 可  (B)  關 節 量 角 尺 的 支 點 （ fulcrum ） 對 齊 外 踝 外 側  (C)  關 節 量 角 尺 的 近 端 臂 對 齊 腓 骨 外 側 中 線  (D)  關 節 量 角 尺 的 遠 端 臂 平 行 第 五 蹠 骨 或 是 跟 骨 的 下 方  答 案 ： A"
+        },
+        {
+          "page": 54,
+          "char_count": 390,
+          "text": "【 題 號 ： 第  32  題 ，  111-2-(34)  】  34. 執 行 跗 骨 關 節 內 翻 （ tarsal  inversion ） 與 外 翻 （ eversion ） 的 活 動 度 量 測 時 ， 依 據\nNorkin\n建\n議\n的\n量\n測\n方\n法\n，\n下\n列\n敘\n述\n何\n者\n錯\n誤\n？\n(A)  正 常 內 翻 的 角 度 會 比 外 翻 小  (B)  內 翻 的 正 常 終 末 感 覺 （ end-feel ） 為 緊 實 的 （ firm ） ， 而 外 翻 則 為 緊 實 的 或 硬 的 （ hard ）  (C)  關 節 量 角 器 的 支 點 （ fulcrum ） 都 放 於 內 外 踝 （ malleolus ） 連 線 中 點  (D)  遠 端 臂 都 對 齊 第 二 蹠 骨 （ metatarsal ）  答 案 ： A"
+        },
+        {
+          "page": 55,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 56,
+          "char_count": 211,
+          "text": "【 題 號 ： 第  34  題 ，  113-1-(30)  】  30. 根 據 Norkin 等 人 提 出 的 踝 關 節 背 屈 活 動 度 測 試 ， 下 列 何 者 錯 誤 ？  (A)  測 試 時 ， 應 同 時 穩 定 脛 骨 與 腓 骨 ， 以 避 免 膝 關 節 動 作 或 髖 關 節 旋 轉  (B)  非 承 重 狀 態 下 ， 正 常 踝 關 節 背 屈 角 度 約 為 15 ～ 20 度"
+        },
+        {
+          "page": 57,
+          "char_count": 261,
+          "text": "(C)  使 用 關 節 量 角 器 測 量 時 ， 量 角 器 之 支 點 （ fulcrum ） 應 對 準 外 踝 （ lateral  malleolus ）  (D)  起 始 姿 勢 下 之 膝 關 節 擺 位 不 會 影 響 踝 關 節 的 角 度 量 測 結 果  答 案 ： D\n踝 背 屈 這 個 動 作  被 牽 拉 的 肌 肉 有\n腓\n腸\n(\n雙\n關\n節\n)\n-\n比\n目\n魚\n(\n單\n關\n節\n)\n所 以 她 想 告 訴 你 的 重 點 就 是   膝 蓋 角 度 絕 對 會 影 響 踝 的 能 力"
+        },
+        {
+          "page": 58,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 59,
+          "char_count": 17,
+          "text": "Norkin- 脊 柱 與 軀 幹"
+        },
+        {
+          "page": 60,
+          "char_count": 241,
+          "text": "【題 號 ： 第  38  題 ，  108-1-(69)  】  69. 依 據 挪 京 氏 （ Norkin ） 建 議 的 量 測 方 法 ， 下 列 那 些 量 測 關 節 活 動 度 的 工 具 ， 可 以 用 來 量 測 頸\n椎\n或\n胸\n腰\n椎\n的\n關\n節\n活\n動\n度 ？\n① tape  ② universal  goniometer  ③ double  inclinometer  (A)  僅 ①②  (B)  ①②③  (C)  僅 ②③  (D)  僅 ①③"
+        },
+        {
+          "page": 61,
+          "char_count": 7,
+          "text": "答 案 ： B"
+        },
+        {
+          "page": 62,
+          "char_count": 193,
+          "text": "【題 號 ： 第  41  題 ，  110-1-(32)  】  32. 依 據 Norkin 的 方 法 ， 下 列 那 種 量 測 工 具 沒 有 被 使 用 在 胸 腰 椎 關 節 角 度 的 測 量 上 ？  (A)  皮 尺  (B)  universal  goniometer  (C)  double  inclinometer  (D)  CROM  答 案 ： D"
+        },
+        {
+          "page": 63,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 64,
+          "char_count": 359,
+          "text": "【題 號 ： 第  42  題 ，  111-1-(32)  】  32. 依 據 Norkin 的 方 法 ， 使 用 一 般 的 關 節 量 角 器 （ universal  goniometer ） ， 執 行 胸 腰 椎 旋 轉 關 節\n活\n動\n度\n的\n量\n測\n，\n下\n列\n敘\n述\n何\n者\n錯\n誤\n？\n(A)  受 測 者 坐 在 無 靠 背 的 椅 子 上 ， 測 試 時 治 療 師 要 固 定 骨 盆  (B)  關 節 量 角 尺 的 支 點 （ fulcrum ） 對 齊 第 7 頸 椎 的 棘 突\n(C)\n關\n節\n量\n角\n尺\n的\n近\n端\n臂\n對\n齊\n髂\n嵴\n兩\n個\n突\n出\n結\n節\n間\n的\n連\n線\n(D)  關 節 量 角 尺 的 遠 端 臂 對 齊 兩 個 肩 峰 的 連 線  答 案 ： B"
+        },
+        {
+          "page": 65,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 66,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 67,
+          "char_count": 15,
+          "text": "Norkin- 肌 肉 長 度"
+        },
+        {
+          "page": 68,
+          "char_count": 333,
+          "text": "【題 號 ： 第  46  題 ，  107-2-(67)  】  67. 針 對 腓 腸 肌 （ gastrocnemius ） 長 度 進 行 量 測 時 ， 依 據 挪 京 氏 （ Norkin ） 建 議 的 量 測 方 法 ， 下 列\n敘\n述\n何\n者\n正\n確 ？\n(A)  有 兩 種 量 測 方 法 ， 分 別 在 坐 姿 與 站 姿 下 來 量 測  (B)  量 測 時 要 保 持 膝 關 節 完 全 伸 直  (C)  關 節 量 角 器 的 支 點 （ center  fulcrum ） 對 齊 股 骨 外 上 髁  (D)  關 節 量 角 器 的 遠 端 臂 對 齊 腓 骨 外 側 中 線 ， 以 外 踝 和 腓 骨 頭 為 參 考 點"
+        },
+        {
+          "page": 69,
+          "char_count": 7,
+          "text": "答 案 ： B"
+        },
+        {
+          "page": 70,
+          "char_count": 11,
+          "text": "非 答 案 的 選 項"
+        },
+        {
+          "page": 71,
+          "char_count": 342,
+          "text": "【題 號 ： 第  47  題 ，  113-1-(32)  】  32. 依 據 Norkin 建 議 的 股 直 肌 長 度 量 測 方 法 ， 下 列 敘 述 何 者 錯 誤 ？  (A)  採 用 Ely 測 試 ， 並 量 測 膝 關 節 角 度  (B)  正 常 股 直 肌 長 度 為 在 髖 關 節 處 於 正 中 位 置 ， 且 膝 關 節 角 度 至 少 大 於 110 度  (C)  關 節 量 角 器 的 支 點 （ fulcrum ） 對 準 股 骨 外 上 髁  (D)  關 節 量 角 器 的 遠 端 臂 對 齊 腓 骨 外 側 中 線 ， 以 外 踝 （ lateral  malleolus ） 和 腓 骨 頭 為 參 考 點  答 案 ： B"
+        },
+        {
+          "page": 72,
+          "char_count": 120,
+          "text": "為 什 麼 角 度 大 於 110 算 太 嚴 格 呢 ?   因 為 只 看 膝 蓋 的 屈 曲 角 度 大 概 是 120~130  如 果 加 上 髖 伸 直\n=\n股\n直\n肌\n被\n拉\n長\n那\n麼\n能\n做\n的\n角\n度\n一\n定\n會\n大\n減"
+        },
+        {
+          "page": 73,
+          "char_count": 493,
+          "text": "【題 號 ： 第  48  題 ，  113-2-(33)  】  33. 依 據 Norkin 建 議 的 量 測 方 法 ， 針 對 闊 筋 膜 張 肌 長 度 的 Ober 測 試 及 modified  Ober 測 試 ， 下 列\n敘\n述\n何\n者\n錯\n誤\n？\n(A)  此 兩 種 量 測 方 法 量 出 來 的 角 度 並 不 相 同 ， 因 此 針 對 同 一 病 人 的 追 蹤 記 錄 ， 不 可 混 用  (B)  兩 種 量 測 方 法 的 起 始 位 置 大 致 相 同 ， 但 Ober 測 試 要 保 持 膝 關 節 伸 直 ， 而 modified  Ober 測\n試\n要\n保\n持\n膝\n關\n節\n屈\n曲\n90\n度\n(C)\n兩\n個\n方\n法\n的\n關\n節\n量\n角\n器\n的\n支\n點\n（\nfulcrum\n）\n都\n是\n對\n準\n被\n量\n測\n腳\n的\nASIS\n(D)  兩 個 方 法 的 關 節 量 角 器 之 近 端 臂 都 是 對 齊 兩 側 ASIS 的 連 線 ； 遠 端 臂 對 齊 股 骨 前 中 線 ， 並 以\n髕\n骨\n中\n線\n為\n參\n考\n點\n答 案 ： B"
+        },
+        {
+          "page": 74,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 75,
+          "char_count": 113,
+          "text": "A  因 為 闊 筋 膜 她 是 雙 關 節 肌 肉  所 以 她 對 膝 蓋 的 角 度 很 敏 感  有 變 化 自 然 角 度 就 不 一 樣 了   C+D 選 項 的 重 點  = 髖 外 展 的 量 角 器 擺 位"
+        },
+        {
+          "page": 76,
+          "char_count": 7,
+          "text": "分 頁  15"
+        },
+        {
+          "page": 77,
+          "char_count": 565,
+          "text": "【題 號 ： 第  9  題 ，  097-2-(42)  】  42  有 關 髖 關 節 各 個 關 節 活 動 角 度 測 量 之 敘 述 ， 下 列 何 者 正 確 ？   (A)  個 案 姿 勢 ：  1.  屈 曲 ─ 仰 臥 ；  2.  伸 直 ─ 俯 臥 ；  3.  內 轉 或 外 轉 ─ 坐 姿 或 俯 臥 ；  4.  外 展 或 內 收 ─ 仰 臥   (B)  關 節 量 角 器 軸 心 ：  1.  屈 曲 與 伸 直 ─ 大 轉 子 （ greater  trochanter ） ；  2.  內 轉 或 外 轉 ─ 脛 骨 粗 隆 （ tibial  tuberosity ） ；  3.  外 展 或 內 收 ─ 腸 骨 前 上 脊 （ ASIS ）   (C)  關 節 量 角 器 移 動 臂 之 參 考 點 ：  1.  屈 曲 與 伸 直 ─ 股 骨 外 髁 （ lateral  femoral  condyle ） ；  2.  內 轉 或 外 轉 ─ 脛  骨 平 台 （ tibial  plateau ） ；  3.  外 展 或 內 收 ─ 髕 骨 中 線 （ patella  midline ）   (D)  膝 關 節 均 採 屈 曲 姿 勢  答 案 ： A"
+        },
+        {
+          "page": 78,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 79,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 80,
+          "char_count": 13,
+          "text": "關 節 本 身 的 題 目"
+        },
+        {
+          "page": 81,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 82,
+          "char_count": 17,
+          "text": "關 節 構 造 與 生 理 性 質"
+        },
+        {
+          "page": 83,
+          "char_count": 338,
+          "text": "【題 號 ： 第  1  題 ，  107-2-(41)  】  41. 下 列 那 些 關 節 屬 於 鞍 狀 關 節 （ saddle  joints ） ？  ①  大 拇 指 腕 掌 關 節 （ carpometacarpal  joint  of  the  thumb ）  ②  大 拇 指 掌 指 關 節 （ metacarpophalangeal  joint  of  the  thumb ）  ③  胸 鎖 關 節 （ sternoclavicular  joint ）  ④  肱 尺 骨 關 節 （ humero-ulnar  joint ）  (A)  僅 ①③  (B)  僅 ①④  (C)  僅 ②③  (D)  僅 ②④  答 案 ： A"
+        },
+        {
+          "page": 84,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 85,
+          "char_count": 202,
+          "text": "【題 號 ： 第  39  題 ，  092-1-(48)  】  48. 腰 椎  (lumbar  spine)  最 大 活 動 方 向 是 ：  (A)  屈 曲 － 伸 張  (flexion-extension)  (B)  側 彎  (side  bending)  (C)  旋 轉  (axial  rotation)  (D)  移 動  (translation)  答 案 ： A"
+        },
+        {
+          "page": 86,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 87,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 88,
+          "char_count": 13,
+          "text": "功 能 性 活 動 角 度"
+        },
+        {
+          "page": 89,
+          "char_count": 158,
+          "text": "【題 號 ： 第  21  題 ，  098-1-(45)  】  45  一 般 健 康 成 人 於 平 地 以 正 常 步 態 走 路 時 ， 至 少 需 要 多 少 髖 關 節 屈 曲 角 度 ？  (A)  10  度  (B)  30  度  (C)  60  度  (D)  90  度  答 案 ： B"
+        },
+        {
+          "page": 90,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 91,
+          "char_count": 266,
+          "text": "【題 號 ： 第  22  題 ，  101-2-(44)  】  44. 下 列 功 能 性 活 動 所 需 之 最 大 髖 關 節 屈 曲 角 度 ， 由 小 到 大 依 序 排 列 ， 何 者 正 確 ？  (A)  平 地 行 走 ＜ 上 樓 梯 ＜ 穿 襪 子 ＜ 下 樓 梯  (B)  上 樓 梯 ＜ 平 地 行 走 ＜ 下 樓 梯 ＜ 穿 襪 子  (C)  下 樓 梯 ＜ 平 地 行 走 ＜ 穿 襪 子 ＜ 上 樓 梯  (D)  平 地 行 走 ＜ 下 樓 梯 ＜ 上 樓 梯 ＜ 穿 襪 子  答 案 ： D"
+        },
+        {
+          "page": 92,
+          "char_count": 157,
+          "text": "【題 號 ： 第  23  題 ，  114-2-(32)  】  32. 依 據 Magee 提 出 之 髖 關 節 功 能 性 關 節 活 動 度 （ functional  range  of  motion ） 為 下 列 何 者 ？  (A)  屈 曲 120 度、 外 展 20 度、 外 轉 20 度"
+        },
+        {
+          "page": 93,
+          "char_count": 219,
+          "text": "(B)  伸 直 30 度、 內 收 30 度、 內 轉 20 度  (C)  屈 曲 150 度、 內 收 30 度、 內 轉 20 度  (D)  屈 曲 150 度、 外 展 45 度、 內 轉 20 度  答 案 ： A\n錯 誤 選 項 的 共 通 點  曲 曲 150 度  這 已 經 不 是 普 通 人 能 做 得 到 的 角 度 了  不 可 能 會 是 這 個 選 項\n這 裡 的 角 度 看 起 來 都 還 算 合 理"
+        },
+        {
+          "page": 94,
+          "char_count": 318,
+          "text": "之 所 以 B 會 被 排 掉  就 是 因 為   髖 伸 30 度 已 經 是 各 個 肌 動 學 教 材 當 中  對 於 髖 關 節 的 活 動 度 大 限  就 寫 到 這 裡 了\n實\n際\n上\n的\n髖\n伸\n角\n度\n真\n的\n用\n不\n太\n到\n那\n麼\n大\n有\n個\n10\n度\n其\n實\n就\n夠\n你\n走\n路\n了\n【題 號 ： 第  43  題 ，  100-1-(48)  】  48.  以 成 人 而 言 ， 下 列 最 大 張 口 （ mouth  opening ） 的 程 度 ， 何 者 視 為 正 常 ？  (A)  2.0  公 分  (B)  2.5  公 分  (C)  3.0  公 分  (D)  4.0  公 分"
+        },
+        {
+          "page": 95,
+          "char_count": 7,
+          "text": "答 案 ： D"
+        },
+        {
+          "page": 96,
+          "char_count": 98,
+          "text": "請 記 得  量 顳 顎 關 節 沒 在 看 角 度 的  因 為 不 符 合 功 能 性  重 點 是 要 看 距 離\n距\n離\n就\n是\n直\n接\n用\n尺\n或\n用\n手\n指\n來\n看\n嘴\n能\n張\n多\n大"
+        },
+        {
+          "page": 97,
+          "char_count": 152,
+          "text": "【題 號 ： 第  36  題 ，  107-2-(80)  】 基 礎 學  80. 頸 椎 於 屈 曲 、 伸 展 活 動 時 ， 那 一 節 活 動 範 圍 最 大 ？  (A)  C1 ～ C2  (B)  C3 ～ C4  (C)  C5 ～ C6  (D)  C7 ～ T1  答 案 ： C"
+        },
+        {
+          "page": 98,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 99,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 100,
+          "char_count": 218,
+          "text": "【題 號 ： 第  37  題 ，  101-2-(46)  】  46. 下 列 測 量 頸 關 節 屈 曲 （ flexion ） 活 動 度 的 姿 勢 中 ， 何 者 最 恰 當 ？  (A)  仰 臥 ， 頭 部 不 墊 枕 頭  (B)  坐 姿 ， 使 用 無 靠 背 座 椅  (C)  坐 姿 ， 使 用 有 靠 背 座 椅  (D)  坐 姿 ， 有 靠 背 座 椅 並 在 背 部 加 墊 枕 頭  答 案 ： C"
+        },
+        {
+          "page": 101,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 102,
+          "char_count": 474,
+          "text": "(A)  仰 臥 ， 頭 部 不 墊 枕 頭\n(C)\n坐\n姿\n，\n使\n用\n有\n靠\n背\n座\n椅\n他 們 選 項 之 間 的 共 通 點 都 符 合 穩 住 地 基 不 要 讓 胸 腰 椎 有 代 償 的 機 會   但 他 們 之 間 的 重 點 就 是\n方\n向\n套\n用\n肌\n力\n測\n試\nMMT\n的\n概\n念\n來\n說\n這\n兩\n種\n姿\n勢\n分\n別\n是\n2\n分\n與\n3\n分\n以\n上\n的\n差\n別\n對 坐 著 來 說  低 頭 = 順 著 重 力  沒 有 承 重 =2 分  對 躺 著 來 說  屈 曲 = 抵 抗 重 利  有 承 重 量 =3 分 以 上\n【題 號 ： 第  35  題 ，  096-2-(53)  】  53  在 正 常 步 態 中 踝 關 節 活 動 角 度 之 最 大 範 圍 為 何 ？  (A)  背 屈  10  度 、 蹠 屈  20  度  (B)  背 屈  20  度 、 蹠 屈  20  度  (C)  背 屈  10  度 、 蹠 屈  15  度  (D)  背 屈  5  度 、 蹠 屈  15  度"
+        },
+        {
+          "page": 103,
+          "char_count": 7,
+          "text": "答 案 ： A"
+        },
+        {
+          "page": 104,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 105,
+          "char_count": 21,
+          "text": "正\n常\n活\n動\n角\n度\n數\n值\n與\n比\n較"
+        },
+        {
+          "page": 106,
+          "char_count": 280,
+          "text": "【題 號 ： 第  5  題 ，  108-1-(68)  】  68. 執 行 終 末 感 覺 （ end-feel ） 評 估 時 ， 下 列 那 一 個 關 節 動 作 ， 若 出 現 軟 的 （ soft ） 終 末 感 覺 ， 是 屬\n於\n異\n常\n狀\n況\n？\n(A)  大 拇 指 的 腕 掌 關 節 屈 曲 （ carpometacarpal  flexion ）  (B)  大 拇 指 的 腕 掌 關 節 伸 直 （ carpometacarpal  extension ）  (C)  手 肘 屈 曲  (D)  髖 屈 曲  答 案 ： B"
+        },
+        {
+          "page": 107,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 108,
+          "char_count": 138,
+          "text": "【題 號 ： 第  8  題 ，  114-1-(31)  】  31. 根 據  Norkin  等 人 提 出 的 大 拇 指 之 腕 掌 關 節 （ carpometacarpal  joint ） 外 展 之 關 節 活 動 度 測 試\n，\n下\n列\n何\n者\n錯\n誤\n？"
+        },
+        {
+          "page": 109,
+          "char_count": 181,
+          "text": "(A)  正 常 角 度 約 可 達  40 ～ 50  度  (B)  測 試 時 ， 須 穩 定 腕 骨 及 第 二 掌 骨  (C)  測 試 時 ， 請 受 試 者 將 大 拇 指 於 垂 直 掌 面 方 向 遠 離 手 掌  (D)  量 測 關 節 角 度 時 ， 關 節 量 角 器 支 點 應 對 準 此 關 節 之 掌 面 處  答 案 ： D"
+        },
+        {
+          "page": 110,
+          "char_count": 272,
+          "text": "【題 號 ： 第  17  題 ，  113-2-(32)  】  32. 根 據 Norkin 等 人 提 出 的 髖 關 節 內 收 活 動 度 測 試 ， 下 列 敘 述 何 者 錯 誤 ？  (A)  受 測 者 應 採 仰 躺 姿  (B)  正 常 人 髖 關 節 內 收 的 角 度 約 為 40 ～ 50 度  (C)  施 測 時 要 注 意 對 側 大 腿 應 呈 現 外 展 姿 勢 ， 讓 欲 施 測 的 肢 段 有 活 動 空 間  (D)  應 穩 定 同 側 骨 盆 ， 避 免 骨 盆 向 下 側 傾 或 旋 轉"
+        },
+        {
+          "page": 111,
+          "char_count": 7,
+          "text": "答 案 ： B"
+        },
+        {
+          "page": 112,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 113,
+          "char_count": 321,
+          "text": "【題 號 ： 第  19  題 ，  114-2-(31)  】  31. 根 據 Norkin 等 人 提 出 的 髖 關 節 外 展 之 關 節 活 動 度 測 試 方 法 ， 下 列 何 者 錯 誤 ？  (A)  起 始 姿 勢 應 於 骨 盆 正 中 位 置  (B)  給 予 受 測 者 之 口 令 為 ： 請 將 大 腿 向 外 打 開  (C)  髖 外 展 角 度 因 人 而 異 ， 但 正 常 範 圍 大 約 為 40 ～ 55 度  (D)  使 用 關 節 量 角 器 量 測 之 遠 端 臂 （ distal  arm ） 應 對 齊 股 骨 中 線 ， 且 以 脛 骨 粗 隆 為 參 考 點  答 案 ： D"
+        },
+        {
+          "page": 114,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 115,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 116,
+          "char_count": 11,
+          "text": "終 末 感 覺 題 目"
+        },
+        {
+          "page": 117,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 118,
+          "char_count": 23,
+          "text": "基 本 定 義 與 正 常 / 異 常 判 斷"
+        },
+        {
+          "page": 119,
+          "char_count": 311,
+          "text": "【題 號 ： 第  3  題 ，  106-2-(67)  】  67. 執 行 終 末 感 覺 （ end-feel ） 評 估 時 ， 下 列 那 一 個 關 節 動 作 ， 若 出 現 硬 的 （ hard ） 終 末 感 覺 ， 是 屬\n於\n異\n常\n狀\n況\n？\n(A)  手 腕 伸 直 （ wrist  extension ）  (B)  手 腕 尺 側 偏 移 （ ulnar  deviation ）  (C)  手 腕 橈 側 偏 移 （ radial  deviation ）  (D)  手 指 掌 指 關 節 屈 曲 （ metacarpophalangeal  flexion ）  答 案 ： B"
+        },
+        {
+          "page": 120,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 121,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 122,
+          "char_count": 280,
+          "text": "【題 號 ： 第  5  題 ，  108-1-(68)  】  68. 執 行 終 末 感 覺 （ end-feel ） 評 估 時 ， 下 列 那 一 個 關 節 動 作 ， 若 出 現 軟 的 （ soft ） 終 末 感 覺 ， 是 屬\n於\n異\n常\n狀\n況\n？\n(A)  大 拇 指 的 腕 掌 關 節 屈 曲 （ carpometacarpal  flexion ）  (B)  大 拇 指 的 腕 掌 關 節 伸 直 （ carpometacarpal  extension ）  (C)  手 肘 屈 曲  (D)  髖 屈 曲  答 案 ： B"
+        },
+        {
+          "page": 123,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 124,
+          "char_count": 349,
+          "text": "【題 號 ： 第  33  題 ，  112-1-(33)  】  33. 執 行 終 端 感 覺 （ end-feel ） 評 估 時 ， 下 列 那 一 個 關 節 動 作 ， 若 出 現 硬 的 （ hard ） 終 端 感 覺 ， 是 屬\n於\n異\n常\n狀\n況\n？\n(A)  踝 關 節 蹠 屈 （ talocrural  plantarflexion ）  (B)  踝 關 節 背 屈 （ talocrural  dorsiflexion ）  (C)  大 拇 指 的 掌 指 關 節 屈 曲 （ metacarpophalangeal  flexion ）  (D)  大 拇 指 的 指 間 關 節 屈 曲 （ interphalangeal  flexion ）  答 案 ： B"
+        },
+        {
+          "page": 125,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 126,
+          "char_count": 220,
+          "text": "【題 號 ： 第  40  題 ，  107-1-(68)  】  68. 執 行 終 末 感 覺 （ end-feel ） 評 估 時 ， 下 列 那 一 個 關 節 動 作 ， 若 出 現 硬 的 （ hard ） 終 末 感 覺 ， 是 屬\n於\n異\n常\n狀\n況\n？\n(A)  頸 椎 側 彎  (B)  胸 腰 椎 伸 直 或 是 腰 椎 伸 直  (C)  胸 腰 椎 側 彎 或 是 腰 椎 側 彎  (D)  胸 腰 椎 旋 轉"
+        },
+        {
+          "page": 127,
+          "char_count": 7,
+          "text": "答 案 ： A"
+        },
+        {
+          "page": 128,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 129,
+          "char_count": 248,
+          "text": "【 題 號 ： 第  45  題 ，  101-2-(45)  】  45. 下 列 測 試 的 正 常 末 端 感 覺 （ normal  end-feel ） 中 ， 何 者 與 其 他 最 不 同 ？  (A)  直 抬 腿 測 試 （ straight  leg  raise  test ）  (B)  歐 柏 測 試 （ Ober  test ）  (C)  被 動 肘 關 節 屈 曲 活 動 度 測 試  (D)  被 動 髖 關 節 外 轉 活 動 度 測 試  答 案 ： C"
+        },
+        {
+          "page": 130,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 131,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 132,
+          "char_count": 19,
+          "text": "下 肢 關 節 特 定 終 末 感 覺"
+        },
+        {
+          "page": 133,
+          "char_count": 382,
+          "text": "【題 號 ： 第  10  題 ，  102-1-(41)  】  41. 測 量 髖 關 節 內 轉 （ medial  or  internal  rotation ） 關 節 活 動 度 時 ， 下 列 步 驟 何 者 錯 誤 ？\n(A)\n讓\n個\n案\n坐\n在\n床\n緣\n，\n身\n體\n保\n持\n直\n立\n，\n雙\n腳\n垂\n出\n床\n外\n，\n不\n接\n觸\n地\n面\n，\n避\n免\n髖\n關\n節\n外\n展\n或\n內\n收\n(B)  物 理 治 療 師 一 隻 手 固 定 個 案 股 骨 遠 端 ， 防 止 其 向 外 移 動  (C)  另 一 隻 手 於 踝 關 節 上 方 ， 將 個 案 小 腿 向 內 側 移 動 ， 使 個 案 之 髖 關 節 內 轉  (D)  一 般 正 常 之 動 作 末 端 感 覺 （ end-feel ） 為 緊 （ firm ）  答 案 ： C"
+        },
+        {
+          "page": 134,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 135,
+          "char_count": 361,
+          "text": "【題 號 ： 第  11  題 ，  104-1-(44)  】  44. 當 膝 關 節 屈 曲 （ flexion ） 時 ， 進 行 髖 關 節 屈 曲 被 動 關 節 活 動 時 ， 下 列 那 些 因 子 可 能 造 成 緊  （\nfirm\n）\n的\n終\n末\n感\n覺\n（\nend-feel\n）\n，\n而\n非\n軟\n（\nsoft\n）\n的\n終\n末\n感\n覺 ？\n① 膕 旁 肌 （ hamstring ） 太 緊  ② 股 四 頭 肌 （ quadriceps ） 太 緊  ③ 臀 大 肌 （ gluteus  maximum ） 太 緊  ④ 後 側 關 節 囊  （ posterior  joint  capsule ） 太 緊  (A)  僅 ①②  (B)  僅 ②③  (C)  僅 ③④  (D)  僅 ①④"
+        },
+        {
+          "page": 136,
+          "char_count": 312,
+          "text": "答 案 ： C\n簡 單 來 說 當 你 在 做 髖 屈 時 候  把 膝 蓋 也 跟 著 屈 了  就 代 表 說 這 已 經 是 單 關 節 的 事 情 了  因 此 編 號 的 3 與 4  都 是 單 關 節\n【題 號 ： 第  12  題 ，  106-2-(66)  】  66. 執 行 髖 關 節 內 轉 與 外 轉 的 活 動 度 量 測 時 ， 依 據 挪 京 氏 （ Norkin ） 建 議 的 量 測 方 法 ， 下 列 敘 述\n何\n者\n正\n確 ？\n(A)  內 轉 的 正 常 終 末 感 覺 （ end-feel ） 為 緊 實 的 （ firm ） ， 外 轉 則 為 硬 的 （ hard ）"
+        },
+        {
+          "page": 137,
+          "char_count": 226,
+          "text": "(B)  兩 者 均 可 在 坐 姿 或 俯 臥 的 姿 勢 下 量 測 ， 但 俯 臥 姿 勢 不 可 在 受 測 者 股 直 肌 太 緊 的 情 況 下 使\n用\n(C)  依 據 研 究 結 果 ， 坐 姿 測 得 的 角 度 會 大 於 俯 臥 姿 勢 下 測 得 的 角 度  (D)  關 節 量 角 器 的 支 點 （ center  fulcrum ） 都 對 齊 脛 骨 平 台 （ tibial  plateau ）  答 案 ： B"
+        },
+        {
+          "page": 138,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 139,
+          "char_count": 287,
+          "text": "【題 號 ： 第  20  題 ，  114-2-(33)  】  33. 執 行 髖 關 節 外 展 的 終 末 感 覺 （ end  feel ） 評 估 ， 下 列 敘 述 何 者 正 確 ？  (A)  只 有 出 現 硬 （ hard ） 的 感 覺 是 正 常 的  (B)  只 有 出 現 緊 實 （ firm ） 的 感 覺 是 正 常 的  (C)  只 有 出 現 軟 （ soft ） 的 感 覺 是 正 常 的  (D)  出 現 緊 實 （ firm ） 的 感 覺 或 是 軟 （ soft ） 的 感 覺 都 是 正 常 的  答 案 ： B"
+        },
+        {
+          "page": 140,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 141,
+          "char_count": 287,
+          "text": "【題 號 ： 第  24  題 ，  102-2-(45)  】  45. 有 關 膝 關 節 屈 曲 的 關 節 活 動 度 測 量 ， 下 列 敘 述 何 者 錯 誤 ？  (A)  可 於 仰 臥 或 俯 臥 姿 勢 施 測  (B)  動 作 末 端 感 覺 （ end-feel ） 為 硬 （ hard ）  (C)  關 節 量 尺 的 軸 心 對 準 股 骨 外 髁 （ lateral  femoral  condyle ）  (D)  關 節 量 尺 的 移 動 臂 對 準 脛 骨 外 踝 （ lateral  malleolus ）  答 案 ： B"
+        },
+        {
+          "page": 142,
+          "char_count": 25,
+          "text": "以 下 兩 個 選 項 是 非 答 案 的 選 項"
+        },
+        {
+          "page": 143,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 144,
+          "char_count": 430,
+          "text": "【題 號 ： 第  26  題 ，  107-1-(67)  】  67. 執 行 踝 關 節 背 屈 （ talocrural  dorsiflexion ） 與 蹠 屈 （ plantarflexion ） 的 活 動 度 量 測 時 ， 依 據 挪 京\n氏\n（\nNorkin\n）\n建\n議\n的\n量\n測\n方\n法\n，\n下\n列\n敘\n述\n何\n者\n正\n確 ？\n(A)  正 常 蹠 屈 的 角 度 會 比 背 屈 小\n(B)\n背\n屈\n可\n能\n產\n生\n的\n正\n常\n終\n末\n感\n覺\n（\nend-feel\n）\n為\n緊\n實\n的\n（\nfirm\n）\n，\n而\n蹠\n屈\n則\n為\n緊\n實\n的\n或\n硬\n的\n（\nhard\n）\n(C)  關 節 量 角 器 的 支 點 （ center  fulcrum ） 都 放 於 內 外 踝 （ malleolus ） 連 線 之 中 點  (D)  遠 端 臂 都 對 齊 第 二 蹠 骨 （ 2nd  metatarsal ）  答 案 ： B"
+        },
+        {
+          "page": 145,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 146,
+          "char_count": 340,
+          "text": "【題 號 ： 第  44  題 ，  096-2-(41)  】  41  有 關 膝 膕 角 （ popliteal  angle ） 的 測 量 ， 下 列 何 者 錯 誤 ？  (A)  個 案 採 仰 臥 姿 勢  (B)  物 理 治 療 師 先 將 未 受 測 邊 的 髖 關 節 置 於 正 中 位 置 （屈 曲 或 伸 直  0  度 、 外 展 或 內 收  0  度 、 外\n轉\n或\n內\n轉\n0\n度\n）\n(C)  受 測 邊 下 肢 做 直 膝 抬 腿 （ straight  leg  raise ） 至 出 現 軟 組 織 阻 力 拉 扯 處  (D)  動 作 終 末 感 覺 （ end-feel ） 為 “ 緊 （ firm ） ＂  答 案 ： C"
+        },
+        {
+          "page": 147,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 148,
+          "char_count": 212,
+          "text": "所 以 簡 單 來 說  直 腿 的 測 試 是 先 打 直 鎖 定 遠 端 膝 蓋 那 段  這 個 做 的 重 點 = 去 看 近 端 拉 坐 骨 也 就 是 髖 伸 離 心 能 力 能 被 拉 到 多 少   膝 膕 角   重 點 就 前 面 兩 個 字 = 膝 膕  這 個 概 念 就 是 先 鎖 定 好 近 端 坐 髖 伸 的 地 帶   這 樣 就 會 變 成 只 著 重 在 遠 端 做 膝 屈 的 離 心"
+        },
+        {
+          "page": 149,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 150,
+          "char_count": 7,
+          "text": "分 頁  14"
+        },
+        {
+          "page": 151,
+          "char_count": 0,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "key": "rom-lecture",
+      "subject": "ROM",
+      "file": "ROM講義.pdf",
+      "dir": "rom",
+      "optional": true,
+      "status": "no_text_extracted",
+      "found": true,
+      "copied_path": "materials/exam/rom/ROM講義.pdf",
+      "requires_manual_ocr": true,
+      "page_count": 103,
       "extracted_pages": 0,
-      "page_count": 0,
       "char_count": 0,
-      "pages": []
+      "error": null,
+      "pages": [
+        {
+          "page": 1,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 2,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 3,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 4,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 5,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 6,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 7,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 8,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 9,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 10,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 11,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 12,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 13,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 14,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 15,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 16,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 17,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 18,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 19,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 20,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 21,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 22,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 23,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 24,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 25,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 26,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 27,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 28,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 29,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 30,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 31,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 32,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 33,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 34,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 35,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 36,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 37,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 38,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 39,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 40,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 41,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 42,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 43,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 44,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 45,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 46,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 47,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 48,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 49,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 50,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 51,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 52,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 53,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 54,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 55,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 56,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 57,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 58,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 59,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 60,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 61,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 62,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 63,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 64,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 65,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 66,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 67,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 68,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 69,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 70,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 71,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 72,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 73,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 74,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 75,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 76,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 77,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 78,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 79,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 80,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 81,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 82,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 83,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 84,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 85,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 86,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 87,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 88,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 89,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 90,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 91,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 92,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 93,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 94,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 95,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 96,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 97,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 98,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 99,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 100,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 101,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 102,
+          "char_count": 0,
+          "text": ""
+        },
+        {
+          "page": 103,
+          "char_count": 0,
+          "text": ""
+        }
+      ]
     },
     {
       "key": "operation-therapy-1",
@@ -922,16 +2211,63 @@
     {
       "key": "surgery",
       "subject": "Surgery",
-      "file": "外科題目AI(1).pdf",
+      "file": "外科題目AI.pdf",
       "dir": "surgery",
-      "status": "missing",
-      "found": false,
-      "copied_path": "materials/exam/surgery/外科題目AI(1).pdf",
+      "status": "text_extracted",
+      "found": true,
+      "copied_path": "materials/exam/surgery/外科題目AI.pdf",
       "requires_manual_ocr": false,
-      "extracted_pages": 0,
-      "page_count": 0,
-      "char_count": 0,
-      "pages": []
+      "page_count": 9,
+      "extracted_pages": 9,
+      "char_count": 5496,
+      "error": null,
+      "pages": [
+        {
+          "page": 1,
+          "char_count": 582,
+          "text": "1\n選擇題解答\n題目:1 有關兒外科手術的保溫\n(A) 室內溫度(22~24 度)\n(B) 使用溫水床墊\n(C) 烤燈輸液加溫\n(D) 以上皆是\n答案: (D)\n來源: 筆記第 4 頁\n題目:2 下列有關舌繫帶(Tongue tie)，何者最不正確？\n(A) 舌頭下方的帶狀或片狀結構\n(B) 會限制舌頭活動(形成 ω(omega)型舌頭)\n(C) 口吃，與舌繫帶有關\n(D) 會影響捲舌音\n答案: (C)\n來源: 筆記第 5 頁\n題目:3 如果需要分開舌繫帶(Frenulotomy)，對於 <6 個月(長牙前)只需門診剪斷\n(A) 對\n(B) 不對\n答案: (A)\n來源: 筆記第 6 頁\n解析:大於 6個月才需進手術室麻醉剪斷。\n題目:4 有關斜頸描述，何者最不正確？\n(A) 多數是骨骼、神經、頸部軟組織發炎造成\n(B) 成因胸鎖乳突肌硬化(攣縮、纖維化)\n(C) 可能因為肌肉缺血(動脈或靜脈栓塞)\n(D) 可能因為肌肉受傷\n答案: (A)\n來源: 筆記第 7 頁\n解析: 骨骼、神經、頸部軟組織發炎或視力異常造成的斜頸為「少數」 ，而非「多數」 。\n題目:5 有關斜頸描述，年齡小(<1 y/o)，臉部沒有不對稱，肌肉不太緊的患者可先試物理治療，\n如按摩、熱敷、運動\n(A) 正確\n(B) 不正確\n(C) 不確定\n答案: (A)\n來源: 筆記第 8 頁"
+        },
+        {
+          "page": 2,
+          "char_count": 456,
+          "text": "2\n題目:6 下列有關小兒外科生理，何者最不正確？\n(A) 溫調節中心易受環境因素影響\n(B) 散熱迅速\n(C) 呼吸速度快\n(D) 嘴巴呼吸為主\n答案: (D)\n來源: 筆記第 1 頁\n解析: 小兒的呼吸特徵為「鼻孔呼吸為主」 ，而非嘴巴呼吸。\n題目:7 有關小兒新陳代謝較成人速率？\n(A) 快\n(B) 慢\n(C) 一樣\n(D) 差不多\n答案: (A)\n來源: 筆記第 2 頁\n題目:8 一般而言，新生兒幾公斤以上就可以麻醉、手術？\n(A) 1\n(B) 2\n(C) 3\n(D) 4\n答案: (B)\n來源: 筆記第 3 頁\n題目:9 有關 >6 個月小兒手術的禁食\n(A) 6 小時\n(B) <6 小時\n(C) 不需禁食\n(D) 8 小時，視同成人\n答案: (D)\n來源: 筆記第 3 頁\n題目:10 有關小腸扭轉，何者最不正確？\n(A) 出生時尚可正常喝奶、排便\n(B) 在 3 至 5天後突然大量嘔吐且伴隨膽汁\n(C) 突發肚臍周圍腹痛\n(D) 無膽汁性嘔吐、哭鬧\n答案: (D)\n來源: 筆記第 15 頁"
+        },
+        {
+          "page": 3,
+          "char_count": 573,
+          "text": "3\n解析: 小腸扭轉發作時會出現「膽汁性嘔吐」。\n題目:11 有關膽道閉鎖，何者最不正確？\n(A) 病因: 膽管纖維化\n(B) 成因不明\n(C) 症狀: 出生後持續黃疸\n(D) 大便黑色\n答案: (D)\n來源: 筆記第 17 頁\n解析: 膽道閉鎖因膽汁無法順利進入腸道，患者會出現「大便灰白色」 ，而非黑色。\n題目:12 有關甲狀腺功能低下症狀，何者最不正確？\n(A) 新陳代謝變慢\n(B) 體重增加、疲勞、易累、臉部浮腫\n(C) 心跳快、血壓高\n(D) 體溫低、怕冷\n答案: (C)\n來源: 筆記第 19 頁\n解析: 甲狀腺功能低下的症狀包含「心跳慢、低血壓」。\n題目:13 便秘、食慾下降、腸蠕動減少，通常是甲狀腺功能\n(A) 亢進\n(B) 低下\n(C) 正常\n答案: (B)\n來源: 筆記第 19 頁\n題目:14 有關隱睪症描述，何者最不正確？\n(A) 腹股溝或腹內溫度高影響發育\n(B) 生育率下降 >2 歲更明顯\n(C) 惡性腫瘤機率不會增加\n(D) 容易受傷、扭轉\n答案: (C)\n來源: 考點以外\n解析: 筆記第14 頁僅提到隱睪症是睪丸扭轉的病因之一。依據醫學知識，隱睪症患者罹患睪丸癌\n（惡性腫瘤）的機率比正常人高出數倍，故(C)錯誤。\n題目:15 一歲以下兒童肛門出血最常見的原因\n(A) 肛門膿瘍\n(B) 瘻管\n(C) 肛裂"
+        },
+        {
+          "page": 4,
+          "char_count": 656,
+          "text": "4\n答案: (C)\n來源: 筆記第 11 頁\n題目:16 有關急性闌尾炎描述，何者最不正確？\n(A) 腹痛由上腹開始後轉右下腹\n(B) 常先腹痛再發燒\n(C) 穿孔後腹膜炎，體溫可高過 39℃\n(D) 兒童極少以腹膜炎表現\n答案: (D)\n來源: 考點以外(參考筆記第 12 頁)\n解析: 兒童因網膜發育不完全，無法有效包覆發炎的闌尾，加上病史表達不清，極容易延遲診斷並\n發生穿孔，因此兒童反而「很容易」併發腹膜炎。\n題目:17 有關睪丸扭轉治療：手術治療（陰囊探查、兩側睪丸固定）黃金時間\n(A) 2 小時\n(B) 4 小時\n(C) 6 小時\n(D) 8 小時\n答案: (C)\n來源: 筆記第 14 頁\n題目:18 闌尾炎典型症狀包括哪一項？\n(A) 肌肉僵硬及右下腹痛\n(B) 頭痛\n(C) 嘔吐物含血\n(D) 肩膀疼痛\n答案: (A)\n來源: 筆記第 12 頁\n解析: 包含「右下腹痛、腹部僵硬、嘔吐之前疼痛、肚臍轉移右下腹痛」 。\n題目:19 腕隧道症候群的典型檢查是什麼？\n(A) MRI\n(B) CT 掃描\n(C) Phalen 及Tinel 試驗\n(D) 洛福辛氏徵象\n答案: (C)\n來源: 考點以外\n解析: 理學檢查為 Phalen's test（手腕屈曲試驗）及 Tinel's sign（正中神經輕叩試驗） 。\n題目:20 在兒童骨折的癒合速度上，年紀越輕癒合速度越快。若以「股骨幹骨折（Femur shaft\nfracture） 」為例，臨床上五歲兒童與成人的預估癒合時間分別大約為多久？"
+        },
+        {
+          "page": 5,
+          "char_count": 790,
+          "text": "5\n(A) 五歲兒童約一週，成人約四週\n(B) 五歲兒童約四週，成人約四個月以上\n(C) 五歲兒童約八週，成人約三個月\n(D) 五歲兒童約三個月，成人約半年\n答案: (B)\n來源: 考點以外\n解析: 筆記第61 頁僅提到兒童骨折「癒合速度快、重塑能力強」 。依據臨床骨科學，5 歲兒童的股\n骨幹骨折大約需 4 週即可癒合產生足夠骨痂，而成人往往需要 3 至 4 個月或更長時間。\n題目:21 青春期前：巨人症 /青春期後：肢端肥大症，適合者內分泌影響\n(A) 甲狀腺素\n(B) 泌乳激素\n(C) 副甲狀腺素\n(D) 生長激素\n答案: (D)\n來源: 筆記第 22 頁\n題目:22 有關尿崩症，何者最不正確？\n(A) 排出大量稀釋尿液（>50cc / kg / hr、每天>5000cc）\n(B) 尿液顏色淡 → 不治療會脫水\n(C) 尿比重（Usg） <1.01\n(D) 血鈉 >150mmol/L\n答案: (A)\n來源: 考點以外 (備註：講義原文明顯筆誤)\n解析: 筆記第24 頁原文與這四個選項完全一致。然而，在醫學上正常尿崩症的定義是每天尿量極大\n（通常大於 >50cc/kg/day 或每小時大於 3~4 cc/kg） 。選項(A)的數值 \">50cc/kg/hr\" 在生理上不\n可能發生（換算 60 公斤成人一天將排出 72 公升尿液） ，此為出題者與講義共同的筆誤考點。\n題目:23 有關甲狀腺切除手術併發症，何者最不正確？\n(A) 出血壓迫氣管\n(B) 感染\n(C) 副甲狀腺亢進 (1%)\n(D) 甲狀腺風暴\n答案: (C)\n來源: 筆記第 20 頁\n解析: 甲狀腺手術容易不慎切除或傷及副甲狀腺，造成的併發症是副甲狀腺「低下」(1%)，而非亢\n進。\n題目:24 有關甲狀腺風暴(短時間大量釋放甲狀腺素）症狀，何者最不正確？\n(A) 高燒\n(B) 心搏過速、興奮"
+        },
+        {
+          "page": 6,
+          "char_count": 737,
+          "text": "6\n(C) 腹瀉\n(D) 死亡率很低\n答案: (D)\n來源: 筆記第 20 頁\n解析: 甲狀腺風暴的「死亡率 >30%」 ，是非常凶險的急症。\n題目:25 有關甲狀腺切除手術併發症- 神經損傷，最常見於\n(A) 顏面神經\n(B) 喉返神經受損 (1%)\n(C) 交感神經\n答案: (B)\n來源: 筆記第 20 頁\n題目:26 關於損傷嚴重度評分(ISS) ，以下何者為非？\n(A) 以解剖部位+損傷性質為評分依據\n(B) 分值越大，創傷越重\n(C) 屬於院前評分\n(D) 是常用的外傷評估工具\n答案: (C)\n來源: 考點以外\n解析: ISS（Injury Severity Score）依賴 AIS 解剖計分系統，需要精確的影像與院內診斷，因此\n屬於「院後/回顧性」的評分系統，無法在現場急救「院前」立即評分。\n題目:27 在兒少虐待及疏忽的醫療臨床通報篩檢中，下列哪一種骨折型態在臨床上被歸類為「疑似\n兒虐相關性最高（高風險） 」的指標？\n(A) 已經會走路的小朋友發生單一四肢長骨骨幹骨折\n(B) 跌倒手撐地引起的單純鎖骨骨折\n(C) 後側肋骨骨折（Posterior rib fracture）或不會走路的幼童發生長骨骨折\n(D) 顱骨受到輕微碰撞後引起的單一線性骨折\n答案: (C)\n來源: 考點以外 (部分參考筆記第 63 頁)\n解析: 筆記提到「一歲以下任何骨折需高度懷疑」 。臨床上，後側肋骨骨折（多為劇烈搖晃擠壓胸廓\n造成）或「還不會走路」的嬰兒發生長骨骨折，為兒虐的特異性指標。\n題目:28 動脈瘤破裂：是何種腦出血最主要主因？\n(A) 硬膜上出血\n(B) 蜘蛛膜下腔出血\n(C) 硬膜下出血\n(D) 大腦內出血\n答案: (B)\n來源: 筆記第 42 頁"
+        },
+        {
+          "page": 7,
+          "char_count": 318,
+          "text": "7\n題目:29 在兒童特有的骨折型態中， 「嫩枝狀骨折（Green Stick fracture） 」的受力與結構表現為\n何？\n(A) 骨頭完全斷裂，且骨膜大範圍撕裂\n(B) 張力側（Tension side）斷裂，壓力側（Compression side）結構維持完整\n(C) 壓力側（Compression side）斷裂，張力側（Tension side）結構維持完整\n(D) 兩側皆未斷裂，僅有骨幹發生超過 30 度的永久性微幅彎曲\n答案: (B)\n來源: 考點以外\n解析: 筆記第60 頁提到嫩枝狀骨折。在力學上，兒童骨骼富含韌性，彎折時就像折彎帶綠葉的嫩樹\n枝，凸面（張力側）會先斷裂，而凹面（壓力側）會彎曲但維持連續未斷。"
+        },
+        {
+          "page": 8,
+          "char_count": 702,
+          "text": "8\n簡答題解答\n1. 有關足底筋膜炎之危險因子，請列出五項常見因素：\n答案：\n(1)反覆負重\n(2)跑步或跳舞\n(3)反覆創傷\n(4)肥胖\n(5)跟腱緊\n來源：筆記第 68 頁\n2. 請寫出骨創傷中危及肢體的情況－腔室症候群的 5P 徵象(中文或英文皆可)：\n答案：\n(1) Pain (疼痛)\n(2) Pulselessness / Pulse (無脈搏)\n(3) Pallor (蒼白)\n(4) Paresthesia (感覺異常)\n(5) Paralysis (癱瘓/麻痺)\n來源：筆記第 53 頁\n3. 有關開放性骨折 Gustilo-Anderson 分類，請依據傷口大小、污染程度及皮膚軟組織處理的\n需求程度說明之：\n答案：\nType I：傷口 < 1cm，污染程度低，軟組織損傷輕微。\nType II：傷口 1~10cm，中度污染，軟組織損傷中等。\nType III：傷口 > 10cm，嚴重污染，高能量損傷或伴隨廣泛軟組織損傷。\nType IIIA：有廣泛撕裂傷，但軟組織仍足夠覆蓋暴露的骨骼。\nType IIIB：廣泛軟組織缺損，骨骼外露，需局部皮瓣或游離皮瓣重建覆蓋。\nType IIIC：合併需手術修復的動脈血管損傷。\n來源：考點以外\n4. 大腿後側肌群拉傷之症狀與徵象(Symptoms and Signs)\n答案：\n(1) 第一度肌肉拉傷：輕微疼痛、肌肉輕微緊繃、無明顯無力或活動角度受限。\n(2) 第二度肌肉拉傷：明顯疼痛、局部出現腫脹或瘀血、肌力減退與活動受限。\n(3) 第三度肌肉拉傷：劇烈疼痛、可觸摸到肌肉斷裂的凹陷處、嚴重腫脹瘀血及完全喪失肌肉功\n能。\n來源：考點以外"
+        },
+        {
+          "page": 9,
+          "char_count": 682,
+          "text": "9\n【未考出的筆記頁數】\n1. 小兒外科下半部 (筆記第 9, 10, 13, 16, 18 頁)：\n腹股溝疝氣（小兒外科最常見疾病） 、\n腸套疊（果醬樣血便、香腸狀硬塊） 、\n肥厚性幽門狹窄（橄欖狀硬塊、無膽汁嘔吐） 、\n巨大結腸症。\n2. 內分泌外科 (筆記第 21, 23 頁)：\n副甲狀腺低下的特徵（如 Chvostek’s sign、Trousseau’s sign 抽筋表徵） 、\n功能性腫瘤的體抑素治療細節。\n3. 外傷科初階評估與休克 (筆記第 25 ~ 28 頁)：\nABCDE 初級評估的具體處置、\n大量傷患檢傷分類（紅黃綠黑） 、\n各類型休克的定義與分類（如阻塞型、分佈型） 。\n4. 五官外科 (筆記第 29 ~ 32 頁)：\n中耳炎的菌種與積水處置、\n扁桃腺炎的鏈球菌感染、\n視力減退急症分類。\n5. 神經外科 (筆記第 33 ~ 52 頁)：\n額葉功能、\nGCS 昏迷指數的詳細給分判斷（E、V、M）、\n硬膜上/硬膜下出血的病理（清明期、中腦膜動脈破裂） 、\nICP 公式、\n惡性腦瘤的放射/化學治療、\n水腦症的三大症狀、\nC1/C2 頸椎骨折與脊髓半切症候群。\n6. 骨外科與兒童骨骼 (筆記第 54 ~ 62, 64 ~ 67 頁)：\n各類型骨折固定術的差異（ORIF vs Hemiarthroplasty、互鎖式髓內釘） 、\n肩肘髖脫臼的最常見方向（肩/前、肘髖/後） 、\n兒童骨骼「生長板損傷與重塑能力」的具體容許角度、\nACL 前十字韌帶與半月板損傷之理學檢查（Lachman test）、\n腳踝扭傷的 ATFL 韌帶機制。"
+        }
+      ]
     },
     {
       "key": "mmt-upper",
@@ -1013,6 +2349,452 @@
       "page_count": 0,
       "char_count": 0,
       "pages": []
+    },
+    {
+      "key": "tens",
+      "subject": "Physical Modality",
+      "file": "04TENS 2.pdf",
+      "dir": "physical-modality",
+      "optional": true,
+      "status": "text_extracted",
+      "found": true,
+      "copied_path": "materials/exam/physical-modality/04TENS 2.pdf",
+      "requires_manual_ocr": false,
+      "page_count": 17,
+      "extracted_pages": 17,
+      "char_count": 2024,
+      "error": null,
+      "pages": [
+        {
+          "page": 1,
+          "char_count": 40,
+          "text": "1\n經⽪神經電刺激TENS\n吳⾄翔 講師 P .T.,M.S\n物理因⼦治療學\n1"
+        },
+        {
+          "page": 2,
+          "char_count": 1,
+          "text": "2"
+        },
+        {
+          "page": 3,
+          "char_count": 237,
+          "text": "3\n๏⽌痛(Transcutaneous Electrical Nerve Stimulation,TENS)\n➡原理\n✓脊髓機轉(相對低頻TENS)\n-刺激脊髓興奮，達到快速的短暫抑制作⽤\n-釋放類嗎啡物質，此⽌痛效果較慢，能維持較久(20-60 分鐘)\n✓⾨閥理論(相對⾼頻TENS)\n-⼤纖維Aβ、⼩纖維C\n-⼤纖維Aβ：興奮脊髓後⾓膠狀質細胞\n-⼩纖維C：抑制脊髓後⾓膠狀質細胞\n-脊髓後⾓膠狀質細胞：能抑制 T細胞(第⼀級中樞傳遞神經元)\n-⽌痛效果較快，維持短暫"
+        },
+        {
+          "page": 4,
+          "char_count": 81,
+          "text": "4\n✓⾨閥理論\nAβ ⼤纖維(傳遞觸壓覺)\n+\n-\n+\n+\n脊髓後⾓\n膠狀質細胞\ntransmission cell\n(T 細胞)\n-\n-\nC ⼩纖維(傳遞痛覺)"
+        },
+        {
+          "page": 5,
+          "char_count": 89,
+          "text": "5\n๏⽌痛\n➡原理\n✓⾨閥理論\nAβ ⼤纖維(傳遞觸壓覺)\n+\n-\n+\n+\n脊髓後⾓\n膠狀質細胞\ntransmission cell\n(T 細胞)\n-\n-\nC ⼩纖維(傳遞痛覺)"
+        },
+        {
+          "page": 6,
+          "char_count": 89,
+          "text": "6\n๏⽌痛\n➡原理\n✓⾨閥理論\nAβ ⼤纖維(傳遞觸壓覺)\n+\n-\n+\n+\n脊髓後⾓\n膠狀質細胞\ntransmission cell\n(T 細胞)\n-\n-\nC ⼩纖維(傳遞痛覺)"
+        },
+        {
+          "page": 7,
+          "char_count": 89,
+          "text": "7\n๏⽌痛\n➡原理\n✓⾨閥理論\nAβ ⼤纖維(傳遞觸壓覺)\n+\n-\n+\n+\n脊髓後⾓\n膠狀質細胞\ntransmission cell\n(T 細胞)\n-\n-\nC ⼩纖維(傳遞痛覺)"
+        },
+        {
+          "page": 8,
+          "char_count": 184,
+          "text": "8\n๏刺激模式\n➡傳統TENS\n✓較⾼頻 (50-100 Hz)、低強度\n✓波寬0.05 ms (較短)\n✓刺激Aα、Aβ神經纖維\n✓感受：針刺、震動、輕擊\n✓⽌痛效果快、維持短\nTENS刺激模式和應⽤參數\n➡類針灸式TENS\n✓低頻 (2 Hz)、⾼強度\n✓波寬0.2 ms (較長)\n✓刺激Aα、Aβ神經纖維\n✓感受：針刺(微疼痛)、肌⾁收縮\n✓⽌痛效果慢、維持久"
+        },
+        {
+          "page": 9,
+          "char_count": 258,
+          "text": "9\nTENS刺激模式和應⽤參數\n➡調節式TENS\n✓傳統式+類針灸式\n✓範圍內⾃動改變：波寬、波頻、強度\n✓避免神經適應\n✓⽌痛效果快、維持居中\n➡脈叢式TENS（爆發式Burst）\n✓傳統式+類針灸式\n✓連續式脈衝波每秒1-5次\n✓每脈衝約70ms，包含50-100 Hz的傳統TENS\n✓刺激Aβ、Aδ神經纖維 (尤其是Aβ，較佳的⽌痛效果)\n✓⽌痛效果快、維持居中\n➡Dense-Disperse疏密TENS\n✓⾼頻低頻互相切換(eg. 2Hz、\n100Ｈz，三秒切換)\n✓避免神經適應\n✓⽌痛效果快、維持居中"
+        },
+        {
+          "page": 10,
+          "char_count": 154,
+          "text": "10\n๏電極擺放位置\n✓疼痛部位\n✓周圍神經\n✓神經幹或神經根：適⽤神經病變造成的疼痛\n✓⽪節：同側或對側，使同⼀節感覺傳入→鎮痛\n✓運動點(動作點 Motor point)、穴道點\n-運動點、穴道點在空間分佈上有⾼度相關\n-與⽌痛效果無關、治療強度有關\n✓耳部：耳部穴道\nTENS刺激模式和應⽤參數\n✓⽪節"
+        },
+        {
+          "page": 11,
+          "char_count": 216,
+          "text": "11\n๏參數選擇\n✓強度\n-輕度刺痛：刺激Aα、Aβ\n-燒灼痛(強度升⾼)：刺激C\n-低強度比⾼強度有更好的⽌痛效果\n✓頻率\n-2-200Hz之間\n-60 Hz 使疼痛忍受度上升\n-30 ＆50 Hz 使疼痛忍受度下降\n-2 Hz能刺激 腦內啡 上升\n-100 Hz刺激 強啡肽 上升\n-80Hz 動物實驗顯⽰最好抑制作⽤\nTENS刺激模式和應⽤參數\n✓波形\n-波形不影響疼痛閾值和忍受度\n-⼀般為對稱或不對稱雙向波、少數\n為單向波"
+        },
+        {
+          "page": 12,
+          "char_count": 152,
+          "text": "12\n๏適⽤⽬的\n➡⽌痛\n✓短期有效(尤其是急性疼痛)的⽌痛⼯具\n✓無副作⽤\n➡⽌嘔\n✓骨科⼿術後可使⽤類嗎啡藥物⽌痛→嘔吐現象\n✓TENS在內關穴→減輕嘔吐\n➡微⾎管擴張\n✓刺激感覺神經造成微⾎管擴張\n➡減少⽔腫\n✓機械式的肌⾁收縮壓迫靜脈、淋巴⾎管\n✓增加⾎液回流、減少組織間壓⼒\n臨床適應症、禁忌症"
+        },
+        {
+          "page": 13,
+          "char_count": 108,
+          "text": "13\n๏禁忌\n➡⼼律調節器、⼼臟部位\n✓使⽤⼼律節律器病⼈\n✓電流不能橫跨⼼臟部位\n➡頸動脈竇\n✓與⾃律神經有關、易造成⼼律不整\n➡喉部\n✓靠近頸動脈竇與迷走神經、易造成吞嚥協調和⾃律神經相關影響\n臨床適應症、禁忌症"
+        },
+        {
+          "page": 14,
+          "char_count": 117,
+          "text": "14\n臨床適應症、禁忌症\n➡開放性傷⼝\n✓傷⼝處的⽪膚電阻不同：電流過度集中\n✓開放傷⼝易感染\n➡黏膜表⾯、眼部\n➡癲癇\n✓中風等中樞神經病變者，頭頸部應避免使⽤\n➡其他\n✓沒有神經感覺之區域\n✓懷孕婦女的⼦宮附近\n✓無能⼒者⾃⾏操作"
+        },
+        {
+          "page": 15,
+          "char_count": 205,
+          "text": "15\nP1 260µs 15Hz Constant\nP2 260µs 60Hz Burst\nP3 260µs 60Hz Constant\nP4 260µs-156µs2Hz\n60Hz\nDense-\nDisperse疏密\nP5 260µs-156µs60Hz 調節波寬\nP6 260µs 7-60Hz 調節頻率\nP7 260µs-156µs60Hz 調節波寬\nP8 P1-P7循環 P1-P7循環 P1-P7循環"
+        },
+        {
+          "page": 16,
+          "char_count": 2,
+          "text": "16"
+        },
+        {
+          "page": 17,
+          "char_count": 2,
+          "text": "17"
+        }
+      ]
+    },
+    {
+      "key": "muscle-stim",
+      "subject": "Physical Modality",
+      "file": "05肌肉電刺激 2.pdf",
+      "dir": "physical-modality",
+      "optional": true,
+      "status": "text_extracted",
+      "found": true,
+      "copied_path": "materials/exam/physical-modality/05肌肉電刺激 2.pdf",
+      "requires_manual_ocr": false,
+      "page_count": 16,
+      "extracted_pages": 16,
+      "char_count": 2780,
+      "error": null,
+      "pages": [
+        {
+          "page": 1,
+          "char_count": 36,
+          "text": "1\n吳⾄翔 講師 P .T.,M.S\n物理因⼦治療學\n1\n神經肌⾁電刺激"
+        },
+        {
+          "page": 2,
+          "char_count": 195,
+          "text": "2\n๏常⽤參數\n✓波形：單相或雙相的交流正弦波\n-波形不影響增加肌⼒的效果，但影響主觀舒適度\n✓波長：20-1000µs\n-波長過短無法引起有效收縮\n-波長過長⽪膚阻抗增加，易引起疼痛\n✓頻率\n-為了達到強直收縮：25-100pps\n-刺激的頻率越⾼會加速肌⾁疲勞產⽣\n-低頻電療儀：25-100 pps(或Hz)\n-中頻電療儀：如同蘇聯波形式，以中頻電流(2k-5k Hz)包裝成低頻脈衝"
+        },
+        {
+          "page": 3,
+          "char_count": 224,
+          "text": "3\n✓強度：病⼈可忍受的最⼤強度(MTIC, Maximum Tolerable Intensity of Current)\n✓收縮/休息時間比：1:3～1:5\n✓訓練頻率：每週3-5次\n✓電極片⾯積⼤⼩：以肌⾁⼤⼩做選擇\n-過⼩：電流密度↑，引起疼痛\n-過⼤：兩電極覆蓋會產⽣短路、或徵召拮抗肌\n✓電極片位置：\n-單極擺放法Monopolar Placement：適合⼩肌群\n-雙極擺放法Bipolar Placement：適合⼤肌群，肢體、軀幹"
+        },
+        {
+          "page": 4,
+          "char_count": 162,
+          "text": "4\n✓雙極擺放法Bipolar Placement\n-兩電極⼤⼩相同\n-都放置在同⼀肌⾁\n-刺激均勻\n-通常較舒適\n✓單極擺放法Monopolar Placement\n-分散電極、參考電極(⼤)放置在近端肢體、軀幹\n-主動電極、治療電極(⼩)放在治療⽬標\n-分散電極較無刺激、主動電極刺激強\n-若操作不當，主動電極易產⽣燒灼"
+        },
+        {
+          "page": 5,
+          "char_count": 126,
+          "text": "5\n➡神經肌⾁電刺激：Neuromuscular Electrical Stimulation, NMES\n➡主要的臨床運⽤\n✓維持、增加關節活動度\n✓增加肌⾁⼒量\n✓增加肌⾁耐⼒\n✓肌⾁再教育及誘發\n✓降低肌⾁痙攣\n✓減少肌⾁萎縮\n✓去神經肌⾁電刺激"
+        },
+        {
+          "page": 6,
+          "char_count": 178,
+          "text": "6\n๏維持、增加關節活動度\n✓關節活動度受限的原因\n-受傷後(軟組織傷害、中樞神經損傷、周邊神經損傷、肌⾁骨骼系統)皆可造成\n關節活動障礙\n-長期關節活動受限將引起關節攣縮 →功能受損\n✓攣縮的治療\n-輕度攣縮：保守治療，包括被動、主動伸展\n-嚴重攣縮：⼿術介入，如肌腱延長術 等\n✓搭配其他治療，可達到更好效果\n-主動伸展、被動伸展、輔具使⽤、擺位..."
+        },
+        {
+          "page": 7,
+          "char_count": 176,
+          "text": "7\n✓提升主動關節活動度(中樞神經損傷病⼈)\n-肌⾁骨骼系統損傷病⼈的成效有待證實\n✓強度：使關節活動達到可能的最⼤範圍\n-被動關節活動的最⼤值\n✓收縮⼒道：最好能對抗重⼒\n-非僅有肌⾁收縮\n-若太強，恐引發不良的快速的反射反應\n✓需長時間接受電刺激\n-攜帶型電刺激器能使病⼈帶回家，增加接受治療的時間\n-關節排列異常(半脫位)病⼈應注意不當的關節受⼒"
+        },
+        {
+          "page": 8,
+          "char_count": 248,
+          "text": "8\n๏增加肌⾁⼒量\n-機制與主動運動相似，肌肥⼤、增加運動單元徵召數量達到提升肌⼒\n➡正常⼈、運動員\n✓神經肌⾁電刺激能增強肌⼒\n-但與運動訓練相比無顯著差異\n-電刺激的效果無法超越⼀般運動\n➡傷後病⼈\n✓由於病⼈無完整的肌⾁徵召機轉 →無法接受正常強度的運動訓練\n-中樞神經病⼈，隨意動作控制異常\n-受傷後產⽣反射性抑制，使運動單元徵召不全 → 肌⼒下降\n✓電刺激(或加上運動訓練) > 運動訓練\n-⼗字韌帶術後、髕骨軟化症、髕骨股骨疼痛症候群、下背痛、腹肌分離症、神\n經系統損傷、中風、肌少症"
+        },
+        {
+          "page": 9,
+          "char_count": 160,
+          "text": "9\n➡總結：\n✓波形：\n-不影響效果，但會影響病⼈的舒適度\n-選⽤較不疼痛的波形，才能使電刺激效果最⼤化\n✓波長：\n-波長太短，無法引起收縮\n-波長太長，⽪膚阻抗增加，易引起疼痛\n-建議20-1000µsec(微秒)\n✓頻率：\n-需達到強直收縮的程度\n-建議25-100 pps\n-頻率↑，肌⾁疲勞↑。需考慮臨床實際狀況"
+        },
+        {
+          "page": 10,
+          "char_count": 223,
+          "text": "10\n✓強度：\n-以病⼈可忍受的最⼤強度(MTIC)作為治療強度\n-能使病⼈達到⾃主最⼤收縮程度的60% ↑\n✓電極片：\n-⾯積太⼩：電流密度↑，⽽引發疼痛\n-⾯積太⼤：易影響到不該刺激的肌群，如拮抗肌\n✓收縮/休息 時間比：\n-時間比約1：3不易引起肌⾁疲乏，臨床上多為收縮8-15秒/休息25-100秒\n✓收縮形式與次數：\n-等長收縮效果較佳，每次訓練應使肌⾁收縮10次左右\n✓接受治療頻率\n-每週3-5次\n-電刺激的參數、強度才是訓練的關鍵"
+        },
+        {
+          "page": 11,
+          "char_count": 122,
+          "text": "11\n๏增加肌⾁耐⼒\n✓使⽤訓練肌⼒的模式→ 耐⼒提升效果不佳\n✓長期、低頻的電刺激\n-脊髓損傷病⼈：每天8⼩時，為期24週，改善肌纖維比例、氧化酶活動\n-實驗鼠：每天24⼩時，為期5天，頻率10Hz，改善肌⾁氧化能⼒\n✓仍需更多研究證實其效果"
+        },
+        {
+          "page": 12,
+          "char_count": 190,
+          "text": "12\n๏肌⾁再教育及誘發\n✓肌⾁⼒量↑來⾃：\n-肌⾁肥⼤\n-神經肌⾁控制能⼒↑\n✓電刺激參數與訓練肌⾁⼒量之參數類似\n✓急性期病⼈接受電刺激：\n-肌⼒有顯著提升，但肌⾁截⾯積並未增加 →代表是神經肌⾁控制提升\n✓電刺激停⽌後，仍能增加主動動作\n-重複的練習、⼤量感覺輸入、動作感覺、本體感覺輸入、對運動神經元的直接\n刺激\n-少數研究指出電刺激僅能提供感覺輸入、無動作感覺的整合刺激"
+        },
+        {
+          "page": 13,
+          "char_count": 231,
+          "text": "13\n๏降低肌⾁痙攣\n✓肌⾁痙攣常出現在中樞神經系統損傷病⼈\n-不正常的肌⾁張⼒狀態、伸張反射過激、⽪膚反射過激\n-α運動神經元活動增加、肌⾁張⼒過⾼、動作控制能⼒降低\n✓多數：施予拮抗肌電刺激\n-交互抑制(reciprocal inhibition)的效果：拮抗肌興奮會使作⽤肌被抑制\n-多接合的脊髓通路控制\n-強直收縮後的電位降低\n✓少數：直接施予電刺激\n-造成周邊神經的疲乏，降低肌⾁張⼒\n✓臨床上無⼀種治療⽅式能適⽤所有情形，需慎選刺激參數、審慎評估效果"
+        },
+        {
+          "page": 14,
+          "char_count": 105,
+          "text": "14\n๏減少肌⾁萎縮\n✓肌⾁萎縮\n-廢⽤(disuse)：肌⾁骨骼⼿術後\n-肌⾁⿇痺(paralysis)：脊髓損傷\n✓針對⼿術後的病⼈接受電刺激能減輕肌⾁萎縮的程度\n✓脊髓損傷病⼈接受電刺激能防⽌病⼈肌⾁萎縮"
+        },
+        {
+          "page": 15,
+          "char_count": 239,
+          "text": "15\n๏去神經肌⾁電刺激\n➡去神經肌⾁\n✓周邊神經受損的肌⾁\n-電流無法經完整的神經系統傳導\n-少了神經刺激 →萎縮(atrophy)\n-需要更⼤的電刺激強度\n-需要更長的刺激波長 ，>10ms(或300-500ms直接刺激)\n-收縮與放鬆速度較慢 →不易產⽣適應性\n-較難形成強直收縮，強直收縮的強度也較⼩\n✓萎縮\n-肌⾁重量↓\n-肌纖維數⽬↓\n-纖維化：脂肪浸潤→ 肌⾁纖維被結締組織取代(纖維化)→ 不可逆\n-預防重點：在神經再⽣(1mm/天)重新⽀配之前，保持肌⾁的狀態"
+        },
+        {
+          "page": 16,
+          "char_count": 165,
+          "text": "16\n➡電刺激對去神經肌⾁的效益\n✓肌⾁萎縮較少\n-⾼頻電流預防快肌萎縮\n-低頻電流預防慢肌萎縮\n✓使強直收縮強度較強\n✓刺激神經再⽣\n➡臨床參數建議\n✓強度應⾜以引起肌⾁強直收縮\n✓以等長收縮的⽅式加以訓練\n✓越早開始治療，效果越好(前四個⽉)\n✓波長需較長，才能引起肌⾁收縮\n✓電極片擺置以能引起肌⾁收縮為準（以雙極擺放為主）"
+        }
+      ]
+    },
+    {
+      "key": "traction",
+      "subject": "Physical Modality",
+      "file": "05脊椎牽引概論與臨床運用 2.pdf",
+      "dir": "physical-modality",
+      "optional": true,
+      "status": "text_extracted",
+      "found": true,
+      "copied_path": "materials/exam/physical-modality/05脊椎牽引概論與臨床運用 2.pdf",
+      "requires_manual_ocr": false,
+      "page_count": 46,
+      "extracted_pages": 46,
+      "char_count": 3950,
+      "error": null,
+      "pages": [
+        {
+          "page": 1,
+          "char_count": 39,
+          "text": "脊椎牽引\n概論與臨床運⽤\n吳⾄翔 講師 P .T.,M.S\n物理因⼦治療學\n1"
+        },
+        {
+          "page": 2,
+          "char_count": 110,
+          "text": "前⾔\n-Traction\n-雖然各國都有使⽤脊椎牽引治療下背痛，但台灣由於全\n⺠健保制度，使脊椎牽引治療成為脊椎疼痛的主要治療\n策略\n-臨床上許多脊椎疼痛病⼈視脊椎牽引為最直觀的治療項\n⽬\n-腰椎牽引與吊單槓的差異？\n2"
+        },
+        {
+          "page": 3,
+          "char_count": 38,
+          "text": "牽引使⼒⽅式分類\n-靜態式牽引\n-連續式牽引\n-持續式牽引\n-間歇式牽引\n3"
+        },
+        {
+          "page": 4,
+          "char_count": 151,
+          "text": "牽引使⼒⽅式分類\n靜態式牽引：以極低的牽引⼒牽拉，⽬的為限制活動和\n臥床休息，由於實證觀念進步，已逐漸不使⽤\n-連續式牽引：靜態式牽引之⼀。適⽤忍受拉⼒較⼩的病\n⼈，時間維持數⼩時⾄數天，通常⽤於固定病⼈\n-持續式牽引：靜態式牽引之⼀。能忍受的拉⼒較⼤，拉\n長脊椎效果也較⼤，時間維持數分鐘⾄半⼩時\n4"
+        },
+        {
+          "page": 5,
+          "char_count": 85,
+          "text": "牽引使⼒⽅式分類\n間歇式牽引：設定規律的「牽引/休息」時間\n-牽引時間7秒能達到伸直脊椎的效果\n-有活動椎間關節的效果\n-刺激⾼爾肌腱器來抑制α 神經元興奮，放鬆肌⾁\n5"
+        },
+        {
+          "page": 6,
+          "char_count": 50,
+          "text": "-機械式牽引\n-徒⼿式牽引\n-擺位式牽引\n-⾃我牽引\n-重⼒牽引\n-倒立式牽引\n6\n牽引⼒的來源分類"
+        },
+        {
+          "page": 7,
+          "char_count": 72,
+          "text": "機械式牽引\n-砝碼型、電動型牽引機等\n-可設定拉⼒⼤⼩、牽引/休息時間、治療時間、拉緊放\n鬆的速度\n-可調整靜態式或間歇式\n7\n牽引⼒的來源分類"
+        },
+        {
+          "page": 8,
+          "char_count": 74,
+          "text": "徒⼿牽引\n-以治療師徒⼿的⽅式，搭配姿勢擺位執⾏牽引\n-較具特定部位專⼀性\n-缺點：施⼒⼤⼩主觀\n-常⽤於評估病⼈是否適合牽引\n8\n牽引⼒的來源分類"
+        },
+        {
+          "page": 9,
+          "char_count": 92,
+          "text": "擺位式牽引\n-特定擺位可對脊椎不同節段造成牽引⼒\n-長時間、低強度的縱向⼒量\n-無拉開⼩⾯關節的效果\n-減少肌⾁僵直、牽拉軟組織、拉長脊椎\n-適合作為居家治療計畫\n9\n牽引⼒的來源分類"
+        },
+        {
+          "page": 10,
+          "char_count": 38,
+          "text": "10\n-Williams flexion exercise\n牽引⼒的來源分類"
+        },
+        {
+          "page": 11,
+          "char_count": 53,
+          "text": "⾃我牽引\n-牽引⼒來⾃病⼈⾃⾝的⼒量\n-經繩索和滑輪系統、讓病⼈⽤⼿控制\n牽引⼒量\n11\n牽引⼒的來源分類"
+        },
+        {
+          "page": 12,
+          "char_count": 11,
+          "text": "牽引⼒的來源分類\n12"
+        },
+        {
+          "page": 13,
+          "char_count": 72,
+          "text": "重⼒牽引\n-常⽤於腰椎牽引\n-透過重⼒(⾃⾝體重)作為牽引⼒\n-低強度牽引⼒適合輕～中度脊椎壓迫病⼈\n-挑戰上肢的⽀撐⼒\n13\n牽引⼒的來源分類"
+        },
+        {
+          "page": 14,
+          "char_count": 65,
+          "text": "重⼒牽引\n14\n牽引⼒的來源分類\nSit\nStand lean on a table Stand between 2 chairs"
+        },
+        {
+          "page": 15,
+          "char_count": 81,
+          "text": "倒立式牽引\n-以頭朝下的姿勢擺位，以⾃⾝體重為牽引⼒牽拉\n-明顯增加⾎壓收縮壓、舒張壓、眼動脈壓\n-恐增加中風、⼼肌梗塞風險\n-不建議使⽤\n15\n牽引⼒的來源分類"
+        },
+        {
+          "page": 16,
+          "char_count": 117,
+          "text": "-關節拉離(Joint distraction)\n-關節鬆動(Joint mobilization)\n-肌⾁放鬆(Muscle relaxation)\n-椎間盤突出的復位(Disc reduction)\n16\n脊椎牽引的效應與治療機轉"
+        },
+        {
+          "page": 17,
+          "char_count": 130,
+          "text": "-關節拉離(Joint distraction)\n-⼩⾯關節拉離與椎間৿的擴⼤\n-⼩⾯關節拉離可拉長⼩⾯關節囊與周圍軟組織\n-減輕因關節受壓產⽣的症狀(如脊神經根壓迫)\n-⼀樣牽引⼒下，退化關節的分離現象較少\n17\n脊椎牽引的效應與治療機轉\n分析拉單槓⽣物⼒學"
+        },
+        {
+          "page": 18,
+          "char_count": 59,
+          "text": "-腰椎：體重1/4可以伸展軟組織、1/2⼩⾯關節拉離\n-頸椎：7%⾜以造成⼩⾯關節拉離\n18\n脊椎牽引的效應與治療機轉"
+        },
+        {
+          "page": 19,
+          "char_count": 122,
+          "text": "19\nSuperior articular process\nInferior articular processSuperior articular process\nInferior articular process\n脊椎牽引的效應與治療機轉"
+        },
+        {
+          "page": 20,
+          "char_count": 57,
+          "text": "20\nNormal disc heightDecrease in disc height\n脊椎牽引的效應與治療機轉"
+        },
+        {
+          "page": 21,
+          "char_count": 15,
+          "text": "21\n脊椎牽引的效應與治療機轉"
+        },
+        {
+          "page": 22,
+          "char_count": 15,
+          "text": "22\n脊椎牽引的效應與治療機轉"
+        },
+        {
+          "page": 23,
+          "char_count": 126,
+          "text": "關節鬆動(Joint mobilization)\n-⼩⾯關節⾯的相對滑動、椎間關節的活動度\n-中強度以上可牽拉周圍軟組織→增加關節活動度\n-低強度之間歇式牽引：刺激關節內機械性受器→⽌痛\n-鬆動效益無法如徒⼿⼿法集中局部\n23\n脊椎牽引的效應與治療機轉"
+        },
+        {
+          "page": 24,
+          "char_count": 145,
+          "text": "肌⾁放鬆(Muscle relaxation)\n-肌群被拉長→減少肌⾁保護反應(mescle guarding)\n-間歇式牽引：重複震動刺激關節內機械性受器、刺激⾼\n爾基⽒肌腱體\n-靜態式牽引(少⽤)：持續性的肌⾁牽拉降低單突觸反應\n(肌⾁反射)，使肌⾁放鬆\n24\n脊椎牽引的效應與治療機轉"
+        },
+        {
+          "page": 25,
+          "char_count": 115,
+          "text": "椎間盤突出的復位(Disc reduction)\n-兩脊椎間距增加時，可減少椎間盤內壓(intradiscal\npressure)、拉緊後縱韌帶(PLL)\n-者兩機制使突出的椎間盤吸回、推回椎間盤內\n25\n脊椎牽引的效應與治療機轉"
+        },
+        {
+          "page": 26,
+          "char_count": 15,
+          "text": "26\n脊椎牽引的效應與治療機轉"
+        },
+        {
+          "page": 27,
+          "char_count": 15,
+          "text": "27\n脊椎牽引的效應與治療機轉"
+        },
+        {
+          "page": 28,
+          "char_count": 15,
+          "text": "28\n脊椎牽引的效應與治療機轉"
+        },
+        {
+          "page": 29,
+          "char_count": 143,
+          "text": "-椎間盤突出：減少椎間盤突出、解除神經跟壓迫症狀\n(SLR⾓度提升)，復位後應保持伸直原則(extension\nprinciple)，且針對⾝體⼒學矯正、運動與護腰來穩定脊\n椎維持效果\n-脊神經根夾擠：⾸選脊椎牽引作為治療。但效⽤可能是\n暫時性的，停⽌牽引後神經৿恢復原狀\n29\n適應症"
+        },
+        {
+          "page": 30,
+          "char_count": 151,
+          "text": "30\n適應症\n-關節活動度不良：透過拉長關節囊伸展周圍的軟組織，可\n將其視為關節鬆動數的⼀種形式，但脊椎單⼀節段緊繃\n時，容易鬆的越鬆、緊得越緊\n-關節發炎：間歇式脊椎牽引重複震動刺激機械性受器，阻\n斷疼痛刺激傳導。有助於關節內液體交換減少慢性發炎造\n成的關節腫脹。慢性期適合間歇式、急性期應選擇靜態式"
+        },
+        {
+          "page": 31,
+          "char_count": 79,
+          "text": "31\n適應症\n-脊椎旁肌⾁痙攣：靜態式(⾼強度、少⽤)、低強度間歇式\n皆可幫助。機制來⾃⽌痛後的緩解、或抑制單突觸反\n射、或刺激⾼爾基⽒肌腱體抑制ɑ運動神經元"
+        },
+        {
+          "page": 32,
+          "char_count": 171,
+          "text": "32\n禁忌症\n-急性脊椎發炎：急性發炎後72⼩時後，靜態式→間歇式\n-醫囑為：不能移動頸部、腰部者\n-關節過度鬆動或不穩定者：骨折、韌帶鬆弛、關節脫位\n-脊髓受到壓迫或內側椎間盤突出者\n-未能控制的⾼⾎壓：> 140/90mmHg者，若牽引後\n+10mmHg，應停⽌治療\n-牽引後症狀周邊化者：周邊化代表神經壓迫增加、中樞\n化代表神經壓迫減輕"
+        },
+        {
+          "page": 33,
+          "char_count": 86,
+          "text": "33\n禁忌症\nProtrusion is lateral\nto the nerve root.\nProtrusion is medial\nto the nerve root"
+        },
+        {
+          "page": 34,
+          "char_count": 159,
+          "text": "34\n注意事項\n-結構整體性不完整者：腫瘤、感染、類風濕性關節炎、\n骨質疏鬆、長期服⽤類固醇者，應低強度循序漸進\n-幽閉恐懼症、牽引焦慮症者：以擺位式牽引、徒⼿牽引\n為主\n-綁帶之壓⼒恐造成傷害者：懷਀(X)、腹疝、食道裂৿疝、\n股動脈受損、嚴重痔瘡、主動脈瘤、嚴重骨質疏鬆\n-牽引時疼痛完全解除：恐造成神經根完全阻斷"
+        },
+        {
+          "page": 35,
+          "char_count": 146,
+          "text": "35\n注意事項\n-無法承受牽引之姿勢者：胃食道逆流、姿位性低⾎壓\n-定向⼒障礙者：建議徒⼿牽引、減少牽引時間\n-有顳顎關節問題者：頸牽引採躺姿、枕骨綁帶\n-有活動假牙者：頸牽引採躺姿、枕骨綁帶，避免假牙傷\n害或顳顎關節傷害，不可拿出假牙\n-頸牽引後出現腰輻射性神經症狀：視情況調整⼒道及時\n間"
+        },
+        {
+          "page": 36,
+          "char_count": 95,
+          "text": "36\n技術⽰範 頸椎牽引\n徒⼿牽引\n-仰躺、雙⼿指腹置於枕部\n-仰躺、雙⼿食指置於枕部、拇指放在耳後\n-仰躺、⼀⼿直指置於枕部、⼀⼿放在額部\n-坐姿、雙⼿拇指置於枕骨下⽅、其餘⼿指順著臉擺放"
+        },
+        {
+          "page": 37,
+          "char_count": 69,
+          "text": "37\n技術⽰範 頸椎牽引\n機械坐姿：\n-器械較省空間\n-需對抗地⼼引⼒，需較⼤的牽引⼒\n-雙臂需有⽀撐(扶⼿、枕頭)\n-雙腳需紮實平貼⽀撐"
+        },
+        {
+          "page": 38,
+          "char_count": 104,
+          "text": "38\n技術⽰範 頸椎牽引\n機械仰躺：\n-器械需較⼤空間\n-不需抗地⼼引⼒，牽拉效果較好\n-姿勢關係，頸椎前凸曲線較⼩(集中後側組織分離、⼒量\n集中於下頸椎)\n-較易調整病⼈之頭部⾓度\n-需考慮床⾯摩擦⼒之影響"
+        },
+        {
+          "page": 39,
+          "char_count": 140,
+          "text": "39\n技術⽰範 頸椎牽引\n頸椎⾓度影響：\n-頸部為屈曲(flexion)姿勢，對脊椎後側組織(⼩⾯關節、椎\n間৿)有較⼤的分離⼒，⼒量較集中於下頸椎(C5-7)\n-頸部⾄於中位或伸直(extension)姿勢，對脊椎前側(椎間\n盤間隙)有較⼤的分離⼒，⼒量集中於上頸椎(C1-4)"
+        },
+        {
+          "page": 40,
+          "char_count": 106,
+          "text": "40\n技術⽰範 頸椎牽引\n時間設定：\n-以將脊椎拉長之效果，間歇式牽引的持續時間應⼤於七\n秒。牽引/放鬆時間週期：30s/30s或60s/30s\n-以減少肌⾁痙攣之效果，應以間歇式牽引達到鬆動術效\n果：5s/5s"
+        },
+        {
+          "page": 41,
+          "char_count": 69,
+          "text": "41\n技術⽰範 頸椎牽引\n重量設定：\n-以病⼈體重之1/7開始，每三次治療增加1kg\n-最重不超過病⼈體重之1/4\n-根據病⼈反應調整數據"
+        },
+        {
+          "page": 42,
+          "char_count": 76,
+          "text": "42\n技術⽰範 腰椎牽引\n徒⼿牽引(需兩位治療師)\n-⼀⼈固定病⼈於床⾯，⼀⼈執⾏牽引\n-髖伸直姿勢：PT固定pt雙踝\n-髖屈曲姿勢：PT固定pt膝後⽅"
+        },
+        {
+          "page": 43,
+          "char_count": 133,
+          "text": "43\n技術⽰範 腰椎牽引\n機械式腰椎牽引⾓度影響：\n-腰椎屈曲(flexion)：對後⽅組織(⼩⾯關節、椎間৿)有較\n⼤的牽引⼒，牽引⼒也較集中於腰椎下半部\n-腰椎正中或伸直(extension)：對前⽅組織(椎間盤間隙)有\n較⼤的牽引⼒，牽引⼒也較集中於腰椎上半部"
+        },
+        {
+          "page": 44,
+          "char_count": 100,
+          "text": "44\n技術⽰範 腰椎牽引\n時間設定：\n-椎間盤疾病：靜態式< 10分鐘；間歇式10-15分鐘，牽引/\n放鬆＝60s/20s\n-脊椎關節問題：間歇式15s/15s\n-若症狀嚴重者，應延長牽引/放鬆的時間"
+        },
+        {
+          "page": 45,
+          "char_count": 69,
+          "text": "45\n技術⽰範 腰椎牽引\n重量設定：\n-以病⼈體重之1/4開始，每三次治療增加1kg\n-最重不超過病⼈體重之1/2\n-根據病⼈反應調整數據"
+        },
+        {
+          "page": 46,
+          "char_count": 77,
+          "text": "46\n回家功課\n拍攝操作影片：\n-頸椎牽引(學號奇數)、腰椎牽引(學號偶數)\n-⼀⼈飾演病⼈、⼀⼈掌鏡\n-橫式拍攝\n-⼩於⼀分鐘\n-著重操作⼿法和成果展現"
+        }
+      ]
     },
     {
       "key": "shockwave",

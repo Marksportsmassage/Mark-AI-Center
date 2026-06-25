@@ -9,13 +9,17 @@ mkdirSync(outDir, { recursive: true });
 
 const expected = [
   { key: "rom", subject: "ROM", file: "易大師的期末ROM題庫-保母級.pdf", dir: "rom" },
+  { key: "rom-lecture", subject: "ROM", file: "ROM講義.pdf", dir: "rom", optional: true },
   { key: "operation-therapy-1", subject: "Operation Therapy", file: "操作治療學(四肢)1.pdf", dir: "operation-therapy" },
   { key: "operation-therapy-2", subject: "Operation Therapy", file: "操作治療學(四肢)2.pdf", dir: "operation-therapy" },
   { key: "operation-therapy-run", subject: "Operation Therapy", file: "114學年度＿專物一甲操作治療學及實習跑台技術考考題.pdf", dir: "operation-therapy", optional: true },
-  { key: "surgery", subject: "Surgery", file: "外科題目AI(1).pdf", dir: "surgery" },
+  { key: "surgery", subject: "Surgery", file: "外科題目AI.pdf", dir: "surgery" },
   { key: "mmt-upper", subject: "MMT", file: "MMT小考上肢(ans).pdf", dir: "rom-mmt" },
   { key: "mmt-lower", subject: "MMT", file: "MMT小考下肢(ans)(1).pdf", dir: "rom-mmt" },
   { key: "hifem", subject: "Physical Modality", file: "高強度聚焦磁場治療(1).pdf", dir: "physical-modality" },
+  { key: "tens", subject: "Physical Modality", file: "04TENS 2.pdf", dir: "physical-modality", optional: true },
+  { key: "muscle-stim", subject: "Physical Modality", file: "05肌肉電刺激 2.pdf", dir: "physical-modality", optional: true },
+  { key: "traction", subject: "Physical Modality", file: "05脊椎牽引概論與臨床運用 2.pdf", dir: "physical-modality", optional: true },
   { key: "shockwave", subject: "Physical Modality", file: "06震波.pdf", dir: "physical-modality" }
 ];
 
@@ -58,6 +62,8 @@ function findActualFile(item) {
   if (!existsSync(dir)) return null;
   const files = readdirSync(dir).filter((name) => name.toLowerCase().endsWith(".pdf"));
   if (item.key === "shockwave") return files.find((name) => name.includes("震波")) ? path.join(dir, files.find((name) => name.includes("震波"))) : null;
+  if (item.key === "surgery") return files.find((name) => name.includes("外科題目AI")) ? path.join(dir, files.find((name) => name.includes("外科題目AI"))) : null;
+  if (item.key === "rom") return files.find((name) => name.includes("易大師")) ? path.join(dir, files.find((name) => name.includes("易大師"))) : null;
   return null;
 }
 
@@ -95,4 +101,3 @@ const summary = [
 ].join("\n");
 writeFileSync(path.join(outDir, "materials-scan.md"), summary + "\n");
 console.log(summary);
-

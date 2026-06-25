@@ -1,22 +1,12 @@
 # Physical Modality Question Bank
 
-Sources required:
+Status: no explicit original question bank was identified in the newly added physical modality PDFs. The files are lecture materials, so entries are marked as lecture high-yield, not original questions.
 
-- `materials/exam/physical-modality/高強度聚焦磁場治療(1).pdf`
-- `materials/exam/physical-modality/06震波(1).pdf`
+Sources added:
 
-Status: PDFs missing. No original questions have been extracted.
+- 04TENS 2.pdf
+- 05肌肉電刺激 2.pdf
+- 05脊椎牽引概論與臨床運用 2.pdf
+- 06震波.pdf
 
-## Question Template
-
-- Source file:
-- Source page:
-- Topic:
-- Original question:
-- Options:
-- Correct answer:
-- Explanation:
-- Lecture keyword:
-- Easy mistake:
-- Status:
-
+Do not create fake multiple-choice questions from these notes.

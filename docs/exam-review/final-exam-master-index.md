@@ -6,8 +6,8 @@ Status checked: 2026-06-25.
 
 | Subject | Completion | Current state |
 | --- | --- | --- |
-| Surgery | 0% | source missing |
-| ROM | 0% | source missing |
+| Surgery | partial | found, extracted 9/9 pages |
+| ROM | partial | found, extracted 94/151 pages |
 | MMT | partial | found, extracted 4/4 pages; found, extracted 3/3 pages |
 | Physical Modality | partial | Shockwave found, extracted 19/19 pages; HIFEM source missing |
 | Operation Therapy | indexed | found, requires manual OCR; found, requires manual OCR; found, extracted 1/1 pages |
