@@ -1,15 +1,18 @@
 :root {
-  --bg: #f7f8fa;
+  --bg: #f4f7fb;
   --panel: #ffffff;
-  --panel-muted: #f1f4f7;
+  --panel-muted: #eef3f8;
   --text: #17202a;
-  --muted: #657487;
-  --line: #d9e0e8;
+  --muted: #607086;
+  --line: #d9e2ec;
   --primary: #0f766e;
   --primary-strong: #115e59;
+  --accent: #4f46e5;
+  --ink: #0b1220;
   --warning: #b45309;
   --danger: #b91c1c;
-  --shadow: 0 10px 28px rgba(22, 32, 42, 0.08);
+  --shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+  --shadow-soft: 0 8px 24px rgba(15, 23, 42, 0.06);
 }
 
 * {
@@ -23,7 +26,11 @@ body {
 
 body {
   margin: 0;
-  background: var(--bg);
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.025) 1px, transparent 1px),
+    var(--bg);
+  background-size: 32px 32px;
   color: var(--text);
   font-family:
     Arial,
@@ -54,7 +61,8 @@ textarea {
 
 .sidebar {
   border-right: 1px solid var(--line);
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(18px);
   padding: 20px;
   position: sticky;
   top: 0;
@@ -74,7 +82,7 @@ textarea {
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: var(--primary);
+  background: linear-gradient(135deg, var(--ink), var(--primary));
   color: white;
   font-weight: 700;
 }
@@ -95,13 +103,15 @@ textarea {
   display: block;
   border-radius: 8px;
   color: #263341;
+  font-weight: 700;
   padding: 10px 12px;
   text-decoration: none;
 }
 
 .nav-list a:hover,
 .nav-link:hover {
-  background: var(--panel-muted);
+  background: #eef7f5;
+  color: #0f766e;
 }
 
 .main-content {
@@ -140,7 +150,7 @@ textarea {
 }
 
 .panel {
-  background: var(--panel);
+  background: rgba(255, 255, 255, 0.94);
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: var(--shadow);
@@ -222,7 +232,7 @@ textarea {
 .button {
   border: 0;
   border-radius: 8px;
-  background: var(--primary);
+  background: linear-gradient(135deg, var(--primary), #0e7490);
   color: white;
   cursor: pointer;
   display: inline-flex;
@@ -241,7 +251,7 @@ textarea {
 }
 
 .button.secondary {
-  background: #e8eef2;
+  background: #eef3f8;
   color: var(--text);
 }
 
@@ -411,16 +421,34 @@ textarea {
 .assistant-hero {
   align-items: stretch;
   background:
-    radial-gradient(circle at 10% 12%, rgba(20, 184, 166, 0.16), transparent 32%),
-    radial-gradient(circle at 90% 20%, rgba(96, 165, 250, 0.16), transparent 34%),
-    #ffffff;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(239, 246, 255, 0.9)),
+    linear-gradient(90deg, rgba(15, 118, 110, 0.12), rgba(79, 70, 229, 0.1));
   border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: 8px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 22px 70px rgba(15, 23, 42, 0.12);
   display: grid;
   gap: 16px;
   grid-template-columns: minmax(0, 1fr) minmax(220px, 0.3fr);
   padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.assistant-hero::before {
+  background:
+    linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  content: "";
+  inset: 0;
+  opacity: 0.45;
+  pointer-events: none;
+  position: absolute;
+}
+
+.assistant-hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .assistant-hero h1 {
@@ -436,7 +464,10 @@ textarea {
 }
 
 .eyebrow {
+  align-items: center;
   color: var(--primary);
+  display: inline-flex;
+  gap: 6px;
   font-size: 13px;
   font-weight: 700;
   margin-bottom: 6px;
@@ -444,12 +475,31 @@ textarea {
 
 .assistant-status,
 .assistant-summary-grid > div {
-  background: var(--panel-muted);
+  background: rgba(255, 255, 255, 0.7);
   border: 1px solid var(--line);
   border-radius: 8px;
   display: grid;
   gap: 6px;
   padding: 14px;
+}
+
+.assistant-status {
+  align-content: center;
+  border-color: rgba(15, 118, 110, 0.18);
+  box-shadow: var(--shadow-soft);
+}
+
+.assistant-status strong {
+  align-items: center;
+  display: inline-flex;
+  gap: 7px;
+}
+
+.hero-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
 }
 
 .status-dot {
@@ -482,7 +532,8 @@ textarea {
 }
 
 .assistant-command-surface {
-  background: #07111f;
+  background:
+    linear-gradient(135deg, #09111f, #102238 58%, #0f302c);
   border: 1px solid rgba(148, 163, 184, 0.22);
   border-radius: 8px;
   box-shadow: 0 22px 60px rgba(15, 23, 42, 0.24);
@@ -495,7 +546,7 @@ textarea {
   align-items: center;
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
+  border-radius: 18px;
   display: grid;
   gap: 10px;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -507,7 +558,7 @@ textarea {
   border: 0;
   color: #0f172a;
   font-size: 16px;
-  min-height: 48px;
+  min-height: 54px;
   outline: 0;
   padding: 0;
 }
@@ -517,9 +568,15 @@ textarea {
 }
 
 .assistant-command-surface .prompt-row button {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.09);
   border-color: rgba(255, 255, 255, 0.18);
   color: #e5f3ff;
+}
+
+.command-panel h2 {
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
 }
 
 .assistant-chat-box {
@@ -562,7 +619,7 @@ textarea {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 8px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-soft);
   flex: 0 0 min(340px, 86vw);
   padding: 14px;
   scroll-snap-align: start;
@@ -584,6 +641,7 @@ textarea {
 }
 
 .assistant-answer-grid > div {
+  background: #fbfdff;
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 12px;
@@ -628,7 +686,7 @@ textarea {
 }
 
 .assistant-review-card {
-  background: #fff;
+  background: linear-gradient(180deg, #fff, #fbfdff);
   border: 1px solid var(--line);
   border-radius: 8px;
   color: var(--text);
@@ -641,6 +699,7 @@ textarea {
 
 .assistant-review-card.done {
   border-color: #86efac;
+  background: linear-gradient(180deg, #ffffff, #f0fdf4);
 }
 
 .assistant-review-card span {
@@ -853,7 +912,7 @@ textarea {
 
 .branch-card,
 .universe-card {
-  background: #fff;
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
   border: 1px solid var(--line);
   border-radius: 8px;
   color: var(--text);
@@ -863,6 +922,16 @@ textarea {
   min-height: 116px;
   padding: 14px;
   text-align: left;
+  transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.branch-card:hover,
+.universe-card:hover,
+.assistant-suggestion:hover,
+.ops-assignment-card:hover {
+  border-color: rgba(15, 118, 110, 0.38);
+  box-shadow: 0 16px 42px rgba(15, 23, 42, 0.11);
+  transform: translateY(-2px);
 }
 
 .branch-card small,
@@ -921,8 +990,7 @@ textarea {
 .universe-layout {
   align-items: stretch;
   background:
-    radial-gradient(circle at 18% 20%, rgba(34, 197, 94, 0.18), transparent 28%),
-    radial-gradient(circle at 80% 30%, rgba(56, 189, 248, 0.18), transparent 30%),
+    linear-gradient(135deg, rgba(6, 9, 19, 0.98), rgba(16, 24, 39, 0.98)),
     #050816;
   border: 1px solid rgba(148, 163, 184, 0.24);
   border-radius: 8px;
@@ -932,12 +1000,56 @@ textarea {
   padding: 18px;
 }
 
-.assistant-universe-scene {
+.universe-header h1 {
+  font-size: 34px;
+}
+
+.universe-stage {
+  background:
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    rgba(2, 6, 23, 0.42);
+  background-size: 34px 34px;
   border: 1px solid rgba(148, 163, 184, 0.22);
   border-radius: 8px;
+  overflow: hidden;
+}
+
+.universe-stage-header {
+  align-items: center;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+  color: #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 0 14px;
+}
+
+.universe-stage-header span {
+  align-items: center;
+  display: inline-flex;
+  gap: 7px;
+  font-weight: 800;
+}
+
+.universe-stage-header small {
+  color: #94a3b8;
+}
+
+.assistant-universe-scene {
+  border: 0;
+  border-radius: 0;
   min-height: 360px;
   overflow: hidden;
   position: relative;
+}
+
+.assistant-universe-scene::after {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  content: "";
+  inset: 12px;
+  pointer-events: none;
+  position: absolute;
 }
 
 .assistant-universe-scene canvas {
@@ -958,6 +1070,10 @@ textarea {
   border-color: #5eead4;
   box-shadow: 0 0 0 1px rgba(94, 234, 212, 0.22), 0 18px 50px rgba(20, 184, 166, 0.22);
   transform: translateY(-2px);
+}
+
+.universe-layout .universe-card {
+  background: rgba(255, 255, 255, 0.92);
 }
 
 .node-pill {

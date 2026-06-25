@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Orbit, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { AssistantUniverseScene } from "@/components/AssistantUniverseScene";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
@@ -12,8 +13,9 @@ function AssistantUniverse() {
   const active = assistantBranches.find((item) => item.id === activeId) ?? assistantBranches[0];
   return (
     <div className="assistant-page">
-      <header className="page-header">
+      <header className="page-header universe-header">
         <div>
+          <p className="eyebrow"><Sparkles size={15} /> Assistant Universe</p>
           <h1>Mark AI 公司宇宙</h1>
           <p>中心是 Mark AI Assistant；每顆行星是一位公司助理員工。點行星就能查看職責、記憶、提醒與入口。</p>
         </div>
@@ -21,7 +23,13 @@ function AssistantUniverse() {
       </header>
 
       <section className="universe-layout">
-        <AssistantUniverseScene branches={assistantBranches} activeId={active.id} onSelect={setActiveId} />
+        <div className="universe-stage">
+          <div className="universe-stage-header">
+            <span><Orbit size={16} /> 3D 公司行星圖</span>
+            <small>點擊行星切換助理員工</small>
+          </div>
+          <AssistantUniverseScene branches={assistantBranches} activeId={active.id} onSelect={setActiveId} />
+        </div>
         <div className="universe-orbit" aria-label="Assistant branches">
           {assistantBranches.map((branch) => (
             <button className={`universe-card ${activeId === branch.id ? "active" : ""}`} key={branch.id} type="button" onClick={() => setActiveId(branch.id)}>

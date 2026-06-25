@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { assistantSuggestions, buildAssistantAnswer, buildAssistantReviewDashboard } from "../src/lib/assistantExperience";
 
@@ -48,5 +48,16 @@ describe("assistant home", () => {
     expect(answer.review_dashboard?.completed.length).toBeGreaterThan(0);
     expect(answer.review_dashboard?.needsMarkReview.length).toBeGreaterThan(0);
     expect(answer.sections.links.some((link) => link.href === "/assistant-universe")).toBe(true);
+  });
+
+  it("uses a modern visual command surface instead of plain table UI", () => {
+    const source = readFileSync("src/app/assistant/page.tsx", "utf8");
+    const css = readFileSync("src/app/globals.css", "utf8");
+    expect(source).toContain("lucide-react");
+    expect(source).toContain("進入公司宇宙");
+    expect(source).toContain("用問答補資料");
+    expect(css).toContain("assistant-command-surface");
+    expect(css).toContain("hero-action-row");
+    expect(css).toContain("command-panel");
   });
 });

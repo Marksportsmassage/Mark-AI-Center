@@ -36,6 +36,18 @@ describe("assistant universe", () => {
     expect(source).toContain("await import(\"three\")");
     expect(source).toContain("new THREE.WebGLRenderer");
     expect(source).toContain("SphereGeometry");
+    expect(source).toContain("RingGeometry");
+    expect(source).toContain("ACESFilmicToneMapping");
+    expect(source).toContain("FogExp2");
     expect(source).toContain("pointerdown");
+  });
+
+  it("universe page has a visual stage instead of a plain card list", () => {
+    const page = readFileSync("src/app/assistant-universe/page.tsx", "utf8");
+    const css = readFileSync("src/app/globals.css", "utf8");
+    expect(page).toContain("3D 公司行星圖");
+    expect(page).toContain("universe-stage");
+    expect(css).toContain("universe-stage-header");
+    expect(css).toContain("assistant-universe-scene::after");
   });
 });

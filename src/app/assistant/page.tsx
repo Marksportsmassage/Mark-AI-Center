@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowRight, BrainCircuit, Building2, ClipboardCheck, SendHorizontal, Sparkles } from "lucide-react";
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { AssistantSuggestionPanel } from "@/components/AssistantSuggestionPanel";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
@@ -69,22 +70,27 @@ function AssistantData() {
   return (
     <div className="assistant-page">
       <header className="assistant-hero">
-        <div>
-          <p className="eyebrow">Mark AI Company Assistant</p>
+        <div className="assistant-hero-copy">
+          <p className="eyebrow"><Sparkles size={15} /> Mark AI Company Assistant</p>
           <h1>你想交代什麼給公司助理？</h1>
           <p>像 GPT 一樣直接問。它會把財務長、投資風控、學習內容、客戶課表、產品開發等員工叫出來協作。</p>
+          <div className="hero-action-row">
+            <Link className="button compact" href="/assistant-universe"><Building2 size={16} />進入公司宇宙</Link>
+            <Link className="button secondary compact" href="/intake"><ClipboardCheck size={16} />用問答補資料</Link>
+          </div>
         </div>
         <div className="assistant-status">
           <span className={`status-dot risk-${financeStatus}`}>{assistantRiskLabel(financeStatus)}</span>
-          <strong>今日提醒狀態</strong>
+          <strong><BrainCircuit size={18} />今日提醒狀態</strong>
           <small>CFO 今日簡報：{latestBrief?.status ?? "待建立"}</small>
+          <small>所有建議：需要 Mark review</small>
         </div>
       </header>
 
       <section className="assistant-command-surface">
         <form className="assistant-main-prompt" onSubmit={ask}>
           <input value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="問我任何事，例如：我今天先做什麼？我要準備期末考？現在可以花錢嗎？" />
-          <button className="button compact" type="submit">送出</button>
+          <button className="button compact" type="submit"><SendHorizontal size={16} />送出</button>
         </form>
         <div className="prompt-row">
           {prompts.map((prompt) => <button key={prompt} type="button" onClick={() => setAnswer(buildAssistantAnswer(prompt))}>{prompt}</button>)}
@@ -97,8 +103,8 @@ function AssistantData() {
         <div><strong>{assistantRiskLabel(financeStatus)}</strong><span>財務 / 系統風險</span></div>
       </section>
 
-      <section className="panel assistant-priorities">
-        <h2>今天最重要 3 件事</h2>
+      <section className="panel assistant-priorities command-panel">
+        <h2><ArrowRight size={18} />今天最重要 3 件事</h2>
         <ol>
           <li>核對 Line Pay / 一番賞支出與 940 差額。</li>
           <li>處理信用卡、自動分期與投資 review。</li>
