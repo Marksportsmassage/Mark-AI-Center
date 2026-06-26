@@ -21,9 +21,13 @@ Allowed in relay reports:
 - Commit SHAs
 - Non-sensitive operational status
 - Finance status summaries without raw account details
+- Sanitized GPT Relay status such as plugin availability, error code, or commit SHA
 
 Rules:
 
 - Private raw data stays local or in Firestore.
 - Public handoff summaries can be committed.
 - Private transcripts should go under ignored private transcript folders.
+- Do not send original exam PDFs through relay.
+- Do not send raw financial records, card details, bank details, or screenshots through relay.
+- Do not inspect or relay browser cookies, Chrome session tokens, or ChatGPT account tokens.

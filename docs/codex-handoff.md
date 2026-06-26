@@ -26,7 +26,13 @@ At task completion, Codex must generate a sanitized relay report:
 - `/tmp/codex-to-chatgpt-latest.md`
 - `docs/codex-relay/reports/YYYY-MM-DD-<task>.md`
 
-If GitHub relay is available, Codex may post the sanitized report to the relay issue. If unavailable, report the local path for manual handoff.
+Relay priority:
+
+1. GPT Relay plugin, if ChatGPT is open in Chrome and the composer is available.
+2. GitHub relay issue, if `gh` is installed and authenticated.
+3. Local fallback report path for manual handoff.
+
+If GPT Relay is unavailable, Codex must report the exact error. `CHATGPT_COMPOSER_MISSING` means the plugin exists but could not find a usable ChatGPT composer textbox. If GitHub relay is also unavailable, report the local path for manual handoff.
 
 ## Missing Files
 

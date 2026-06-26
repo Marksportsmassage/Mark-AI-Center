@@ -33,7 +33,7 @@ Last updated: 2026-06-26.
 
 1. Assistant needs live context / thread memory strengthening.
 2. LINE reply / push remains disabled.
-3. GPT Relay is not currently verified as reliable.
+3. GPT Relay plugin is installed, but the latest dry run failed with `CHATGPT_COMPOSER_MISSING`; Mark likely needs to open/login ChatGPT in Chrome with a visible composer.
 4. Exam review still has some missing or scan-only PDF material.
 5. Mobile UX needs continued real-device validation.
 6. Google Cloud cost is under watch.

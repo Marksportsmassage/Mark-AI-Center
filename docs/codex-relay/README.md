@@ -6,12 +6,25 @@ This folder defines the Codex to ChatGPT handoff protocol.
 
 Codex work should produce a sanitized handoff report that ChatGPT can read later.
 
-If direct GPT Relay is available, use it. If it is not reliable, use this fallback:
+Relay priority:
 
-1. Codex writes a report to `/tmp/codex-to-chatgpt-latest.md`.
-2. Codex also writes a committed sanitized report under `docs/codex-relay/reports/`.
-3. Mark can paste the report into ChatGPT.
-4. If GitHub CLI is available and authenticated, Codex can post the report to the GitHub relay issue so ChatGPT can read it through GitHub connectors.
+1. GPT Relay plugin through the existing Codex / Chrome / ChatGPT session.
+2. GitHub issue relay through `gh`, when available and authenticated.
+3. Local fallback report at `/tmp/codex-to-chatgpt-latest.md`.
+
+Use:
+
+```bash
+npm run codex:report -- --task "<task-name>" --status COMPLETE
+npm run codex:relay
+```
+
+Current detection details are recorded in:
+
+- `docs/codex-relay/GPT_RELAY_SETUP.md`
+- `docs/codex-relay/gpt-relay-detection-2026-06-26.md`
+
+As of 2026-06-26, the GPT Relay plugin is installed, but the latest dry run failed with `CHATGPT_COMPOSER_MISSING`. This means the relay helper could not find a usable ChatGPT composer in Chrome. It is not proof that ChatGPT received anything.
 
 ## Safety
 
