@@ -68,5 +68,18 @@ if (!issueNumber) {
 const report = readFileSync(REPORT_PATH, "utf8");
 run("gh", ["issue", "comment", issueNumber, "--repo", REPO, "--body", report]);
 
+let commentUrl = "";
+try {
+  commentUrl = run("gh", [
+    "api",
+    `repos/${REPO}/issues/${issueNumber}/comments`,
+    "--jq",
+    ".[-1].html_url"
+  ]);
+} catch {
+  commentUrl = "";
+}
+
 console.log(`GITHUB_RELAY_OK issue=${issueNumber}`);
 console.log(`GITHUB_RELAY_URL https://github.com/${REPO}/issues/${issueNumber}`);
+if (commentUrl) console.log(`GITHUB_RELAY_COMMENT_URL ${commentUrl}`);

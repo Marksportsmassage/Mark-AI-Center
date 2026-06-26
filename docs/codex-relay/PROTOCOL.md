@@ -31,17 +31,15 @@ npm run codex:relay
 
 This tries, in order:
 
-1. GPT Relay plugin
-2. GitHub issue relay
-3. Local fallback report path
+1. GitHub issue relay
+2. Local fallback report path
+3. GPT browser relay is disabled until target validation is reliable
 
-If GPT Relay succeeds, output includes `GPT_RELAY_SENT`.
-
-If `gh` is available and authenticated, the GitHub fallback posts the sanitized report to:
+If `gh` is available and authenticated, the GitHub relay posts the sanitized report to:
 
 `Codex ↔ ChatGPT Relay / Handoff Log`
 
-If neither GPT Relay nor GitHub relay is available, use the local report path manually:
+If GitHub relay is unavailable, use the local report path manually:
 
 `/tmp/codex-to-chatgpt-latest.md`
 
@@ -62,6 +60,6 @@ If neither GPT Relay nor GitHub relay is available, use the local report path ma
 ## Failure Rules
 
 - Do not claim ChatGPT received a report unless direct relay or GitHub relay actually succeeded.
-- If GPT Relay is unavailable, report `GPT_RELAY_UNAVAILABLE` and the exact error code.
 - If GitHub relay is unavailable, report `GITHUB_RELAY_UNAVAILABLE` and provide the local path.
-- `CHATGPT_COMPOSER_MISSING` means the plugin is installed but ChatGPT's composer was not found in Chrome.
+- Do not use GPT browser relay for routine handoff until target validation reliably proves the page is the intended ChatGPT conversation.
+- Previous GPT browser relay attempts could target Codex UI instead of ChatGPT; treat browser relay as paused.

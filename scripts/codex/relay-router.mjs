@@ -17,10 +17,6 @@ function printResult(result) {
   if (result.stderr) process.stderr.write(result.stderr);
 }
 
-const gpt = runNode("scripts/codex/post-relay-to-gpt.mjs");
-printResult(gpt);
-if (gpt.status === 0) process.exit(0);
-
 const github = runNode("scripts/codex/post-relay-to-github.mjs");
 printResult(github);
 if (github.status === 0) process.exit(0);

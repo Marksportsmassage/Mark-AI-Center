@@ -28,11 +28,11 @@ At task completion, Codex must generate a sanitized relay report:
 
 Relay priority:
 
-1. GPT Relay plugin, if ChatGPT is open in Chrome and the composer is available.
-2. GitHub relay issue, if `gh` is installed and authenticated.
-3. Local fallback report path for manual handoff.
+1. GitHub relay issue, if `gh` is installed and authenticated.
+2. Local fallback report path for manual handoff.
+3. GPT browser relay is paused until target validation is reliable.
 
-If GPT Relay is unavailable, Codex must report the exact error. `CHATGPT_COMPOSER_MISSING` means the plugin exists but could not find a usable ChatGPT composer textbox. If GitHub relay is also unavailable, report the local path for manual handoff.
+If GitHub relay is unavailable, report the exact error and provide the local fallback path. GPT browser relay should not be used for routine handoff because recent tests could target Codex UI instead of the intended ChatGPT conversation.
 
 ## Missing Files
 
