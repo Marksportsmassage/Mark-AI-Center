@@ -1,0 +1,148 @@
+:root {
+  --ai-bg: #050816;
+  --ai-panel: rgba(15, 23, 42, 0.74);
+  --ai-panel-strong: rgba(17, 24, 39, 0.92);
+  --ai-line: rgba(148, 163, 184, 0.22);
+  --ai-text: #e5f0ff;
+  --ai-muted: #9fb0ca;
+  --ai-cyan: #22d3ee;
+  --ai-blue: #60a5fa;
+  --ai-violet: #8b5cf6;
+  --ai-green: #34d399;
+  --ai-warning: #f59e0b;
+  --ai-danger: #fb7185;
+  --ai-glow: 0 0 42px rgba(34, 211, 238, 0.18);
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(34, 211, 238, 0.18), transparent 28%),
+    radial-gradient(circle at 82% 8%, rgba(139, 92, 246, 0.2), transparent 30%),
+    linear-gradient(180deg, #050816 0%, #07111f 44%, #08111c 100%);
+  color: var(--ai-text);
+}
+
+.sidebar {
+  background: rgba(2, 6, 23, 0.82);
+  border-color: var(--ai-line);
+}
+
+.brand,
+.nav-list a,
+.nav-link,
+.panel,
+.card,
+.item,
+.start-card {
+  color: var(--ai-text);
+}
+
+.main-content {
+  background:
+    linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.panel,
+.card,
+.assistant-hero,
+.assistant-command-surface,
+.assistant-live-reply,
+.action-board-panel,
+.universe-stage,
+.universe-detail,
+.assistant-glass-card {
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.86), rgba(8, 13, 28, 0.72));
+  border: 1px solid var(--ai-line);
+  box-shadow: var(--ai-glow), 0 18px 58px rgba(0, 0, 0, 0.26);
+  backdrop-filter: blur(18px);
+}
+
+.page-header p,
+.panel p,
+.muted,
+.brand small,
+.universe-card small {
+  color: var(--ai-muted);
+}
+
+.button {
+  background: linear-gradient(135deg, var(--ai-cyan), var(--ai-violet));
+  color: #02111f;
+  font-weight: 800;
+}
+
+.button.secondary {
+  background: rgba(148, 163, 184, 0.14);
+  border: 1px solid var(--ai-line);
+  color: var(--ai-text);
+}
+
+.assistant-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.assistant-hero::before,
+.universe-page::before {
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.22), transparent 56%);
+  content: "";
+  height: 220px;
+  pointer-events: none;
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 220px;
+}
+
+.assistant-main-prompt,
+.input,
+.textarea,
+.select,
+input,
+textarea,
+select {
+  background: rgba(2, 6, 23, 0.76);
+  border-color: var(--ai-line);
+  color: var(--ai-text);
+}
+
+.assistant-main-prompt input::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: rgba(203, 213, 225, 0.62);
+}
+
+.time-context-badge,
+.data-freshness-badge,
+.badge,
+.question-pill,
+.node-pill,
+.universe-card,
+.assistant-action-button {
+  background: rgba(15, 23, 42, 0.72);
+  border-color: var(--ai-line);
+  color: var(--ai-text);
+}
+
+.assistant-metric-ring {
+  --ring-value: 72%;
+  align-items: center;
+  aspect-ratio: 1;
+  background: conic-gradient(var(--ai-cyan) var(--ring-value), rgba(148, 163, 184, 0.14) 0);
+  border-radius: 999px;
+  display: grid;
+  justify-items: center;
+  padding: 10px;
+}
+
+.assistant-metric-ring > span {
+  align-items: center;
+  background: var(--ai-bg);
+  border-radius: inherit;
+  display: grid;
+  height: 100%;
+  justify-items: center;
+  width: 100%;
+}

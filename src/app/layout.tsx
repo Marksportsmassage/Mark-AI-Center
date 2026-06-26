@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import "@/styles/assistant-theme.css";
 
 export const metadata: Metadata = {
   title: "Mark AI 公司助理",
@@ -20,6 +21,8 @@ const secondaryItems = [
   { href: "/investment-decisions", label: "投資風控" },
   { href: "/client-ops", label: "客戶課表" },
   { href: "/exam-review", label: "學習內容" },
+  { href: "/income-lab", label: "收入成長" },
+  { href: "/agent-lab", label: "Agent Lab" },
   { href: "/business-lab", label: "商業實驗" },
   { href: "/product-roadmap", label: "產品開發" },
   { href: "/safety-center", label: "安全稽核" }

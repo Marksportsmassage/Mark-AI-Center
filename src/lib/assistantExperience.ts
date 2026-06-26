@@ -115,6 +115,16 @@ export const assistantSuggestions: AssistantSuggestion[] = [
     href: "/exam-review"
   },
   {
+    id: "income-growth",
+    title: "今天先做收入成長任務",
+    risk: "normal",
+    why: "Mark 目前現金流壓力大，最有用的是把舊客回流、高單價服務與內容產品化變成今天可做的行動。",
+    impact_if_ignored: "只控支出但沒有提高收入，信用卡、分期與雲端成本壓力仍會累積。",
+    next_action: "先看 /income-lab 的 7-day sprint，今天做 3 個不花錢收入任務。",
+    href: "/income-lab",
+    draft_label: "建立收入行動草稿"
+  },
+  {
     id: "today-plan",
     title: "今天只收斂 3 件事",
     risk: "normal",
@@ -267,6 +277,29 @@ export const assistantBranches: AssistantBranch[] = [
     ]
   },
   {
+    id: "income",
+    title: "收入成長助理",
+    short_title: "收入",
+    href: "/income-lab",
+    purpose: "公司裡負責把 Mark 的專業服務、舊客回流、內容產品與 App 顧問服務轉成可執行收入行動的成長助理。",
+    status: "7-day income sprint 建置中",
+    risk: "watch",
+    pending: "收入任務需要 Mark review，不自動發訊息、不自動上架。",
+    missing: ["可服務時段", "舊客名單", "服務價格確認", "可公開案例"],
+    recent: "最快方向是高單價專業服務、舊客回流與期末考內容產品化。",
+    next_action: "到 Income Lab 選今天 3 個不花錢任務。",
+    completed: ["收入成長入口已加入助理系統", "7-day sprint 方向已定義", "所有外部訊息維持草稿"],
+    review_items: ["確認服務價格", "確認舊客回訪名單", "確認內容產品是否可公開"],
+    ask_examples: ["我怎麼賺更多錢？", "今天可以做哪些不花錢收入任務？", "怎麼補回本月警訊支出？"],
+    memory_items: ["收入偏弱", "基本月現金需求約 51,319–56,319", "支出抵銷要對應回收行動"],
+    reminder_rules: ["收入任務只建草稿", "不自動傳訊息給客戶", "不花錢優先"],
+    nodes: [
+      { label: "Income Lab", href: "/income-lab", status: "建置中" },
+      { label: "舊客回流", href: "/income-lab", status: "草稿" },
+      { label: "內容產品化", href: "/income-lab", status: "草稿" }
+    ]
+  },
+  {
     id: "safety",
     title: "安全稽核助理",
     short_title: "安全",
@@ -328,6 +361,7 @@ export function assistantBranchCompletion(branch: AssistantBranch) {
 export function inferAssistantMode(question: string) {
   if (/排程|行程|提醒|匯報|報告|定時|分派|員工|公司|記住|追蹤/.test(question)) return "operations";
   if (/考|期末|ROM|MMT|講義|題庫|讀書|國考|TENS|震波|牽引|肌肉電刺激|操作治療|外科|怎麼讀|重點/.test(question)) return "exam";
+  if (/收入|賺錢|高收入|提高收入|舊客|回流|現金流|賺更多|接案|服務方案|產品化/.test(question)) return "income";
   if (/助理系統|宇宙圖|看不懂|完成|進度|缺什麼|需要確認|新世代|介面|首頁/.test(question)) return "assistant_system";
   if (/花錢|支出|信用卡|分期|現金|財務|風險|可以花|能不能花|值得嗎|買東西/.test(question)) return "finance";
   if (/股票|投資|加碼|攤平|NVDA|MU|台積電|鴻海|停損|目標價|買進|賣出/.test(question)) return "investment";
@@ -432,6 +466,20 @@ function buildAssistantAnswerCore(question: string): AssistantAnswer {
         links: [{ label: "指揮腦", href: "/command-brain" }, { label: "產品路線圖", href: "/product-roadmap" }]
       },
       safety_flags: ["external_action_allowed=false", "need_mark_review=true", "no_functions_deploy"]
+    };
+  }
+  if (mode === "income") {
+    return {
+      mode: "structured_rule_based",
+      sections: {
+        current_judgment: "提高收入比新增支出更優先；今天先做不花錢、可回收現金流的任務。",
+        priority: "先整理高單價服務方案、舊客回訪草稿、3 篇專業內容題目。",
+        risk: "不能自動傳訊息、不能保證成交；所有話術與 offer 都只建立草稿給 Mark review。",
+        next_step: "到 Income Lab 看 7-day sprint，先做今天 3 個收入任務。",
+        draft_available: "可建立收入行動草稿、舊客回訪草稿、內容產品化草稿。",
+        links: [{ label: "Income Lab", href: "/income-lab" }, { label: "Client Ops", href: "/client-ops" }, ...baseLinks]
+      },
+      safety_flags: ["external_action_allowed=false", "need_mark_review=true", "no_auto_customer_message"]
     };
   }
   return {

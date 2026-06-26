@@ -64,6 +64,8 @@
     "test:exam-review-ui": "vitest run tests/exam-review-ui.unit.test.ts",
     "test:assistant-home": "vitest run tests/assistant-home.unit.test.ts",
     "test:assistant-universe": "vitest run tests/assistant-universe.unit.test.ts",
+    "test:assistant-redesign": "vitest run tests/assistant-redesign.unit.test.ts",
+    "test:assistant-universe-visual": "vitest run tests/assistant-universe-visual.unit.test.ts",
     "test:assistant-ops": "vitest run tests/assistant-ops.unit.test.ts",
     "test:suggestion-panel": "vitest run tests/suggestion-panel.unit.test.ts",
     "test:mobile-navigation": "vitest run tests/mobile-navigation.unit.test.ts",
