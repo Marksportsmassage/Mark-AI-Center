@@ -70,7 +70,9 @@
     "codex:relay": "node scripts/codex/relay-router.mjs",
     "codex:relay:gpt": "node scripts/codex/post-relay-to-gpt.mjs",
     "codex:relay:github": "node scripts/codex/post-relay-to-github.mjs",
+    "codex:fetch-command": "node scripts/codex/fetch-chatgpt-command.mjs",
     "test:codex-relay": "node scripts/codex/write-relay-report.mjs --test",
+    "test:codex-bidirectional-relay": "node scripts/codex/fetch-chatgpt-command.mjs --test",
     "test:gpt-relay": "node scripts/codex/post-relay-to-gpt.mjs --test",
     "test:project-paths": "node scripts/codex/check-project-paths.mjs"
   },

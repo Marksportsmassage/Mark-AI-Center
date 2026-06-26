@@ -20,3 +20,6 @@ screenshots/private/
 .DS_Store
 docs/codex-relay/transcripts/private/
 docs/codex-relay/reports/private/
+.codex-relay-state.json
+docs/codex-relay/inbox/private/
+*.tmp

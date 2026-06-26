@@ -34,6 +34,21 @@ Relay priority:
 
 If GitHub relay is unavailable, report the exact error and provide the local fallback path. GPT browser relay should not be used for routine handoff because recent tests could target Codex UI instead of the intended ChatGPT conversation.
 
+After reporting a milestone, Codex should fetch ChatGPT's latest instruction:
+
+```bash
+npm run codex:fetch-command
+```
+
+ChatGPT to Codex issue markers:
+
+- `CHATGPT_TO_CODEX_COMMAND`
+- `CHATGPT_APPROVED_CONTINUE`
+- `CHATGPT_REQUEST_CHANGES`
+- `CHATGPT_STOP`
+
+If no new command is available, Codex should stop before starting high-risk next milestones. Continue only when the user's direct instruction or a relay command clearly authorizes the next step.
+
 ## Missing Files
 
 If files are missing:
