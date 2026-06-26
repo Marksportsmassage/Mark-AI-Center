@@ -6,10 +6,10 @@ The Mark AI assistant system was moved out of the general `MSM` folder into its 
 
 ## Paths
 
-- New real path: `/Users/mark/Documents/Projects/mark-ai-assistant-system/mark-ai-center`
-- Old compatibility path: `/Users/mark/Documents/MSM/mark-ai-center`
+- Canonical path: `/Users/mark/Documents/Projects/mark-ai-assistant-system/mark-ai-center`
+- Legacy symlink path: `/Users/mark/Documents/MSM/mark-ai-center`
 
-The old path is now a symlink so existing commands and Codex context can still work.
+The old path is now a legacy symlink so existing commands and Codex context can still work.
 
 ## Project Split
 

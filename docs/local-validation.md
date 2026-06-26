@@ -1,6 +1,12 @@
 # Local Validation Required Before Merge / Deploy
 
-Run these commands locally from `/Users/mark/Documents/MSM/mark-ai-center` before merge or deploy:
+Run these commands locally from the canonical project path before merge or deploy:
+
+`/Users/mark/Documents/Projects/mark-ai-assistant-system/mark-ai-center`
+
+Legacy symlink path, kept only for compatibility:
+
+`/Users/mark/Documents/MSM/mark-ai-center`
 
 ```bash
 npm run build
@@ -16,6 +22,8 @@ npm run test:codex-jobs
 npm run test:audit
 npm run test:rules
 npm run test:integration
+npm run test:project-paths
+npm run test:codex-relay
 ```
 
 Notes:

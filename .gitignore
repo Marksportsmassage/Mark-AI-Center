@@ -12,3 +12,11 @@ ui-debug.log
 *.log
 service-account*.json
 materials/exam/**/*.pdf
+finance-private/
+raw-finance/
+screenshots/private/
+*.patch
+*.gz.b64
+.DS_Store
+docs/codex-relay/transcripts/private/
+docs/codex-relay/reports/private/
