@@ -2,7 +2,7 @@
 
 ## Status
 
-APPROVED_CONTINUE
+NO_NEW_CHATGPT_COMMAND
 
 ## Marker
 

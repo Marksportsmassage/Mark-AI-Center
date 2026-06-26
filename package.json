@@ -69,6 +69,8 @@
     "test:assistant-ops": "vitest run tests/assistant-ops.unit.test.ts",
     "test:suggestion-panel": "vitest run tests/suggestion-panel.unit.test.ts",
     "test:mobile-navigation": "vitest run tests/mobile-navigation.unit.test.ts",
+    "test:agent-lab": "vitest run tests/agent-lab.unit.test.ts",
+    "test:agent-research-docs": "vitest run tests/agent-research-docs.unit.test.ts",
     "codex:report": "node scripts/codex/write-relay-report.mjs",
     "codex:relay": "node scripts/codex/relay-router.mjs",
     "codex:relay:gpt": "node scripts/codex/post-relay-to-gpt.mjs",
