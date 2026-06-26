@@ -73,6 +73,8 @@
     "test:agent-research-docs": "vitest run tests/agent-research-docs.unit.test.ts",
     "test:agent-memory": "vitest run tests/agent-memory.unit.test.ts",
     "test:agent-operating-plan": "vitest run tests/agent-operating-plan.unit.test.ts",
+    "test:income-lab": "vitest run tests/income-lab.unit.test.ts",
+    "test:income-strategy": "vitest run tests/income-strategy.unit.test.ts",
     "codex:report": "node scripts/codex/write-relay-report.mjs",
     "codex:relay": "node scripts/codex/relay-router.mjs",
     "codex:relay:gpt": "node scripts/codex/post-relay-to-gpt.mjs",
