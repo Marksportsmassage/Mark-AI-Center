@@ -33,9 +33,10 @@ function slugify(input) {
   return input.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 80) || "codex-task";
 }
 
-const task = arg("task", process.argv.includes("--test") ? "relay-test" : "codex-task");
-const status = arg("status", process.argv.includes("--test") ? "TEST" : "COMPLETE");
-const summary = arg("summary", process.argv.includes("--test") ? "Relay report self-test generated without reading secrets." : "Codex completed the requested task. See changed files and tests below.");
+const isTest = process.argv.includes("--test");
+const task = arg("task", isTest ? "relay-test" : "codex-task");
+const status = arg("status", isTest ? "TEST" : "COMPLETE");
+const summary = arg("summary", isTest ? "Relay report self-test generated without reading secrets." : "Codex completed the requested task. See changed files and tests below.");
 const nextStep = arg("next", "ChatGPT should review this sanitized report and continue from the current system state docs.");
 const date = new Date();
 const dateKey = date.toISOString().slice(0, 10);
@@ -44,9 +45,9 @@ const branch = run("git", ["branch", "--show-current"], "unknown");
 const latestCommit = run("git", ["rev-parse", "--short", "HEAD"], "unknown");
 const gitStatus = run("git", ["status", "-sb"], "unknown");
 const changedFiles = run("git", ["diff", "--name-only", "HEAD"], "");
-const reportDir = join(repoPath, "docs", "codex-relay", "reports");
-const reportPath = join(reportDir, `${dateKey}-${slugify(task)}.md`);
-const tmpPath = "/tmp/codex-to-chatgpt-latest.md";
+const reportDir = isTest ? "/tmp" : join(repoPath, "docs", "codex-relay", "reports");
+const reportPath = isTest ? "/tmp/codex-relay-test.md" : join(reportDir, `${dateKey}-${slugify(task)}.md`);
+const tmpPath = isTest ? "/tmp/codex-relay-test-latest.md" : "/tmp/codex-to-chatgpt-latest.md";
 
 mkdirSync(reportDir, { recursive: true });
 

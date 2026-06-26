@@ -61,7 +61,7 @@ try {
 
 if (!issueNumber) {
   const created = run("gh", ["issue", "create", "--repo", REPO, "--title", ISSUE_TITLE, "--body", body]);
-  const match = created.match(/\\/(\\d+)$/);
+  const match = created.match(new RegExp("/(\\d+)$"));
   issueNumber = match ? match[1] : created.trim();
 }
 

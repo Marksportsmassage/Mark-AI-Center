@@ -45,10 +45,10 @@ try {
 const remote = run("git", ["remote", "get-url", "origin"], canonical);
 assert(remote === expectedRemote, `Remote mismatch: ${remote}`);
 
-const grepWorkspace = runOptional("git", ["grep", "-n", "/workspace/Mark-AI-Center", "--", "scripts", "src", "package.json"], canonical);
+const grepWorkspace = runOptional("git", ["grep", "-n", "/workspace/Mark-AI-Center", "--", "scripts", "src", "package.json", ":(exclude)scripts/codex/check-project-paths.mjs"], canonical);
 assert(!grepWorkspace, "Found /workspace/Mark-AI-Center in scripts/src/package.json");
 
-const grepMnt = runOptional("git", ["grep", "-n", "/mnt/data", "--", "scripts", "src", "package.json"], canonical);
+const grepMnt = runOptional("git", ["grep", "-n", "/mnt/data", "--", "scripts", "src", "package.json", ":(exclude)scripts/codex/check-project-paths.mjs"], canonical);
 assert(!grepMnt, "Found /mnt/data in scripts/src/package.json");
 
 const packageScripts = run("node", ["-e", "const p=require('./package.json'); console.log(JSON.stringify(p.scripts||{}))"], canonical);
