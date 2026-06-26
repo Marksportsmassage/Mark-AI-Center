@@ -34,6 +34,7 @@ function slugify(input) {
 }
 
 const isTest = process.argv.includes("--test");
+const tmpOnly = process.argv.includes("--tmp-only");
 const task = arg("task", isTest ? "relay-test" : "codex-task");
 const status = arg("status", isTest ? "TEST" : "COMPLETE");
 const summary = arg("summary", isTest ? "Relay report self-test generated without reading secrets." : "Codex completed the requested task. See changed files and tests below.");
@@ -45,8 +46,12 @@ const branch = run("git", ["branch", "--show-current"], "unknown");
 const latestCommit = run("git", ["rev-parse", "--short", "HEAD"], "unknown");
 const gitStatus = run("git", ["status", "-sb"], "unknown");
 const changedFiles = run("git", ["diff", "--name-only", "HEAD"], "");
-const reportDir = isTest ? "/tmp" : join(repoPath, "docs", "codex-relay", "reports");
-const reportPath = isTest ? "/tmp/codex-relay-test.md" : join(reportDir, `${dateKey}-${slugify(task)}.md`);
+const reportDir = isTest || tmpOnly ? "/tmp" : join(repoPath, "docs", "codex-relay", "reports");
+const reportPath = isTest
+  ? "/tmp/codex-relay-test.md"
+  : tmpOnly
+    ? "/tmp/codex-to-chatgpt-latest.md"
+    : join(reportDir, `${dateKey}-${slugify(task)}.md`);
 const tmpPath = isTest ? "/tmp/codex-relay-test-latest.md" : "/tmp/codex-to-chatgpt-latest.md";
 
 mkdirSync(reportDir, { recursive: true });
