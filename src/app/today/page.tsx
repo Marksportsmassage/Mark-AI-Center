@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { DataFreshnessBadge } from "@/components/assistant-ui/DataFreshnessBadge";
+import { TimeContextBadge } from "@/components/assistant-ui/TimeContextBadge";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { recent20, useFirestoreCollection } from "@/hooks/useFirestoreCollection";
 import { buildAssistantReviewDashboard } from "@/lib/assistantExperience";
@@ -161,7 +163,7 @@ function TodayData({ uid }: { uid: string }) {
       <header className="page-header">
         <div>
           <h1>Today Operating Dashboard</h1>
-          <p>今天要看、要決策、不能做、要補資料，集中在這一頁。</p>
+          <p>今天要看、要決策、不能做、要補資料，集中在這一頁。</p><div className="assistant-meta-row"><TimeContextBadge /><DataFreshnessBadge label="Today 資料" /></div>
         </div>
         <div className="action-row">
           <button className="button compact" disabled={busy || isLoading} type="button" onClick={createBrief}>產生今日 CFO Brief Draft</button>

@@ -1,6 +1,7 @@
 import type { ExpenseSignal } from "@/types/firestore";
 import { matchExamReviewTopics, type ExamReviewTopic } from "@/lib/examSummary";
 import { buildAssistantOpsDashboard } from "@/lib/assistantOps";
+import { getTimeContext } from "@/lib/timeContext";
 
 export type AssistantRisk = "normal" | "watch" | "warning" | "critical";
 
@@ -335,7 +336,7 @@ export function inferAssistantMode(question: string) {
   return "general";
 }
 
-export function buildAssistantAnswer(question: string): AssistantAnswer {
+function buildAssistantAnswerCore(question: string): AssistantAnswer {
   const mode = inferAssistantMode(question);
   const baseLinks = [{ label: "審核佇列", href: "/review-queue" }];
   if (mode === "investment") {
@@ -444,6 +445,20 @@ export function buildAssistantAnswer(question: string): AssistantAnswer {
       links: [{ label: "今天", href: "/today" }, { label: "輸入中心", href: "/intake" }, ...baseLinks]
     },
     safety_flags: ["external_action_allowed=false", "need_mark_review=true", "structured_assistant_mode"]
+  };
+}
+
+export function buildAssistantAnswer(question: string): AssistantAnswer {
+  const answer = buildAssistantAnswerCore(question);
+  const time = getTimeContext();
+  return {
+    ...answer,
+    sections: {
+      ...answer.sections,
+      current_judgment: `${time.currentDate} ${time.partOfDay} ${time.currentTime}（${time.timeZone}）：${answer.sections.current_judgment}`,
+      next_step: `${answer.sections.next_step} 這個判斷以「今天 ${time.currentDate}」為基準。`
+    },
+    safety_flags: [...new Set([...answer.safety_flags, "time_context=Asia/Taipei"])]
   };
 }
 

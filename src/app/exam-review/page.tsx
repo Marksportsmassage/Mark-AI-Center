@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { DataFreshnessBadge } from "@/components/assistant-ui/DataFreshnessBadge";
+import { TimeContextBadge } from "@/components/assistant-ui/TimeContextBadge";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { examSubjects, readExamDoc } from "@/lib/examReview";
 import { getExamProductionSummary } from "@/lib/examSummary";
@@ -13,6 +15,7 @@ export default function Page() {
         <div>
           <h1>期末考整理中心</h1>
           <p>只顯示已找到或明確待補的教材；沒有來源就不編題、不補答案。</p>
+          <div className="assistant-meta-row"><TimeContextBadge /><DataFreshnessBadge label="考試資料" /></div>
         </div>
         <Link className="button secondary compact" href="/assistant">回助理</Link>
       </header>

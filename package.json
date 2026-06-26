@@ -53,6 +53,7 @@
     "test:safety-center": "vitest run tests/operating-guide.unit.test.ts --testNamePattern \"safety center\"",
     "test:operating-guide": "vitest run tests/operating-guide.unit.test.ts",
     "test:smoke": "tsx tests/route-smoke.ts",
+    "test:time-context": "vitest run tests/time-context.unit.test.ts",
     "functions:build": "tsc -p functions/tsconfig.json",
     "functions:serve": "npm --prefix functions run serve",
     "functions:deploy": "firebase deploy --only functions",

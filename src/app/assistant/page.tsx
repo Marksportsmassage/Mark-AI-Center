@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ArrowRight, BrainCircuit, Building2, CheckCircle2, ClipboardCheck, MessageCircleQuestion, SendHorizontal, Sparkles } from "lucide-react";
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { AssistantSuggestionPanel } from "@/components/AssistantSuggestionPanel";
+import { DataFreshnessBadge } from "@/components/assistant-ui/DataFreshnessBadge";
+import { TimeContextBadge } from "@/components/assistant-ui/TimeContextBadge";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { recent20, useFirestoreCollection } from "@/hooks/useFirestoreCollection";
@@ -86,7 +88,7 @@ function AssistantData() {
         <div className="assistant-hero-copy">
           <p className="eyebrow"><Sparkles size={15} /> Mark AI Company Assistant</p>
           <h1>你想交代什麼給公司助理？</h1>
-          <p>像 GPT 一樣直接問。它會把財務長、投資風控、學習內容、客戶課表、產品開發等員工叫出來協作。</p>
+          <p>像 GPT 一樣直接問。它會把財務長、投資風控、學習內容、客戶課表、產品開發等員工叫出來協作。</p><div className="assistant-meta-row"><TimeContextBadge /><DataFreshnessBadge label="助理上下文" /></div>
           <div className="hero-action-row">
             <Link className="button compact" href="/assistant-universe"><Building2 size={16} />進入公司宇宙</Link>
             <Link className="button secondary compact" href="/intake"><ClipboardCheck size={16} />用問答補資料</Link>
