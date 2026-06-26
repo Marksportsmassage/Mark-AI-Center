@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BrainCircuit, Building2, ClipboardCheck, SendHorizontal, Sparkles } from "lucide-react";
-import { type FormEvent, useEffect, useMemo, useState } from "react";
+import { ArrowRight, BrainCircuit, Building2, CheckCircle2, ClipboardCheck, MessageCircleQuestion, SendHorizontal, Sparkles } from "lucide-react";
+import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { AssistantSuggestionPanel } from "@/components/AssistantSuggestionPanel";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { ProtectedPage } from "@/components/ProtectedPage";
@@ -36,12 +36,17 @@ function AssistantData() {
   const tasks = useFirestoreCollection<TaskDispatch>("task_dispatches", recent20, true);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState(() => buildAssistantAnswer("我今天先做什麼？"));
+  const [lastQuestion, setLastQuestion] = useState("我今天先做什麼？");
   const [openBranch, setOpenBranch] = useState<string | null>(null);
+  const liveAnswerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const prompt = params.get("prompt")?.trim();
-    if (prompt) setAnswer(buildAssistantAnswer(prompt));
+    if (prompt) {
+      setLastQuestion(prompt);
+      setAnswer(buildAssistantAnswer(prompt));
+    }
   }, []);
 
   const queue = useMemo(() => buildReviewQueue({
@@ -63,8 +68,16 @@ function AssistantData() {
     event.preventDefault();
     const text = question.trim();
     if (!text) return;
+    setLastQuestion(text);
     setAnswer(buildAssistantAnswer(text));
     setQuestion("");
+    window.requestAnimationFrame(() => liveAnswerRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }));
+  }
+
+  function askPrompt(prompt: string) {
+    setLastQuestion(prompt);
+    setAnswer(buildAssistantAnswer(prompt));
+    window.requestAnimationFrame(() => liveAnswerRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }));
   }
 
   return (
@@ -93,26 +106,71 @@ function AssistantData() {
           <button className="button compact" type="submit"><SendHorizontal size={16} />送出</button>
         </form>
         <div className="prompt-row">
-          {prompts.map((prompt) => <button key={prompt} type="button" onClick={() => setAnswer(buildAssistantAnswer(prompt))}>{prompt}</button>)}
+          {prompts.map((prompt) => <button key={prompt} type="button" onClick={() => askPrompt(prompt)}>{prompt}</button>)}
         </div>
       </section>
 
-      <section className="assistant-summary-grid" aria-label="Today summary">
-        <div><strong>{queue.length}</strong><span>待審核</span></div>
-        <div><strong>{missingCount}</strong><span>缺資料</span></div>
-        <div><strong>{assistantRiskLabel(financeStatus)}</strong><span>財務 / 系統風險</span></div>
+      <section className="assistant-live-reply" ref={liveAnswerRef} aria-live="polite">
+        <div className="live-question">
+          <span>你問</span>
+          <p>{lastQuestion}</p>
+        </div>
+        <div className="live-answer">
+          <span>助理回覆</span>
+          <h2>{answer.sections.current_judgment}</h2>
+          <p>{answer.sections.priority}</p>
+          <div className="live-answer-actions">
+            {answer.sections.links.map((link) => <Link className="button compact" key={link.href} href={link.href}>{link.label}</Link>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="assistant-action-board" aria-label="Action board">
+        <article className="action-board-panel review-panel">
+          <div className="item-header">
+            <h2><CheckCircle2 size={18} />需要你審核</h2>
+            <span className="badge review">{opsDashboard.review_actions.length} 件</span>
+          </div>
+          <div className="action-task-list">
+            {opsDashboard.review_actions.map((item) => (
+              <div className={`action-task risk-${item.risk}`} key={item.id}>
+                <span>{item.owner_label}</span>
+                <strong>{item.title}</strong>
+                <p>{item.reason}</p>
+                <Link className="button compact" href={item.href}>{item.primary_label}</Link>
+              </div>
+            ))}
+          </div>
+        </article>
+        <article className="action-board-panel answer-panel">
+          <div className="item-header">
+            <h2><MessageCircleQuestion size={18} />需要你回答</h2>
+            <span className="badge review">{opsDashboard.answer_requests.length} 題</span>
+          </div>
+          <div className="answer-request-list">
+            {opsDashboard.answer_requests.map((item) => (
+              <label className="answer-request" key={item.id}>
+                <span>{item.owner_label}</span>
+                <strong>{item.question}</strong>
+                <small>{item.why}</small>
+                <input className="input" placeholder={item.placeholder} />
+                <Link className="button secondary compact" href={item.href}>用問答輸入補資料</Link>
+              </label>
+            ))}
+          </div>
+        </article>
       </section>
 
       <section className="panel assistant-priorities command-panel">
         <h2><ArrowRight size={18} />今天最重要 3 件事</h2>
         <ol>
-          <li>核對 Line Pay / 一番賞支出與 940 差額。</li>
-          <li>處理信用卡、自動分期與投資 review。</li>
-          <li>讀已整理的期末考 MMT / 震波資料，補缺 PDF。</li>
+          <li>先回答上方 3 個具體問題。</li>
+          <li>按上方審核按鈕處理支出、投資、成本守門。</li>
+          <li>需要補資料時，直接用問答輸入，不用自己找欄位。</li>
         </ol>
       </section>
 
-      <section className="panel assistant-ops-dashboard" aria-label="Company assistant operations">
+      <section className="panel assistant-ops-dashboard compact-ops" aria-label="Company assistant operations">
         <div className="item-header">
           <div>
             <h2>公司助理分工與匯報</h2>
@@ -130,7 +188,9 @@ function AssistantData() {
             </article>
           ))}
         </div>
-        <div className="ops-assignment-strip" aria-label="Assigned assistant work">
+        <details className="assistant-secondary-details">
+          <summary>查看助理員工分工</summary>
+          <div className="ops-assignment-strip" aria-label="Assigned assistant work">
           {opsDashboard.assignments.map((assignment) => (
             <Link className={`ops-assignment-card risk-${assignment.risk}`} href={assignment.href} key={assignment.id}>
               <span>{assignment.owner_label}</span>
@@ -139,16 +199,8 @@ function AssistantData() {
               <p>{assignment.next_step}</p>
             </Link>
           ))}
-        </div>
-        <div className="ops-question-grid">
-          {opsDashboard.intake_flows.slice(0, 3).map((flow) => (
-            <article className="ops-question-card" key={flow.id}>
-              <h3>{flow.title}</h3>
-              <p>{flow.owner_label} 會先問：{flow.questions.slice(0, 2).join("、")}</p>
-              <Link className="button secondary compact" href={`/intake?flow=${flow.id}`}>用問答輸入</Link>
-            </article>
-          ))}
-        </div>
+          </div>
+        </details>
       </section>
 
       <section className="panel assistant-review-dashboard" aria-label="Assistant review dashboard">
@@ -185,7 +237,7 @@ function AssistantData() {
         </div>
         <div className="assistant-question-strip" aria-label="Suggested assistant questions">
           {reviewDashboard.suggestedQuestions.map((prompt) => (
-            <button key={prompt} type="button" onClick={() => setAnswer(buildAssistantAnswer(prompt))}>{prompt}</button>
+            <button key={prompt} type="button" onClick={() => askPrompt(prompt)}>{prompt}</button>
           ))}
         </div>
       </section>
@@ -347,7 +399,7 @@ function AssistantData() {
               <div><strong>會主動提醒</strong><p>{branch.reminder_rules.join("、")}</p></div>
             </div>
             <div className="assistant-question-strip">
-              {branch.ask_examples.map((prompt) => <button key={prompt} type="button" onClick={() => setAnswer(buildAssistantAnswer(prompt))}>{prompt}</button>)}
+              {branch.ask_examples.map((prompt) => <button key={prompt} type="button" onClick={() => askPrompt(prompt)}>{prompt}</button>)}
             </div>
             <div className="action-row">
               <Link className="button compact" href={branch.href}>前往主要入口</Link>

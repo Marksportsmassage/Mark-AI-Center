@@ -36,8 +36,9 @@ describe("assistant operations", () => {
   it("assistant and intake pages expose operations UI", () => {
     const assistantSource = readFileSync("src/app/assistant/page.tsx", "utf8");
     const intakeSource = readFileSync("src/app/intake/page.tsx", "utf8");
-    expect(assistantSource).toContain("公司助理分工與匯報");
-    expect(assistantSource).toContain("opsDashboard.assignments");
+    expect(assistantSource).toContain("需要你審核");
+    expect(assistantSource).toContain("opsDashboard.review_actions");
+    expect(assistantSource).toContain("opsDashboard.answer_requests");
     expect(intakeSource).toContain("問答式資料輸入");
     expect(intakeSource).toContain("matchConversationalIntakeFlow");
   });

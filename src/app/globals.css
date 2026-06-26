@@ -573,6 +573,136 @@ textarea {
   color: #e5f3ff;
 }
 
+.assistant-live-reply {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(240, 253, 250, 0.94));
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  border-radius: 8px;
+  box-shadow: 0 18px 52px rgba(15, 23, 42, 0.1);
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 0.38fr) minmax(0, 1fr);
+  padding: 14px;
+}
+
+.live-question,
+.live-answer {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+}
+
+.live-question {
+  background: #f8fafc;
+}
+
+.live-answer {
+  background: #ffffff;
+  border-color: rgba(15, 118, 110, 0.22);
+}
+
+.live-question span,
+.live-answer span,
+.action-task span,
+.answer-request span {
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.live-question p,
+.live-answer p {
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.live-answer h2 {
+  font-size: 20px;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.live-answer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.assistant-action-board {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+}
+
+.action-board-panel {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.action-board-panel h2 {
+  align-items: center;
+  display: inline-flex;
+  font-size: 18px;
+  gap: 8px;
+  margin: 0;
+}
+
+.action-task-list,
+.answer-request-list {
+  display: grid;
+  gap: 10px;
+}
+
+.action-task,
+.answer-request {
+  background: #fbfdff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 7px;
+  padding: 12px;
+}
+
+.action-task strong,
+.answer-request strong {
+  line-height: 1.35;
+}
+
+.action-task p,
+.answer-request small {
+  color: var(--muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.answer-request .button,
+.action-task .button {
+  justify-self: start;
+}
+
+.compact-ops .ops-brief-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.assistant-secondary-details {
+  margin-top: 12px;
+}
+
+.assistant-secondary-details summary {
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 800;
+  padding: 11px 12px;
+}
+
 .command-panel h2 {
   align-items: center;
   display: inline-flex;
@@ -1000,8 +1130,31 @@ textarea {
   padding: 18px;
 }
 
+.universe-page {
+  background:
+    linear-gradient(90deg, rgba(20, 184, 166, 0.06) 1px, transparent 1px),
+    linear-gradient(rgba(129, 140, 248, 0.06) 1px, transparent 1px),
+    linear-gradient(135deg, #050816, #0d1220 48%, #091b18);
+  background-size: 48px 48px, 48px 48px, auto;
+  border-radius: 8px;
+  color: #e5edf7;
+  margin: -10px;
+  padding: 18px;
+}
+
+.universe-page .page-header p,
+.universe-page .universe-detail p {
+  color: #a8b4c4;
+}
+
+.universe-page .button.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e5edf7;
+}
+
 .universe-header h1 {
   font-size: 34px;
+  color: #f8fafc;
 }
 
 .universe-stage {
@@ -1073,7 +1226,33 @@ textarea {
 }
 
 .universe-layout .universe-card {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(15, 23, 42, 0.72);
+  border-color: rgba(148, 163, 184, 0.26);
+  color: #e5edf7;
+}
+
+.universe-layout .universe-card small {
+  color: #a8b4c4;
+}
+
+.universe-detail {
+  background: rgba(15, 23, 42, 0.82);
+  border-color: rgba(148, 163, 184, 0.22);
+  color: #e5edf7;
+}
+
+.universe-detail .detail-grid > div,
+.universe-detail .stack-list span,
+.universe-detail .node-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(148, 163, 184, 0.18);
+  color: #e5edf7;
+}
+
+.universe-detail .detail-grid p,
+.universe-detail .stack-list span,
+.universe-detail .node-pill span {
+  color: #a8b4c4;
 }
 
 .node-pill {
@@ -1228,7 +1407,10 @@ textarea {
   .assistant-summary-columns,
   .assistant-review-columns,
   .ops-brief-grid,
-  .ops-question-grid {
+  .ops-question-grid,
+  .assistant-live-reply,
+  .assistant-action-board,
+  .compact-ops .ops-brief-grid {
     grid-template-columns: 1fr;
   }
 

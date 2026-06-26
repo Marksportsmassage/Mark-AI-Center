@@ -82,7 +82,37 @@ export function AssistantUniverseScene({
 
       const ringMaterial = new THREE.LineBasicMaterial({ color: 0x64748b, transparent: true, opacity: 0.46 });
       const activeRingMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.26, side: THREE.DoubleSide });
-      const planetMeshes: Array<{ id: string; mesh: import("three").Mesh; halo: import("three").Mesh; orbit: number; speed: number; offset: number }> = [];
+      const activeBeamGeometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 0)]);
+      const activeBeam = new THREE.Line(activeBeamGeometry, new THREE.LineBasicMaterial({ color: 0x5eead4, transparent: true, opacity: 0.72 }));
+      scene.add(activeBeam);
+
+      function createLabelSprite(label: string) {
+        const canvas = document.createElement("canvas");
+        canvas.width = 256;
+        canvas.height = 72;
+        const context = canvas.getContext("2d");
+        if (context) {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.fillStyle = "rgba(2, 6, 23, 0.66)";
+          context.strokeStyle = "rgba(148, 163, 184, 0.45)";
+          context.lineWidth = 2;
+          context.beginPath();
+          context.roundRect(14, 12, 228, 44, 18);
+          context.fill();
+          context.stroke();
+          context.fillStyle = "#e2e8f0";
+          context.font = "700 24px Arial, sans-serif";
+          context.textAlign = "center";
+          context.textBaseline = "middle";
+          context.fillText(label, 128, 35);
+        }
+        const texture = new THREE.CanvasTexture(canvas);
+        const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, opacity: 0.9 }));
+        sprite.scale.set(1.28, 0.36, 1);
+        return sprite;
+      }
+
+      const planetMeshes: Array<{ id: string; mesh: import("three").Mesh; halo: import("three").Mesh; label: import("three").Sprite; orbit: number; speed: number; offset: number }> = [];
 
       branches.forEach((branch, index) => {
         const orbit = 2.05 + index * 0.38;
@@ -113,7 +143,9 @@ export function AssistantUniverseScene({
         halo.rotation.x = Math.PI * 0.5;
         halo.visible = false;
         scene.add(halo);
-        planetMeshes.push({ id: branch.id, mesh, halo, orbit, speed: 0.11 + index * 0.014, offset: index * 0.86 });
+        const label = createLabelSprite(branch.short_title);
+        scene.add(label);
+        planetMeshes.push({ id: branch.id, mesh, halo, label, orbit, speed: 0.11 + index * 0.014, offset: index * 0.86 });
       });
 
       const stars = new THREE.BufferGeometry();
@@ -126,6 +158,31 @@ export function AssistantUniverseScene({
       stars.setAttribute("position", new THREE.BufferAttribute(starPositions, 3));
       const starField = new THREE.Points(stars, new THREE.PointsMaterial({ color: 0xdbeafe, size: 0.028, transparent: true, opacity: 0.82 }));
       scene.add(starField);
+
+      const galaxy = new THREE.BufferGeometry();
+      const galaxyCount = 680;
+      const galaxyPositions = new Float32Array(galaxyCount * 3);
+      const galaxyColors = new Float32Array(galaxyCount * 3);
+      const colorA = new THREE.Color(0x2dd4bf);
+      const colorB = new THREE.Color(0x818cf8);
+      for (let i = 0; i < galaxyCount; i += 1) {
+        const radius = 0.6 + Math.random() * 5.2;
+        const branchAngle = ((i % 4) / 4) * Math.PI * 2;
+        const spin = radius * 0.82;
+        const angle = branchAngle + spin + (Math.random() - 0.5) * 0.55;
+        galaxyPositions[i * 3] = Math.cos(angle) * radius;
+        galaxyPositions[i * 3 + 1] = (Math.random() - 0.5) * 0.12;
+        galaxyPositions[i * 3 + 2] = Math.sin(angle) * radius;
+        const mixed = colorA.clone().lerp(colorB, Math.random() * 0.75);
+        galaxyColors[i * 3] = mixed.r;
+        galaxyColors[i * 3 + 1] = mixed.g;
+        galaxyColors[i * 3 + 2] = mixed.b;
+      }
+      galaxy.setAttribute("position", new THREE.BufferAttribute(galaxyPositions, 3));
+      galaxy.setAttribute("color", new THREE.BufferAttribute(galaxyColors, 3));
+      const galaxyField = new THREE.Points(galaxy, new THREE.PointsMaterial({ size: 0.032, transparent: true, opacity: 0.5, vertexColors: true }));
+      galaxyField.rotation.x = -0.16;
+      scene.add(galaxyField);
 
       const raycaster = new THREE.Raycaster();
       const pointer = new THREE.Vector2();
@@ -159,8 +216,10 @@ export function AssistantUniverseScene({
         center.rotation.y += 0.006;
         centerGlow.scale.setScalar(1 + Math.sin(elapsed * 1.4) * 0.035);
         starField.rotation.y += 0.0008;
+        galaxyField.rotation.y -= 0.0011;
         camera.position.x = Math.sin(elapsed * 0.18) * 0.24;
         camera.lookAt(0, 0, 0);
+        let selectedPosition: import("three").Vector3 | null = null;
         planetMeshes.forEach((item) => {
           const angle = elapsed * item.speed + item.offset;
           item.mesh.position.set(Math.cos(angle) * item.orbit, Math.sin(angle * 0.72) * 0.36, Math.sin(angle) * item.orbit);
@@ -171,7 +230,17 @@ export function AssistantUniverseScene({
           item.halo.rotation.z += 0.01;
           item.halo.visible = selected;
           item.halo.scale.setScalar(selected ? 1 + Math.sin(elapsed * 2.4) * 0.08 : 1);
+          item.label.position.copy(item.mesh.position).add(new THREE.Vector3(0, selected ? 0.7 : 0.52, 0));
+          item.label.material.opacity = selected ? 1 : 0.72;
+          item.label.scale.set(selected ? 1.48 : 1.18, selected ? 0.42 : 0.33, 1);
+          if (selected) selectedPosition = item.mesh.position.clone();
         });
+        if (selectedPosition) {
+          activeBeam.visible = true;
+          activeBeamGeometry.setFromPoints([new THREE.Vector3(0, 0, 0), selectedPosition]);
+        } else {
+          activeBeam.visible = false;
+        }
         renderer.render(scene, camera);
         requestAnimationFrame(animate);
       }

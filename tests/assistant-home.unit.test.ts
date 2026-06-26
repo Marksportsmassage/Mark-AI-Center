@@ -56,7 +56,11 @@ describe("assistant home", () => {
     expect(source).toContain("lucide-react");
     expect(source).toContain("進入公司宇宙");
     expect(source).toContain("用問答補資料");
+    expect(source).toContain("assistant-live-reply");
+    expect(source).toContain("需要你審核");
+    expect(source).toContain("需要你回答");
     expect(css).toContain("assistant-command-surface");
+    expect(css).toContain("assistant-action-board");
     expect(css).toContain("hero-action-row");
     expect(css).toContain("command-panel");
   });

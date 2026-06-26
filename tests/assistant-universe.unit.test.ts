@@ -39,6 +39,9 @@ describe("assistant universe", () => {
     expect(source).toContain("RingGeometry");
     expect(source).toContain("ACESFilmicToneMapping");
     expect(source).toContain("FogExp2");
+    expect(source).toContain("CanvasTexture");
+    expect(source).toContain("galaxyField");
+    expect(source).toContain("activeBeam");
     expect(source).toContain("pointerdown");
   });
 
@@ -47,6 +50,7 @@ describe("assistant universe", () => {
     const css = readFileSync("src/app/globals.css", "utf8");
     expect(page).toContain("3D 公司行星圖");
     expect(page).toContain("universe-stage");
+    expect(page).toContain("universe-page");
     expect(css).toContain("universe-stage-header");
     expect(css).toContain("assistant-universe-scene::after");
   });

@@ -38,6 +38,25 @@ export interface ConversationalIntakeFlow {
   href: string;
 }
 
+export interface AssistantReviewAction {
+  id: string;
+  title: string;
+  owner_label: string;
+  reason: string;
+  risk: AssistantRisk;
+  href: string;
+  primary_label: string;
+}
+
+export interface AssistantAnswerRequest {
+  id: string;
+  question: string;
+  owner_label: string;
+  why: string;
+  placeholder: string;
+  href: string;
+}
+
 export const assistantAssignments: AssistantAssignment[] = [
   {
     id: "finance-warning-spending",
@@ -144,6 +163,63 @@ export const assistantReportPlans: AssistantReportPlan[] = [
   }
 ];
 
+export const assistantReviewActions: AssistantReviewAction[] = [
+  {
+    id: "review-warning-spending",
+    title: "確認 Line Pay / 一番賞警訊支出",
+    owner_label: "財務長助理",
+    reason: "目前可見支出 11,840，文字明細 10,900，還有 940 差額待核對。",
+    risk: "warning",
+    href: "/finance-decisions",
+    primary_label: "去審核支出"
+  },
+  {
+    id: "review-investments",
+    title: "審核投資標的條件",
+    owner_label: "投資風控助理",
+    reason: "投資決策仍 waiting_review，缺目標價、停損點、加碼與減碼條件。",
+    risk: "watch",
+    href: "/investment-decisions",
+    primary_label: "去審核投資"
+  },
+  {
+    id: "review-cloud-cost",
+    title: "確認雲端成本守門線",
+    owner_label: "安全稽核助理",
+    reason: "Google Cloud 成本已達 USD 25 watch line；部署需批次化。",
+    risk: "watch",
+    href: "/safety-center",
+    primary_label: "查看安全中心"
+  }
+];
+
+export const assistantAnswerRequests: AssistantAnswerRequest[] = [
+  {
+    id: "answer-spending-delta",
+    question: "Line Pay 截圖 11,840 和文字明細 10,900 的 940 差額，是哪一筆？",
+    owner_label: "財務長助理",
+    why: "確認後才能把本月警訊支出算準，避免重複或漏記。",
+    placeholder: "例如：940 是運費 / 另一筆小額消費 / 截圖包含其他項目",
+    href: "/intake?flow=spending"
+  },
+  {
+    id: "answer-spending-type",
+    question: "一番賞 / 玩具支出要算純娛樂，還是事業測試？",
+    owner_label: "商業實驗助理",
+    why: "如果是事業測試，需要預算上限、成本表、回收價、停損線；如果不是，本月同類暫停。",
+    placeholder: "例如：純娛樂，本月停止 / 事業測試，預算上限 3000",
+    href: "/intake?flow=spending"
+  },
+  {
+    id: "answer-investment-conditions",
+    question: "2201、2317、4749、MU、NVDA 哪一檔先補目標價與停損？",
+    owner_label: "投資風控助理",
+    why: "補完條件後，助理才可以做條件式 review，不會給無條件買賣建議。",
+    placeholder: "例如：先補 NVDA，目標價 ___，停損 ___",
+    href: "/intake?flow=investment"
+  }
+];
+
 export const conversationalIntakeFlows: ConversationalIntakeFlow[] = [
   {
     id: "spending",
@@ -197,6 +273,8 @@ export function buildAssistantOpsDashboard() {
     headline: "公司助理會把事情分派給不同員工，先在網站內匯報；LINE 推播與外部行動都保持關閉。",
     next_reports: assistantReportPlans,
     assignments: assistantAssignments,
+    review_actions: assistantReviewActions,
+    answer_requests: assistantAnswerRequests,
     intake_flows: conversationalIntakeFlows,
     guardrails: ["need_mark_review=true", "external_action_allowed=false", "LINE reply / push 未啟用", "不自動交易、付款、下單或傳訊"]
   };

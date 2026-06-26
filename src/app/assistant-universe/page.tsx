@@ -12,7 +12,7 @@ function AssistantUniverse() {
   const [activeId, setActiveId] = useState(assistantBranches[0]?.id ?? "");
   const active = assistantBranches.find((item) => item.id === activeId) ?? assistantBranches[0];
   return (
-    <div className="assistant-page">
+    <div className="assistant-page universe-page">
       <header className="page-header universe-header">
         <div>
           <p className="eyebrow"><Sparkles size={15} /> Assistant Universe</p>
