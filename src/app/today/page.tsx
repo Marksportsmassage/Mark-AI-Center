@@ -9,6 +9,7 @@ import { recent20, useFirestoreCollection } from "@/hooks/useFirestoreCollection
 import { buildAssistantReviewDashboard } from "@/lib/assistantExperience";
 import { createCfoBriefDraft } from "@/lib/cfoBrief";
 import { getClientDb } from "@/lib/firebase/client";
+import { sevenDaySprint, todayIncomeTasks } from "@/lib/incomeStrategy";
 import { buildReviewQueue } from "@/lib/reviewQueue";
 import { buildTodayDashboardSummary, todayErrorMessage } from "@/lib/today";
 import { formatDateTime } from "@/lib/ui/format";
@@ -230,6 +231,36 @@ function TodayData({ uid }: { uid: string }) {
       <section className="panel">
         <h2>今天最重要 3 件事</h2>
         {summary.top_three.length ? <ol>{summary.top_three.slice(0, 3).map((item) => <li key={item}>{item}</li>)}</ol> : <p className="muted">目前沒有需要立刻處理的項目。可以先到 Intake 新增資料，或到 Finance Advisor 補財務基本資料。</p>}
+      </section>
+
+      <section className="panel">
+        <div className="item-header">
+          <div>
+            <h2>今天收入行動</h2>
+            <p>優先做不花錢、可審核、可回收支出的任務。所有客戶訊息只建立草稿，不自動發送。</p>
+          </div>
+          <Link className="button compact" href="/income-lab">前往 Income Lab</Link>
+        </div>
+        <div className="detail-grid">
+          {todayIncomeTasks.map((task) => (
+            <div key={task.id}>
+              <strong>{task.title}</strong>
+              <p>{task.action}</p>
+              <p className="muted">{task.timeBox} / {task.expectedImpact}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel">
+        <div className="item-header">
+          <div>
+            <h2>本週 Income Sprint</h2>
+            <p>用一週把支出壓力轉成可執行收入行動，不新增付費工具或廣告。</p>
+          </div>
+          <Link className="button secondary compact" href="/income-lab">看完整 7 天計畫</Link>
+        </div>
+        <ol>{sevenDaySprint.slice(0, 7).map((item) => <li key={item}>{item}</li>)}</ol>
       </section>
 
       <section className="panel">

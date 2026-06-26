@@ -93,6 +93,9 @@ function AssistantData() {
           <div className="hero-action-row">
             <Link className="button compact" href="/assistant-universe"><Building2 size={16} />進入公司宇宙</Link>
             <Link className="button secondary compact" href="/intake"><ClipboardCheck size={16} />用問答補資料</Link>
+            <Link className="button secondary compact" href="/income-lab">提高收入</Link>
+            <Link className="button secondary compact" href="/agent-lab">Agent 架構</Link>
+            <Link className="button secondary compact" href="/agent-memory">Agent 記憶</Link>
           </div>
         </div>
         <div className="assistant-status">
