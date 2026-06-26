@@ -71,6 +71,8 @@
     "test:mobile-navigation": "vitest run tests/mobile-navigation.unit.test.ts",
     "test:agent-lab": "vitest run tests/agent-lab.unit.test.ts",
     "test:agent-research-docs": "vitest run tests/agent-research-docs.unit.test.ts",
+    "test:agent-memory": "vitest run tests/agent-memory.unit.test.ts",
+    "test:agent-operating-plan": "vitest run tests/agent-operating-plan.unit.test.ts",
     "codex:report": "node scripts/codex/write-relay-report.mjs",
     "codex:relay": "node scripts/codex/relay-router.mjs",
     "codex:relay:gpt": "node scripts/codex/post-relay-to-gpt.mjs",
