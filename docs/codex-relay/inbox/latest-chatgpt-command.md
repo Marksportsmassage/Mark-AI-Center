@@ -2,7 +2,7 @@
 
 ## Status
 
-CHANGES_REQUESTED
+NO_NEW_CHATGPT_COMMAND
 
 ## Marker
 

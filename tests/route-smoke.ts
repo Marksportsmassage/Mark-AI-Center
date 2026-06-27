@@ -13,6 +13,7 @@ const routes = [
   { path: "/exam-review/operation-therapy", text: "操作治療學" },
   { path: "/exam-review/rom-mmt", text: "ROM / MMT" },
   { path: "/start-here", text: "從這裡開始" },
+  { path: "/master-index", text: "Mark 系統總索引" },
   { path: "/advisor-chat" },
   { path: "/command-brain" },
   { path: "/client-ops" },
