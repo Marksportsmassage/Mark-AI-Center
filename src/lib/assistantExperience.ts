@@ -1,6 +1,7 @@
 import type { ExpenseSignal } from "@/types/firestore";
 import { matchExamReviewTopics, type ExamReviewTopic } from "@/lib/examSummary";
 import { buildAssistantOpsDashboard } from "@/lib/assistantOps";
+import { sevenDaySprint, todayIncomeTasks } from "@/lib/incomeStrategy";
 import { getTimeContext } from "@/lib/timeContext";
 
 export type AssistantRisk = "normal" | "watch" | "warning" | "critical";
@@ -425,6 +426,20 @@ function buildAssistantAnswerCore(question: string): AssistantAnswer {
       safety_flags: ["external_action_allowed=false", "need_mark_review=true", "no_external_automation"]
     };
   }
+  if (mode === "finance") {
+    return {
+      mode: "structured_rule_based",
+      sections: {
+        current_judgment: "現在不是完全不能花，但只能做必要支出；新增高額分期、抽賞玩具、非必要大額購物都應暫停。",
+        priority: "先看本月警訊支出、信用卡 / 分期 watch、基本月現金需求，再決定這筆支出是否必要。",
+        risk: "收入仍偏弱，固定支出加生活費已高於目前月收入；信用卡、分期與 Line Pay 警訊支出需要 review。",
+        next_step: "如果是必要支出，先到 Intake 建立 draft；如果是娛樂或測試支出，先到 Review Queue 做支出審核。",
+        draft_available: "可建立 finance decision draft 或 warning spending review，不會付款、不會下單。",
+        links: [{ label: "今天財務狀態", href: "/today" }, { label: "支出警訊", href: "/expense-signals" }, { label: "審核佇列", href: "/review-queue" }]
+      },
+      safety_flags: ["external_action_allowed=false", "need_mark_review=true", "no_auto_payment", "no_new_installment_without_review"]
+    };
+  }
   if (mode === "operations") {
     return {
       mode: "structured_rule_based",
@@ -469,13 +484,14 @@ function buildAssistantAnswerCore(question: string): AssistantAnswer {
     };
   }
   if (mode === "income") {
+    const taskSummary = todayIncomeTasks.map((task) => `${task.title}（${task.timeBox}）：${task.action}`).join("；");
     return {
       mode: "structured_rule_based",
       sections: {
-        current_judgment: "提高收入比新增支出更優先；今天先做不花錢、可回收現金流的任務。",
-        priority: "先整理高單價服務方案、舊客回訪草稿、3 篇專業內容題目。",
+        current_judgment: `提高收入比新增支出更優先；今天先做 Income Lab 已定義的 ${todayIncomeTasks.length} 個不花錢任務。`,
+        priority: taskSummary,
         risk: "不能自動傳訊息、不能保證成交；所有話術與 offer 都只建立草稿給 Mark review。",
-        next_step: "到 Income Lab 看 7-day sprint，先做今天 3 個收入任務。",
+        next_step: `到 Income Lab 看 7-day sprint；本週第一步是 ${sevenDaySprint[0]}`,
         draft_available: "可建立收入行動草稿、舊客回訪草稿、內容產品化草稿。",
         links: [{ label: "Income Lab", href: "/income-lab" }, { label: "Client Ops", href: "/client-ops" }, ...baseLinks]
       },

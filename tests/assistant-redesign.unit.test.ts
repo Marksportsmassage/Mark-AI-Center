@@ -36,6 +36,13 @@ describe("modern assistant redesign", () => {
     expect(answer.safety_flags).toContain("no_auto_customer_message");
   });
 
+  it("assistant gives finance-specific spending guidance", () => {
+    const answer = buildAssistantAnswer("我現在可以花錢嗎？");
+    expect(answer.sections.current_judgment).toContain("必要支出");
+    expect(answer.sections.risk).toContain("信用卡");
+    expect(answer.safety_flags).toContain("no_auto_payment");
+  });
+
   it("start here exposes the simplified new generation entries", () => {
     const source = readFileSync("src/app/start-here/page.tsx", "utf8");
     expect(source).toContain("我要問 AI 助理");
