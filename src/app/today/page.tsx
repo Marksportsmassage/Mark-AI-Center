@@ -236,6 +236,20 @@ function TodayData({ uid }: { uid: string }) {
       <section className="panel">
         <div className="item-header">
           <div>
+            <h2>系統總覽與資料缺口</h2>
+            <p>如果你不知道現在系統有什麼、缺什麼，先看這兩頁。Master Index 看全局，Data Status 看哪些不要再問與哪些真的缺。</p>
+          </div>
+          <span className="badge review">recommended</span>
+        </div>
+        <div className="action-row">
+          <Link className="button compact" href="/master-index">Mark 系統總索引</Link>
+          <Link className="button secondary compact" href="/data-status">資料狀態與缺口</Link>
+        </div>
+      </section>
+
+      <section className="panel">
+        <div className="item-header">
+          <div>
             <h2>今天收入行動</h2>
             <p>優先做不花錢、可審核、可回收支出的任務。所有客戶訊息只建立草稿，不自動發送。</p>
           </div>

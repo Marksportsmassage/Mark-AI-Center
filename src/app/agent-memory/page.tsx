@@ -19,6 +19,7 @@ export default function Page() {
         <div className="action-row">
           <Link className="button compact" href="/assistant">回助理</Link>
           <Link className="button secondary compact" href="/agent-lab">Agent Lab</Link>
+          <Link className="button secondary compact" href="/data-status">Data Status</Link>
         </div>
       </header>
 
@@ -59,6 +60,7 @@ export default function Page() {
         <p className="mono">docs/agent-memory/agent-operating-plan.md</p>
         <div className="action-row">
           <Link className="button secondary compact" href="/income-lab">Income Lab</Link>
+          <Link className="button secondary compact" href="/master-index">Master Index</Link>
           <Link className="button secondary compact" href="/assistant-universe">Assistant Universe</Link>
         </div>
       </section>

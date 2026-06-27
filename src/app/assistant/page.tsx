@@ -94,6 +94,8 @@ function AssistantData() {
             <Link className="button compact" href="/assistant-universe"><Building2 size={16} />進入公司宇宙</Link>
             <Link className="button secondary compact" href="/intake"><ClipboardCheck size={16} />用問答補資料</Link>
             <Link className="button secondary compact" href="/income-lab">提高收入</Link>
+            <Link className="button secondary compact" href="/master-index">系統總索引</Link>
+            <Link className="button secondary compact" href="/data-status">資料狀態</Link>
             <Link className="button secondary compact" href="/agent-lab">Agent 架構</Link>
             <Link className="button secondary compact" href="/agent-memory">Agent 記憶</Link>
           </div>
@@ -172,8 +174,12 @@ function AssistantData() {
         <ol>
           <li>先回答上方 3 個具體問題。</li>
           <li>按上方審核按鈕處理支出、投資、成本守門。</li>
-          <li>需要補資料時，直接用問答輸入，不用自己找欄位。</li>
+          <li>需要補資料時，先看資料狀態，不要重複回答已給過的資料。</li>
         </ol>
+        <div className="action-row">
+          <Link className="button secondary compact" href="/master-index">看系統總索引</Link>
+          <Link className="button secondary compact" href="/data-status">看資料缺口</Link>
+        </div>
       </section>
 
       <section className="panel assistant-ops-dashboard compact-ops" aria-label="Company assistant operations">

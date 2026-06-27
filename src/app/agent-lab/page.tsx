@@ -41,6 +41,7 @@ export default function Page() {
         <div className="action-row">
           <Link className="button compact" href="/assistant">回助理</Link>
           <Link className="button secondary compact" href="/agent-memory">Agent Memory</Link>
+          <Link className="button secondary compact" href="/master-index">Master Index</Link>
         </div>
       </header>
 
@@ -84,6 +85,7 @@ export default function Page() {
         <h2>研究與企劃文件</h2>
         <div className="action-row">
           <Link className="button secondary compact" href="/assistant-universe">助理宇宙</Link>
+          <Link className="button secondary compact" href="/data-status">資料狀態</Link>
           <Link className="button secondary compact" href="/command-brain">Command Brain</Link>
           <Link className="button secondary compact" href="/system-status">System Status</Link>
         </div>

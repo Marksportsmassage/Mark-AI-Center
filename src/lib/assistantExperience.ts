@@ -133,6 +133,16 @@ export const assistantSuggestions: AssistantSuggestion[] = [
     impact_if_ignored: "容易回到後台清單模式，看很多但沒做下一步。",
     next_action: "看 Today、Review Queue、Exam Review 三個入口。",
     href: "/today"
+  },
+  {
+    id: "data-status",
+    title: "先看資料狀態，避免重複補資料",
+    risk: "normal",
+    why: "Mark 已經提供很多資料；系統需要知道哪些不要再問、哪些才真的阻擋決策。",
+    impact_if_ignored: "助理會一直繞在缺資料問題上，浪費 Mark 的注意力。",
+    next_action: "到 /data-status 看 provided / missing / do-not-ask-again。",
+    href: "/data-status",
+    draft_label: "建立資料補齊草稿"
   }
 ];
 
@@ -274,7 +284,9 @@ export const assistantBranches: AssistantBranch[] = [
     nodes: [
       { label: "產品路線圖", href: "/product-roadmap", status: "可用" },
       { label: "Codex 任務", href: "/codex-jobs", status: "待審核" },
-      { label: "指揮腦", href: "/command-brain", status: "已啟用" }
+      { label: "指揮腦", href: "/command-brain", status: "已啟用" },
+      { label: "Master Index", href: "/master-index", status: "可用" },
+      { label: "Data Status", href: "/data-status", status: "可用" }
     ]
   },
   {
