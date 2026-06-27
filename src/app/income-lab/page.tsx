@@ -2,7 +2,7 @@ import Link from "next/link";
 import { DataFreshnessBadge } from "@/components/assistant-ui/DataFreshnessBadge";
 import { TimeContextBadge } from "@/components/assistant-ui/TimeContextBadge";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
-import { noGoIncomeRules, sevenDaySprint, todayIncomeTasks } from "@/lib/incomeStrategy";
+import { expenseOffsetTargets, noGoIncomeRules, sevenDaySprint, shortVideoScripts, todayIncomeTasks, todayNoCostIncomeActions } from "@/lib/incomeStrategy";
 import { revenueOpportunities } from "@/lib/revenueOpportunities";
 
 export default function Page() {
@@ -40,6 +40,20 @@ export default function Page() {
         <ol>{sevenDaySprint.map((item) => <li key={item}>{item}</li>)}</ol>
       </section>
 
+      <section className="panel">
+        <h2>今天不花錢收入行動</h2>
+        <div className="detail-grid">
+          <div>
+            <strong>30 分鐘可做</strong>
+            <ul>{todayNoCostIncomeActions.thirtyMinutes.map((item) => <li key={item}>{item}</li>)}</ul>
+          </div>
+          <div>
+            <strong>2 小時可做</strong>
+            <ul>{todayNoCostIncomeActions.twoHours.map((item) => <li key={item}>{item}</li>)}</ul>
+          </div>
+        </div>
+      </section>
+
       <section className="cards-grid">
         {revenueOpportunities.map((opportunity) => (
           <article className="card assistant-glass-card" key={opportunity.id}>
@@ -57,6 +71,20 @@ export default function Page() {
       </section>
 
       <section className="panel">
+        <h2>短影片 / 動畫腳本</h2>
+        <div className="cards-grid">
+          {shortVideoScripts.map((script) => (
+            <article className="card assistant-glass-card" key={script.title}>
+              <h3>{script.title}</h3>
+              <p><strong>開頭：</strong>{script.hook}</p>
+              <p><strong>內容：</strong>{script.outline}</p>
+              <p><strong>CTA：</strong>{script.cta}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel">
         <h2>不要做</h2>
         <div className="stack-list warning-list">
           {noGoIncomeRules.map((rule) => <span key={rule}>{rule}</span>)}
@@ -65,7 +93,8 @@ export default function Page() {
 
       <section className="panel">
         <h2>最快抵銷支出</h2>
-        <p>本週先用 2 個高單價時段或 4 次舊客回流，對應抵銷 Line Pay 警訊支出 11,840、Firebase 成本與信用卡壓力。所有回訪都先放 Review Queue 給 Mark 審核。</p>
+        <ul>{expenseOffsetTargets.map((target) => <li key={target}>{target}</li>)}</ul>
+        <p className="muted">所有回訪、貼文、報價都只先建立草稿，必須 Mark 審核後才可外部執行。</p>
       </section>
 
       <MobileBottomNav />
