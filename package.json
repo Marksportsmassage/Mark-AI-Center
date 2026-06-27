@@ -76,6 +76,7 @@
     "test:income-lab": "vitest run tests/income-lab.unit.test.ts",
     "test:income-strategy": "vitest run tests/income-strategy.unit.test.ts",
     "test:master-index": "vitest run tests/master-index.unit.test.ts",
+    "test:data-status": "vitest run tests/data-status.unit.test.ts",
     "codex:report": "node scripts/codex/write-relay-report.mjs",
     "codex:relay": "node scripts/codex/relay-router.mjs",
     "codex:relay:gpt": "node scripts/codex/post-relay-to-gpt.mjs",

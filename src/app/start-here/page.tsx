@@ -10,6 +10,7 @@ const secondary = [
   { href: "/review-queue", title: "我要審核" },
   { href: "/assistant-universe", title: "我要看宇宙圖" },
   { href: "/master-index", title: "我要看系統總索引" },
+  { href: "/data-status", title: "我要看缺哪些資料" },
   { href: "/income-lab", title: "我要提高收入" },
   { href: "/agent-lab", title: "我要建立我的 AI Agent" },
   { href: "/exam-review", title: "我要準備期末考" },
